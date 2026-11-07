@@ -645,5 +645,29 @@
    "facebook_story": "story:1110258405253159"
   },
   "arquivado_em": "2026-11-07T11:32:12-03:00"
+ },
+ {
+  "id": "Por que ninguem compra de voce",
+  "arquivo": "videos/Por-que-ninguem-compra-de-voce.mp4",
+  "legenda": "Por que ninguém compra de você? #vendas #marketingdigital #empreendedorismo #instagram #conteudo",
+  "quando": "2026-11-07T12:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Por-que-ninguem-compra-de-voce.jpg",
+  "feito": {
+   "instagram": "18098633456438128",
+   "facebook": "1155312080232600",
+   "youtube": "kDoB34bZiLU"
+  },
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DfcghNJFaZu/",
+   "facebook": "https://www.facebook.com/reel/1155312080232600/",
+   "youtube": "https://youtu.be/kDoB34bZiLU"
+  },
+  "arquivado_em": "2026-11-07T12:32:28-03:00"
  }
 ]

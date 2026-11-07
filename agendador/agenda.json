@@ -1,23 +1,5 @@
 [
  {
-  "id": "Por que ninguem compra de voce",
-  "arquivo": "videos/Por-que-ninguem-compra-de-voce.mp4",
-  "legenda": "Por que ninguém compra de você? #vendas #marketingdigital #empreendedorismo #instagram #conteudo",
-  "quando": "2026-11-07T12:30:00-03:00",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube"
-  ],
-  "conta": "quanto-rende",
-  "capa": "videos/Por-que-ninguem-compra-de-voce.jpg",
-  "feito": {
-   "instagram": "18098633456438128",
-   "facebook": "1155312080232600",
-   "youtube": "kDoB34bZiLU"
-  }
- },
- {
   "id": "A skill mais baixada do mundo",
   "arquivo": "videos/A-skill-mais-baixada-do-mundo.mp4",
   "legenda": "A skill mais baixada do mundo acha todas as outras #skills #claudecode #ia #agentes #produtividade",
