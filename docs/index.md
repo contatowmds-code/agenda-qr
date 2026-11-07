@@ -7,4 +7,5 @@ Personal tool that schedules and posts the creator's own videos to the creator's
 Contato: contatowmds@gmail.com
 
 - Termos de uso: termos.html
-- - Politica de privacidade: privacidade.html
+- Politica de privacidade: privacidade.html
+- Conectar conta do TikTok: conectar.html
