@@ -132,7 +132,13 @@
    "facebook",
    "youtube"
   ],
-  "conta": "quanto-vale"
+  "conta": "quanto-vale",
+  "feito": {},
+  "erros": {
+   "instagram": "processar: {'id': '17993959098100328', 'status_code': 'ERROR'}",
+   "facebook": "enviar: {'debug_info': {'retriable': False, 'type': 'FileUrlProcessingError', 'message': 'Unable to fetch media from URL, got status code: 404 Not Found'}}",
+   "youtube": "[Errno 2] No such file or directory: '/home/runner/work/agenda-qr/agenda-qr/videos_branch/videos/Crie-seu-proprio-Jarvis-em-3-passos.mp4'"
+  }
  },
  {
   "id": "O Claude mudou os planos",
@@ -156,7 +162,12 @@
    "facebook",
    "youtube"
   ],
-  "conta": "arquivo-viral"
+  "conta": "arquivo-viral",
+  "feito": {
+   "instagram": "17958809097271625",
+   "facebook": "1138842055196183",
+   "youtube": "vFmJipBjfrI"
+  }
  },
  {
   "id": "3 erros que travam seu vídeo com IA",
