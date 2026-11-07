@@ -987,5 +987,40 @@
    "facebook_story"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "Por que o limite da IA acaba tao rapido",
+  "arquivo": "videos/Por-que-o-limite-da-IA-acaba-tao-rapido.mp4",
+  "legenda": "Por que o limite da IA acaba tão rápido? #ia #chatgpt #claude #produtividade #dicas",
+  "quando": "2026-11-10T10:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Por-que-o-limite-da-IA-acaba-tao-rapido.jpg"
+ },
+ {
+  "id": "Por que o limite da IA acaba tao rapido (story 1/2)",
+  "arquivo": "videos/Por-que-o-limite-da-IA-acaba-tao-rapido-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Por que o limite da IA acaba tao rapido (story 2/2)",
+  "arquivo": "videos/Por-que-o-limite-da-IA-acaba-tao-rapido-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
