@@ -64,7 +64,7 @@ def instagram(it):
     if "id" not in j: raise RuntimeError(f"criar: {j}")
     cid = j["id"]
     for _ in range(60):
-        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code", "access_token": tok}, timeout=60).json()
+        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
         if s.get("status_code") == "FINISHED": break
         if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar: {s}")
         time.sleep(10)
