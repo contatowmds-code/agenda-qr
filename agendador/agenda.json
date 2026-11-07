@@ -407,5 +407,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu celular pode estar entregando tudo a",
+  "arquivo": "videos/Seu-celular-pode-estar-entregando-tudo-ao-TikTok.mp4",
+  "legenda": "Seu celular entrega tudo ao TikTok? #tiktok #algoritmo #ia #tecnologia #privacidade",
+  "quando": "2026-11-08T12:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Seu-celular-pode-estar-entregando-tudo-ao-TikTok.jpg"
+ },
+ {
+  "id": "Seu celular pode estar entregando tudo a (story 1/2)",
+  "arquivo": "videos/Seu-celular-pode-estar-entregando-tudo-ao-TikTok-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu celular pode estar entregando tudo a (story 2/2)",
+  "arquivo": "videos/Seu-celular-pode-estar-entregando-tudo-ao-TikTok-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
