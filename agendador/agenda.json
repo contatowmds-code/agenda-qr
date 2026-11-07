@@ -400,6 +400,9 @@
   "conta": "quanto-vale",
   "feito": {
    "instagram_story": "18011686484996473"
+  },
+  "erros": {
+   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'As73aUdvMjGa1BjRtshz7WL'}}"
   }
  },
  {
