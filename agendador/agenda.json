@@ -86,7 +86,10 @@
    "instagram_story",
    "facebook_story"
   ],
-  "conta": "arquivo-viral"
+  "conta": "arquivo-viral",
+  "erros": {
+   "instagram_story": "processar story: {'id': '18107390252367822', 'status': 'Error: Media upload has failed with error code 2207076', 'status_code': 'ERROR'}"
+  }
  },
  {
   "id": "Story-1-skill-vira-1-equipe-parte-2",
