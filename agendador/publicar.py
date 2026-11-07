@@ -399,7 +399,7 @@ def conferir_e_arquivar(it):
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
     if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag); duplicatas(ag)
-    if not DRY and os.environ.get("ESPERAR_HORARIO", "1") == "1":
+    if not DRY and os.environ.get("ESPERAR_HORARIO", "0") == "1":
         # rodada disparada um pouco ANTES do horário: espera até o horário exato do próximo item pendente (até 15 min) e publica na hora certa
         prox = []
         for x in ag:
