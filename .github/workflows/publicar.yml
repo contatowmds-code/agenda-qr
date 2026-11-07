@@ -1,14 +1,35 @@
 name: Publicar vídeos agendados
 on:
   schedule:
-    - cron: "*/15 * * * *"   # confere a agenda a cada 15 minutos (o GitHub pode atrasar alguns minutos)
+    - cron: "*/10 * * * *"   # reserva: se o vigia cair, o cron reinicia (o GitHub pode atrasar ou pular rodadas)
   workflow_dispatch: {}
 permissions:
   contents: write
-concurrency: publicar
+  actions: write
+concurrency:
+  group: publicar
+  cancel-in-progress: false
 jobs:
   publicar:
     runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
+      META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
+      YT_REFRESH_TOKEN__QUANTO_RENDE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_RENDE }}
+      YT_REFRESH_TOKEN__QUANTO_VALE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_VALE }}
+      YT_REFRESH_TOKEN__ARQUIVO_VIRAL: ${{ secrets.YT_REFRESH_TOKEN__ARQUIVO_VIRAL }}
+      IG_USER_ID: ${{ secrets.IG_USER_ID }}
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+      TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
+      TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+      TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
+      TT_PRIVACY: ${{ vars.TT_PRIVACY }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -17,24 +38,23 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install requests
-      - run: python agendador/publicar.py
-        env:
-          VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
-          META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
-          YT_REFRESH_TOKEN__QUANTO_RENDE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_RENDE }}
-          YT_REFRESH_TOKEN__QUANTO_VALE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_VALE }}
-          YT_REFRESH_TOKEN__ARQUIVO_VIRAL: ${{ secrets.YT_REFRESH_TOKEN__ARQUIVO_VIRAL }}
-          IG_USER_ID: ${{ secrets.IG_USER_ID }}
-          IG_TOKEN: ${{ secrets.IG_TOKEN }}
-          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
-          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
-          TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
-          TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
-          TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
-          TT_PRIVACY: ${{ vars.TT_PRIVACY }}
-          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
-          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      - name: Publicar o que venceu (rodada inicial)
+        run: python agendador/publicar.py
       - name: Guardar o que já foi publicado
         if: always()
         run: python agendador/guardar.py
+      - name: Vigia (confere a agenda a cada 3 min por 5h30, para nunca passar do horário)
+        run: |
+          fim=$((SECONDS+19800))
+          while [ $SECONDS -lt $fim ]; do
+            sleep 180
+            git fetch -q origin main && git reset -q --hard origin/main || true
+            git -C videos_branch pull -q || true
+            env -u GITHUB_EVENT_NAME python agendador/publicar.py || true
+            python agendador/guardar.py || true
+          done
+      - name: Reiniciar o vigia
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run publicar.yml || true
