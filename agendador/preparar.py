@@ -2,11 +2,12 @@
 """Acrescenta vídeos prontos na agenda, SEMPRE no próximo horário livre depois do último já agendado.
 Uso: python agendador/preparar.py "videos/Pasta 1" ["videos/Pasta 2" ...] [--inicio AAAA-MM-DD] [--horas 12:00,18:00,21:00] [--plataformas instagram,youtube]
 Padrões vêm de agendador/config.json (horas, plataformas, fuso). Copia o mp4 para agendador/videos/ e lê titulo-e-hashtags.txt."""
-import argparse, json, shutil, datetime as dt
+import argparse, json, shutil, sys, datetime as dt
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 AQUI = Path(__file__).resolve().parent
+sys.path.insert(0, str(AQUI))
 cfg = json.loads((AQUI / "config.json").read_text(encoding="utf-8"))
 ap = argparse.ArgumentParser()
 ap.add_argument("pastas", nargs="+")
@@ -14,6 +15,7 @@ ap.add_argument("--inicio", default=None)
 ap.add_argument("--horas", default=",".join(cfg["horas"]))
 ap.add_argument("--conta", default=None, help="quanto-rende | quanto-vale | arquivo-viral (o vídeo só posta nessa conta)")
 ap.add_argument("--plataformas", default=",".join(cfg["plataformas"]))
+ap.add_argument("--sem-story", action="store_true", help="não agenda os stories (por padrão, instagram/facebook ganham stories 20 min depois do Reel)")
 a = ap.parse_args()
 tz = ZoneInfo(cfg.get("fuso", "America/Sao_Paulo"))
 ag_p = AQUI / "agenda.json"
@@ -55,4 +57,11 @@ for pasta in a.pastas:
     quando = proximo(base); ultimo = quando
     ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")} | ({"conta": a.conta} if a.conta else {}) | ({"capa": capa_dest} if capa_dest else {}))
     print("agendado:", p.name, "->", quando.strftime("%d/%m %H:%M"))
+    pl = a.plataformas.split(",")
+    sp = [x + "_story" for x in ("instagram", "facebook") if x in pl]
+    if sp and not a.sem_story:
+        import stories
+        for it_s in stories.criar(mp4, p.name, quando + dt.timedelta(minutes=20), a.conta, sp):
+            if not any(i["id"] == it_s["id"] and i.get("conta") == it_s.get("conta") for i in ag): ag.append(it_s)
+        print("   + stories agendados:", ", ".join(sp), "->", (quando + dt.timedelta(minutes=20)).strftime("%d/%m %H:%M"))
 ag_p.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")

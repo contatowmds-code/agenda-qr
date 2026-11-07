@@ -39,6 +39,7 @@ def meta(it):
             "ig_user_id": os.environ.get("IG_USER_ID"), "ig_token": os.environ.get("IG_TOKEN")}
 
 def tem_credencial(plat, it):
+    plat = plat.replace("_story", "")   # stories usam as mesmas credenciais do Instagram/Facebook
     if plat in ("instagram", "facebook"):
         try: d = meta(it)
         except Exception: return False
@@ -150,6 +151,7 @@ def verificar(ag):
     vistos = set()
     for it in ag:
         for plat in it.get("plataformas", ["instagram"]):
+            if plat.endswith("_story"): continue
             chave = (conta_id(it), plat)
             if chave in vistos: continue
             vistos.add(chave); rot = f"[{conta_id(it) or 'padrão'}] {plat}"
@@ -193,7 +195,38 @@ def links_publicados(ag):
             except Exception as e:
                 print(f"[{it['id'][:34]}] {plat} FALHOU", str(e)[:120])
 
-FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube}
+def instagram_story(it):
+    """Story do Instagram (vídeo de até 60 s). Sem legenda."""
+    d = meta(it); uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
+    j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "STORIES", "video_url": url_publica(it), "access_token": tok}, timeout=120).json()
+    if "id" not in j: raise RuntimeError(f"criar story: {j}")
+    cid = j["id"]
+    for _ in range(60):
+        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
+        if s.get("status_code") == "FINISHED": break
+        if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar story: {s}")
+        time.sleep(8)
+    else: raise RuntimeError("story demorou demais para processar")
+    p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
+    if "id" not in p: raise RuntimeError(f"publicar story: {p}")
+    return p["id"]
+
+def facebook_story(it):
+    """Story em vídeo da Página do Facebook."""
+    d = meta(it); pid, tok = d["fb_page_id"], d["fb_token"]
+    a = requests.post(f"{GRAPH}/{pid}/video_stories", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
+    if "video_id" not in a: raise RuntimeError(f"iniciar story: {a}")
+    u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "file_url": url_publica(it)}, timeout=300).json()
+    if not u.get("success"): raise RuntimeError(f"enviar story: {u}")
+    for _ in range(60):
+        st = requests.get(f"{GRAPH}/{a['video_id']}", params={"fields": "status", "access_token": tok}, timeout=60).json()
+        if st.get("status", {}).get("uploading_phase", {}).get("status") == "complete": break
+        time.sleep(8)
+    f = requests.post(f"{GRAPH}/{pid}/video_stories", data={"upload_phase": "finish", "video_id": a["video_id"], "access_token": tok}, timeout=120).json()
+    if not f.get("success"): raise RuntimeError(f"publicar story: {f}")
+    return f.get("post_id") or a["video_id"]
+
+FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube, "instagram_story": instagram_story, "facebook_story": facebook_story}
 
 import subprocess, random
 def _git(*c): return subprocess.run(["git", *c], cwd=str(AQUI.parent), capture_output=True, text=True)
@@ -275,6 +308,9 @@ PUBLICADOS = AQUI / "publicados.json"
 def confirmado(plat, it, pid):
     """Confere NA REDE (só leitura) que o post existe de verdade; devolve o link ou None. Marcas manuais ('publicado-...') contam como confirmadas."""
     if str(pid).startswith("publicado-"): return "manual"
+    if plat.endswith("_story"):
+        base = confirmado(plat[:-6], it, pid) if plat.startswith(("instagram", "facebook")) else None
+        return base or f"story:{pid}"   # a API devolveu o ID do story; ele some em 24 h, então não exige link
     try:
         if plat == "instagram":
             d = meta(it); tok = d.get("ig_token") or d["fb_token"]
