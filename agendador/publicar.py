@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Publica os vídeos da agenda.json que já passaram do horário (rodado pelo GitHub Actions a cada 15 min).
 Plataformas: instagram (Reels), facebook (Reels da Página), tiktok, youtube (Shorts). Plataforma sem credencial é pulada (não dá erro).
-Segredos do GitHub: IG_USER_ID, IG_TOKEN | FB_PAGE_ID, FB_PAGE_TOKEN | TT_CLIENT_KEY, TT_CLIENT_SECRET, TT_REFRESH_TOKEN (TT_PRIVACY opcional)
+Contas: cada vídeo da agenda pode ter "conta" (ex.: quanto-rende, quanto-vale, arquivo-viral) e só posta nela.
+Segredos do GitHub: META_ACCOUNTS (JSON, Instagram+Facebook de todas as contas) | (antigo, 1 conta) IG_USER_ID, IG_TOKEN | FB_PAGE_ID, FB_PAGE_TOKEN | TT_CLIENT_KEY, TT_CLIENT_SECRET, TT_REFRESH_TOKEN (TT_PRIVACY opcional)
                     | YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN.
 Uso: python publicar.py [--dry-run]"""
 import json, math, os, sys, time, datetime as dt
@@ -18,13 +19,40 @@ NECESSARIOS = {"instagram": ["IG_USER_ID", "IG_TOKEN"], "facebook": ["FB_PAGE_ID
                "tiktok": ["TT_CLIENT_KEY", "TT_CLIENT_SECRET", "TT_REFRESH_TOKEN"],
                "youtube": ["YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"]}
 
+def conta_id(it): return (it.get("conta") or "").strip()
+
+def env(var, it):
+    """Credencial da conta do vídeo: primeiro VAR__CONTA (ex.: YT_REFRESH_TOKEN__QUANTO_RENDE), senão VAR."""
+    c = conta_id(it).upper().replace("-", "_")
+    return (os.environ.get(f"{var}__{c}") if c else None) or os.environ.get(var)
+
+def meta(it):
+    """Credenciais Meta da conta do vídeo. META_ACCOUNTS = JSON {"quanto-rende": {"fb_page_id","fb_token","ig_user_id"}, ...}.
+    Vídeo com "conta" só posta na conta dele; sem "conta", usa os segredos antigos (IG_*/FB_*)."""
+    contas = json.loads(os.environ.get("META_ACCOUNTS") or "{}")
+    c = conta_id(it)
+    if c:
+        d = contas.get(c)
+        if not d: raise RuntimeError(f"conta '{c}' não existe em META_ACCOUNTS")
+        return d
+    return {"fb_page_id": os.environ.get("FB_PAGE_ID"), "fb_token": os.environ.get("FB_PAGE_TOKEN"),
+            "ig_user_id": os.environ.get("IG_USER_ID"), "ig_token": os.environ.get("IG_TOKEN")}
+
+def tem_credencial(plat, it):
+    if plat in ("instagram", "facebook"):
+        try: d = meta(it)
+        except Exception: return False
+        chaves = ["ig_user_id", "ig_token" if "ig_token" in d else "fb_token"] if plat == "instagram" else ["fb_page_id", "fb_token"]
+        return all(d.get(k) for k in chaves)
+    return all(env(v, it) for v in NECESSARIOS[plat])
+
 def agora(): return dt.datetime.now(dt.timezone.utc)
 def arquivo(item): return VIDEOS / Path(item["arquivo"]).name
 def url_publica(item):
     return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['arquivo']).name}"
 
 def instagram(it):
-    uid, tok = os.environ["IG_USER_ID"], os.environ["IG_TOKEN"]
+    d = meta(it); uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
     j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "video_url": url_publica(it), "caption": it["legenda"],
                       "share_to_feed": "true", "access_token": tok}, timeout=120).json()
     if "id" not in j: raise RuntimeError(f"criar: {j}")
@@ -40,7 +68,7 @@ def instagram(it):
     return p["id"]
 
 def facebook(it):
-    pid, tok = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    d = meta(it); pid, tok = d["fb_page_id"], d["fb_token"]
     a = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
     if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
     u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "file_url": url_publica(it)}, timeout=300).json()
@@ -55,8 +83,8 @@ def facebook(it):
     return a["video_id"]
 
 def tiktok(it):
-    r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": os.environ["TT_CLIENT_KEY"],
-        "client_secret": os.environ["TT_CLIENT_SECRET"], "grant_type": "refresh_token", "refresh_token": os.environ["TT_REFRESH_TOKEN"]}, timeout=60).json()
+    r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it),
+        "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
     if "access_token" not in r: raise RuntimeError(f"token: {r}")
     dados = arquivo(it).read_bytes(); n = len(dados)
     chunk = n if n <= 64 * 1024 * 1024 else 32 * 1024 * 1024
@@ -76,8 +104,8 @@ def tiktok(it):
     return d["publish_id"]
 
 def youtube(it):
-    tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": os.environ["YT_CLIENT_ID"],
-          "client_secret": os.environ["YT_CLIENT_SECRET"], "refresh_token": os.environ["YT_REFRESH_TOKEN"], "grant_type": "refresh_token"}, timeout=60).json()
+    tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", it),
+          "client_secret": env("YT_CLIENT_SECRET", it), "refresh_token": env("YT_REFRESH_TOKEN", it), "grant_type": "refresh_token"}, timeout=60).json()
     if "access_token" not in tok: raise RuntimeError(f"token: {tok}")
     meta = {"snippet": {"title": it["legenda"].split("#")[0].strip()[:90] + " #Shorts", "description": it["legenda"], "categoryId": "22"},
             "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}}
@@ -99,8 +127,7 @@ def main():
         if q > agora(): continue
         for plat in it.get("plataformas", ["instagram"]):
             if it.setdefault("feito", {}).get(plat): continue
-            falta = [v for v in NECESSARIOS[plat] if not os.environ.get(v)]
-            if falta and not DRY: print(f"[{it['id']}] {plat}: pulado (sem {', '.join(falta)})"); continue
+            if not tem_credencial(plat, it) and not DRY: print(f"[{it['id']}] {plat} ({conta_id(it) or 'padrão'}): pulado (sem credencial)"); continue
             print(f"[{it['id']}] {plat}: publicando")
             if DRY: continue
             try: it["feito"][plat] = FUNCS[plat](it); it.get("erros", {}).pop(plat, None); print(f"  OK {plat}")

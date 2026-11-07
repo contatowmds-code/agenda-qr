@@ -12,6 +12,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("pastas", nargs="+")
 ap.add_argument("--inicio", default=None)
 ap.add_argument("--horas", default=",".join(cfg["horas"]))
+ap.add_argument("--conta", default=None, help="quanto-rende | quanto-vale | arquivo-viral (o vídeo só posta nessa conta)")
 ap.add_argument("--plataformas", default=",".join(cfg["plataformas"]))
 a = ap.parse_args()
 tz = ZoneInfo(cfg.get("fuso", "America/Sao_Paulo"))
@@ -42,6 +43,6 @@ for pasta in a.pastas:
     shutil.copy(mp4, AQUI / destino)
     base = max(minimo, ultimo) if ultimo else minimo
     quando = proximo(base); ultimo = quando
-    ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")})
+    ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")} | ({"conta": a.conta} if a.conta else {}))
     print("agendado:", p.name, "->", quando.strftime("%d/%m %H:%M"))
 ag_p.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")

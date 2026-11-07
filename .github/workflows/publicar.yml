@@ -20,6 +20,7 @@ jobs:
       - run: python agendador/publicar.py
         env:
           VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
+          META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
