@@ -57,16 +57,21 @@ def capa_local(item):
     f = VIDEOS / Path(item["capa"]).name if item.get("capa") else None
     return f if f and f.exists() else None
 
-def instagram(it):
+def instagram(it, com_capa=True):
     d = meta(it); uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
+    cap = url_capa(it) if com_capa else None
     j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "video_url": url_publica(it), "caption": it["legenda"],
-                      "share_to_feed": "true", "access_token": tok} | ({"cover_url": url_capa(it)} if url_capa(it) else {}), timeout=120).json()
-    if "id" not in j: raise RuntimeError(f"criar: {j}")
+                      "share_to_feed": "true", "access_token": tok} | ({"cover_url": cap} if cap else {}), timeout=120).json()
+    if "id" not in j:
+        if cap: print("  AVISO instagram: criar com capa falhou, tentando sem capa:", str(j)[:200]); return instagram(it, False)
+        raise RuntimeError(f"criar: {j}")
     cid = j["id"]
     for _ in range(60):
         s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
         if s.get("status_code") == "FINISHED": break
-        if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar: {s}")
+        if s.get("status_code") in ("ERROR", "EXPIRED"):
+            if cap: print("  AVISO instagram: processar com capa falhou, tentando sem capa:", str(s)[:200]); return instagram(it, False)
+            raise RuntimeError(f"processar: {s}")
         time.sleep(10)
     else: raise RuntimeError("demorou demais para processar")
     p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
