@@ -442,5 +442,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu app feito com IA convida hackers",
+  "arquivo": "videos/Seu-app-feito-com-IA-convida-hackers.mp4",
+  "legenda": "Seu app feito com IA convida hackers? #seguranca #vibecoding #ia #hackers #apps",
+  "quando": "2026-11-08T15:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Seu-app-feito-com-IA-convida-hackers.jpg"
+ },
+ {
+  "id": "Seu app feito com IA convida hackers (story 1/2)",
+  "arquivo": "videos/Seu-app-feito-com-IA-convida-hackers-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu app feito com IA convida hackers (story 2/2)",
+  "arquivo": "videos/Seu-app-feito-com-IA-convida-hackers-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
