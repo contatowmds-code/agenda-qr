@@ -1140,5 +1140,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Dados moveis desligam sozinhos no Wi-Fi",
+  "arquivo": "videos/Dados-moveis-desligam-sozinhos-no-Wi-Fi.mp4",
+  "legenda": "Seu celular desliga os dados sozinho no Wi-Fi? #iphone #dicas #atalhos #tecnologia #bateria",
+  "quando": "2026-11-11T07:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Dados-moveis-desligam-sozinhos-no-Wi-Fi.jpg"
+ },
+ {
+  "id": "Dados moveis desligam sozinhos no Wi-Fi (story 1/2)",
+  "arquivo": "videos/Dados-moveis-desligam-sozinhos-no-Wi-Fi-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Dados moveis desligam sozinhos no Wi-Fi (story 2/2)",
+  "arquivo": "videos/Dados-moveis-desligam-sozinhos-no-Wi-Fi-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
