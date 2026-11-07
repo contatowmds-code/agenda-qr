@@ -337,5 +337,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Siga o Pix das bets",
+  "arquivo": "videos/Siga-o-Pix-das-bets.mp4",
+  "legenda": "Você sabe quanto o Pix levou para as bets? #pix #bets #bancocentral #financas #apostas",
+  "quando": "2026-11-08T07:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Siga-o-Pix-das-bets.jpg"
+ },
+ {
+  "id": "Siga o Pix das bets (story 1/2)",
+  "arquivo": "videos/Siga-o-Pix-das-bets-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Siga o Pix das bets (story 2/2)",
+  "arquivo": "videos/Siga-o-Pix-das-bets-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
