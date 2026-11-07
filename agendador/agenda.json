@@ -394,11 +394,10 @@
   ],
   "conta": "quanto-vale",
   "feito": {
-   "instagram_story": "18137942920769969"
+   "instagram_story": "18137942920769969",
+   "facebook_story": "945572741766189"
   },
-  "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AcSy6qwaV5fDsu10sE7spcj'}}"
-  }
+  "erros": {}
  },
  {
   "id": "Novo imposto do pecado em 2027 (story 2/2)",
