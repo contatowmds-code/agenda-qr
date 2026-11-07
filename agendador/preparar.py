@@ -40,6 +40,8 @@ for pasta in a.pastas:
     p = Path(pasta); mp4 = next(p.glob("*.mp4")); legenda = (p / "titulo-e-hashtags.txt").read_text(encoding="utf-8").strip()
     destino = f"videos/{p.name.replace(' ', '-')}.mp4"
     if any(i["arquivo"] == destino for i in ag): print("já está na agenda:", p.name); continue
+    _pub = json.loads((AQUI / "publicados.json").read_text(encoding="utf-8")) if (AQUI / "publicados.json").exists() else []
+    if any(x.get("arquivo") == destino and (x.get("conta") or "") == (a.conta or "") for x in _pub): print("JÁ FOI PUBLICADO (consta em publicados.json); NÃO agendo de novo:", p.name); continue
     shutil.copy(mp4, AQUI / destino)
     capa_dest = None
     for cand in ("capa.jpg", "capa.jpeg", "capa.png"):

@@ -270,10 +270,101 @@ def persistir(it, plat, valor=None, erro=None):
     print("  AVISO: não consegui gravar na agenda:", it["id"], plat)
     return False
 
+PUBLICADOS = AQUI / "publicados.json"
+
+def confirmado(plat, it, pid):
+    """Confere NA REDE (só leitura) que o post existe de verdade; devolve o link ou None. Marcas manuais ('publicado-...') contam como confirmadas."""
+    if str(pid).startswith("publicado-"): return "manual"
+    try:
+        if plat == "instagram":
+            d = meta(it); tok = d.get("ig_token") or d["fb_token"]
+            r = requests.get(f"{GRAPH}/{pid}", params={"fields": "permalink", "access_token": tok}, timeout=60).json()
+            return r.get("permalink")
+        if plat == "facebook":
+            d = meta(it)
+            r = requests.get(f"{GRAPH}/{pid}", params={"fields": "permalink_url", "access_token": d["fb_token"]}, timeout=60).json()
+            return ("https://www.facebook.com" + r["permalink_url"]) if r.get("permalink_url") else None
+        if plat == "youtube":
+            u = f"https://youtu.be/{pid}"
+            ok = requests.get("https://www.youtube.com/oembed", params={"url": u, "format": "json"}, timeout=30).status_code == 200
+            return u if ok else (u + " (enviado; visibilidade não confirmada)")
+    except Exception as e: print(f"  (não consegui confirmar {plat}: {str(e)[:80]})")
+    return None
+
+def _lista(path):
+    try: return json.loads(path.read_text(encoding="utf-8"))
+    except Exception: return []
+
+def ja_arquivado(it):
+    """True se este vídeo (mesmo arquivo e conta) já consta como PUBLICADO no registro — nunca publicar de novo."""
+    pub = _lista(PUBLICADOS)
+    if os.environ.get("GITHUB_ACTIONS"):
+        try:
+            _git("fetch", "-q", "origin", "main"); r = _git("show", "origin/main:agendador/publicados.json")
+            if r.returncode == 0: pub = json.loads(r.stdout)
+        except Exception: pass
+    return any(x.get("arquivo") == it["arquivo"] and (x.get("conta") or "") == (it.get("conta") or "") for x in pub)
+
+def completo(it): return all((it.get("feito") or {}).get(p) for p in it.get("plataformas", ["instagram"]))
+
+def arquivar(it, links):
+    """Vídeo publicado e CONFIRMADO em todas as redes: tira da agenda, guarda no registro de publicados e apaga o arquivo do envio (branch videos)."""
+    if DRY: return False
+    actions = bool(os.environ.get("GITHUB_ACTIONS"))
+    if actions: _git("config", "user.name", "agendador"); _git("config", "user.email", "agendador@users.noreply.github.com")
+    for tent in range(8):
+        if actions: _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main")
+        ag = _lista(AGENDA); pub = _lista(PUBLICADOS)
+        alvo = [x for x in ag if x.get("id") == it["id"] and x.get("arquivo") == it["arquivo"]]
+        resto = [x for x in ag if not (x.get("id") == it["id"] and x.get("arquivo") == it["arquivo"])]
+        if alvo and not any(x.get("arquivo") == it["arquivo"] and (x.get("conta") or "") == (it.get("conta") or "") for x in pub):
+            e = dict(alvo[0]); e["links"] = links; e["arquivado_em"] = dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds"); pub.append(e)
+        AGENDA.write_text(json.dumps(resto, ensure_ascii=False, indent=1), encoding="utf-8")
+        PUBLICADOS.write_text(json.dumps(pub, ensure_ascii=False, indent=1), encoding="utf-8")
+        if not actions: return True
+        _git("add", "agendador/agenda.json", "agendador/publicados.json")
+        if _git("diff", "--cached", "--quiet").returncode == 0: ok = True
+        else:
+            _git("commit", "-q", "-m", f"publicado e arquivado: {it['id'][:40]}")
+            ok = _git("push", "-q", "origin", "HEAD:main").returncode == 0
+        if ok: limpar_videos(it); return True
+        time.sleep(1.5 + random.random() * 2)
+    print("  AVISO: não consegui arquivar:", it["id"]); return False
+
+def limpar_videos(it):
+    """Apaga o mp4 e a capa deste vídeo da branch 'videos' (melhor esforço), para não existir chance de reenvio."""
+    try:
+        vb = VIDEOS.parent
+        if not (vb / ".git").exists(): return
+        g = lambda *c: subprocess.run(["git", *c], cwd=str(vb), capture_output=True, text=True)
+        nomes = [f"videos/{Path(it['arquivo']).name}"] + ([f"videos/{Path(it['capa']).name}"] if it.get("capa") else [])
+        g("config", "user.name", "agendador"); g("config", "user.email", "agendador@users.noreply.github.com")
+        for _ in range(5):
+            g("fetch", "-q", "origin", "videos"); g("reset", "-q", "--hard", "origin/videos")
+            g("rm", "-q", "--ignore-unmatch", *nomes)
+            if g("diff", "--cached", "--quiet").returncode == 0: return
+            g("commit", "-q", "-m", f"apaga publicado: {it['id'][:40]}")
+            if g("push", "-q", "origin", "HEAD:videos").returncode == 0: print("  arquivos do vídeo apagados da branch videos"); return
+            time.sleep(1.5 + random.random() * 2)
+    except Exception as e: print("  (aviso: não consegui apagar da branch videos:", str(e)[:80] + ")")
+
+def conferir_e_arquivar(it):
+    """Se todas as redes do item têm post, CONFIRMA cada uma e então arquiva. Devolve True se arquivou."""
+    if not completo(it): return False
+    links = {}
+    for plat in it.get("plataformas", ["instagram"]):
+        l = confirmado(plat, it, it["feito"][plat])
+        if not l: print(f"[{it['id']}] {plat}: não consegui confirmar o post; NÃO arquivo ainda"); return False
+        links[plat] = l
+    print(f"[{it['id']}] publicado e confirmado em todas as redes: {links}")
+    return arquivar(it, links)
+
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
     if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag); duplicatas(ag)
-    for it in ag:
+    for it in list(ag):
+        if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
+        if not DRY and completo(it): conferir_e_arquivar(it); continue
         q = dt.datetime.fromisoformat(it["quando"])
         if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
         if q > agora(): continue
@@ -292,6 +383,7 @@ def main():
             except Exception as e:
                 print(f"  ERRO {plat}: {e}"); it.setdefault("erros", {})[plat] = str(e)[:300]; persistir(it, plat, erro=str(e)[:300])
             mudou = True
+        if not DRY and completo(it): conferir_e_arquivar(it)
     if mudou and not DRY and not os.environ.get("GITHUB_ACTIONS"): AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
     print("pronto.")
 
