@@ -75,7 +75,12 @@
    "youtube"
   ],
   "conta": "quanto-rende",
-  "capa": "videos/Celular-de-2-mil-custa-mais-que-iPhone.jpg"
+  "capa": "videos/Celular-de-2-mil-custa-mais-que-iPhone.jpg",
+  "feito": {
+   "instagram": "publicado-01h51-e-01h54",
+   "facebook": "publicado-01h51-e-01h54",
+   "youtube": "publicado-01h51-e-01h54"
+  }
  },
  {
   "id": "Segure a barra de espaco e mova o cursor",
