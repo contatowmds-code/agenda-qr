@@ -145,5 +145,29 @@
    "youtube"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "1 skill vira 1 equipe de IA",
+  "arquivo": "videos/1-skill-vira-1-equipe-de-IA.mp4",
+  "legenda": "1 skill vira 1 equipe de IA #ia #claude #skills #automacao #produtividade",
+  "quando": "2026-11-07T01:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "3 erros que travam seu vídeo com IA",
+  "arquivo": "videos/3-erros-que-travam-seu-vídeo-com-IA.mp4",
+  "legenda": "3 erros que travam seu vídeo com IA #ia #claude #videos #erros #dicas",
+  "quando": "2026-11-07T01:45:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral"
  }
 ]
