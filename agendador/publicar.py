@@ -198,6 +198,25 @@ FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtub
 import subprocess, random
 def _git(*c): return subprocess.run(["git", *c], cwd=str(AQUI.parent), capture_output=True, text=True)
 
+def ja_postado(plat, it):
+    """Confere na PRÓPRIA rede se já existe post com a MESMA legenda (pega duplicata mesmo se o registro do 'feito' se perder).
+    Instagram e Facebook (só leitura). Em dúvida ou erro devolve None."""
+    try:
+        alvo = it["legenda"].strip()
+        if plat == "instagram":
+            d = meta(it); tok = d.get("ig_token") or d["fb_token"]
+            r = requests.get(f"{GRAPH}/{d['ig_user_id']}/media", params={"fields": "caption", "limit": 50, "access_token": tok}, timeout=60).json()
+            for m in r.get("data", []):
+                if (m.get("caption") or "").strip() == alvo: return m["id"]
+        elif plat == "facebook":
+            d = meta(it)
+            r = requests.get(f"{GRAPH}/{d['fb_page_id']}/video_reels", params={"fields": "description", "limit": 50, "access_token": d["fb_token"]}, timeout=60).json()
+            for m in r.get("data", []):
+                if (m.get("description") or "").strip() == alvo: return m["id"]
+    except Exception as e:
+        print(f"  (aviso: não consegui conferir duplicata em {plat}: {str(e)[:80]})")
+    return None
+
 def remoto_feito(it, plat):
     """Confere na versão MAIS NOVA da agenda (origin/main) se outro robô/sessão já publicou isto (evita repetir)."""
     if not os.environ.get("GITHUB_ACTIONS"): return False
@@ -240,6 +259,10 @@ def main():
             if it.setdefault("feito", {}).get(plat): continue
             if not DRY and remoto_feito(it, plat): print(f"[{it['id']}] {plat}: já publicado por outra rodada (pulado)"); continue
             if not tem_credencial(plat, it) and not DRY: print(f"[{it['id']}] {plat} ({conta_id(it) or 'padrão'}): pulado (sem credencial)"); continue
+            if not DRY:
+                ja = ja_postado(plat, it)
+                if ja:
+                    print(f"[{it['id']}] {plat}: JÁ ESTAVA PUBLICADO na rede ({ja}); não publico de novo"); it["feito"][plat] = ja; persistir(it, plat, valor=ja); mudou = True; continue
             print(f"[{it['id']}] {plat}: publicando")
             if DRY: continue
             try:
