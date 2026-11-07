@@ -377,11 +377,10 @@
   ],
   "conta": "quanto-vale",
   "feito": {
-   "instagram_story": "18011686484996473"
+   "instagram_story": "18011686484996473",
+   "facebook_story": "2889005054832882"
   },
-  "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AnOwF3th8N6ts2T2Nqn7RQb'}}"
-  }
+  "erros": {}
  },
  {
   "id": "Faltam 2 dias para a prova",
