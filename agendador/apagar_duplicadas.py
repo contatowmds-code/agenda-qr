@@ -2,7 +2,7 @@
 """Apaga CÓPIAS EXTRAS de posts do Facebook (mesma conta, mesma legenda). Mantém SEMPRE o mais antigo de cada grupo.
 Segurança: só apaga se o grupo tem 2+ posts com legenda idêntica e não vazia; reconfere a legenda do post antes de apagar.
 Instagram/YouTube não permitem apagar por esta API (fazer manualmente). Só roda manualmente (workflow 'Apagar posts repetidos')."""
-import json, os, sys
+import json, os, sys, time
 import requests
 GRAPH = "https://graph.facebook.com/v21.0"
 contas = json.loads(os.environ.get("META_ACCOUNTS") or "{}")
@@ -35,7 +35,9 @@ for conta, d in contas.items():
             chk = requests.get(f"{GRAPH}/{pid}", params={"fields": "description", "access_token": tok}, timeout=60).json()
             if (chk.get("description") or "").strip() != leg: print(f"    [{pid}] legenda NÃO confere agora; NÃO apago"); continue
             if DRY: print(f"    [{pid}] (simulação) apagaria"); continue
+            time.sleep(2)
             a = requests.delete(f"{GRAPH}/{pid}", params={"access_token": tok}, timeout=60).json()
             ok = bool(a.get("success")); total += ok
+            if (a.get('error') or {}).get('code') in (4, 17, 32, 613): print('  limite do Facebook atingido; paro agora e retomo na próxima rodada'); sys.exit(0)
             print(f"    [{pid}] {m.get('created_time')} -> {'APAGADO' if ok else 'FALHOU: ' + str(a)[:150]}")
 print(f"pronto. apagados: {total}")
