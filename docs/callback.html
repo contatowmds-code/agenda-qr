@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Autorização concluída - Agendador QR</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;color:#111}code,textarea{width:100%;box-sizing:border-box}textarea{height:90px}button{padding:10px 16px;font-size:16px}</style></head>
+<body>
+<h1>Autorização concluída - Agendador QR</h1>
+<p id="msg">Lendo a resposta do TikTok...</p>
+<div id="box" hidden>
+<p>Conta: <b id="conta"></b></p>
+<p>Código de autorização (vale poucos minutos). Cole-o no workflow <b>TikTok - conectar e testar</b> do GitHub Actions:</p>
+<textarea id="code" readonly></textarea>
+<p><button id="cp">Copiar código</button></p>
+</div>
+<script>
+var p=new URLSearchParams(location.search);
+var code=p.get("code"),err=p.get("error"),st=p.get("state")||"";
+if(code){document.getElementById("msg").textContent="Autorização recebida.";document.getElementById("box").hidden=false;
+document.getElementById("code").value=code;document.getElementById("conta").textContent=st||"(sem nome)";
+document.getElementById("cp").onclick=function(){var t=document.getElementById("code");t.select();document.execCommand("copy");this.textContent="Copiado"};}
+else if(err){document.getElementById("msg").textContent="O TikTok devolveu um erro: "+err+" "+(p.get("error_description")||"");}
+else{document.getElementById("msg").textContent="Esta é a página de retorno do login do Agendador QR. Abra conectar.html para iniciar.";}
+</script>
+</body></html>

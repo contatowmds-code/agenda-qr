@@ -1,0 +1,17 @@
+name: Simular limpeza de duplicadas (só leitura)
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  simular:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - name: Listar o que seria apagado (NÃO apaga nada)
+        run: python agendador/apagar_duplicadas.py --dry-run
+        env:
+          META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}

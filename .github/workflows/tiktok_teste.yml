@@ -1,0 +1,21 @@
+name: TikTok - conectar e testar (Sandbox)
+on:
+  workflow_dispatch:
+    inputs:
+      code: { description: "Código de autorização mostrado em callback.html", required: true }
+permissions:
+  contents: read
+jobs:
+  teste:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - run: python agendador/tiktok_teste.py
+        env:
+          CODE: ${{ inputs.code }}
+          CLIENT_KEY: sbaw0y8na9simjri9u
+          REDIRECT_URI: https://contatowmds-code.github.io/agenda-qr/callback.html
+          TT_SBX_CLIENT_SECRET: ${{ secrets.TT_SBX_CLIENT_SECRET }}
