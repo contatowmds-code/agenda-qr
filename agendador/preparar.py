@@ -41,8 +41,16 @@ for pasta in a.pastas:
     destino = f"videos/{p.name.replace(' ', '-')}.mp4"
     if any(i["arquivo"] == destino for i in ag): print("já está na agenda:", p.name); continue
     shutil.copy(mp4, AQUI / destino)
+    capa_dest = None
+    for cand in ("capa.jpg", "capa.jpeg", "capa.png"):
+        if (p / cand).exists():
+            from PIL import Image
+            capa_dest = destino[:-4] + ".jpg"
+            Image.open(p / cand).convert("RGB").save(AQUI / capa_dest, "JPEG", quality=92)
+            break
+    if not capa_dest: print("AVISO: sem capa.png na pasta; o vídeo sai com a capa automática:", p.name)
     base = max(minimo, ultimo) if ultimo else minimo
     quando = proximo(base); ultimo = quando
-    ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")} | ({"conta": a.conta} if a.conta else {}))
+    ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")} | ({"conta": a.conta} if a.conta else {}) | ({"capa": capa_dest} if capa_dest else {}))
     print("agendado:", p.name, "->", quando.strftime("%d/%m %H:%M"))
 ag_p.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")

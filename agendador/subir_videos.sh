@@ -21,6 +21,9 @@ for it in ag:
     if pend:
         manter.add(f.name)
         if f.exists(): shutil.copy(f, tmp / f.name)
+        if it.get("capa"):
+            c = Path("agendador") / it["capa"]; manter.add(c.name)
+            if c.exists(): shutil.copy(c, tmp / c.name)
 for f in tmp.glob("*"):
     if f.name not in manter: f.unlink()
 PY

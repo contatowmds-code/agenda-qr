@@ -51,10 +51,16 @@ def arquivo(item): return VIDEOS / Path(item["arquivo"]).name
 def url_publica(item):
     return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['arquivo']).name}"
 
+def url_capa(item):
+    return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['capa']).name}" if item.get("capa") else None
+def capa_local(item):
+    f = VIDEOS / Path(item["capa"]).name if item.get("capa") else None
+    return f if f and f.exists() else None
+
 def instagram(it):
     d = meta(it); uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
     j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "video_url": url_publica(it), "caption": it["legenda"],
-                      "share_to_feed": "true", "access_token": tok}, timeout=120).json()
+                      "share_to_feed": "true", "access_token": tok} | ({"cover_url": url_capa(it)} if url_capa(it) else {}), timeout=120).json()
     if "id" not in j: raise RuntimeError(f"criar: {j}")
     cid = j["id"]
     for _ in range(60):
@@ -80,6 +86,16 @@ def facebook(it):
     f = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "finish", "video_id": a["video_id"], "video_state": "PUBLISHED",
                       "description": it["legenda"], "access_token": tok}, timeout=120).json()
     if not f.get("success"): raise RuntimeError(f"publicar: {f}")
+    c = capa_local(it)   # capa do Reel (melhor esforço: se falhar, o vídeo já está publicado)
+    if c:
+        try:
+            for _ in range(6):
+                t = requests.post(f"{GRAPH}/{a['video_id']}/thumbnails", data={"is_preferred": "true", "access_token": tok},
+                                  files={"source": (c.name, c.read_bytes(), "image/jpeg")}, timeout=120).json()
+                if t.get("success"): print("  capa facebook OK"); break
+                time.sleep(10)
+            else: print("  AVISO capa facebook:", str(t)[:200])
+        except Exception as e: print("  AVISO capa facebook:", str(e)[:200])
     return a["video_id"]
 
 def tiktok(it):
@@ -115,6 +131,12 @@ def youtube(it):
     if not loc: raise RuntimeError(f"iniciar: {r.text[:300]}")
     up = requests.put(loc, data=arquivo(it).read_bytes(), headers={"Content-Type": "video/mp4"}, timeout=1200).json()
     if "id" not in up: raise RuntimeError(f"enviar: {up}")
+    c = capa_local(it)   # capa do YouTube (melhor esforço)
+    if c:
+        try:
+            r2 = requests.post(f"https://www.googleapis.com/upload/youtube/v3/thumbnails/set?videoId={up['id']}", headers={"Authorization": f"Bearer {tok['access_token']}", "Content-Type": "image/jpeg"}, data=c.read_bytes(), timeout=120)
+            print("  capa youtube", "OK" if r2.status_code == 200 else f"AVISO {r2.status_code} {r2.text[:160]}")
+        except Exception as e: print("  AVISO capa youtube:", str(e)[:200])
     return up["id"]
 
 

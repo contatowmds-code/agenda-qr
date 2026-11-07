@@ -137,9 +137,8 @@
    "facebook": "4675080922765803",
    "youtube": "eUwEdv20kjQ"
   },
-  "erros": {
-   "instagram": "processar: {'id': '17993959542100328', 'status_code': 'ERROR'}"
-  }
+  "erros": {},
+  "capa": "videos/Crie-seu-proprio-Jarvis-em-3-passos.jpg"
  },
  {
   "id": "O Claude mudou os planos",
@@ -151,7 +150,8 @@
    "facebook",
    "youtube"
   ],
-  "conta": "quanto-vale"
+  "conta": "quanto-vale",
+  "capa": "videos/O-Claude-mudou-os-planos.jpg"
  },
  {
   "id": "1 skill vira 1 equipe de IA",
