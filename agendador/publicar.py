@@ -399,6 +399,18 @@ def conferir_e_arquivar(it):
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
     if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag); duplicatas(ag)
+    if not DRY and os.environ.get("ESPERAR_HORARIO", "1") == "1":
+        # rodada disparada um pouco ANTES do horário: espera até o horário exato do próximo item pendente (até 15 min) e publica na hora certa
+        prox = []
+        for x in ag:
+            try:
+                qq = dt.datetime.fromisoformat(x["quando"])
+                if qq.tzinfo is None: qq = qq.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
+                if agora() < qq <= agora() + dt.timedelta(minutes=15) and not completo(x): prox.append(qq)
+            except Exception: pass
+        if prox:
+            esp = (min(prox) - agora()).total_seconds() + 2
+            print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
     for it in list(ag):
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue
