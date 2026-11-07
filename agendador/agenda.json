@@ -372,5 +372,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Engenharia reversa de video viral",
+  "arquivo": "videos/Engenharia-reversa-de-video-viral.mp4",
+  "legenda": "Como usar o Claude para viralizar em 1 semana? #claude #ia #reels #viral #marketingdigital",
+  "quando": "2026-11-08T10:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Engenharia-reversa-de-video-viral.jpg"
+ },
+ {
+  "id": "Engenharia reversa de video viral (story 1/2)",
+  "arquivo": "videos/Engenharia-reversa-de-video-viral-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T10:00:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Engenharia reversa de video viral (story 2/2)",
+  "arquivo": "videos/Engenharia-reversa-de-video-viral-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T10:00:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
