@@ -61,11 +61,10 @@
    "facebook_story"
   ],
   "conta": "arquivo-viral",
-  "erros": {
-   "facebook_story": "enviar story: {'debug_info': {'retriable': False, 'type': 'FileUrlProcessingError', 'message': 'Unable to fetch media from URL, got status code: 404 Not Found'}}"
-  },
+  "erros": {},
   "feito": {
-   "instagram_story": "18375189382210980"
+   "instagram_story": "18375189382210980",
+   "facebook_story": "2702650966917872"
   }
  },
  {
