@@ -6,14 +6,19 @@ on:
 permissions:
   contents: write
   actions: write
-concurrency:
-  group: publicar
-  cancel-in-progress: false
 jobs:
   publicar:
     runs-on: ubuntu-latest
     timeout-minutes: 350
+    strategy:
+      fail-fast: false
+      matrix:
+        conta: [quanto-rende, quanto-vale, arquivo-viral]   # um vigia POR CONTA, em paralelo: uma conta não espera a outra publicar
+    concurrency:
+      group: publicar-${{ matrix.conta }}
+      cancel-in-progress: false
     env:
+      SO_CONTA: ${{ matrix.conta }}
       VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
       META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
       YT_REFRESH_TOKEN__QUANTO_RENDE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_RENDE }}
@@ -54,7 +59,7 @@ jobs:
             python agendador/guardar.py || true
           done
       - name: Reiniciar o vigia
-        if: always()
+        if: always() && matrix.conta == 'quanto-rende'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X POST "repos/${{ github.repository }}/actions/workflows/publicar.yml/dispatches" -f ref=main || true

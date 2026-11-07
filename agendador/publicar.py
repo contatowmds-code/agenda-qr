@@ -412,6 +412,7 @@ def main():
             esp = (min(prox) - agora()).total_seconds() + 2
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
     for it in list(ag):
+        if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue
         q = dt.datetime.fromisoformat(it["quando"])
