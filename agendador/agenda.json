@@ -547,5 +547,40 @@
    "facebook_story"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "Duas pessoas a mesma manha",
+  "arquivo": "videos/Duas-pessoas-a-mesma-manha.mp4",
+  "legenda": "Duas pessoas, a mesma manhã. Qual é você? #habitos #rotina #manha #disciplina #foco",
+  "quando": "2026-11-09T07:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Duas-pessoas-a-mesma-manha.jpg"
+ },
+ {
+  "id": "Duas pessoas a mesma manha (story 1/2)",
+  "arquivo": "videos/Duas-pessoas-a-mesma-manha-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Duas pessoas a mesma manha (story 2/2)",
+  "arquivo": "videos/Duas-pessoas-a-mesma-manha-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
