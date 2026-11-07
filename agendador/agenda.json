@@ -637,21 +637,6 @@
   "conta": "quanto-vale"
  },
  {
-  "id": "ep19-Edita-video-sem-abrir-editor (story 2/2)",
-  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story2.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T10:50:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "arquivo-viral",
-  "feito": {
-   "instagram_story": "18033524156910619",
-   "facebook_story": "1130963179729415"
-  }
- },
- {
   "id": "ep20-Perde-tempo-com-tarefa-repetida",
   "arquivo": "videos/ep20-Perde-tempo-com-tarefa-repetida.mp4",
   "legenda": "Perde tempo com tarefa repetida? #ia #produtividade #automacao #chatgpt #tecnologia",
