@@ -617,5 +617,40 @@
    "facebook_story"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "7 estilos de video animado com 1 frase",
+  "arquivo": "videos/7-estilos-de-video-animado-com-1-frase.mp4",
+  "legenda": "7 estilos de vídeo animado com 1 frase? #ia #videoanimado #criacaodeconteudo #reels #tecnologia",
+  "quando": "2026-11-09T15:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/7-estilos-de-video-animado-com-1-frase.jpg"
+ },
+ {
+  "id": "7 estilos de video animado com 1 frase (story 1/2)",
+  "arquivo": "videos/7-estilos-de-video-animado-com-1-frase-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "7 estilos de video animado com 1 frase (story 2/2)",
+  "arquivo": "videos/7-estilos-de-video-animado-com-1-frase-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
