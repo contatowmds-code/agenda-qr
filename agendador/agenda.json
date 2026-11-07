@@ -394,21 +394,6 @@
   "conta": "quanto-rende"
  },
  {
-  "id": "O Claude Code faz motion graphics (story 1/2)",
-  "arquivo": "videos/O-Claude-Code-faz-motion-graphics-story1.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T12:50:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-vale",
-  "feito": {
-   "instagram_story": "17887004355512211",
-   "facebook_story": "1685021859936140"
-  }
- },
- {
   "id": "O Claude Code faz motion graphics (story 2/2)",
   "arquivo": "videos/O-Claude-Code-faz-motion-graphics-story2.mp4",
   "legenda": "",
