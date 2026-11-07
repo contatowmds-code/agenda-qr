@@ -475,6 +475,9 @@
   "conta": "arquivo-viral",
   "feito": {
    "instagram_story": "18202794538339037"
+  },
+  "erros": {
+   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AqbCeKsAoRGd7vMz7xl5fd3'}}"
   }
  },
  {
