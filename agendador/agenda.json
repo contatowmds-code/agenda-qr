@@ -735,5 +735,320 @@
    "facebook_story"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "ep19-Edita-video-sem-abrir-editor",
+  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor.mp4",
+  "legenda": "Edita vídeo sem abrir editor? #ia #claude #edicao #videos #automacao",
+  "quando": "2026-11-07T10:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep19-Edita-video-sem-abrir-editor.jpg"
+ },
+ {
+  "id": "ep19-Edita-video-sem-abrir-editor (story 1/2)",
+  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T10:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep19-Edita-video-sem-abrir-editor (story 2/2)",
+  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T10:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep20-Perde-tempo-com-tarefa-repetida",
+  "arquivo": "videos/ep20-Perde-tempo-com-tarefa-repetida.mp4",
+  "legenda": "Perde tempo com tarefa repetida? #ia #produtividade #automacao #chatgpt #tecnologia",
+  "quando": "2026-11-07T13:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep20-Perde-tempo-com-tarefa-repetida.jpg"
+ },
+ {
+  "id": "ep20-Perde-tempo-com-tarefa-repetida (story 1/2)",
+  "arquivo": "videos/ep20-Perde-tempo-com-tarefa-repetida-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T13:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep20-Perde-tempo-com-tarefa-repetida (story 2/2)",
+  "arquivo": "videos/ep20-Perde-tempo-com-tarefa-repetida-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T13:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep21-Sua-IA-pode-inventar-respostas",
+  "arquivo": "videos/ep21-Sua-IA-pode-inventar-respostas.mp4",
+  "legenda": "Sua IA pode inventar respostas? #ia #chatgpt #checagem #tecnologia #dicas",
+  "quando": "2026-11-07T15:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep21-Sua-IA-pode-inventar-respostas.jpg"
+ },
+ {
+  "id": "ep21-Sua-IA-pode-inventar-respostas (story 1/2)",
+  "arquivo": "videos/ep21-Sua-IA-pode-inventar-respostas-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep21-Sua-IA-pode-inventar-respostas (story 2/2)",
+  "arquivo": "videos/ep21-Sua-IA-pode-inventar-respostas-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep22-Sua-IA-responde-igual-para-todos",
+  "arquivo": "videos/ep22-Sua-IA-responde-igual-para-todos.mp4",
+  "legenda": "Sua IA responde igual para todos? #ia #chatgpt #prompt #contexto #dicas",
+  "quando": "2026-11-07T18:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep22-Sua-IA-responde-igual-para-todos.jpg"
+ },
+ {
+  "id": "ep22-Sua-IA-responde-igual-para-todos (story 1/2)",
+  "arquivo": "videos/ep22-Sua-IA-responde-igual-para-todos-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T18:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep22-Sua-IA-responde-igual-para-todos (story 2/2)",
+  "arquivo": "videos/ep22-Sua-IA-responde-igual-para-todos-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T18:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep23-Sua-rotina-de-conteudo-vive-uma-bag",
+  "arquivo": "videos/ep23-Sua-rotina-de-conteudo-vive-uma-bagunca.mp4",
+  "legenda": "Sua rotina de conteúdo vive uma bagunça? #ia #conteudo #produtividade #automacao #criadores",
+  "quando": "2026-11-07T20:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep23-Sua-rotina-de-conteudo-vive-uma-bagunca.jpg"
+ },
+ {
+  "id": "ep23-Sua-rotina-de-conteudo-vive-uma-bag (story 1/2)",
+  "arquivo": "videos/ep23-Sua-rotina-de-conteudo-vive-uma-bagunca-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T20:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep23-Sua-rotina-de-conteudo-vive-uma-bag (story 2/2)",
+  "arquivo": "videos/ep23-Sua-rotina-de-conteudo-vive-uma-bagunca-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T20:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep24-Quer-criar-seu-primeiro-agente-de-I",
+  "arquivo": "videos/ep24-Quer-criar-seu-primeiro-agente-de-IA.mp4",
+  "legenda": "Quer criar seu primeiro agente de IA? #ia #agentesdeia #automacao #tecnologia #tutorial",
+  "quando": "2026-11-08T08:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep24-Quer-criar-seu-primeiro-agente-de-IA.jpg"
+ },
+ {
+  "id": "ep24-Quer-criar-seu-primeiro-agente-de-I (story 1/2)",
+  "arquivo": "videos/ep24-Quer-criar-seu-primeiro-agente-de-IA-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T08:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep24-Quer-criar-seu-primeiro-agente-de-I (story 2/2)",
+  "arquivo": "videos/ep24-Quer-criar-seu-primeiro-agente-de-IA-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T08:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep25-Voce-sabe-o-que-e-um-token",
+  "arquivo": "videos/ep25-Voce-sabe-o-que-e-um-token.mp4",
+  "legenda": "Você sabe o que é um token? #ia #chatgpt #tokens #prompt #tecnologia",
+  "quando": "2026-11-08T10:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep25-Voce-sabe-o-que-e-um-token.jpg"
+ },
+ {
+  "id": "ep25-Voce-sabe-o-que-e-um-token (story 1/2)",
+  "arquivo": "videos/ep25-Voce-sabe-o-que-e-um-token-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T10:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep25-Voce-sabe-o-que-e-um-token (story 2/2)",
+  "arquivo": "videos/ep25-Voce-sabe-o-que-e-um-token-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T10:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep26-Tem-uma-ideia-guardada-na-cabeca",
+  "arquivo": "videos/ep26-Tem-uma-ideia-guardada-na-cabeca.mp4",
+  "legenda": "Tem uma ideia guardada na cabeça? #ia #ideias #produtividade #criatividade #dicas",
+  "quando": "2026-11-08T13:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep26-Tem-uma-ideia-guardada-na-cabeca.jpg"
+ },
+ {
+  "id": "ep26-Tem-uma-ideia-guardada-na-cabeca (story 1/2)",
+  "arquivo": "videos/ep26-Tem-uma-ideia-guardada-na-cabeca-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T13:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep26-Tem-uma-ideia-guardada-na-cabeca (story 2/2)",
+  "arquivo": "videos/ep26-Tem-uma-ideia-guardada-na-cabeca-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T13:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep27-Quer-estudar-com-IA-do-jeito-certo",
+  "arquivo": "videos/ep27-Quer-estudar-com-IA-do-jeito-certo.mp4",
+  "legenda": "Quer estudar com IA do jeito certo? #ia #estudos #chatgpt #aprendizado #dicas",
+  "quando": "2026-11-08T15:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep27-Quer-estudar-com-IA-do-jeito-certo.jpg"
+ },
+ {
+  "id": "ep27-Quer-estudar-com-IA-do-jeito-certo (story 1/2)",
+  "arquivo": "videos/ep27-Quer-estudar-com-IA-do-jeito-certo-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep27-Quer-estudar-com-IA-do-jeito-certo (story 2/2)",
+  "arquivo": "videos/ep27-Quer-estudar-com-IA-do-jeito-certo-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
  }
 ]
