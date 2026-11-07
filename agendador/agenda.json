@@ -78,21 +78,6 @@
   "capa": "videos/O-perfeito-e-substituivel.jpg"
  },
  {
-  "id": "Crie seu proprio Jarvis em 3 passos (story 2/2)",
-  "arquivo": "videos/Crie-seu-proprio-Jarvis-em-3-passos-story2.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T02:23:04.151187-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-vale",
-  "feito": {
-   "instagram_story": "18150794962485414",
-   "facebook_story": "1166669042454813"
-  }
- },
- {
   "id": "O Claude mudou os planos (story 1/2)",
   "arquivo": "videos/O-Claude-mudou-os-planos-story1.mp4",
   "legenda": "",
