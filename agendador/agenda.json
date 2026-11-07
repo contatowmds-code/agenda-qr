@@ -80,11 +80,10 @@
   ],
   "conta": "quanto-rende",
   "feito": {
-   "instagram_story": "18138454843787091"
+   "instagram_story": "18138454843787091",
+   "facebook_story": "1451238447136328"
   },
-  "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AkwqDsq9VTOUGn86UQD8Psu'}}"
-  }
+  "erros": {}
  },
  {
   "id": "Celular de 2 mil custa mais que iPhone (story 2/2)",
