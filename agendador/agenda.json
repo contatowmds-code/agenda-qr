@@ -652,5 +652,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Novo imposto do pecado em 2027",
+  "arquivo": "videos/Novo-imposto-do-pecado-em-2027.mp4",
+  "legenda": "Novo imposto do pecado em 2027 🚨 #imposto #reformatributaria #economia #financas #quantovale",
+  "quando": "2026-11-09T18:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-vale",
+  "capa": "videos/Novo-imposto-do-pecado-em-2027.jpg"
+ },
+ {
+  "id": "Novo imposto do pecado em 2027 (story 1/2)",
+  "arquivo": "videos/Novo-imposto-do-pecado-em-2027-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
+ },
+ {
+  "id": "Novo imposto do pecado em 2027 (story 2/2)",
+  "arquivo": "videos/Novo-imposto-do-pecado-em-2027-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
  }
 ]
