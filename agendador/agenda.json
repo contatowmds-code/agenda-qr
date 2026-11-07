@@ -952,5 +952,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Um banco quebra da noite para o dia",
+  "arquivo": "videos/Um-banco-quebra-da-noite-para-o-dia.mp4",
+  "legenda": "Um banco quebra da noite para o dia? #banco #investimentos #fgc #dinheiro #financas",
+  "quando": "2026-11-10T07:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Um-banco-quebra-da-noite-para-o-dia.jpg"
+ },
+ {
+  "id": "Um banco quebra da noite para o dia (story 1/2)",
+  "arquivo": "videos/Um-banco-quebra-da-noite-para-o-dia-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Um banco quebra da noite para o dia (story 2/2)",
+  "arquivo": "videos/Um-banco-quebra-da-noite-para-o-dia-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
