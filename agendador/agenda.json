@@ -408,7 +408,7 @@
    "instagram_story": "18011686484996473"
   },
   "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AxHu7Zu9PK0TBD187bxSi6d'}}"
+   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AXHHrPl1VeVE7NiPFPuk7-7'}}"
   }
  },
  {
