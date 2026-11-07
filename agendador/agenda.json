@@ -39,21 +39,6 @@
   "capa": "videos/O-perfeito-e-substituivel.jpg"
  },
  {
-  "id": "Por que ninguem compra de voce (story 3/3)",
-  "arquivo": "videos/Por-que-ninguem-compra-de-voce-story3.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T12:30:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-rende",
-  "feito": {
-   "instagram_story": "18491809657106893",
-   "facebook_story": "1442170620748780"
-  }
- },
- {
   "id": "A skill mais baixada do mundo (story 1/2)",
   "arquivo": "videos/A-skill-mais-baixada-do-mundo-story1.mp4",
   "legenda": "",
