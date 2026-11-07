@@ -21,6 +21,9 @@ jobs:
         env:
           VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
           META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
+          YT_REFRESH_TOKEN__QUANTO_RENDE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_RENDE }}
+          YT_REFRESH_TOKEN__QUANTO_VALE: ${{ secrets.YT_REFRESH_TOKEN__QUANTO_VALE }}
+          YT_REFRESH_TOKEN__ARQUIVO_VIRAL: ${{ secrets.YT_REFRESH_TOKEN__ARQUIVO_VIRAL }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
