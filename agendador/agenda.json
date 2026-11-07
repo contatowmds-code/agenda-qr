@@ -1173,5 +1173,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "ep29-E-se-o-seu-canal-trabalhasse-sozinh",
+  "arquivo": "videos/ep29-E-se-o-seu-canal-trabalhasse-sozinho.mp4",
+  "legenda": "E se o seu canal trabalhasse sozinho? #ia #canal #conteudo #produtividade #criadores",
+  "quando": "2026-11-08T20:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep29-E-se-o-seu-canal-trabalhasse-sozinho.jpg"
+ },
+ {
+  "id": "ep29-E-se-o-seu-canal-trabalhasse-sozinh (story 1/2)",
+  "arquivo": "videos/ep29-E-se-o-seu-canal-trabalhasse-sozinho-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T20:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep29-E-se-o-seu-canal-trabalhasse-sozinh (story 2/2)",
+  "arquivo": "videos/ep29-E-se-o-seu-canal-trabalhasse-sozinho-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T20:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
  }
 ]
