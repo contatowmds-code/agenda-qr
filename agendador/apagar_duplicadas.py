@@ -8,7 +8,9 @@ GRAPH = "https://graph.facebook.com/v21.0"
 contas = json.loads(os.environ.get("META_ACCOUNTS") or "{}")
 DRY = "--dry-run" in sys.argv
 total = 0
+PERMITIDAS = set((os.environ.get("CONTAS_PERMITIDAS") or "quanto-vale,quanto-rende").split(","))
 for conta, d in contas.items():
+    if conta not in PERMITIDAS: print(f"[{conta}] fora do escopo autorizado; pulo"); continue
     if not d.get("fb_page_id") or not d.get("fb_token"): print(f"[{conta}] sem credencial do Facebook; pulo"); continue
     tok = d["fb_token"]; posts = []; url = f"{GRAPH}/{d['fb_page_id']}/video_reels"
     params = {"fields": "description,created_time,permalink_url", "limit": 100, "access_token": tok}
