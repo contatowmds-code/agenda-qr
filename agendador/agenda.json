@@ -52,22 +52,6 @@
   "capa": "videos/O-perfeito-e-substituivel.jpg"
  },
  {
-  "id": "Story-1-skill-vira-1-equipe-parte-1",
-  "arquivo": "videos/Story-1-skill-vira-1-equipe-parte-1.mp4",
-  "legenda": "1 skill vira 1 equipe de IA (story 1/2) #ia #claude #skills",
-  "quando": "2026-11-07T02:30:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "arquivo-viral",
-  "erros": {},
-  "feito": {
-   "instagram_story": "18375189382210980",
-   "facebook_story": "2702650966917872"
-  }
- },
- {
   "id": "Story-1-skill-vira-1-equipe-parte-2",
   "arquivo": "videos/Story-1-skill-vira-1-equipe-parte-2.mp4",
   "legenda": "1 skill vira 1 equipe de IA (story 2/2) #ia #claude #skills",
