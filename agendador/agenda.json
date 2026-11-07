@@ -1022,5 +1022,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Existe app de academia gratis no GitHub",
+  "arquivo": "videos/Existe-app-de-academia-gratis-no-GitHub.mp4",
+  "legenda": "App de academia 100% grátis no GitHub? #academia #treino #github #opensource #fitness",
+  "quando": "2026-11-10T12:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Existe-app-de-academia-gratis-no-GitHub.jpg"
+ },
+ {
+  "id": "Existe app de academia gratis no GitHub (story 1/2)",
+  "arquivo": "videos/Existe-app-de-academia-gratis-no-GitHub-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Existe app de academia gratis no GitHub (story 2/2)",
+  "arquivo": "videos/Existe-app-de-academia-gratis-no-GitHub-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
