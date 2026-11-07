@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Acrescenta vídeos prontos na agenda, SEMPRE no próximo horário livre depois do último já agendado.
+"""Acrescenta vídeos prontos na agenda, SEMPRE no primeiro horário livre da conta (6 por dia; só passa para o dia seguinte quando o dia está cheio).
 Uso: python agendador/preparar.py "videos/Pasta 1" ["videos/Pasta 2" ...] [--inicio AAAA-MM-DD] [--horas 12:00,18:00,21:00] [--plataformas instagram,youtube]
 Padrões vêm de agendador/config.json (horas, plataformas, fuso). Copia o mp4 para agendador/videos/ e lê titulo-e-hashtags.txt."""
 import argparse, json, shutil, sys, datetime as dt
@@ -34,7 +34,26 @@ def proximo(depois):
             if c > depois: return c
         dia += dt.timedelta(days=1)
 
-ultimo = max([lido(i["quando"]) for i in ag], default=None)
+def ocupados(conta):
+    """Horários já usados POR ESTA CONTA (agenda + já publicados), só de Reels (stories não contam). Cada horário = 1 vídeo."""
+    pub = json.loads((AQUI / "publicados.json").read_text(encoding="utf-8")) if (AQUI / "publicados.json").exists() else []
+    oc = set()
+    for i in ag + pub:
+        if (i.get("conta") or "") != (conta or ""): continue
+        if any(x.endswith("_story") for x in i.get("plataformas", [])): continue
+        oc.add(lido(i["quando"]).astimezone(tz).replace(second=0, microsecond=0))
+    return oc
+
+def livre(depois, conta):
+    """PRIMEIRO horário livre da conta a partir de 'depois': preenche os 6 horários de cada dia antes de passar para o dia seguinte."""
+    oc = ocupados(conta); dia = depois.astimezone(tz).date()
+    while True:
+        for h, m in horas:
+            c = dt.datetime(dia.year, dia.month, dia.day, h, m, tzinfo=tz)
+            if c > depois and c not in oc: return c
+        dia += dt.timedelta(days=1)
+
+ultimo = None
 minimo = dt.datetime.now(tz) + dt.timedelta(hours=1)
 if a.inicio: minimo = max(minimo, dt.datetime.fromisoformat(a.inicio).replace(tzinfo=tz))
 (AQUI / "videos").mkdir(exist_ok=True)
@@ -53,8 +72,7 @@ for pasta in a.pastas:
             Image.open(p / cand).convert("RGB").save(AQUI / capa_dest, "JPEG", quality=92)
             break
     if not capa_dest: print("AVISO: sem capa.png na pasta; o vídeo sai com a capa automática:", p.name)
-    base = max(minimo, ultimo) if ultimo else minimo
-    quando = proximo(base); ultimo = quando
+    quando = livre(minimo, a.conta)   # primeiro horário livre DESTA conta (agenda e publicados contam como ocupados)
     ag.append({"id": p.name[:40], "arquivo": destino, "legenda": legenda, "quando": quando.isoformat(), "plataformas": a.plataformas.split(",")} | ({"conta": a.conta} if a.conta else {}) | ({"capa": capa_dest} if capa_dest else {}))
     print("agendado:", p.name, "->", quando.strftime("%d/%m %H:%M"))
     pl = a.plataformas.split(",")
