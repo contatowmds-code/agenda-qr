@@ -14,3 +14,7 @@ jobs:
       - run: python agendador/apagar.py
         env:
           META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
+      - name: Apagar cópias extras (mantém a mais antiga de cada título)
+        run: python agendador/apagar_duplicadas.py
+        env:
+          META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
