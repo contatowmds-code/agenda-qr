@@ -637,21 +637,6 @@
   "conta": "quanto-vale"
  },
  {
-  "id": "ep19-Edita-video-sem-abrir-editor (story 1/2)",
-  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story1.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T10:50:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "arquivo-viral",
-  "feito": {
-   "instagram_story": "18014404322985582",
-   "facebook_story": "2220885805192955"
-  }
- },
- {
   "id": "ep19-Edita-video-sem-abrir-editor (story 2/2)",
   "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story2.mp4",
   "legenda": "",
