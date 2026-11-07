@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+"""Publica os vídeos da agenda.json que já passaram do horário (rodado pelo GitHub Actions a cada 15 min).
+Plataformas: instagram (Reels), facebook (Reels da Página), tiktok, youtube (Shorts). Plataforma sem credencial é pulada (não dá erro).
+Segredos do GitHub: IG_USER_ID, IG_TOKEN | FB_PAGE_ID, FB_PAGE_TOKEN | TT_CLIENT_KEY, TT_CLIENT_SECRET, TT_REFRESH_TOKEN (TT_PRIVACY opcional)
+                    | YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN.
+Uso: python publicar.py [--dry-run]"""
+import json, math, os, sys, time, datetime as dt
+from pathlib import Path
+from zoneinfo import ZoneInfo
+import requests
+
+AQUI = Path(__file__).resolve().parent
+AGENDA = AQUI / "agenda.json"
+VIDEOS = Path(os.environ.get("VIDEOS_DIR", AQUI / "videos"))   # pasta com os mp4 (branch "videos")
+GRAPH = "https://graph.facebook.com/v21.0"
+DRY = "--dry-run" in sys.argv
+NECESSARIOS = {"instagram": ["IG_USER_ID", "IG_TOKEN"], "facebook": ["FB_PAGE_ID", "FB_PAGE_TOKEN"],
+               "tiktok": ["TT_CLIENT_KEY", "TT_CLIENT_SECRET", "TT_REFRESH_TOKEN"],
+               "youtube": ["YT_CLIENT_ID", "YT_CLIENT_SECRET", "YT_REFRESH_TOKEN"]}
+
+def agora(): return dt.datetime.now(dt.timezone.utc)
+def arquivo(item): return VIDEOS / Path(item["arquivo"]).name
+def url_publica(item):
+    return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['arquivo']).name}"
+
+def instagram(it):
+    uid, tok = os.environ["IG_USER_ID"], os.environ["IG_TOKEN"]
+    j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "video_url": url_publica(it), "caption": it["legenda"],
+                      "share_to_feed": "true", "access_token": tok}, timeout=120).json()
+    if "id" not in j: raise RuntimeError(f"criar: {j}")
+    cid = j["id"]
+    for _ in range(60):
+        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code", "access_token": tok}, timeout=60).json()
+        if s.get("status_code") == "FINISHED": break
+        if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar: {s}")
+        time.sleep(10)
+    else: raise RuntimeError("demorou demais para processar")
+    p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
+    if "id" not in p: raise RuntimeError(f"publicar: {p}")
+    return p["id"]
+
+def facebook(it):
+    pid, tok = os.environ["FB_PAGE_ID"], os.environ["FB_PAGE_TOKEN"]
+    a = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
+    if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
+    u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "file_url": url_publica(it)}, timeout=300).json()
+    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    for _ in range(60):
+        s = requests.get(f"{GRAPH}/{a['video_id']}", params={"fields": "status", "access_token": tok}, timeout=60).json()
+        if s.get("status", {}).get("uploading_phase", {}).get("status") == "complete": break
+        time.sleep(10)
+    f = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "finish", "video_id": a["video_id"], "video_state": "PUBLISHED",
+                      "description": it["legenda"], "access_token": tok}, timeout=120).json()
+    if not f.get("success"): raise RuntimeError(f"publicar: {f}")
+    return a["video_id"]
+
+def tiktok(it):
+    r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": os.environ["TT_CLIENT_KEY"],
+        "client_secret": os.environ["TT_CLIENT_SECRET"], "grant_type": "refresh_token", "refresh_token": os.environ["TT_REFRESH_TOKEN"]}, timeout=60).json()
+    if "access_token" not in r: raise RuntimeError(f"token: {r}")
+    dados = arquivo(it).read_bytes(); n = len(dados)
+    chunk = n if n <= 64 * 1024 * 1024 else 32 * 1024 * 1024
+    total = max(1, n // chunk)
+    h = {"Authorization": f"Bearer {r['access_token']}", "Content-Type": "application/json; charset=UTF-8"}
+    ini = requests.post("https://open.tiktokapis.com/v2/post/publish/video/init/", headers=h, data=json.dumps({
+        "post_info": {"title": it["legenda"][:150], "privacy_level": os.environ.get("TT_PRIVACY", "SELF_ONLY"),
+                      "disable_duet": False, "disable_comment": False, "disable_stitch": False},
+        "source_info": {"source": "FILE_UPLOAD", "video_size": n, "chunk_size": chunk, "total_chunk_count": total}}), timeout=60).json()
+    if ini.get("error", {}).get("code", "ok") != "ok": raise RuntimeError(f"iniciar: {ini}")
+    d = ini["data"]
+    for k in range(total):
+        a = k * chunk; b = n if k == total - 1 else a + chunk
+        up = requests.put(d["upload_url"], data=dados[a:b], headers={"Content-Type": "video/mp4", "Content-Length": str(b - a),
+                          "Content-Range": f"bytes {a}-{b-1}/{n}"}, timeout=600)
+        if up.status_code not in (200, 201, 206): raise RuntimeError(f"enviar: {up.status_code} {up.text[:200]}")
+    return d["publish_id"]
+
+def youtube(it):
+    tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": os.environ["YT_CLIENT_ID"],
+          "client_secret": os.environ["YT_CLIENT_SECRET"], "refresh_token": os.environ["YT_REFRESH_TOKEN"], "grant_type": "refresh_token"}, timeout=60).json()
+    if "access_token" not in tok: raise RuntimeError(f"token: {tok}")
+    meta = {"snippet": {"title": it["legenda"].split("#")[0].strip()[:90] + " #Shorts", "description": it["legenda"], "categoryId": "22"},
+            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}}
+    h = {"Authorization": f"Bearer {tok['access_token']}", "Content-Type": "application/json; charset=UTF-8", "X-Upload-Content-Type": "video/mp4"}
+    r = requests.post("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status", headers=h, data=json.dumps(meta), timeout=60)
+    loc = r.headers.get("Location")
+    if not loc: raise RuntimeError(f"iniciar: {r.text[:300]}")
+    up = requests.put(loc, data=arquivo(it).read_bytes(), headers={"Content-Type": "video/mp4"}, timeout=1200).json()
+    if "id" not in up: raise RuntimeError(f"enviar: {up}")
+    return up["id"]
+
+FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube}
+
+def main():
+    ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
+    for it in ag:
+        q = dt.datetime.fromisoformat(it["quando"])
+        if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
+        if q > agora(): continue
+        for plat in it.get("plataformas", ["instagram"]):
+            if it.setdefault("feito", {}).get(plat): continue
+            falta = [v for v in NECESSARIOS[plat] if not os.environ.get(v)]
+            if falta and not DRY: print(f"[{it['id']}] {plat}: pulado (sem {', '.join(falta)})"); continue
+            print(f"[{it['id']}] {plat}: publicando")
+            if DRY: continue
+            try: it["feito"][plat] = FUNCS[plat](it); it.get("erros", {}).pop(plat, None); print(f"  OK {plat}")
+            except Exception as e: print(f"  ERRO {plat}: {e}"); it.setdefault("erros", {})[plat] = str(e)[:300]
+            mudou = True
+    if mudou and not DRY: AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+    print("pronto.")
+
+if __name__ == "__main__": main()

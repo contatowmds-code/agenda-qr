@@ -1,0 +1,37 @@
+name: Publicar vídeos agendados
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # confere a agenda a cada 15 minutos (o GitHub pode atrasar alguns minutos)
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency: publicar
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { ref: videos, path: videos_branch }
+        continue-on-error: true
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - run: python agendador/publicar.py
+        env:
+          VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
+          TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+          TT_REFRESH_TOKEN: ${{ secrets.TT_REFRESH_TOKEN }}
+          TT_PRIVACY: ${{ vars.TT_PRIVACY }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+      - name: Guardar o que já foi publicado
+        run: |
+          git config user.name "agendador"; git config user.email "agendador@users.noreply.github.com"
+          git add agendador/agenda.json && (git diff --cached --quiet || git commit -m "agenda: atualizada" && git push) || true
