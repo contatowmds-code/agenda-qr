@@ -80,11 +80,10 @@
   ],
   "conta": "quanto-rende",
   "feito": {
-   "instagram_story": "18153390718554046"
+   "instagram_story": "18153390718554046",
+   "facebook_story": "1147748798192779"
   },
-  "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'AJhrP-tLWfJnSSHoJ3ChvsN'}}"
-  }
+  "erros": {}
  },
  {
   "id": "Siga o Pix das bets",
