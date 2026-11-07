@@ -637,24 +637,6 @@
   "conta": "quanto-vale"
  },
  {
-  "id": "ep19-Edita-video-sem-abrir-editor",
-  "arquivo": "videos/ep19-Edita-video-sem-abrir-editor.mp4",
-  "legenda": "Edita vídeo sem abrir editor? #ia #claude #edicao #videos #automacao",
-  "quando": "2026-11-07T10:30:00-03:00",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube"
-  ],
-  "conta": "arquivo-viral",
-  "capa": "videos/ep19-Edita-video-sem-abrir-editor.jpg",
-  "feito": {
-   "instagram": "18175317415457334",
-   "facebook": "1926924341615786",
-   "youtube": "iQiSC9JpHwg"
-  }
- },
- {
   "id": "ep19-Edita-video-sem-abrir-editor (story 1/2)",
   "arquivo": "videos/ep19-Edita-video-sem-abrir-editor-story1.mp4",
   "legenda": "",
