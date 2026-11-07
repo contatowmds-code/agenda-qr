@@ -1085,5 +1085,40 @@
    "facebook_story"
   ],
   "conta": "arquivo-viral"
+ },
+ {
+  "id": "iPhone ou Android de 10 mil",
+  "arquivo": "videos/iPhone-ou-Android-de-10-mil.mp4",
+  "legenda": "iPhone ou Android de 10 mil? A conta surpreende. #iphone #android #celular #dinheiro #tecnologia",
+  "quando": "2026-11-08T21:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/iPhone-ou-Android-de-10-mil.jpg"
+ },
+ {
+  "id": "iPhone ou Android de 10 mil (story 1/2)",
+  "arquivo": "videos/iPhone-ou-Android-de-10-mil-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "iPhone ou Android de 10 mil (story 2/2)",
+  "arquivo": "videos/iPhone-ou-Android-de-10-mil-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]

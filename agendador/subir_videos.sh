@@ -4,7 +4,7 @@
 set -e
 R=$(git rev-parse --show-toplevel); cd "$R"
 URL=$(git remote get-url origin)
-TMP=$(mktemp -d); mkdir -p "$TMP/videos"
+TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT; mkdir -p "$TMP/videos"
 # 1) traz o que já está na branch videos (se existir)
 if git ls-remote --exit-code --heads "$URL" videos >/dev/null 2>&1; then
   git clone -q --depth 1 -b videos "$URL" "$TMP/old" && cp "$TMP"/old/videos/* "$TMP/videos/" 2>/dev/null || true
