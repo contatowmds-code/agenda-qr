@@ -722,5 +722,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "As 4 skills essenciais do Claude",
+  "arquivo": "videos/As-4-skills-essenciais-do-Claude.mp4",
+  "legenda": "As 4 skills essenciais do Claude 🔥 #claudecode #skills #ia #produtividade #quantovale",
+  "quando": "2026-11-10T07:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-vale",
+  "capa": "videos/As-4-skills-essenciais-do-Claude.jpg"
+ },
+ {
+  "id": "As 4 skills essenciais do Claude (story 1/2)",
+  "arquivo": "videos/As-4-skills-essenciais-do-Claude-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
+ },
+ {
+  "id": "As 4 skills essenciais do Claude (story 2/2)",
+  "arquivo": "videos/As-4-skills-essenciais-do-Claude-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T07:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
  }
 ]
