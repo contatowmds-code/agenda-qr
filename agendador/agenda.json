@@ -477,5 +477,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Como ganhar bilhoes sem vender um hambur",
+  "arquivo": "videos/Como-ganhar-bilhoes-sem-vender-um-hamburguer.mp4",
+  "legenda": "Como ganhar bilhões sem vender hambúrguer? #franquia #negocios #dinheiro #empreender #fastfood",
+  "quando": "2026-11-08T18:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Como-ganhar-bilhoes-sem-vender-um-hamburguer.jpg"
+ },
+ {
+  "id": "Como ganhar bilhoes sem vender um hambur (story 1/2)",
+  "arquivo": "videos/Como-ganhar-bilhoes-sem-vender-um-hamburguer-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Como ganhar bilhoes sem vender um hambur (story 2/2)",
+  "arquivo": "videos/Como-ganhar-bilhoes-sem-vender-um-hamburguer-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
