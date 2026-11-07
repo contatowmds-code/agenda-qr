@@ -1208,5 +1208,40 @@
    "facebook_story"
   ],
   "conta": "arquivo-viral"
+ },
+ {
+  "id": "Cinco skills de IA que mudam o trabalho",
+  "arquivo": "videos/Cinco-skills-de-IA-que-mudam-o-trabalho.mp4",
+  "legenda": "5 skills de IA que mudam como você trabalha? #ia #skills #claudecode #produtividade #dicas",
+  "quando": "2026-11-11T12:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Cinco-skills-de-IA-que-mudam-o-trabalho.jpg"
+ },
+ {
+  "id": "Cinco skills de IA que mudam o trabalho (story 1/2)",
+  "arquivo": "videos/Cinco-skills-de-IA-que-mudam-o-trabalho-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Cinco skills de IA que mudam o trabalho (story 2/2)",
+  "arquivo": "videos/Cinco-skills-de-IA-que-mudam-o-trabalho-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
