@@ -963,5 +963,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Parei de copiar viral",
+  "arquivo": "videos/Parei-de-copiar-viral.mp4",
+  "legenda": "O que faço desde que parei de copiar viral? #viral #reels #ia #conteudo #marketing",
+  "quando": "2026-11-09T12:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Parei-de-copiar-viral.jpg"
+ },
+ {
+  "id": "Parei de copiar viral (story 1/2)",
+  "arquivo": "videos/Parei-de-copiar-viral-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Parei de copiar viral (story 2/2)",
+  "arquivo": "videos/Parei-de-copiar-viral-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T12:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
