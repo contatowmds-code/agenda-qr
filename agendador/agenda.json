@@ -645,7 +645,10 @@
    "instagram_story",
    "facebook_story"
   ],
-  "conta": "arquivo-viral"
+  "conta": "arquivo-viral",
+  "feito": {
+   "instagram_story": "18014404322985582"
+  }
  },
  {
   "id": "ep19-Edita-video-sem-abrir-editor (story 2/2)",
