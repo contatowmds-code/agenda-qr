@@ -40,12 +40,13 @@ def meta(it):
 
 def tem_credencial(plat, it):
     plat = plat.replace("_story", "")   # stories usam as mesmas credenciais do Instagram/Facebook
-    if plat in ("instagram", "facebook"):
+    base = plat.replace("_story", "")
+    if base in ("instagram", "facebook"):
         try: d = meta(it)
         except Exception: return False
-        chaves = ["ig_user_id", "ig_token" if "ig_token" in d else "fb_token"] if plat == "instagram" else ["fb_page_id", "fb_token"]
+        chaves = ["ig_user_id", "ig_token" if "ig_token" in d else "fb_token"] if base == "instagram" else ["fb_page_id", "fb_token"]
         return all(d.get(k) for k in chaves)
-    return all(env(v, it) for v in NECESSARIOS[plat])
+    return all(env(v, it) for v in NECESSARIOS[base])
 
 def agora(): return dt.datetime.now(dt.timezone.utc)
 def arquivo(item): return VIDEOS / Path(item["arquivo"]).name
