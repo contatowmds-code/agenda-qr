@@ -1070,5 +1070,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Como lucrar com a onda de um grande lanc",
+  "arquivo": "videos/Como-lucrar-com-a-onda-de-um-grande-lancamento.mp4",
+  "legenda": "Como lucrar com a onda de um grande lançamento? #afiliados #marketing #games #renda #instagram",
+  "quando": "2026-11-10T18:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Como-lucrar-com-a-onda-de-um-grande-lancamento.jpg"
+ },
+ {
+  "id": "Como lucrar com a onda de um grande lanc (story 1/2)",
+  "arquivo": "videos/Como-lucrar-com-a-onda-de-um-grande-lancamento-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Como lucrar com a onda de um grande lanc (story 2/2)",
+  "arquivo": "videos/Como-lucrar-com-a-onda-de-um-grande-lancamento-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T18:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
