@@ -151,21 +151,6 @@
   "conta": "quanto-rende"
  },
  {
-  "id": "Segure a barra de espaco e mova o cursor (story 2/2)",
-  "arquivo": "videos/Segure-a-barra-de-espaco-e-mova-o-cursor-story2.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T11:30:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-rende",
-  "feito": {
-   "instagram_story": "18115977082864314",
-   "facebook_story": "1110258405253159"
-  }
- },
- {
   "id": "Conserte o som do Claude (story 1/2)",
   "arquivo": "videos/Conserte-o-som-do-Claude-story1.mp4",
   "legenda": "",
