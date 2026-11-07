@@ -987,5 +987,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Pare de mandar arquivo pra voce mesmo",
+  "arquivo": "videos/Pare-de-mandar-arquivo-pra-voce-mesmo.mp4",
+  "legenda": "Pare de mandar arquivo pro seu e-mail 📂 #syncthing #opensource #produtividade #tecnologia #quantovale",
+  "quando": "2026-11-07T21:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-vale",
+  "capa": "videos/Pare-de-mandar-arquivo-pra-voce-mesmo.jpg"
+ },
+ {
+  "id": "Pare de mandar arquivo pra voce mesmo (story 1/2)",
+  "arquivo": "videos/Pare-de-mandar-arquivo-pra-voce-mesmo-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
+ },
+ {
+  "id": "Pare de mandar arquivo pra voce mesmo (story 2/2)",
+  "arquivo": "videos/Pare-de-mandar-arquivo-pra-voce-mesmo-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-07T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
  }
 ]
