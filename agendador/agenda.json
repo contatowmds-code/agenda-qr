@@ -489,7 +489,7 @@
    "instagram_story": "18202794538339037"
   },
   "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'Ataoo5eQSZye0yaE4iOUbce'}}"
+   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'ArdPvithgLYFaWhYxRPXETC'}}"
   }
  },
  {
@@ -506,7 +506,7 @@
    "instagram_story": "18099318608536138"
   },
   "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'Atlr8XUghNjMHnfycQlx9io'}}"
+   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'A26EoIoQXGaV16NqCyez5m3'}}"
   }
  },
  {
