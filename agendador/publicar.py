@@ -148,11 +148,29 @@ def verificar(ag):
             except Exception as e:
                 print(rot, "FALHOU", str(e)[:160])
 
+def links_publicados(ag):
+    """Modo verificação: mostra o link e a data de cada vídeo já publicado no Instagram/Facebook (só leitura)."""
+    for it in ag:
+        for plat, pid in (it.get("feito") or {}).items():
+            try:
+                if plat == "instagram":
+                    d = meta(it); tok = d.get("ig_token") or d["fb_token"]
+                    r = requests.get(f"{GRAPH}/{pid}", params={"fields": "permalink,timestamp,media_type", "access_token": tok}, timeout=60).json()
+                    print(f"[{it['id'][:34]}] instagram", r.get("permalink") or str(r)[:160], r.get("timestamp", ""))
+                elif plat == "facebook":
+                    d = meta(it)
+                    r = requests.get(f"{GRAPH}/{pid}", params={"fields": "permalink_url,created_time,published", "access_token": d["fb_token"]}, timeout=60).json()
+                    print(f"[{it['id'][:34]}] facebook", ("https://www.facebook.com" + r["permalink_url"]) if r.get("permalink_url") else str(r)[:160], r.get("created_time", ""), "publicado=" + str(r.get("published")))
+                elif plat == "youtube":
+                    print(f"[{it['id'][:34]}] youtube https://youtu.be/{pid}")
+            except Exception as e:
+                print(f"[{it['id'][:34]}] {plat} FALHOU", str(e)[:120])
+
 FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube}
 
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
-    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag)
+    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag)
     for it in ag:
         q = dt.datetime.fromisoformat(it["quando"])
         if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
