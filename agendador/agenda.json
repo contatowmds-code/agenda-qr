@@ -1050,5 +1050,40 @@
    "facebook_story"
   ],
   "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep28-Seu-prompt-esta-curto-demais",
+  "arquivo": "videos/ep28-Seu-prompt-esta-curto-demais.mp4",
+  "legenda": "Seu prompt está curto demais? #ia #prompt #chatgpt #dicas #produtividade",
+  "quando": "2026-11-08T18:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "arquivo-viral",
+  "capa": "videos/ep28-Seu-prompt-esta-curto-demais.jpg"
+ },
+ {
+  "id": "ep28-Seu-prompt-esta-curto-demais (story 1/2)",
+  "arquivo": "videos/ep28-Seu-prompt-esta-curto-demais-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T18:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
+ },
+ {
+  "id": "ep28-Seu-prompt-esta-curto-demais (story 2/2)",
+  "arquivo": "videos/ep28-Seu-prompt-esta-curto-demais-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T18:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "arquivo-viral"
  }
 ]
