@@ -101,7 +101,10 @@
    "instagram_story",
    "facebook_story"
   ],
-  "conta": "arquivo-viral"
+  "conta": "arquivo-viral",
+  "erros": {
+   "instagram_story": "processar story: {'id': '18107390333367822', 'status': 'Error: Media upload has failed with error code 2207076', 'status_code': 'ERROR'}"
+  }
  },
  {
   "id": "Voce esta jogando dinheiro fora todo mes (story 1/2)",
