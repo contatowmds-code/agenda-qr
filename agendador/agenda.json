@@ -88,7 +88,8 @@
   ],
   "conta": "arquivo-viral",
   "erros": {
-   "instagram_story": "processar story: {'id': '18107390252367822', 'status': 'Error: Media upload has failed with error code 2207076', 'status_code': 'ERROR'}"
+   "instagram_story": "processar story: {'id': '18107390252367822', 'status': 'Error: Media upload has failed with error code 2207076', 'status_code': 'ERROR'}",
+   "facebook_story": "enviar story: {'debug_info': {'retriable': False, 'type': 'FileUrlProcessingError', 'message': 'Unable to fetch media from URL, got status code: 404 Not Found'}}"
   }
  },
  {
