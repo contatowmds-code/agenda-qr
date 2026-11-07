@@ -43,13 +43,13 @@ jobs:
       - name: Guardar o que já foi publicado
         if: always()
         run: python agendador/guardar.py
-      - name: Vigia (confere a agenda a cada 3 min por 5h30, para nunca passar do horário)
+      - name: Vigia (confere a agenda a cada 60 s por 5h30, para nunca passar do horário)
         run: |
           fim=$((SECONDS+19800))
           while [ $SECONDS -lt $fim ]; do
-            sleep 180
+            sleep 60
             git fetch -q origin main && git reset -q --hard origin/main || true
-            git -C videos_branch pull -q || true
+            git -C videos_branch fetch -q --depth 1 origin videos && git -C videos_branch reset -q --hard FETCH_HEAD || true
             env -u GITHUB_EVENT_NAME python agendador/publicar.py || true
             python agendador/guardar.py || true
           done
