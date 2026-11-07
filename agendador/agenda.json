@@ -216,21 +216,6 @@
   "conta": "quanto-rende"
  },
  {
-  "id": "O Pix tem so 40 segundos para cair (story 2/2)",
-  "arquivo": "videos/O-Pix-tem-so-40-segundos-para-cair-story2.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T09:00:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-rende",
-  "feito": {
-   "instagram_story": "18044660900839535",
-   "facebook_story": "1551426763417903"
-  }
- },
- {
   "id": "Segure a barra de espaco e mova o cursor (story 1/2)",
   "arquivo": "videos/Segure-a-barra-de-espaco-e-mova-o-cursor-story1.mp4",
   "legenda": "",
