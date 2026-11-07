@@ -1035,5 +1035,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "O cliente pediu outra musica",
+  "arquivo": "videos/O-cliente-pediu-outra-musica.mp4",
+  "legenda": "O cliente pediu outra música. E agora? #edicao #videomaker #ia #reels #editor",
+  "quando": "2026-11-10T15:30:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/O-cliente-pediu-outra-musica.jpg"
+ },
+ {
+  "id": "O cliente pediu outra musica (story 1/2)",
+  "arquivo": "videos/O-cliente-pediu-outra-musica-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "O cliente pediu outra musica (story 2/2)",
+  "arquivo": "videos/O-cliente-pediu-outra-musica-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T15:50:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
