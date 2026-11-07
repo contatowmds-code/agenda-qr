@@ -217,6 +217,28 @@ def ja_postado(plat, it):
         print(f"  (aviso: não consegui conferir duplicata em {plat}: {str(e)[:80]})")
     return None
 
+def duplicatas(ag):
+    """Modo verificação (só leitura): lista, por conta, posts do Instagram/Facebook com a MESMA legenda (cópias repetidas)."""
+    vistos = set()
+    for it in ag:
+        c = conta_id(it)
+        if c in vistos or not c: continue
+        vistos.add(c)
+        try:
+            d = meta(it); tok = d.get("ig_token") or d["fb_token"]
+            grupos = {}
+            r = requests.get(f"{GRAPH}/{d['ig_user_id']}/media", params={"fields": "caption,permalink,timestamp", "limit": 60, "access_token": tok}, timeout=60).json()
+            for m in r.get("data", []): grupos.setdefault(("instagram", (m.get("caption") or "").strip()), []).append((m.get("timestamp", ""), m.get("permalink", m["id"]), m["id"]))
+            r = requests.get(f"{GRAPH}/{d['fb_page_id']}/video_reels", params={"fields": "description,permalink_url,created_time", "limit": 60, "access_token": d["fb_token"]}, timeout=60).json()
+            for m in r.get("data", []): grupos.setdefault(("facebook", (m.get("description") or "").strip()), []).append((m.get("created_time", ""), "https://www.facebook.com" + m["permalink_url"] if m.get("permalink_url") else m["id"], m["id"]))
+            achou = False
+            for (plat, leg), L in grupos.items():
+                if leg and len(L) > 1:
+                    achou = True; print(f"[DUPLICATA] {c} {plat} x{len(L)}: {leg[:60]}")
+                    for t, link, i in sorted(L): print(f"    {t}  {link}  id={i}")
+            if not achou: print(f"[sem duplicatas] {c}")
+        except Exception as e: print(f"[duplicatas] {c} FALHOU {str(e)[:120]}")
+
 def remoto_feito(it, plat):
     """Confere na versão MAIS NOVA da agenda (origin/main) se outro robô/sessão já publicou isto (evita repetir)."""
     if not os.environ.get("GITHUB_ACTIONS"): return False
@@ -250,7 +272,7 @@ def persistir(it, plat, valor=None, erro=None):
 
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
-    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag)
+    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag); duplicatas(ag)
     for it in ag:
         q = dt.datetime.fromisoformat(it["quando"])
         if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
