@@ -195,6 +195,40 @@ def links_publicados(ag):
 
 FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube}
 
+import subprocess, random
+def _git(*c): return subprocess.run(["git", *c], cwd=str(AQUI.parent), capture_output=True, text=True)
+
+def remoto_feito(it, plat):
+    """Confere na versão MAIS NOVA da agenda (origin/main) se outro robô/sessão já publicou isto (evita repetir)."""
+    if not os.environ.get("GITHUB_ACTIONS"): return False
+    try:
+        _git("fetch", "-q", "origin", "main")
+        r = _git("show", "origin/main:agendador/agenda.json")
+        for x in json.loads(r.stdout):
+            if x.get("id") == it["id"] and x.get("arquivo") == it["arquivo"] and (x.get("feito") or {}).get(plat): return True
+    except Exception: pass
+    return False
+
+def persistir(it, plat, valor=None, erro=None):
+    """Grava NA HORA (com várias tentativas) o resultado desta publicação na agenda do GitHub, mesmo que outras sessões também estejam gravando."""
+    if DRY or not os.environ.get("GITHUB_ACTIONS"): return True
+    _git("config", "user.name", "agendador"); _git("config", "user.email", "agendador@users.noreply.github.com")
+    for tent in range(8):
+        _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main")
+        ag = json.loads(AGENDA.read_text(encoding="utf-8"))
+        for x in ag:
+            if x.get("id") == it["id"] and x.get("arquivo") == it["arquivo"]:
+                if valor: x.setdefault("feito", {})[plat] = valor; (x.get("erros") or {}).pop(plat, None)
+                if erro: x.setdefault("erros", {})[plat] = erro
+        AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+        _git("add", "agendador/agenda.json")
+        if _git("diff", "--cached", "--quiet").returncode == 0: return True
+        _git("commit", "-q", "-m", f"agenda: {plat} {'ok' if valor else 'erro'} - {it['id'][:30]}")
+        if _git("push", "-q", "origin", "HEAD:main").returncode == 0: return True
+        time.sleep(1.5 + random.random() * 2)
+    print("  AVISO: não consegui gravar na agenda:", it["id"], plat)
+    return False
+
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
     if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag)
@@ -204,13 +238,16 @@ def main():
         if q > agora(): continue
         for plat in it.get("plataformas", ["instagram"]):
             if it.setdefault("feito", {}).get(plat): continue
+            if not DRY and remoto_feito(it, plat): print(f"[{it['id']}] {plat}: já publicado por outra rodada (pulado)"); continue
             if not tem_credencial(plat, it) and not DRY: print(f"[{it['id']}] {plat} ({conta_id(it) or 'padrão'}): pulado (sem credencial)"); continue
             print(f"[{it['id']}] {plat}: publicando")
             if DRY: continue
-            try: it["feito"][plat] = FUNCS[plat](it); it.get("erros", {}).pop(plat, None); print(f"  OK {plat}")
-            except Exception as e: print(f"  ERRO {plat}: {e}"); it.setdefault("erros", {})[plat] = str(e)[:300]
+            try:
+                it["feito"][plat] = FUNCS[plat](it); it.get("erros", {}).pop(plat, None); print(f"  OK {plat}"); persistir(it, plat, valor=it["feito"][plat])
+            except Exception as e:
+                print(f"  ERRO {plat}: {e}"); it.setdefault("erros", {})[plat] = str(e)[:300]; persistir(it, plat, erro=str(e)[:300])
             mudou = True
-    if mudou and not DRY: AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+    if mudou and not DRY and not os.environ.get("GITHUB_ACTIONS"): AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
     print("pronto.")
 
 if __name__ == "__main__": main()
