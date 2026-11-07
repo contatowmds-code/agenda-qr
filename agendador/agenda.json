@@ -1138,5 +1138,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Ganhar mais pode te deixar rico",
+  "arquivo": "videos/Ganhar-mais-pode-te-deixar-rico.mp4",
+  "legenda": "Ganhar mais pode te deixar rico? Não. #dinheiro #financas #investimentos #poupar #educacaofinanceira",
+  "quando": "2026-11-11T10:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Ganhar-mais-pode-te-deixar-rico.jpg"
+ },
+ {
+  "id": "Ganhar mais pode te deixar rico (story 1/2)",
+  "arquivo": "videos/Ganhar-mais-pode-te-deixar-rico-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Ganhar mais pode te deixar rico (story 2/2)",
+  "arquivo": "videos/Ganhar-mais-pode-te-deixar-rico-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-11T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
