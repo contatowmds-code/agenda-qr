@@ -582,5 +582,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu Wi-Fi aparece duas vezes",
+  "arquivo": "videos/Seu-Wi-Fi-aparece-duas-vezes.mp4",
+  "legenda": "Seu Wi-Fi aparece duas vezes? Qual escolher? #wifi #internet #roteador #tecnologia #dicas",
+  "quando": "2026-11-09T10:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Seu-Wi-Fi-aparece-duas-vezes.jpg"
+ },
+ {
+  "id": "Seu Wi-Fi aparece duas vezes (story 1/2)",
+  "arquivo": "videos/Seu-Wi-Fi-aparece-duas-vezes-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu Wi-Fi aparece duas vezes (story 2/2)",
+  "arquivo": "videos/Seu-Wi-Fi-aparece-duas-vezes-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T10:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
