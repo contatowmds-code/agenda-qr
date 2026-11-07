@@ -687,5 +687,40 @@
    "facebook_story"
   ],
   "conta": "quanto-vale"
+ },
+ {
+  "id": "Faltam 2 dias para a prova",
+  "arquivo": "videos/Faltam-2-dias-para-a-prova.mp4",
+  "legenda": "Faltam 2 dias para a prova? Na verdade, 1. #estudos #prova #enem #revisao #foco",
+  "quando": "2026-11-09T21:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Faltam-2-dias-para-a-prova.jpg"
+ },
+ {
+  "id": "Faltam 2 dias para a prova (story 1/2)",
+  "arquivo": "videos/Faltam-2-dias-para-a-prova-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Faltam 2 dias para a prova (story 2/2)",
+  "arquivo": "videos/Faltam-2-dias-para-a-prova-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-09T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
