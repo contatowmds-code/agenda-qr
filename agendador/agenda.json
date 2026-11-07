@@ -1105,5 +1105,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu perfil do Instagram vende",
+  "arquivo": "videos/Seu-perfil-do-Instagram-vende.mp4",
+  "legenda": "Seu perfil do Instagram vende? Teste em 1 minuto. #instagram #marketing #bio #vendas #perfil",
+  "quando": "2026-11-10T21:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-rende",
+  "capa": "videos/Seu-perfil-do-Instagram-vende.jpg"
+ },
+ {
+  "id": "Seu perfil do Instagram vende (story 1/2)",
+  "arquivo": "videos/Seu-perfil-do-Instagram-vende-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
+ },
+ {
+  "id": "Seu perfil do Instagram vende (story 2/2)",
+  "arquivo": "videos/Seu-perfil-do-Instagram-vende-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-10T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-rende"
  }
 ]
