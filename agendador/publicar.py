@@ -117,10 +117,42 @@ def youtube(it):
     if "id" not in up: raise RuntimeError(f"enviar: {up}")
     return up["id"]
 
+
+def verificar(ag):
+    """Rodada manual (workflow_dispatch): confere cada conta/plataforma da agenda SEM publicar nada (só leituras)."""
+    vistos = set()
+    for it in ag:
+        for plat in it.get("plataformas", ["instagram"]):
+            chave = (conta_id(it), plat)
+            if chave in vistos: continue
+            vistos.add(chave); rot = f"[{conta_id(it) or 'padrão'}] {plat}"
+            try:
+                if plat == "instagram":
+                    d = meta(it); tok = d.get("ig_token") or d["fb_token"]
+                    r = requests.get(f"{GRAPH}/{d['ig_user_id']}", params={"fields": "username", "access_token": tok}, timeout=60).json()
+                    print(rot, "OK @" + r["username"] if "username" in r else f"FALHOU {str(r)[:160]}")
+                elif plat == "facebook":
+                    d = meta(it)
+                    r = requests.get(f"{GRAPH}/{d['fb_page_id']}", params={"fields": "name", "access_token": d["fb_token"]}, timeout=60).json()
+                    print(rot, "OK " + r["name"] if "name" in r else f"FALHOU {str(r)[:160]}")
+                elif plat == "youtube":
+                    if not tem_credencial(plat, it): print(rot, "sem credenciais (pulado)"); continue
+                    t = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", it), "client_secret": env("YT_CLIENT_SECRET", it), "refresh_token": env("YT_REFRESH_TOKEN", it), "grant_type": "refresh_token"}, timeout=60).json()
+                    if "access_token" not in t: print(rot, f"FALHOU {str(t)[:160]}"); continue
+                    c = requests.get("https://www.googleapis.com/youtube/v3/channels", params={"part": "snippet", "mine": "true"}, headers={"Authorization": "Bearer " + t["access_token"]}, timeout=60).json()
+                    print(rot, "OK canal " + c["items"][0]["snippet"]["title"] if c.get("items") else f"token ok, canal não lido {str(c)[:120]}")
+                elif plat == "tiktok":
+                    if not tem_credencial(plat, it): print(rot, "sem credenciais (pulado)"); continue
+                    t = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it), "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
+                    print(rot, "OK token" if "access_token" in t else f"FALHOU {str(t)[:160]}")
+            except Exception as e:
+                print(rot, "FALHOU", str(e)[:160])
+
 FUNCS = {"instagram": instagram, "facebook": facebook, "tiktok": tiktok, "youtube": youtube}
 
 def main():
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
+    if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag)
     for it in ag:
         q = dt.datetime.fromisoformat(it["quando"])
         if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
