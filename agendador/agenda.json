@@ -26,21 +26,6 @@
   "capa": "videos/O-perfeito-e-substituivel.jpg"
  },
  {
-  "id": "A skill mais baixada do mundo (story 1/2)",
-  "arquivo": "videos/A-skill-mais-baixada-do-mundo-story1.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T15:30:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-rende",
-  "feito": {
-   "instagram_story": "18109568294277474",
-   "facebook_story": "2053234255392282"
-  }
- },
- {
   "id": "A skill mais baixada do mundo (story 2/2)",
   "arquivo": "videos/A-skill-mais-baixada-do-mundo-story2.mp4",
   "legenda": "",
