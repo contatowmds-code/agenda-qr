@@ -105,21 +105,6 @@
   "conta": "quanto-rende"
  },
  {
-  "id": "Conserte o som do Claude (story 2/2)",
-  "arquivo": "videos/Conserte-o-som-do-Claude-story2.mp4",
-  "legenda": "",
-  "quando": "2026-11-07T14:00:00-03:00",
-  "plataformas": [
-   "instagram_story",
-   "facebook_story"
-  ],
-  "conta": "quanto-rende",
-  "feito": {
-   "instagram_story": "18132057844884927",
-   "facebook_story": "2341354353293084"
-  }
- },
- {
   "id": "Celular de 2 mil custa mais que iPhone (story 1/2)",
   "arquivo": "videos/Celular-de-2-mil-custa-mais-que-iPhone-story1.mp4",
   "legenda": "",
