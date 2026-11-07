@@ -512,5 +512,40 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "5 plugins gratis pro seu Claude Code",
+  "arquivo": "videos/5-plugins-gratis-pro-seu-Claude-Code.mp4",
+  "legenda": "5 plugins grátis pro seu Claude Code ⚡ #claudecode #plugins #ia #produtividade #quantovale",
+  "quando": "2026-11-08T21:00:00-03:00",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube"
+  ],
+  "conta": "quanto-vale",
+  "capa": "videos/5-plugins-gratis-pro-seu-Claude-Code.jpg"
+ },
+ {
+  "id": "5 plugins gratis pro seu Claude Code (story 1/2)",
+  "arquivo": "videos/5-plugins-gratis-pro-seu-Claude-Code-story1.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
+ },
+ {
+  "id": "5 plugins gratis pro seu Claude Code (story 2/2)",
+  "arquivo": "videos/5-plugins-gratis-pro-seu-Claude-Code-story2.mp4",
+  "legenda": "",
+  "quando": "2026-11-08T21:20:00-03:00",
+  "plataformas": [
+   "instagram_story",
+   "facebook_story"
+  ],
+  "conta": "quanto-vale"
  }
 ]
