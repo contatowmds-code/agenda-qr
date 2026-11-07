@@ -430,11 +430,10 @@
   ],
   "conta": "arquivo-viral",
   "feito": {
-   "instagram_story": "18202794538339037"
+   "instagram_story": "18202794538339037",
+   "facebook_story": "991790067317112"
   },
-  "erros": {
-   "facebook_story": "iniciar story: {'error': {'message': '(#4) Application request limit reached', 'type': 'OAuthException', 'is_transient': True, 'code': 4, 'fbtrace_id': 'APR2jiMPFv3CVv4_8OaQNzD'}}"
-  }
+  "erros": {}
  },
  {
   "id": "ep21-Sua-IA-pode-inventar-respostas (story 2/2)",
