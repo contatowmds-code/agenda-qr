@@ -1,0 +1,26 @@
+name: Subir MP4 para o Drive
+on:
+  workflow_dispatch:
+    inputs:
+      arquivo: { description: "Caminho do MP4 na branch videos (ex.: videos/QV.mp4). Vazio = só testar a conexão (ping)", required: false, default: "" }
+      nome: { description: "Nome do arquivo no Drive", required: false, default: "" }
+jobs:
+  subir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      APPS_SCRIPT_URL: ${{ secrets.APPS_SCRIPT_URL }}
+      APPS_SCRIPT_SEGREDO: ${{ secrets.APPS_SCRIPT_SEGREDO }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with: { ref: videos, path: videos_branch }
+        continue-on-error: true
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - name: Testar conexão com o Apps Script
+        run: python agendador/drive_upload.py ping
+      - name: Enviar o MP4
+        if: ${{ inputs.arquivo != '' }}
+        run: python agendador/drive_upload.py enviar "videos_branch/${{ inputs.arquivo }}" "${{ inputs.nome }}"
