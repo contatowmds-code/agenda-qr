@@ -260,7 +260,7 @@ def render_frame(i):
     d=max(nxt-B['s'],0.3); u=(t-B['s'])/d
     cv=base(); e=env(t)
     ci=k
-    if not (B['v']['t'].startswith('sc_') or B['v']['t']=='hero'): draw_bg(cv,ci,t,e)
+    if not (B['v']['t'].startswith('sc_') or B['v']['t'] in('hero','geo')): draw_bg(cv,ci,t,e)
     # progresso de capítulo no topo
     prog=(ci+u*0+0.0)/max(1,len(CHAPS)-1)
     if t<0.004 or True:
@@ -270,10 +270,10 @@ def render_frame(i):
     if i==0: uu=0.9
     ff(cv,B,uu,d,t)
     tb=t-B['s']
-    if 0<=tb<0.26 and k>0:
+    if 0<=tb<0.26 and k>0 and B['v']['t']!='geo':
         z=1+0.07*(1-tb/0.26)**2; M=np.float32([[z,0,540*(1-z)],[0,z,960*(1-z)]]); cv=cv2.warpAffine(cv,M,(W,H),borderMode=cv2.BORDER_REFLECT)
         x=int((tb/0.26)*(W+500))-250; ov=cv.copy(); cv2.rectangle(ov,(x-170,0),(x+30,H),bgr(Y),-1); cv=cv2.addWeighted(ov,0.55,cv,0.45,0)
-    if B['v']['t']!='hero':
+    if B['v']['t'] not in('hero','geo'):
         vignette(cv)
         lum=cv.max(2,keepdims=True).astype(np.float32)/255.0
         cv[:]=np.clip(cv+TINT*(1-lum)**3,0,255).astype(np.uint8)
@@ -284,3 +284,4 @@ def render_frame(i):
     return cv
 
 import hero
+import geo

@@ -42,7 +42,7 @@ def k_type():
 K=dict(impact=k_impact,thud=k_thud,whoosh=k_whoosh,tick=k_tick,pop=k_pop,glitch=k_glitch,error=k_error,ding=k_ding,squash=k_squash,blip=k_blip,type=k_type)
 sfx=np.zeros(N+SR)
 for t,kind,v in SFX:
-    if kind=='x' or kind not in K: continue
+    if kind in('x','thud','ding','impact') or kind not in K: continue
     x=K[kind]()*v*0.55; i=int(t*SR); sfx[i:i+len(x)]+=x[:len(sfx)-i]
 # música: original, 124 bpm, Am - F - C - G, baixo + pad + hat
 bpm=108; beat=60/bpm; tm=np.arange(N)/SR
@@ -72,6 +72,6 @@ voz,_=sf.read('voz.wav'); vz=np.repeat(voz,2)[:N]  # 24k->48k
 if len(vz)<N: vz=np.pad(vz,(0,N-len(vz)))
 env=np.abs(vz); env=fast_lp(env,6); duck=1-0.55*np.clip(env/0.15,0,1)
 fade=np.minimum(1,(TOTAL-tm)/1.2)*np.minimum(1,tm/0.3)
-mix=vz*1.0+mus*0.20*duck*fade+sfx[:N]*0.8
+mix=vz*1.0+sfx[:N]*0.8
 pk=np.max(np.abs(mix)); mix=mix/pk*0.89
 sf.write('mix.wav',mix.astype(np.float32),SR); print('ok',pk)
