@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
-        with: { ref: videos, path: videos_branch }
+        with: { ref: qv-upload, path: videos_branch }
         continue-on-error: true
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
