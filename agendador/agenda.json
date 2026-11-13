@@ -873,5 +873,16 @@
    "facebook_story"
   ],
   "conta": "quanto-rende"
+ },
+ {
+  "id": "Porto de Santos foi atacado",
+  "arquivo": "videos/Porto-de-Santos-foi-atacado.mp4",
+  "legenda": "Porto de Santos foi atacado #portodesantos #ciberataque #logistica",
+  "quando": "2026-11-13T18:30:00-03:00",
+  "plataformas": [
+   "instagram"
+  ],
+  "conta": "quanto-vale",
+  "capa": "videos/Porto-de-Santos-foi-atacado.jpg"
  }
 ]
