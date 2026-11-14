@@ -134,5 +134,16 @@ def obj(name):
         L=[shape(lambda d,f:poly(d,[(110,170),(470,170),(430,350),(160,350)],f),*ACC,True,edge=(0,120,90)),
            shape(lambda d,f:(d.line([P(50,110),P(110,110)],f,width=26*S),d.line([P(110,110),P(160,350)],f,width=26*S)),(90,96,114),(40,44,58),False),
            shape(lambda d,f:(E(d,(170,390,250,470),f),E(d,(360,390,440,470),f)),(70,76,94),(18,22,36),True,edge=(150,158,180))]
+    elif name=='graph':
+        pts=[(280,130),(120,270),(440,270),(190,440),(370,440),(280,300)]
+        ed=[(0,5),(1,5),(2,5),(3,5),(4,5),(0,1),(0,2),(3,4)]
+        L=[shape(lambda d,f:[d.line([P(*pts[a]),P(*pts[b])],f,width=14*S) for a,b in ed],(150,170,210),(90,110,150),False)]
+        L+=[shape(lambda d,f:[E(d,(x-46,y-46,x+46,y+46),f) for x,y in pts[:5]],*ACC,True,edge=(0,120,90)),
+            shape(lambda d,f:E(d,(280-62,300-62,280+62,300+62),f),*GOLD,True,edge=(150,90,10))]
+    elif name=='book':
+        L=[shape(lambda d,f:poly(d,[(60,130),(280,170),(280,460),(60,420)],f),(255,255,255),(225,228,236),True,edge=(170,176,190)),
+           shape(lambda d,f:poly(d,[(500,130),(280,170),(280,460),(500,420)],f),(245,246,250),(205,210,222),True,edge=(170,176,190)),
+           shape(lambda d,f:[d.line([P(95,200+i*50),P(245,226+i*50)],f,width=12*S) for i in range(4)]+[d.line([P(315,226+i*50),P(465,200+i*50)],f,width=12*S) for i in range(4)],(120,130,150),(120,130,150),False),
+           shape(lambda d,f:poly(d,[(380,120),(430,112),(430,250),(405,225),(380,250)],f),*RDD,False)]
     else: raise KeyError(name)
     return final(L)
