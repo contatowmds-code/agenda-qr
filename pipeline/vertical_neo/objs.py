@@ -126,5 +126,13 @@ def obj(name):
                 shape(lambda d,f:(R(d,(95,195,420,212),6,f),R(d,(95,225,380,242),6,f)),(120,130,150),(120,130,150),False),
                 shape(lambda d,f:R(d,(95,270,235,320),14,f),*ACC,False),
                 shape(lambda d,f:R(d,(95,350,465,445),12,f),(255,255,255),(240,240,240),False,edge=(200,196,186))]
+    elif name=='phonebot':
+        L=[shape(lambda d,f:R(d,(150,40,410,520),50,f),(70,76,94),(18,22,36),True,edge=(150,158,180)),shape(lambda d,f:R(d,(168,80,392,480),30,f),(8,40,80),(2,18,46),False),
+           shape(lambda d,f:(E(d,(200,190,260,250),f),E(d,(300,190,360,250),f)),*ACC,False),shape(lambda d,f:R(d,(215,300,345,322),10,f),*ACC,False),
+           shape(lambda d,f:(R(d,(195,370,365,392),8,f),R(d,(195,410,320,432),8,f)),(120,140,180),(90,110,150),False)]
+    elif name=='cart':
+        L=[shape(lambda d,f:poly(d,[(110,170),(470,170),(430,350),(160,350)],f),*ACC,True,edge=(0,120,90)),
+           shape(lambda d,f:(d.line([P(50,110),P(110,110)],f,width=26*S),d.line([P(110,110),P(160,350)],f,width=26*S)),(90,96,114),(40,44,58),False),
+           shape(lambda d,f:(E(d,(170,390,250,470),f),E(d,(360,390,440,470),f)),(70,76,94),(18,22,36),True,edge=(150,158,180))]
     else: raise KeyError(name)
     return final(L)
