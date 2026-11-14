@@ -145,5 +145,11 @@ def obj(name):
            shape(lambda d,f:poly(d,[(500,130),(280,170),(280,460),(500,420)],f),(245,246,250),(205,210,222),True,edge=(170,176,190)),
            shape(lambda d,f:[d.line([P(95,200+i*50),P(245,226+i*50)],f,width=12*S) for i in range(4)]+[d.line([P(315,226+i*50),P(465,200+i*50)],f,width=12*S) for i in range(4)],(120,130,150),(120,130,150),False),
            shape(lambda d,f:poly(d,[(380,120),(430,112),(430,250),(405,225),(380,250)],f),*RDD,False)]
+    elif name=='download':
+        L=[shape(lambda d,f:E(d,(50,50,510,510),f),*ACC,True,edge=(0,120,90)),
+           shape(lambda d,f:(R(d,(245,130,315,310),14,f),poly(d,[(170,290),(390,290),(280,410)],f),R(d,(160,425,400,460),14,f)),(1,24,57),(1,24,57),False)]
+    elif name=='magnet':
+        L=[shape(lambda d,f:(d.arc([P(110,150),P(450,490)],0,180,f,width=90*S),R(d,(110,120,200,325),6,f),R(d,(360,120,450,325),6,f)),*RDD,True,edge=(130,10,20)),
+           shape(lambda d,f:(R(d,(110,90,200,165),8,f),R(d,(360,90,450,165),8,f)),(245,246,250),(205,210,222),True,edge=(170,176,190))]
     else: raise KeyError(name)
     return final(L)
