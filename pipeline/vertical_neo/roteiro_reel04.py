@@ -1,0 +1,22 @@
+from geo_cams import *
+B=[]
+def b(c,d,v,s=None): B.append((c,d,v,s))
+G=lambda **k: dict(t='geo',**k)
+US,CN,DE,JP,UK,IN='United States of America','China','Germany','Japan','United Kingdom','India'
+b("a","Os *Estados Unidos* produzem mais que *China e Alemanha juntas*.",G(st=0,cams=[cam_side(US,2.4,-25),cam_top(US,2.6),cam_low(US,3.4,20)],hl=[(US,.3)],bars=[(US,.45)],lab=[US]))
+b("b","São *trinta e dois trilhões e meio* de dólares por ano.",G(st=1,cams=[cam_side(US,3.8,-30),cam_orbit(US,3.6,40),cam_push(US,4.6)],bars=[],lab=[US],ring=[US]))
+b("c","Em segundo vem a *China*, com *vinte e um trilhões e meio*.",G(st=0,cams=[cam_top(CN,2.2),cam_low(CN,3.4,-25),cam_orbit(CN,3.2,70)],hl=[(CN,.2)],bars=[(CN,.3)],lab=[CN]))
+b("d","Somando os dois, ficam com *três quartos* do que os seis maiores produzem.",G(st=2,cams=[W1,cam_top(CN,1.6),cam_side(US,1.9,60)],arc=(US,CN),lab=[US,CN]))
+b("e","A *Alemanha* é a terceira, com *cinco trilhões e meio*.",G(st=3,cams=[cam_top(DE,4.2),cam_low(DE,5.0,35),cam_orbit(DE,4.6,-50)],hl=[(DE,.2)],bars=[(DE,.35)],lab=[DE]))
+b("f","Logo depois vem o *Japão*, com *quatro trilhões e trezentos bilhões*.",G(st=0,cams=[cam_side(JP,3.8,80),cam_push(JP,4.8),cam_top(JP,3.4)],hl=[(JP,.2)],bars=[(JP,.35)],lab=[JP]))
+b("g","O *Reino Unido* vem colado, com *quatro trilhões e duzentos e setenta bilhões*.",G(st=1,cams=[cam_orbit(UK,4.6,-40),cam_low(UK,5.2,10),cam_top(UK,4.0)],hl=[(UK,.2)],bars=[(UK,.4)],lab=[UK]))
+b("h","E a *Índia* é a sexta, com *quatro trilhões e sessenta bilhões*.",G(st=2,cams=[cam_top(IN,3.4),cam_side(IN,4.0,-70),cam_push(IN,4.9)],hl=[(IN,.2)],bars=[(IN,.35)],lab=[IN]))
+b("i","Esse ranking mede o *PIB nominal*, tudo que o país produz, em dólar.",G(st=0,cams=[W1,cam_orbit(US,1.8,30),cam_orbit(IN,1.8,-30)],lab=[]))
+b("j","Mas o *Fundo Monetário Internacional* prevê uma *virada* para dois mil e vinte e sete.",G(st=3,cams=[cam_low(IN,3.8,45),cam_top(JP,3.0),cam_side(IN,3.2,-50)],ring=[IN,JP]))
+b("k","A *Índia* deve passar o *Japão* e virar a *quarta maior* economia.",G(st=1,cams=[cam_side(JP,3.0,-30),cam_push(IN,4.0),cam_top(IN,3.0)],ov='race',rows=[('JAPÃO',4.4676,(255,253,241)),('ÍNDIA',4.5211,(1,251,180))]))
+b("l","Ela chegaria a *quatro trilhões e meio*, contra *quatro vírgula quatro* do Japão.",G(st=0,cams=[cam_orbit(IN,3.4,60),cam_low(JP,3.6,-40),cam_top(IN,2.6)],ov='gauge',g0=4.06,g1=4.52,gl='ÍNDIA 2026 → 2027'))
+b("m","Atenção: são *projeções*, e podem mudar com o *câmbio*.",G(st=2,cams=[W1,cam_orbit(IN,2.0,-60),cam_side(US,2.0,30)],lab=[]))
+b("m2","Os dados são do *FMI*, do relatório de *outubro* de dois mil e vinte e seis.",G(st=3,cams=[cam_top(DE,2.2),cam_side(CN,2.4,50),W0],lab=[]))
+b("n","Os seis maiores juntos somam *mais de setenta trilhões* de dólares.",G(st=0,cams=[cam_low(US,2.6,-30),cam_orbit(CN,2.4,40),cam_top(DE,2.0),W1],lab=[US,CN,DE,JP,UK,IN]))
+b("o","Quer criar vídeos como esse? Comente *ARQUIVO* que vou te enviar a mesma *skill* que eu utilizo para criar vídeos assim,",G(st=1,cams=[cam_orbit(US,2.0,30),W1,cam_low(DE,3.0,50)],ov='cta2'))
+b("p","mas você precisa estar *me seguindo* para a mensagem chegar.",G(st=0,cams=[cam_side(JP,2.2,-40),W0],ov='follow'))
