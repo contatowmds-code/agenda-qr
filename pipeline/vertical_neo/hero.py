@@ -10,7 +10,7 @@ CAMS={'push':(1.0,1.09,0,0,0,0),'pull':(1.09,1.0,0,0,0,0),'left':(1.05,1.05,40,-
 def camwarp(cv,name,f):
     z0,z1,x0,x1,y0,y1=CAMS[name]; e=eio(f); z=lerp(z0,z1,e); dx=lerp(x0,x1,e); dy=lerp(y0,y1,e)
     M=np.float32([[z,0,540*(1-z)+dx],[0,z,900*(1-z)+dy]]); cv[:]=cv2.warpAffine(cv,M,(W,H),borderMode=cv2.BORDER_REFLECT)
-BRIGHT={1:True,2:True,6:True,9:True}
+BRIGHT={1:True,2:True,6:True,9:True,10:True,11:True}
 @functools.lru_cache(None)
 def grad_bg(kind):
     y=np.linspace(0,1,H)[:,None,None]; 
@@ -23,6 +23,9 @@ def grad_bg(kind):
     elif kind==7: a=np.array((8,10,16),np.float32); b=np.array((34,38,52),np.float32)
     elif kind==8: a=np.array((24,100,190),np.float32); b=np.array((8,50,120),np.float32)
     elif kind==9: a=np.array((225,255,246),np.float32); b=np.array((170,240,220),np.float32)
+    elif kind==10: a=np.array((222,194,148),np.float32); b=np.array((196,164,118),np.float32)
+    elif kind==11: a=np.array((238,235,226),np.float32); b=np.array((214,210,198),np.float32)
+    elif kind==12: a=np.array((20,22,58),np.float32); b=np.array((46,24,92),np.float32)
     else: a=np.array((2,16,44),np.float32); b=np.array((4,40,86),np.float32)
     im=(a*(1-y)+b*y)*np.ones((1,W,1),np.float32)
     xx=np.linspace(-1,1,W)[None,:,None]; yy=np.linspace(-1,1,H)[:,None,None]; v=1-0.28*np.clip(xx**2+yy**2*0.6,0,1.4)
@@ -39,6 +42,36 @@ def rays(cv,t,col,a,cx=540,cy=900,n=18,spd=0.25):
         pts=np.array([[cx,cy],[cx+R*math.cos(a0),cy+R*math.sin(a0)],[cx+R*math.cos(a1),cy+R*math.sin(a1)]],np.int32)
         cv2.fillConvexPoly(ov,pts,bgr(col))
     cv[:]=np.clip(cv.astype(np.int16)+(ov.astype(np.int16)*a).astype(np.int16),0,255).astype(np.uint8)
+
+PAL={10:[(40,70,200),(30,150,230),(60,60,60),(220,120,30)],11:[(20,20,20),(40,40,190),(180,120,20),(90,90,90)],12:[(1,251,180),(240,80,160),(250,200,60),(90,140,255)]}
+def torn(cv,pts,col,a=1.0):
+    ov=cv.copy(); cv2.fillPoly(ov,[np.array(pts,np.int32)],bgr(col),cv2.LINE_AA); cv2.polylines(ov,[np.array(pts,np.int32)],True,(250,250,250),3,cv2.LINE_AA)
+    cv[:]=cv2.addWeighted(ov,a,cv,1-a,0)
+def collage(cv,k,t):
+    # estilo colagem de papel (Vox): recortes rasgados, pontos de meio-tom e fita
+    pal=PAL[k]
+    for i in range(9):
+        cx=hsh(i,31)*1080; cy=(hsh(i,32)*1900+math.sin(t*0.5+i)*26)%1920; r=150+hsh(i,33)*220; n=9
+        pts=[(cx+(r*(0.78+0.32*hsh(i*13+j,34)))*math.cos(j*6.283/n+hsh(i,35)*3),cy+(r*(0.78+0.32*hsh(i*13+j,36)))*math.sin(j*6.283/n+hsh(i,35)*3)) for j in range(n)]
+        torn(cv,pts,pal[i%len(pal)],0.55)
+    ox=int(t*14)%46
+    for x in range(-46,W+46,46):
+        for y in range(0,H,46):
+            rr=1+int(2.2*(0.5+0.5*math.sin(x*.013+y*.009+t*0.8)))
+            cv2.circle(cv,(x+ox,y+(23 if (x//46)%2 else 0)),rr,bgr((60,52,44) if k!=12 else (150,130,210)),-1,cv2.LINE_AA)
+    for i in range(4):
+        x=int(hsh(i,41)*900)+60; y=int(hsh(i,42)*1700)+80; ov=cv.copy(); M=cv2.getRotationMatrix2D((x,y),(hsh(i,43)-.5)*50,1)
+        cv2.rectangle(ov,(x-70,y-18),(x+70,y+18),(210,225,235),-1); cv[:]=cv2.addWeighted(ov,0.42,cv,0.58,0)
+@functools.lru_cache(8)
+def _vig():
+    xx=np.linspace(-1,1,W)[None,:]; yy=np.linspace(-1,1,H)[:,None]; v=1-0.30*np.clip(xx**2*0.9+yy**2*0.7,0,1.3); return v[...,None].astype(np.float32)
+_NZ=np.random.RandomState(7).randint(-14,15,(H+64,W+64,1)).astype(np.int16)
+def finish(cv,t):
+    # acabamento (Remotion: camada final) - vinheta + grão leve + contraste suave
+    f=int(t*60); ox=(f*37)%64; oy=(f*53)%64
+    x=cv.astype(np.float32)*_vig(); x=(x-128)*1.04+128
+    x=x+_NZ[oy:oy+H,ox:ox+W]*0.55
+    cv[:]=np.clip(x,0,255).astype(np.uint8)
 def bg(cv,k,t,tb,e):
     cv[:]=grad_bg(k)
     if k==0:
@@ -67,6 +100,8 @@ def bg(cv,k,t,tb,e):
         for x in range(0,W,90):
             for y in range(0,H,90): cv2.rectangle(cv,(x+10,y+10+int(6*math.sin(t*1.5+x*.02))),(x+26,y+26+int(6*math.sin(t*1.5+x*.02))),bgr((150,225,205)),-1)
         rays(cv,t,(255,255,255),0.3,540,820,10,0.12)
+    elif k in (10,11,12):
+        collage(cv,k,t)
     else:
         rays(cv,t,(40,110,190),0.35,540,860,14,0.3)
 @functools.lru_cache(512)
@@ -128,6 +163,7 @@ def v_hero(cv,B,u,d,t):
         n=len(cams); j=min(n-1,int(u*n)); camwarp(cv,cams[j],u*n-j)
     title(cv,v['tt'],tb if not (B['i']==0 and t<0.9) else 0.9,bright)
     punch(cv,tb)
+    finish(cv,t)
     if tb<0.7:  # faíscas
         for i in range(14):
             a=hsh(i,11)*6.283; r=60+eo3(ramp(tb,0,.7))*(260+hsh(i,12)*300); circ(cv,540+r*math.cos(a),860+r*math.sin(a),int(5+hsh(i,13)*7),Y if not bright else BK,-1,0.8*(1-tb/0.7))
