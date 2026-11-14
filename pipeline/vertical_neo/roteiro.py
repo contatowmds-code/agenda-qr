@@ -1,22 +1,22 @@
-from geo_cams import *
 B=[]
 def b(c,d,v,s=None): B.append((c,d,v,s))
-G=lambda **k: dict(t='geo',**k)
-BR,AR,CO,CL,PE='Brazil','Argentina','Colombia','Chile','Peru'
-# PLANO DE CENA (frase | elemento | câmera -> POR QUÊ | fundo): ver plano_reel05.md
-b("a","O *Brasil* vale mais que *Argentina, Colômbia, Chile e Peru* juntos.",G(st=0,cams=[cam_side(BR,2.6,-25),cam_top(BR,2.3),cam_low(BR,3.2,15)],hl=[(BR,.3)],bars=[(BR,.45)],lab=[BR]))
-b("b","São *dois trilhões e seiscentos e cinquenta bilhões* de dólares em dois mil e vinte e seis.",G(st=1,cams=[cam_push(BR,3.4),cam_orbit(BR,3.6,40),cam_low(BR,3.8,-30)],lab=[BR],ring=[BR]))
-b("c","Em segundo vem a *Argentina*, com *setecentos e sessenta e oito bilhões*.",G(st=2,cams=[cam_top(AR,3.0),cam_low(AR,3.8,25),cam_push(AR,4.2)],hl=[(AR,.2)],bars=[(AR,.35)],lab=[AR]))
-b("d","A *Colômbia* é a terceira, com *quinhentos e setenta e dois bilhões*.",G(st=3,cams=[cam_top(CO,3.6),cam_side(CO,4.2,-40),cam_push(CO,4.6)],hl=[(CO,.2)],bars=[(CO,.35)],lab=[CO]))
-b("e","O *Chile* vem em quarto, com *quatrocentos e dois bilhões*.",G(st=0,cams=[cam_top(CL,2.8),cam_side(CL,3.4,70),cam_push(CL,3.8)],hl=[(CL,.2)],bars=[(CL,.4)],lab=[CL]))
-b("f","E o *Peru* vem colado, com *quase quatrocentos bilhões*.",G(st=1,cams=[cam_top(PE,3.4),cam_orbit(PE,3.8,-40),cam_low(PE,4.0,10)],hl=[(PE,.2)],bars=[(PE,.4)],lab=[PE]))
-b("g","A diferença entre os dois é de só *dois bilhões e seiscentos milhões*.",G(st=2,cams=[MID,cam_low(CL,3.6,-20),cam_low(PE,3.6,20)],lab=[CL,PE],arc=(CL,PE)))
-b("h","O *PIB nominal* mede o tamanho da economia, não a renda de cada pessoa.",G(st=3,cams=[SA,cam_orbit(BR,2.4,30),cam_top(AR,2.2)],lab=[]))
-b("i","Mas o *FMI* prevê uma *virada* para dois mil e vinte e sete.",G(st=0,cams=[cam_orbit(CL,3.4,-50),cam_top(PE,3.2),cam_side(CL,3.2,30)],ring=[PE,CL]))
-b("j","O *Peru* deve passar o *Chile* e virar o *quarto maior* da América do Sul.",G(st=1,cams=[cam_side(PE,3.2,-30),cam_push(PE,4.2),cam_top(CL,3.0)],ov='race',rf='{:.1f}',rows=[('CHILE',413.4,(255,253,241)),('PERU',413.6,(1,251,180))]))
-b("k","A diferença seria de apenas *cento e cinquenta milhões* de dólares.",G(st=2,cams=[MID,cam_orbit(PE,3.4,50),cam_low(CL,3.8,-40)],lab=[]))
-b("l","Mas em *renda por pessoa*, o Chile segue com *quase o dobro* do Peru.",G(st=3,cams=[cam_push(CL,3.6),cam_low(CL,3.8,20),cam_top(PE,3.2)],ov='gauge',g0=11.78,g1=20.42,gf='{:.1f}',gl='PERU  >  CHILE  (US$ MIL)'))
-b("m","O Chile divulga o *PIB do terceiro trimestre* em *dezoito de novembro*.",G(st=0,cams=[cam_top(CL,2.6),cam_side(CL,3.2,-60),SA],lab=[]))
-b("n","Os dados são do *FMI*, do relatório de *outubro* de dois mil e vinte e seis.",G(st=1,cams=[cam_orbit(BR,2.2,-30),cam_top(AR,2.0),SA],lab=[BR,AR,CO,CL,PE]))
-b("o","Quer criar vídeos como esse? Comente *ARQUIVO* que vou te enviar a mesma *skill* que eu utilizo para criar vídeos assim,",G(st=2,cams=[cam_orbit(BR,2.4,30),SA,cam_low(AR,3.0,50)],ov='cta2'))
-b("p","mas você precisa estar *me seguindo* para a mensagem chegar.",G(st=0,cams=[cam_side(CO,2.6,-40),SA],ov='follow'))
+H=lambda **k: dict(t='hero',**k)
+# PLANO DE CENA: fala | objeto | câmera -> por quê | fundo
+b("a","Sua *TV* está cheia de *anúncios*? Tem um projeto grátis que *limpa tudo*.",H(o='tvad',tt="TV *SEM ANÚNCIO*|DE *GRAÇA*",bg=3,s=1.25,cam=['push','pull']))            # push: mostrar o anúncio na tela
+b("b","Ele se chama *CleanYourTV*, e já passou de *cinquenta e sete mil* estrelas no GitHub.",H(o='star',tt="*57 MIL* ESTRELAS",bg=7,n=57000,suf='+',cam=['up','push']))   # up: contador subindo
+b("c","Foi o repositório *número um* da semana, em outubro.",H(o='trophy',tt="*Nº 1* DA SEMANA",bg=6,cam=['low']))                                                            # low: troféu maior
+b("d","Funciona em qualquer TV com *Android TV* ou *Google TV*.",H(o='tv',tt="*ANDROID TV*|E GOOGLE TV",bg=8,cam=['pull','push']))                                          # pull: 'qualquer TV' = visão geral
+b("e","Ele usa a mesma *depuração* que existe nos celulares Android.",H(o='phone',o2='plug',tt="MESMA *DEPURAÇÃO*",bg=5,x2=760,y2=1050,cam=['left','push']))                 # left: do celular para o conector
+b("f","Primeiro, faz um *backup* da lista de aplicativos e das configurações.",H(o='folder',tt="1  *BACKUP*",bg=2,cam=['right']))                                           # right: passo 1 -> avança
+b("g","Depois, *desativa* a telemetria, os serviços de anúncio e os aplicativos de fábrica.",H(o='toggle',o2='xmark',tt="2  *DESATIVA*",bg=0,x2=770,y2=1040,cam=['right','down']))  # down: desligar
+b("h","Nada é *desinstalado*. Então dá pra *desfazer tudo* com um comando.",H(o='shield',o2='check',tt="DÁ PRA *DESFAZER*",bg=9,x2=760,y2=1050,cam=['pull','push']))        # push: segurança = ênfase
+b("i","Por último, instala uma tela inicial *limpa*, parecida com a da Apple TV.",H(o='tvclean',tt="3  TELA *LIMPA*",bg=4,s=1.25,cam=['right','push']))                     # push: ver a tela nova
+b("j","Não precisa de *root* nem de *cabo*: é tudo pelo *Wi-Fi*.",H(o='bolt',tt="SEM *CABO*",bg=1,cam=['low','pull']))
+b("k","O passo a passo é feito por um *assistente de código*, como o Claude Code.",H(o='robot',o2='laptop',tt="A *IA* FAZ",bg=7,x2=770,y2=1060,cam=['left','push']))
+b("l","Você liga a depuração na TV, clona o projeto e cola *um prompt*.",H(o='doc',o2='cursor',tt="COLA *1 PROMPT*",bg=5,x2=730,y2=1010,cam=['push','down']))
+b("m","Segundo o projeto, leva cerca de *quinze minutos*.",H(o='clock',tt="*15* MINUTOS",bg=6,n=15,suf=' MIN',cam=['push']))
+b("n","Atenção: em TVs *Samsung, LG e Roku*, ele *não funciona*.",H(o='tvoff',o2='xmark',tt="*NÃO* É PRA TODAS",bg=3,x2=760,y2=1040,cam=['pull','down']))
+b("o","E vá com calma: você está mexendo nas *configurações da sua TV*.",H(o='gear',tt="COM *CALMA*",bg=8,cam=['low']))
+b("p","O código é *aberto*, com licença *MIT*.",H(o='lock',tt="CÓDIGO *ABERTO*",bg=9,cam=['pull']))
+b("q","Quer criar vídeos como esse? Comente *ARQUIVO* que vou te enviar a mesma *skill* que eu utilizo para criar vídeos assim,",H(o='bubble',o2='cursor',tt="COMENTE|*ARQUIVO*",bg=0,x2=740,y2=1020,cam=['push','pull','push']))
+b("r","mas você precisa estar *me seguindo* para a mensagem chegar.",H(o='heart',o2='check',tt="*SEGUE* O PERFIL",bg=1,x2=760,y2=1050,cam=['low','push']))

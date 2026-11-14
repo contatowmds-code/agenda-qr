@@ -99,5 +99,19 @@ def obj(name):
         return ui.ia_chip(480)
     elif name=='bubble':
         L=[shape(lambda d,f:(R(d,(50,80,510,380),60,f),poly(d,[(130,360),(130,480),(250,370)],f)),*WHT,True,edge=(150,156,172)),shape(lambda d,f:(E(d,(150,200,210,260),f),E(d,(250,200,310,260),f),E(d,(350,200,410,260),f)),*DRK,False)]
+    elif name in('tv','tvad','tvclean','tvoff'):
+        L=[shape(lambda d,f:R(d,(40,90,520,410),22,f),(70,76,94),(18,22,36),True,edge=(150,158,180)),
+           shape(lambda d,f:R(d,(60,110,500,390),10,f),(10,40,80) if name!='tvoff' else (8,10,16),(2,14,40) if name!='tvoff' else (2,3,8),False),
+           shape(lambda d,f:poly(d,[(240,410),(320,410),(350,470),(210,470)],f),(60,66,84),(20,24,38),False),
+           shape(lambda d,f:R(d,(150,465,410,490),10,f),(90,96,114),(30,34,48),True)]
+        if name=='tvad':
+            L+=[shape(lambda d,f:R(d,(75,125,485,235),10,f),*RDD,False),txt_layer('AD',90,(255,255,255,255),280,180),
+                shape(lambda d,f:(R(d,(75,250,200,375),8,f),R(d,(215,250,340,375),8,f),R(d,(355,250,485,375),8,f)),(255,170,60),(230,110,30),False)]
+        if name=='tvclean':
+            L+=[shape(lambda d,f:R(d,(110,270,450,360),28,f),(30,40,60),(14,20,36),False),
+                shape(lambda d,f:(R(d,(130,285,195,345),14,f),R(d,(210,285,275,345),14,f),R(d,(290,285,355,345),14,f),R(d,(370,285,435,345),14,f)),*ACC,False),
+                txt_layer('12:30',70,(255,255,255,255),280,190)]
+        if name=='tv':
+            L+=[shape(lambda d,f:(R(d,(90,150,470,180),8,f),R(d,(90,210,380,240),8,f),R(d,(90,270,430,300),8,f)),*ACC,False)]
     else: raise KeyError(name)
     return final(L)

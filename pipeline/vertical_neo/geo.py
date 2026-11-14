@@ -35,7 +35,7 @@ D = 1900.0; CY = 880.0
 def cam(lon, lat, z, p=0, b=0): x, y = mc(lon, lat); return (x, y, z, p, b)
 
 def project(mx, my, zz, c):
-    cx, cy, z, p, b = c; S = 512.0 * 2 ** z
+    cx, cy, z, p, b = c; b = max(-22.0, min(22.0, b)); S = 512.0 * 2 ** z
     dx = (mx - cx) * S; dy = -(my - cy) * S
     br = math.radians(b); sb, cb = math.sin(br), math.cos(br)
     X = dx * cb - dy * sb; Yf = dx * sb + dy * cb
@@ -78,6 +78,10 @@ STY = [dict(ocean=(1, 24, 57), land=(14, 52, 98), edge=(52, 120, 190), grat=(8, 
        dict(ocean=(236, 232, 220), land=(1, 40, 84), edge=(60, 110, 170), grat=(214, 208, 192), bar=(1, 251, 180), hl=(1, 251, 180), fog=(236, 232, 220)),
        dict(ocean=(60, 6, 12), land=(120, 22, 30), edge=(220, 90, 90), grat=(90, 12, 20), bar=(255, 253, 241), hl=(255, 200, 70), fog=(60, 6, 12))]
 
+STY += [dict(ocean=(8, 10, 18), land=(46, 40, 20), edge=(190, 150, 50), grat=(22, 22, 30), bar=(255, 200, 60), hl=(255, 200, 60), fog=(8, 10, 18)),
+        dict(ocean=(245, 190, 50), land=(1, 24, 57), edge=(120, 90, 20), grat=(225, 170, 40), bar=(255, 253, 241), hl=(1, 251, 180), fog=(245, 190, 50)),
+        dict(ocean=(0, 46, 52), land=(0, 92, 88), edge=(1, 251, 180), grat=(0, 62, 66), bar=(255, 200, 60), hl=(255, 200, 60), fog=(0, 46, 52)),
+        dict(ocean=(246, 240, 224), land=(196, 160, 70), edge=(110, 84, 20), grat=(228, 220, 200), bar=(1, 24, 57), hl=(1, 251, 180), fog=(246, 240, 224))]
 for _s in STY:
     for _k in ('ocean','land','edge','grat','bar','hl','fog'): _s[_k]=_s[_k][::-1]
 
@@ -185,6 +189,7 @@ def label(cv, name, val, x, y, sc, a, bright):
     place(cv, s2, x, y + 20 * sc, sc, sc, 0, a)
 
 GFMT = '{:.2f}'
+GMAX = 0
 def gauge(cv, v0, v1, u, t, lab):
     cx, cy, R = 540, 1000, 270
     ov = cv.copy(); cv2.circle(ov, (cx, cy), R + 60, (57, 24, 1), -1, cv2.LINE_AA); cv[:] = cv2.addWeighted(ov, 0.7, cv, 0.3, 0)
@@ -192,8 +197,9 @@ def gauge(cv, v0, v1, u, t, lab):
         a = math.radians(180 + i * 4.5); r0 = R - (26 if i % 5 == 0 else 14)
         col = (241, 253, 255) if i % 5 == 0 else (180, 140, 120)
         cv2.line(cv, (int(cx + r0 * math.cos(a)), int(cy + r0 * math.sin(a))), (int(cx + R * math.cos(a)), int(cy + R * math.sin(a))), col, 4 if i % 5 == 0 else 2, cv2.LINE_AA)
-    cv2.ellipse(cv, (cx, cy), (R, R), 0, 180, 180 + 180 * eo3(u), (180, 251, 1), 16, cv2.LINE_AA)
-    val = lerp(v0, v1, eo3(u)); a = math.radians(180 + 180 * eo3(u))
+    fr = eo3(u) * (v1 / GMAX if GMAX else 1.0)
+    cv2.ellipse(cv, (cx, cy), (R, R), 0, 180, 180 + 180 * fr, (180, 251, 1), 16, cv2.LINE_AA)
+    val = lerp(v0, v1, eo3(u)); a = math.radians(180 + 180 * fr)
     cv2.line(cv, (cx, cy), (int(cx + (R - 50) * math.cos(a)), int(cy + (R - 50) * math.sin(a))), (255, 255, 255), 10, cv2.LINE_AA)
     cv2.circle(cv, (cx, cy), 28, (48, 59, 255), -1, cv2.LINE_AA)
     E.txt(cv, GFMT.format(val).replace('.', ','), FA, 170, (1, 251, 180), 540, 1130, 700)
@@ -246,7 +252,7 @@ def v_geo(cv, B, u, d, t):
             nome = GD.NOME[nm]; val = GD.fmt(BARVAL[nm])
             label(cv, nome, val, float(np.clip(sx, 400, 680)), float(np.clip(sy - 110, 300, 1250)), sc, 1.0, False)
     ov = v.get('ov')
-    if ov == 'gauge': globals().__setitem__('GFMT', v.get('gf', '{:.2f}')); gauge(cv, v['g0'], v['g1'], ramp(u, 0.15, 0.85), t, v['gl'])
+    if ov == 'gauge': globals().__setitem__('GFMT', v.get('gf', '{:.2f}')); globals().__setitem__('GMAX', v.get('gmax', 0)); gauge(cv, v['g0'], v['g1'], ramp(u, 0.15, 0.85), t, v['gl'])
     if ov == 'race': globals().__setitem__('RFMT', v.get('rf', '{:.2f}')); race(cv, v['rows'], ramp(u, 0.05, 0.9), t)
     if ov == 'cta1':
         o = cv.copy(); cv2.rectangle(o, (0, 0), (W, H), (57, 24, 1), -1); cv[:] = cv2.addWeighted(o, 0.55, cv, 0.45, 0)

@@ -2,7 +2,15 @@ import math, functools, numpy as np, cv2
 from gfx import *
 from bgs import dimc, hsh
 import eng as E, objs, ui
-BRIGHT={1:True,2:True}
+def tiltshift(cv):
+    sm=cv2.resize(cv,(W//3,H//3),interpolation=cv2.INTER_AREA); sm=cv2.GaussianBlur(sm,(0,0),7); bl=cv2.resize(sm,(W,H))
+    xs=np.abs(np.arange(W)-540)[None,:]; m=(np.clip((xs-300)/240.0,0,1)**1.1)[...,None].astype(np.float32)
+    bl=bl*(1-0.5*m); cv[:]=(cv*(1-m)+bl*m).astype(np.uint8)
+CAMS={'push':(1.0,1.09,0,0,0,0),'pull':(1.09,1.0,0,0,0,0),'left':(1.05,1.05,40,-40,0,0),'right':(1.05,1.05,-40,40,0,0),'up':(1.05,1.05,0,0,50,-30),'down':(1.05,1.05,0,0,-40,40),'low':(1.04,1.1,0,0,-30,-70)}
+def camwarp(cv,name,f):
+    z0,z1,x0,x1,y0,y1=CAMS[name]; e=eio(f); z=lerp(z0,z1,e); dx=lerp(x0,x1,e); dy=lerp(y0,y1,e)
+    M=np.float32([[z,0,540*(1-z)+dx],[0,z,900*(1-z)+dy]]); cv[:]=cv2.warpAffine(cv,M,(W,H),borderMode=cv2.BORDER_REFLECT)
+BRIGHT={1:True,2:True,6:True,9:True}
 @functools.lru_cache(None)
 def grad_bg(kind):
     y=np.linspace(0,1,H)[:,None,None]; 
@@ -10,6 +18,11 @@ def grad_bg(kind):
     elif kind==1: a=np.array((1,251,180),np.float32); b=np.array((1,215,150),np.float32)
     elif kind==2: a=np.array((250,247,240),np.float32); b=np.array((228,222,210),np.float32)
     elif kind==3: a=np.array((60,4,8),np.float32); b=np.array((150,14,22),np.float32)
+    elif kind==5: a=np.array((0,40,46),np.float32); b=np.array((0,96,90),np.float32)
+    elif kind==6: a=np.array((250,200,60),np.float32); b=np.array((230,160,30),np.float32)
+    elif kind==7: a=np.array((8,10,16),np.float32); b=np.array((34,38,52),np.float32)
+    elif kind==8: a=np.array((24,100,190),np.float32); b=np.array((8,50,120),np.float32)
+    elif kind==9: a=np.array((225,255,246),np.float32); b=np.array((170,240,220),np.float32)
     else: a=np.array((2,16,44),np.float32); b=np.array((4,40,86),np.float32)
     im=(a*(1-y)+b*y)*np.ones((1,W,1),np.float32)
     xx=np.linspace(-1,1,W)[None,:,None]; yy=np.linspace(-1,1,H)[:,None,None]; v=1-0.28*np.clip(xx**2+yy**2*0.6,0,1.4)
@@ -41,6 +54,19 @@ def bg(cv,k,t,tb,e):
     elif k==3:
         for i in range(7): cv2.circle(cv,(int(hsh(i,8)*1080),int(500+hsh(i,9)*1000+math.sin(t*.6+i)*50)),int(220+hsh(i,10)*200),bgr((200,40,40)),-1,cv2.LINE_AA)
         cv[:]=cv2.addWeighted(cv,0.35,grad_bg(3),0.65,0); floor(cv,t,(255,80,80),1040,0.28)
+    elif k==5:
+        floor(cv,t,(1,251,180),1040,0.35); rays(cv,t,(0,140,130),0.25,540,-100,8,0.08)
+    elif k==6:
+        rays(cv,t,(255,240,170),0.3,540,860,20,-0.15)
+    elif k==7:
+        for i in range(40): cv2.line(cv,(int(hsh(i,21)*1080),int(((hsh(i,22)+t*0.25*(0.4+hsh(i,23)))%1.0)*1920)),(int(hsh(i,21)*1080),int(((hsh(i,22)+t*0.25*(0.4+hsh(i,23)))%1.0)*1920)+int(40+hsh(i,24)*90)),bgr((60,70,100)),2)
+        floor(cv,t,(120,130,170),1080,0.25)
+    elif k==8:
+        for i in range(9): cv2.circle(cv,(540,900),int(((i/9.0+t*0.12)%1.0)*1300),bgr((90,160,235)),4,cv2.LINE_AA)
+    elif k==9:
+        for x in range(0,W,90):
+            for y in range(0,H,90): cv2.rectangle(cv,(x+10,y+10+int(6*math.sin(t*1.5+x*.02))),(x+26,y+26+int(6*math.sin(t*1.5+x*.02))),bgr((150,225,205)),-1)
+        rays(cv,t,(255,255,255),0.3,540,820,10,0.12)
     else:
         rays(cv,t,(40,110,190),0.35,540,860,14,0.3)
 @functools.lru_cache(512)
@@ -80,7 +106,7 @@ def punch(cv,tb):
         cv[:]=cv2.addWeighted(ov,0.55*p,cv,1-0.55*p,0)
 def v_hero(cv,B,u,d,t):
     v=B['v']; tb=u*d; k=v.get('bg',0); bright=BRIGHT.get(k,False)
-    bg(cv,k,t,tb,E.env(t))
+    bg(cv,k,t,tb,E.env(t)); tiltshift(cv)
     name=v['o']; sp=objs.obj(name); h,w=sp.shape[:2]
     big=v.get('s',1.15); en=eob(ramp(tb,0,.28),2.3); sc=big*en*(1+0.035*math.sin(t*3.1)+0.05*ramp(tb,0,d))
     cy=860+8*math.sin(t*2.3)
@@ -97,9 +123,22 @@ def v_hero(cv,B,u,d,t):
     if v.get('n') is not None:
         val=int(v['n']*eo3(ramp(tb,.05,.7))); s=f"{v.get('pre','')}{val:,}".replace(',','.')+v.get('suf','')
         E.txt(cv,s,FA,170,(BK if bright else Y),540,1215,980,a=eio(ramp(tb,.05,.2)),sx=eob(ramp(tb,.05,.3),1.8))
-    title(cv,v['tt'],tb,bright)
+    cams=v.get('cam')
+    if cams:
+        n=len(cams); j=min(n-1,int(u*n)); camwarp(cv,cams[j],u*n-j)
+    title(cv,v['tt'],tb if not (B['i']==0 and t<0.9) else 0.9,bright)
     punch(cv,tb)
     if tb<0.7:  # faíscas
         for i in range(14):
             a=hsh(i,11)*6.283; r=60+eo3(ramp(tb,0,.7))*(260+hsh(i,12)*300); circ(cv,540+r*math.cos(a),860+r*math.sin(a),int(5+hsh(i,13)*7),Y if not bright else BK,-1,0.8*(1-tb/0.7))
 E.VIS['hero']=v_hero
+
+for _i,_B in enumerate(E.BLK):
+    _v=_B['v']
+    if _v['t']!='hero': continue
+    _n=E.BLK[_i+1]['s'] if _i+1<len(E.BLK) else E.TOTAL; _d=_n-_B['s']
+    E.hit(_B['s']+0.02,'pop',0.6)
+    if _v.get('o2'): E.hit(_B['s']+0.35,'blip',0.6)
+    if _v.get('n') is not None:
+        for _j in range(5): E.hit(_B['s']+0.1+_j*0.12,'tick',0.35)
+    for _j in range(1,len(_v.get('cam',[]))): E.hit(_B['s']+_j*_d/len(_v['cam']),'whoosh',0.2)
