@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conectar TikTok - Agendador QR</title>
+<style>body{font-family:system-ui,sans-serif;max-width:640px;margin:40px auto;padding:0 16px;color:#111}select,button{padding:10px 16px;font-size:16px}</style></head>
+<body>
+<h1>Agendador QR - Conectar conta do TikTok</h1>
+<p>Ferramenta pessoal do criador: conecta as contas dele ao agendador para enviar os próprios vídeos. Usa Login Kit (user.info.basic) e Content Posting API (video.upload, video.publish).</p>
+<p>Conta do canal:
+<select id="conta"><option value="quanto-rende">Quanto Rende? (@valecarrinho)</option><option value="quanto-vale">Quanto Vale (@valevitrine)</option><option value="arquivo-viral">Arquivo Viral (@valelaranja)</option></select></p>
+<p><button id="go">Conectar com o TikTok</button></p>
+<p><a href="termos.html">Termos de uso</a> · <a href="privacidade.html">Política de privacidade</a></p>
+<script>
+var CLIENT_KEY="sbaw0y8na9simjri9u";
+document.getElementById("go").onclick=function(){
+var u="https://www.tiktok.com/v2/auth/authorize/?client_key="+encodeURIComponent(CLIENT_KEY)
++"&scope="+encodeURIComponent("user.info.basic,video.upload,video.publish")+"&response_type=code"
++"&redirect_uri="+encodeURIComponent("https://contatowmds-code.github.io/agenda-qr/callback.html")
++"&state="+encodeURIComponent(document.getElementById("conta").value);
+location.href=u;};
+</script>
+</body></html>
