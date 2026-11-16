@@ -20,6 +20,9 @@ QUANDO ESTA SKILL FOR CARREGADA: não pergunte nada, não peça confirmação, n
 ## Princípios onetake (ver APRENDIZADOS.md)
 Carregar a cena em vez de trocá-la, planos de durações bem diferentes, câmera que persegue, sem partículas, som com poucos eventos.
 
+## DESIGN VIRAL
+Leia a seção DESIGN VIRAL de APRENDIZADOS.md: nada de fundo preto vazio, bonecos em toda cena, ambiente literal, sujeito grande, cartões e legenda grandes, prévia de 6 quadros antes do render.
+
 ## Regras fixas
 - Estilo do vídeo aprovado (Starship). NÃO usar Blender Skills.
 - Religião: SOMENTE vídeo evangélico da Bíblia para glorificar Jesus; qualquer outro tema religioso, descarte e troque de assunto.

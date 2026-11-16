@@ -33,3 +33,16 @@ Lido em 2026-11-16. O onetake é um pipeline HTML (`window.__seek(t)`) para film
 - **Elementos pequenos, chão grande**; a causa precisa ser visível (quem faz acontecer está na cena).
 - **Nunca copiar o visual do vídeo anterior**: paleta, palco, câmera e transições novos a cada vídeo.
 - **Licença**: PolyForm Noncommercial. Não copiar código/biblioteca do onetake para os vídeos; avisar o dono se o canal for monetizado.
+
+## DESIGN VIRAL (obrigatório a partir de 2026-11-16) — o dono rejeitou o vertical "Voyager" por design simples/genérico
+Diagnóstico do que estava errado: fundo PRETO com estrelas e formas primitivas (anéis, retângulos, barras), nenhum boneco, cartões pequenos, metade do quadro vazia, nada que lembre o vídeo aprovado (Starship).
+Regras novas:
+1. **Proibido fundo preto vazio.** Toda cena tem ambiente LITERAL ao que a fala diz (mar → praia/ondas, avião → céu com nuvens, banco → rua/agência, espaço → planeta/estação com detalhe), com céu/horizonte, chão e camadas de profundidade (primeiro plano, meio, fundo) e algo sempre se movendo.
+2. **Bonecos 2D (cabeça de feijão) em TODA cena**, reagindo ao que é dito (apontam, se assustam, riem). Cena sem boneco = refazer.
+3. **Sujeito grande e centrado**, ocupando ~60% do quadro; sem metade vazia.
+4. **Cartões grandes e modernos** (≥ 35% da largura, número gigante, cor forte, entrada com squash), poucos e só na palavra.
+5. **Legenda grande** (Inter Black ≥ 92 px no vertical), palavra por palavra com pop, palavra-chave #01FBB4, contorno/sombra.
+6. **Capa/1º quadro**: título enorme em 2–3 linhas, rosto de boneco em choque, contraste alto, um elemento que gera curiosidade.
+7. **Cor com intenção**: paleta quente/cinematográfica por cena (céu em degradê, luz suave); nada chapado, nada neon, sem brilho exagerado.
+8. **Câmera viva**: push-in na palavra-foco, leve rotação, rampa de velocidade, transição que carrega um objeto de uma cena para a outra.
+9. Antes de renderizar um vídeo inteiro: gerar 6 quadros de prévia e checar contra estas 8 regras.
