@@ -14,6 +14,9 @@ QUANDO ESTA SKILL FOR CARREGADA: não pergunte nada, não peça confirmação, n
 5. Entrega: só o MP4 "TÍTULO SEO #h1 #h2 #h3.mp4" na pasta QV; confira bytes e parentId no Drive antes de dizer "entregue"; envie o MP4 no chat com título + 3 hashtags e avise que voz e movimento não foram ouvidos/vistos por você. Atualize `registro/temas.json`.
 6. Volte ao passo 3. Sem Drive disponível: diga "enviado à raiz do script, falta mover", nunca "entregue".
 
+## Princípios onetake (ver APRENDIZADOS.md)
+Carregar a cena em vez de trocá-la, planos de durações bem diferentes, câmera que persegue, sem partículas, som com poucos eventos.
+
 ## Regras fixas
 - Estilo do vídeo aprovado (Starship). NÃO usar Blender Skills.
 - Religião: SOMENTE vídeo evangélico da Bíblia para glorificar Jesus; qualquer outro tema religioso, descarte e troque de assunto.

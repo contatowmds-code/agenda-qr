@@ -22,3 +22,14 @@
 - Fluxo: git branch qv-upload -> videos/<slug>.mp4 -> push (push.negotiate=true) -> workflow 417569639 (inputs arquivo, nome) -> o run pode ficar na fila vários minutos (use until-loop em background) -> search_files(title contains) -> update_file(parentId=pasta QV) -> conferir fileSize e parentId.
 - Rotina das 5h criada via API pode não ter o conector Drive: então reportar "enviado à raiz do script, falta mover" e nunca "entregue".
 - Duplicata antiga na raiz do script (Black Friday, 15.799.981 bytes): o dono apaga à mão (trash_file sem permissão).
+
+## Princípios do onetake (github.com/feitangyuan/onetake) adotados
+Lido em 2026-11-16. O onetake é um pipeline HTML (`window.__seek(t)`) para filmes de 10–60 s de produto; NÃO roda no nosso motor three.js. O que adotamos são as REGRAS (não o código):
+- **Nunca troque uma cena, carregue-a**: em cada corte entre cenas algo que está na tela sobrevive e se move para a próxima (moeda/objeto/personagem, câmera que entra no objeto). Só use corte seco em rajadas de impacto e no cartão final.
+- **Nunca corte em metrônomo**: variar a duração dos planos em ≥ 4× (0,25 s ao lado de 2,5 s). Ter pelo menos um trecho quase parado (imagem e som).
+- **Câmera que persegue**: segue o foco com atraso/inclinação e nunca perde o sujeito; antes de um "snap", posicionar onde ele vai pousar.
+- **Sem partículas/confete**: parecem template. Deixe o próprio elemento pousar com squash.
+- **Um só ambiente sonoro**: menos eventos do que cenas; um bipe por evento é o equivalente sonoro de slide.
+- **Elementos pequenos, chão grande**; a causa precisa ser visível (quem faz acontecer está na cena).
+- **Nunca copiar o visual do vídeo anterior**: paleta, palco, câmera e transições novos a cada vídeo.
+- **Licença**: PolyForm Noncommercial. Não copiar código/biblioteca do onetake para os vídeos; avisar o dono se o canal for monetizado.
