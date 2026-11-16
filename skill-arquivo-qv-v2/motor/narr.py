@@ -1,7 +1,7 @@
 import re,json,numpy as np,soundfile as sf
 from kokoro_onnx import Kokoro
 SR=24000; GAP=0.2; LEAD=0.3
-REPL=[("Starship","Istárchip"),("Starlink","Istárlinc"),("SpaceX","Ispêicis"),("Texas","Têcsas"),("skill","iskil"),("ARQUIVO","arquívo"),("Space ponto com","Ispêice ponto com"),("Euclid","Iúclid"),("quasar","quêisar"),("quasares","quêisares"),("Astronomy and Astrophysics","Astrônomi end Astrofísics"),("ESA","É Ésse A"),("redshift","rédchift"),("Swift","Suíft"),("LINK","Línque"),("Katalyst","Cátalist"),("Nvidia","Enviídia"),("Voyager","Vóiajer"),("V G R","vê gê érre"),("Morse","Mórsi"),("dia-luz","dia luz"),("NASA","Nása")]
+REPL=[("Starship","Istárchip"),("Starlink","Istárlinc"),("SpaceX","Ispêicis"),("Texas","Têcsas"),("skill","iskil"),("ARQUIVO","arquívo"),("Space ponto com","Ispêice ponto com"),("Euclid","Iúclid"),("quasar","quêisar"),("quasares","quêisares"),("Astronomy and Astrophysics","Astrônomi end Astrofísics"),("ESA","É Ésse A"),("redshift","rédchift"),("Swift","Suíft"),("LINK","Línque"),("Katalyst","Cátalist"),("Nvidia","Enviídia"),("Voyager","Vóiajer"),("V G R","vê gê érre"),("Morse","Mórsi"),("dia-luz","dia luz"),("NASA","Nása"),("Hera","Éra"),("Didymos","Dídimos"),("Dimorphos","Dimórfos"),("DART","Dárt"),("ESA","É Ésse A")]
 k=Kokoro('k.onnx','v.bin')
 lines=[l.strip() for l in open('roteiro.txt',encoding='utf8') if l.strip()]
 t=LEAD; words=[]; cues={}; chunks=[]
