@@ -63,3 +63,9 @@ node render.mjs stills/a "30,200,500" 1 0.85 && python3 sheet.py stills/a sheet.
 ```
 Render completo: 4 processos `RESUME=1 setsid nohup node render.mjs frames "a-b" 1 0.94 > work/r_x.log 2>&1 < /dev/null &`; aguardar com Monitor `until [ $(ls frames|wc -l) -ge TOTAL ] && [ $(pgrep -f render.mjs|wc -l) -eq 0 ]; do sleep 15; done`.
 Cuidados aprendidos: não nomear constantes `sun`/`H`/`W` no mundo (conflito com o motor); efeitos aditivos precisam de `fxm()` (ndSkip) para não ganharem contorno; cartões HUD usam `full:true`.
+
+## 11. Lições de 16/11/2026 (erros reais — não repetir)
+- CAPA: a câmera da capa (`id==='capa'`) retorna posição ABSOLUTA: some o deslocamento do palco (OFF) ou a capa sai vazia. SEMPRE olhar o quadro 0 do MP4 (ffmpeg -frames:v 1) ANTES de subir ao Drive. Subir um arquivo errado deixa duplicata na raiz do script que a sessão NÃO consegue apagar (trash_file dá "caller does not have permission").
+- Nome de constante `H`/`W`/`sun` no mundo conflita com o motor; usar `H_`, `sunB`.
+- Mapas MapLibre: renderizar o clipe INTEIRO antes de compor; o RESUME do render 3D deve excluir exatamente os quadros do mapa.
+- Em finish_video.sh o CTA animado é aplicado uma única vez: nunca rodar o script duas vezes sobre os mesmos quadros (reencode manual só do enc.sh).
