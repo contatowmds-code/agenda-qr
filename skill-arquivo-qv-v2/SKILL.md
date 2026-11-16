@@ -110,3 +110,8 @@ Próximo tema já pesquisado e verificado (não produzido ainda): telescópio Sw
 ## Armadilha dos marcadores (vídeo 5)
 NUNCA nomear um marcador de foco `{end}` (nem `total`): `narr.py` sobrescreve `cues['end']` com a duração total e a cena final nunca acontece. Use `{fim}`. Conferir sempre que todos os cues usados no JS existem em words.json E ocorrem antes do CTA. Quando só o trecho final muda, re-renderizar só os quadros a partir do primeiro key alterado (`rerender.js k n start`).
 Telas retrato são estreitas: timelines e comparações largas devem ser VERTICAIS (ou usar d ≈ 2x), senão ficam cortadas. Elementos devem ficar acima da legenda (viewOffset ~0.08).
+
+## Lições do vídeo 6 (El Niño)
+- GLSL: `smoothstep(a,b,x)` com a>b é INDEFINIDO; use `1.-smoothstep(b,a,x)`. Template literal com `${KX}.` gera "2.2." inválido: não adicione ponto depois.
+- A visibilidade por cenário usa Math.round(cam.x/1000): objetos que se deslocam >500 un. em x (ex.: satélite em órbita) fazem a cena sumir; mantenha o movimento pequeno.
+- Para mapa do Brasil use polígono esquemático (BR em lon/lat) com cores por região (Sul azul/chuva, resto laranja/seca) e deixe claro que é esquema. Não inventar geografia para outros países.
