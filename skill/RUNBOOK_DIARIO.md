@@ -76,3 +76,6 @@ Placar do dia 16/11: verticais 10/10 (ponte, Starship, planetas, El Niño, Enem,
 
 ## Regra religiosa (dono, reforçada)
 Vídeo religioso/evangélico só se for para glorificar Jesus e baseado na Bíblia. Qualquer outro conteúdo religioso: não produzir; escolher outro tema.
+
+## Horizontal (8:01+)
+Use `kit/horizontal/` (gen_story.py, assemble.py com W=1280,H=720, render.mjs, capt_h.py, cta_overlay_h.py, enc_h.sh, mask_h.png). Veja `APRENDIZADOS.md` para limite de 100 MB do GitHub (≈1,2 Mbps) e capa horizontal.
