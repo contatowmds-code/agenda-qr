@@ -73,3 +73,6 @@ Cuidados aprendidos: não nomear constantes `sun`/`H`/`W` no mundo (conflito com
 ## 12. Pasta QV é compartilhada (16/11/2026)
 Outras sessões do dono também entregam na pasta QV (ex.: Swift, Euclid, Nvidia, Voyager, Starship). Antes de escolher o tema de cada vídeo, liste a pasta (`search_files parentId='1PjYAexyF3NNCMHuBsi1KJj7kapAyqu3E'`, ordenar por modifiedTime) e prefira um tema que ainda não esteja lá; se o melhor tema do momento já existir, pode repetir (ordem do dono: repetição de tema não importa), mas faça um ângulo/visual diferente.
 Placar do dia 16/11: verticais 10/10 (ponte, Starship, planetas, El Niño, Enem, Apple Harbor, Microsoft, Caruaru, Black Friday, Voyager); horizontais 0/2.
+
+## Regra religiosa (dono, reforçada)
+Vídeo religioso/evangélico só se for para glorificar Jesus e baseado na Bíblia. Qualquer outro conteúdo religioso: não produzir; escolher outro tema.
