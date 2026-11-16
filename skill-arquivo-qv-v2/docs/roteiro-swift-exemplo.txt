@@ -1,0 +1,13 @@
+{teaser}Um telescópio da NASA acabou de {imp}cair do espaço, e o resgate falhou!
+Ele se chamava {name}Swift e passou quase vinte e dois anos em órbita, desde novembro de dois mil e quatro.
+No dia vinte de outubro, estava a cerca de duzentos e setenta e cinco quilômetros de altura e {safe}entrou em modo de segurança.
+O motivo: o Sol ficou mais ativo, o ar da {drag}parte alta da atmosfera se expandiu e criou arrasto, freando o telescópio.
+A NASA tentou um resgate com a empresa Katalyst: uma nave chamada {link}LINK, lançada em julho, que deveria prender o telescópio e levantá-lo para uma órbita mais alta.
+Mas a LINK {spin}começou a girar sem controle logo depois de chegar ao espaço, e em meados de agosto a tentativa foi abandonada.
+Sem o resgate, o telescópio {fall}foi descendo cada vez mais.
+Na quarta-feira, quatro de novembro, ele {reent}reentrou na atmosfera sobre o norte de Sumatra, na Indonésia, segundo a Força Espacial dos Estados Unidos.
+A NASA esperava que quase tudo {burn}queimasse no caminho, mas alguns pedaços poderiam sobreviver.
+O risco de alguém se ferir era de uma chance em {risk}dois mil e cem.
+Foi o {end}fim de uma era: quase vinte e dois anos de ciência, encerrados pela atividade do Sol.
+Até a publicação das reportagens, {frag}a NASA não tinha informado fragmentos encontrados no solo.
+{cta}Quer criar vídeos como esse? {cmt}Comente *ARQUIVO* que vou te enviar a mesma skill que eu utilizo para criar vídeos assim, mas você precisa {seg}estar *me seguindo* {msg}para a mensagem chegar.

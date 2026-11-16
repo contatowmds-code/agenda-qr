@@ -3,3 +3,4 @@
 - 2026-11-16 (entregue no Drive, QV): Starship voo 15.
 - 2026-11-16 (entregue no Drive, QV): Voyager 1 a 1 dia-luz da Terra (18/11/2026). Fontes: NASA via CNN/ScienceDaily/EarthSky/NPR.
 - 2026-11-16: Nvidia resultado do 3º tri fiscal 2027 (17/11): previsão US$108 bi ±2%, margem bruta ~74%, sem China. Fontes: Investing.com, decodigo, CME Elite (via Nvidia IR). [60 fps]
+- 2026-11-16: Telescópio Swift da NASA reentrou em 4/11/2026 após resgate (Katalyst/LINK) falhar; risco 1 em 2.100. Fontes: NASA Science blog, ScienceDaily, US News, Força Espacial. [60 fps]
