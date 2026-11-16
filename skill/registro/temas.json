@@ -69,10 +69,18 @@
    "tema": "Voyager 1 um dia-luz (fundos: espaço profundo, lançamento 1977, régua de 173 UA, relógio de 24 h, antena DSN, painel de instrumentos, céu noturno)",
    "data": "2026-11-16",
    "cta": "VIRAL"
+  },
+  {
+   "slug": "h1-ia-conversa",
+   "titulo": "COMO UMA IA DE CONVERSA FUNCIONA de verdade",
+   "tema": "Horizontal 1: como uma IA de conversa funciona (17 palcos: chat, tokens, rede neural, atenção, sorteio, alucinação, contexto, busca, privacidade)",
+   "data": "2026-11-16",
+   "formato": "horizontal 1920x1080, 8:12",
+   "drive_id": "1sLAKN0umL1FGaetVG5X3nDLnZLaE_tTF"
   }
  ],
  "em_producao": [
-  "Horizontal 1 (8:01+) — ainda não iniciado"
+  "Horizontal 2 (8:01+) — tema novo, pesquisa do zero"
  ],
  "pesquisados_verificados_nao_usados": [],
  "descartados": [
