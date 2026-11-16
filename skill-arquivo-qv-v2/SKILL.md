@@ -94,3 +94,6 @@ Cada execução agendada começa numa sessão VAZIA. A skill mora no repo `conta
 - Distâncias de câmera: ~2-3x o tamanho do objeto; conferir cada cena com `node shot.js` antes de renderizar.
 - Blender (`pip install bpy` funciona) NÃO é viável: render em CPU leva segundos por quadro (horas por vídeo a 60 fps). Usar three.js.
 - Barras/gráficos com dados só quando o dado vem de fonte; não inventar números anteriores.
+
+## Rotina agendada SEM conector do Drive (limitação verificada em 2026-11-16)
+A rotina criada via ferramenta (trig_01RoDQMsHoEAg1y3oEb4wxki) não carrega conectores MCP; o proxy também NÃO autentica a API do Drive (curl em www.googleapis.com dá 401). Sem o conector `Google Drive`, o passo 5 do Passo 7 (`search_files` + `update_file`) é impossível: o MP4 fica na raiz do script (id 1tPiMtGGzyESOgy_wN1_T_EnDeNt-yx_I). Se `mcp__Google_Drive__*` não existir na sessão: entregar até o workflow `success`, registrar no `docs/temas-feitos.md` "PENDENTE mover para QV: <nome do arquivo>", avisar o usuário por PushNotification e continuar produzindo (não parar o lote). O usuário deve recriar a rotina em claude.ai (Routines) com o conector Google Drive anexado, usando o mesmo prompt.
