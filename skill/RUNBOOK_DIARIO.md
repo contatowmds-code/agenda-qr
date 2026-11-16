@@ -46,3 +46,15 @@ A rotina das 5h foi criada via API sem connectors, então `mcp__Google_Drive__*`
 
 ## 9. Temas: o que NÃO importa (ordem do dono, 16/11/2026)
 Não importa se OUTROS canais/vídeos já fizeram o mesmo tema: pode usar. A regra de "nunca repetir tema" vale só para os vídeos DESTE perfil (registro/temas.json). Continua valendo: fatos conferidos em 2+ fontes.
+
+## 10. Comandos exatos para montar um projeto (testado do zero em 16/11/2026)
+```
+P=/home/user/sv/<slug>; mkdir -p $P/web/lib $P/work $P/frames && cd $P
+cp -r /home/user/agenda-qr-skill/skill/kit/web/* web/ ; cp /home/user/agenda-qr-skill/skill/kit/tools/* . ; cp /home/user/agenda-qr-skill/skill/marca/QV-logo.png .
+mkdir -p node_modules && ln -sfn "$(npm root -g)/playwright" node_modules/playwright
+# escreva world_part.js (mundo), ws_part.js (estado por quadro) e web/story.js (plano de cena) — veja kit/examples/v1..v5
+python3 assemble.py            # gera web/main.js (usa a pasta atual)
+node render.mjs stills/a "30,200,500" 1 0.85 && python3 sheet.py stills/a sheet.jpg 8   # conferir ANTES do render completo
+```
+Render completo: 4 processos `RESUME=1 setsid nohup node render.mjs frames "a-b" 1 0.94 > work/r_x.log 2>&1 < /dev/null &`; aguardar com Monitor `until [ $(ls frames|wc -l) -ge TOTAL ] && [ $(pgrep -f render.mjs|wc -l) -eq 0 ]; do sleep 15; done`.
+Cuidados aprendidos: não nomear constantes `sun`/`H`/`W` no mundo (conflito com o motor); efeitos aditivos precisam de `fxm()` (ndSkip) para não ganharem contorno; cartões HUD usam `full:true`.
