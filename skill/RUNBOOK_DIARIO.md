@@ -69,3 +69,7 @@ Cuidados aprendidos: não nomear constantes `sun`/`H`/`W` no mundo (conflito com
 - Nome de constante `H`/`W`/`sun` no mundo conflita com o motor; usar `H_`, `sunB`.
 - Mapas MapLibre: renderizar o clipe INTEIRO antes de compor; o RESUME do render 3D deve excluir exatamente os quadros do mapa.
 - Em finish_video.sh o CTA animado é aplicado uma única vez: nunca rodar o script duas vezes sobre os mesmos quadros (reencode manual só do enc.sh).
+
+## 12. Pasta QV é compartilhada (16/11/2026)
+Outras sessões do dono também entregam na pasta QV (ex.: Swift, Euclid, Nvidia, Voyager, Starship). Antes de escolher o tema de cada vídeo, liste a pasta (`search_files parentId='1PjYAexyF3NNCMHuBsi1KJj7kapAyqu3E'`, ordenar por modifiedTime) e prefira um tema que ainda não esteja lá; se o melhor tema do momento já existir, pode repetir (ordem do dono: repetição de tema não importa), mas faça um ângulo/visual diferente.
+Placar do dia 16/11: verticais 10/10 (ponte, Starship, planetas, El Niño, Enem, Apple Harbor, Microsoft, Caruaru, Black Friday, Voyager); horizontais 0/2.
