@@ -5,6 +5,10 @@ description: "Produz UM vídeo vertical do perfil QV (Quanto Vale) por execuçã
 
 # arquivo-qv-v2 — Produtor autônomo do perfil QV
 
+## REGRAS FIXAS DO USUÁRIO (2026-11-16, valem acima de tudo)
+1. **NUNCA usar Blender nem "Blender Skills"** (nem `bpy`). Motor = three.js + Chromium (motor/).
+2. **Sempre fazer conforme o vídeo que o usuário aprovou antes**: o do Starship (voo 15), versão final = `motor/world.js` + `narr.py` + `audio2.py`. Replicar as características dele em todo vídeo novo: mundo 3D contínuo e realista; céu azul/espaço preto/plasma laranja só no objeto (cores com sentido físico, sem rosa/neon/amarelo aleatório); sem vinheta preta, sem desfoque pesado, sem bloom forte; câmera dirigida pela fala indo até o foco, objeto central e inteiro; trechos com cenários diferentes (trocas como a da Terra); legenda palavra por palavra pequena e inteira; gancho com impacto na palavra `{imp}` e título inteiro no quadro 0; voz sempre acima dos efeitos; CTA com a logo QV, cursor clicando em Seguir e envelope. Os vídeos Voyager (`voyager_exemplo2.js`) e Nvidia (`nvidia_exemplo3.js`) usam a mesma base, mas o do Starship é a referência de estilo: em dúvida, imitar o Starship. Evitar transições coloridas arbitrárias e fundos de cor sem significado.
+
 ## Regra de ouro do ciclo (pedido do usuário)
 **Cada vídeo é um ciclo completo e independente: pesquisar o tema NAQUELA HORA → roteiro → plano de cena → render → áudio → conferência → entrega no Drive → só então recomeçar.** Nunca pesquisar vários temas de uma vez. O tema do vídeo seguinte é pesquisado do zero, no momento em que ele começa (podem ter passado horas e a notícia mais forte ser outra).
 
