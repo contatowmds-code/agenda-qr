@@ -34,3 +34,6 @@ git no repo contatowmds-code/agenda-qr branch `qv-upload` (se rejeitado: `git fe
 Depois de cada vídeo: atualizar `registro/temas.json` (tema, fundos, sons) e dar push em `qv-skill-v2`. Meta do dia: 10 verticais (1080x1920, ≥63 s) + 2 horizontais (1920x1080, ≥8:01) — verticais primeiro, em sequência, sem pausa; placar honesto ("stick 3/10, horizontais 0/2"). Meia-noite (America/Sao_Paulo) zera o lote. Nunca declarar meta cumprida sem MP4 real verificado. Sessão que acaba sem produzir NÃO conta.
 ## 7. Honestidade
 Só dizer que usou uma técnica/skill se leu e aplicou. Reportar pontos fracos. Aprender e anotar 3–5 linhas por vídeo em `SKILL-stick-viral-qv.md` (seção "Lições").
+
+## 8. Se a sessão agendada NÃO tiver as ferramentas do Google Drive (connector)
+A rotina das 5h foi criada via API sem connectors, então `mcp__Google_Drive__*` pode não existir. Nesse caso: faça tudo até o workflow 417569639 (o MP4 chega na raiz do script, id 1tPiMtGGzyESOgy_wN1_T_EnDeNt-yx_I), tente `ToolSearch` por "Google Drive"; se não houver, NÃO diga "entregue": reporte "enviado ao Drive (raiz do script), falta mover para a pasta QV" com o nome do arquivo, e envie o MP4 no chat. O dono pode ligar o conector Google Drive na rotina em claude.ai > Routines para o move automático. (curl em www.googleapis.com/drive devolve 401 aqui: não funciona.)
