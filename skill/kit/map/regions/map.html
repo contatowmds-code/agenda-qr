@@ -18,7 +18,7 @@ async function init(){
 init();
 async function onload(){
   const reg=await (await fetch('regions.geojson')).json(); window.reg=reg;
-  if(clip==='br') map.setTerrain({source:'dem',exaggeration:1.6});
+  if(clip==='br'||clip==='br2') map.setTerrain({source:'dem',exaggeration:1.6});
   map.addSource('w',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
   map.addLayer({id:'w',type:'fill',source:'w',paint:{'fill-color':['get','c'],'fill-opacity':['get','o']}});
   map.addSource('eq',{type:'geojson',data:turf.lineString([[-179,0],[-60,0]])});
@@ -28,7 +28,7 @@ async function onload(){
   map.addLayer({id:'rgl',type:'line',source:'rg',paint:{'line-color':'#ffffff','line-width':1.4,'line-opacity':0.8}});
   window.ready=true;
 }
-const KEYS={pac:[[0,-82,-6,3.6,35,10],[0.35,-110,0,2.6,20,0],[1,-150,0,1.55,0,0]],
+const KEYS={br2:[[0,-52,-14,3.2,25,0],[0.5,-50,-12,3.6,45,-20],[1,-47,-17,4.2,52,20]],pac:[[0,-82,-6,3.6,35,10],[0.35,-110,0,2.6,20,0],[1,-150,0,1.55,0,0]],
  br:[[0,-55,-12,3.3,35,0],[0.3,-48,-8,3.7,45,-15],[0.6,-52,-22,4.1,50,15],[1,-52,-14,3.7,40,0]]};
 function warm(g){ // elipses concêntricas crescendo a partir da costa do Peru
   const fs=[]; const cx=-80-g*45, rx=8+g*42, ry=4+g*5;
@@ -40,6 +40,7 @@ window.setF=(u)=>{
   const a=K[i],b=K[i+1],t=sm(cl((u-a[0])/(b[0]-a[0])));
   map.jumpTo({center:[mix(a[1],b[1],t),mix(a[2],b[2],t)],zoom:mix(a[3],b[3],t),pitch:mix(a[4],b[4],t),bearing:mix(a[5],b[5],t)});
   if(clip==='pac'){ const g=sm(cl((u-0.1)/0.75)); map.getSource('w').setData({type:'FeatureCollection',features:warm(g)}); map.setPaintProperty('eq','line-opacity',cl(u*3)*0.8); }
+  else if(clip==='br2'){ const fe=reg.features.map(f=>({type:'Feature',properties:{c:'#01c48a',o:0.55*sm(cl((u-0.05)/0.25))},geometry:f.geometry})); map.getSource('rg').setData({type:'FeatureCollection',features:fe}); }
   else{ // br: regiões entram na palavra (u proporcional)
     const fe=reg.features.filter(f=>f.properties.grp!=='X').map(f=>{const g=f.properties.grp; const st=g==='N'?0.12:g==='NE'?0.32:0.62; const o=0.78*sm(cl((u-st)/0.1)); return {type:'Feature',properties:{c:g==='S'?'#1c7fe0':'#d9902a',o:o},geometry:f.geometry};});
     map.getSource('rg').setData({type:'FeatureCollection',features:fe}); }
