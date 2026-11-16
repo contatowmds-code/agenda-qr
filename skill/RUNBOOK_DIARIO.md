@@ -2,6 +2,11 @@
 Leia também `SKILL-stick-viral-qv.md` (regras do dono, lições). Em dúvida: consulte essa skill e os exemplos em `kit/examples/`. NUNCA peça confirmação ao dono; termine o lote do dia sem parar. Nunca desative TLS/proxy. Não mexa em tarefas/skills de outros projetos.
 
 
+
+## 0B. REGRAS DURAS DO DONO (16/11/2026) — valem sempre
+- NÃO usar Blender Skills (nem Blender/bpy). Só o motor three.js + toon da skill.
+- ESTILO DE REFERÊNCIA = o vídeo aprovado "Pegaram um foguete no ar" (Starship, V2): mundo 3D com vários palcos bem diferentes, câmera guiada pela fala com push-in no foco, cartões modernos de vidro só na palavra falada, mapa MapLibre quando houver geografia, sem vinheta escura, CTA animado. Todo vídeo novo deve ter essa mesma pegada e acabamento (exemplo: skill/kit/examples/v2).
+
 ## 0A. REGRA CENTRAL — UM VÍDEO POR VEZ, PESQUISA DO ZERO A CADA VÍDEO (ordem do dono, 16/11/2026)
 NUNCA pesquise vários temas de uma vez para depois produzir. O ciclo é, para CADA vídeo:
 1) (re)rodar TODA a pesquisa na hora (last30days + Agent Reach + RSS/WebSearch) — as notícias mudam ao longo do dia (6h, 7h, 17h…): o tema de um vídeo só vale se estiver em alta AGORA; 2) escolher UM tema novo (checar registro/temas.json) e verificar em 2+ fontes; 3) roteiro → voz → plano de cena → mundo novo → render → CTA animado → capa → encode; 4) entregar no Drive e verificar; 5) atualizar registro/temas.json e dar push; 6) só então voltar ao passo 1 para o PRÓXIMO vídeo, pesquisando de novo do zero. Não reaproveite pesquisa, temas, roteiros ou notícias anotadas de antes. Se não houver notícia boa naquele momento, espere pouco e pesquise de novo (sem inventar).
