@@ -1,0 +1,51 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:M;font-weight:900;src:url(/node_modules/@fontsource/montserrat/files/montserrat-latin-900-normal.woff2)}
+@font-face{font-family:M;font-weight:800;src:url(/node_modules/@fontsource/montserrat/files/montserrat-latin-800-normal.woff2)}
+html,body{margin:0;background:#000;overflow:hidden;width:1080px;height:1920px;font-family:M,sans-serif}
+canvas#gl{position:absolute;left:0;top:0}
+#cap{position:absolute;left:100px;width:880px;top:1400px;height:160px;overflow:visible;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#cap span{display:inline-block;font-weight:900;font-size:108px;line-height:1;color:#fff;text-transform:uppercase;letter-spacing:0;
+ text-shadow:3px 0 0 #00122b,-3px 0 0 #00122b,0 3px 0 #00122b,0 -3px 0 #00122b,2px 2px 0 #00122b,-2px 2px 0 #00122b,2px -2px 0 #00122b,-2px -2px 0 #00122b,0 8px 18px rgba(0,10,30,.6);-webkit-text-stroke:0;white-space:nowrap}
+#cap span.hl{color:#01FBB4;text-shadow:3px 0 0 #00122b,-3px 0 0 #00122b,0 3px 0 #00122b,0 -3px 0 #00122b,2px 2px 0 #00122b,-2px 2px 0 #00122b,2px -2px 0 #00122b,-2px -2px 0 #00122b,0 0 24px rgba(1,251,180,.7)}
+#title{position:absolute;left:0;width:1080px;top:150px;text-align:center;font-weight:900;font-size:92px;line-height:1.04;color:#fff;text-transform:uppercase;text-shadow:0 8px 0 rgba(0,10,30,.6),0 0 50px rgba(0,0,0,.8);-webkit-text-stroke:3px rgba(0,10,30,.6)}
+#title b{color:#FFE600;font-weight:900;text-shadow:0 0 50px rgba(255,120,0,.95),0 8px 0 rgba(90,20,0,.7)}
+.hud{position:absolute;left:0;width:1080px;text-align:center;font-weight:900;color:#fff;opacity:0}
+#h15{top:180px;font-size:300px;text-shadow:0 0 60px rgba(1,251,180,.9),0 10px 0 rgba(0,10,30,.5)}
+#hclock{top:230px;height:560px}
+#hclock svg{width:560px;height:560px}
+#hclock .big{position:absolute;left:0;width:1080px;top:200px;font-size:170px;text-shadow:0 0 50px rgba(1,251,180,.7)}
+#hfirst{top:210px;font-size:240px;color:#fff;text-shadow:0 0 60px rgba(255,0,170,.95),0 10px 0 rgba(60,0,60,.7)}
+#hx{top:560px;font-size:520px;color:#ff3b4e;text-shadow:0 0 80px rgba(255,40,60,.9)}
+#hq{top:260px;font-size:360px;color:#ffd84a;text-shadow:0 0 70px rgba(255,200,40,.8)}
+#cta{position:absolute;left:90px;width:900px;top:420px;opacity:0;text-align:center}
+#cta .bub{background:#fff;border-radius:60px;padding:70px 20px;font-weight:900;font-size:140px;color:#011839;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#cta .bub:after{content:"";position:absolute;left:120px;bottom:-60px;border:60px solid transparent;border-top-color:#fff;border-bottom:0}
+#cta .heart{font-size:200px;margin-top:80px;color:#ff3d6e;text-shadow:0 0 50px rgba(255,60,110,.7)}
+#flash{position:absolute;inset:0;background:#fff;opacity:0}
+#rew{position:absolute;inset:0;opacity:0;background:repeating-linear-gradient(0deg,rgba(1,251,180,.18) 0 6px,transparent 6px 14px);mix-blend-mode:screen}
+#dim{position:absolute;inset:0;background:linear-gradient(#011839,#01336b);opacity:0}
+.ui{position:absolute;left:90px;width:900px;opacity:0}
+#cmt{top:520px}#cmt .row{display:flex;align-items:center;gap:28px;background:#fff;border-radius:80px;padding:26px 36px;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.av{width:110px;height:110px;border-radius:50%;object-fit:cover}
+.inp{flex:1;font-weight:800;font-size:72px;color:#011839;height:90px;line-height:90px;white-space:nowrap}
+.caret{display:inline-block;width:5px;height:70px;background:#011839;vertical-align:middle;margin-left:4px}
+.send{width:110px;height:110px;border-radius:50%;background:#01FBB4;color:#011839;font-size:60px;display:flex;align-items:center;justify-content:center}
+#prof{top:380px;text-align:center}.big{width:420px;height:420px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 10px #01FBB4,0 30px 80px rgba(0,0,0,.5)}
+.stats{margin-top:36px;color:#fff;font-size:60px;font-weight:900}.stats span{display:block;font-size:36px;font-weight:800;color:#9fe;margin-top:8px}
+#fbtn{margin:50px auto 0;width:560px;height:130px;border-radius:70px;background:#01FBB4;color:#011839;font-weight:900;font-size:68px;line-height:130px}
+#dm{top:1230px;text-align:center}.dmt{color:#fff;font-weight:900;font-size:64px;margin-top:10px}
+#cur{position:absolute;left:0;top:0;opacity:0;filter:drop-shadow(0 8px 10px rgba(0,0,0,.5))}
+</style></head><body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<div id="tr" style="position:absolute;left:0;top:0;width:1080px;height:1920px;opacity:0;pointer-events:none"></div><div id="title"></div><div id="h15" class="hud">15</div>
+<div id="hclock" class="hud"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="rgba(0,10,40,.45)" stroke="rgba(255,255,255,.25)" stroke-width="3"/><circle id="arc" cx="50" cy="50" r="44" fill="none" stroke="#01FBB4" stroke-width="5" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="276.5" stroke-dashoffset="276.5"/></svg><div class="big">22 H</div></div>
+<div id="title2" class="hud" style="top:210px"></div><div id="title3" class="hud" style="top:200px"></div><div id="title4" class="hud" style="top:220px"></div><div id="hfirst" class="hud">1ª VEZ</div><div id="hx" class="hud">✕</div><div id="hq" class="hud">?</div>
+<div id="dim"></div>
+<div id="cmt" class="ui"><div class="row"><img src="/logo.png" class="av"><div class="inp"><span id="typed"></span><i class="caret"></i></div><div class="send">&#10148;</div></div></div>
+<div id="prof" class="ui"><img src="/logo.png" class="big"><div class="stats"><b>Quanto Vale?</b><span>Notícias que mexem no seu bolso</span></div><div id="fbtn">Seguir</div></div>
+<div id="dm" class="ui"><svg viewBox="0 0 64 48" width="120"><rect x="2" y="2" width="60" height="44" rx="8" fill="#01FBB4"/><path d="M4 6 L32 28 L60 6" fill="none" stroke="#011839" stroke-width="4"/></svg><div class="dmt">Mensagem recebida</div></div>
+<svg id="cur" viewBox="0 0 24 24" width="120" height="120"><path d="M3 2 L3 19 L8 14.5 L11.5 22 L14.5 20.5 L11 13.2 L18 13 Z" fill="#fff" stroke="#000" stroke-width="1.2" stroke-linejoin="round"/></svg>
+<div id="cap"></div><div id="rew"></div><div id="flash"></div>
+<script type="importmap">{"imports":{"three":"/node_modules/three/build/three.module.js","three/addons/":"/node_modules/three/examples/jsm/"}}</script>
+<script type="module">import(new URLSearchParams(location.search).get("w")||"/world.js")</script></body></html>

@@ -1,0 +1,15 @@
+{teaser}A nave mais distante da humanidade está prestes a {imp}cruzar uma linha que nenhum objeto humano jamais cruzou!
+Ela se chama {name}Voyager 1, e foi lançada em {y77}mil novecentos e setenta e sete.
+Hoje, ela está a quase {km}vinte e seis bilhões de quilômetros da Terra.
+A luz do Sol leva {sun8}oito minutos para chegar até nós.
+Agora imagine a luz viajando por {day}vinte e quatro horas seguidas. Essa distância se chama {ld}dia-luz.
+Por isso, um comando enviado da Terra {cmd}leva um dia inteiro para chegar até a sonda,
+e a resposta {back}leva outro dia para voltar.
+Segundo a NASA, a Voyager 1 será o {first}primeiro objeto feito por humanos a chegar a essa marca.
+A previsão é para o {d18}dia dezoito de novembro, de manhã.
+Ela ainda funciona, com {pow}energia de geradores nucleares que vão enfraquecendo.
+Por isso, a NASA {offi}vai desligando instrumentos para economizar, e quer manter pelo menos um ligado até os anos dois mil e trinta.
+Já a Voyager 2 só chega a essa marca em {v2}dois mil e trinta e cinco.
+Para comemorar, a NASA pediu que as pessoas {mors}pisquem luzes em código Morse, formando V G R, depois do pôr do sol de dia dezessete.
+Ou seja, uma nave de {old}mil novecentos e setenta e sete ainda fala com a gente, de um lugar onde a luz leva um dia para chegar.
+{cta}Quer criar vídeos como esse? {cmt}Comente *ARQUIVO* que vou te enviar a mesma skill que eu utilizo para criar vídeos assim, mas você precisa {seg}estar *me seguindo* {msg}para a mensagem chegar.

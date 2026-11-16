@@ -1,0 +1,12 @@
+{teaser}Amanhã, a Nvidia vai {imp}abrir as contas, e o mercado inteiro prende a respiração!
+O resultado sai na {date}terça-feira, dia dezessete de novembro, depois que a bolsa americana fecha.
+O trimestre {q}vai de agosto a outubro.
+Segundo a própria Nvidia, a previsão de {rev}receita é de cerca de cento e oito bilhões de dólares, com margem de dois por cento para mais ou para menos.
+Ela também prevê que a {mar}margem bruta fique perto de setenta e quatro por cento. Ou seja, de cada cem dólares vendidos, sobram uns setenta e quatro depois do custo dos chips.
+{dc}Boa parte da receita vem dos chips para centros de dados, os computadores gigantes que rodam inteligência artificial.
+Mas tem um detalhe: a previsão {cn}não conta nenhuma venda desses chips para a China.
+O que o mercado quer saber é se a Nvidia {beat}vai bater essa previsão e o que ela promete para o próximo trimestre.
+Por isso, o resultado pode mexer com as ações dela e de {mkt}toda a área de inteligência artificial.
+Lembrando: isso é a previsão da empresa, não o resultado final, e não é recomendação de investimento.
+Ou seja, {end}amanhã saberemos se a corrida da inteligência artificial continua acelerando.
+{cta}Quer criar vídeos como esse? {cmt}Comente *ARQUIVO* que vou te enviar a mesma skill que eu utilizo para criar vídeos assim, mas você precisa {seg}estar *me seguindo* {msg}para a mensagem chegar.
