@@ -23,6 +23,9 @@ Carregar a cena em vez de trocá-la, planos de durações bem diferentes, câmer
 ## DESIGN VIRAL
 Leia a seção DESIGN VIRAL de APRENDIZADOS.md: nada de fundo preto vazio, bonecos em toda cena, ambiente literal, sujeito grande, cartões e legenda grandes, prévia de 6 quadros antes do render.
 
+## cartoon-audio-short
+Seção CARTOON-AUDIO-SHORT de APRENDIZADOS.md: plano de cena (PLAN.md) antes do código, reações 0–3 quadros antes da palavra, folha de stills aprovada antes do render completo, QA de congelamento/loudness. Regras do dono prevalecem (legenda sim, sem música).
+
 ## Regras fixas
 - Estilo do vídeo aprovado (Starship). NÃO usar Blender Skills.
 - Religião: SOMENTE vídeo evangélico da Bíblia para glorificar Jesus; qualquer outro tema religioso, descarte e troque de assunto.
