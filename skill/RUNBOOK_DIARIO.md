@@ -1,5 +1,10 @@
-# RUNBOOK DIÁRIO — QV (Quanto Vale) — executar TODO DIA às 05:00 (America/Sao_Paulo), 100% autônomo
+# RUNBOOK DIÁRIO — QV (Quanto Vale) — rotina diária às 06:00 (America/Sao_Paulo), 100% autônomo
 Leia também `SKILL-stick-viral-qv.md` (regras do dono, lições). Em dúvida: consulte essa skill e os exemplos em `kit/examples/`. NUNCA peça confirmação ao dono; termine o lote do dia sem parar. Nunca desative TLS/proxy. Não mexa em tarefas/skills de outros projetos.
+
+
+## 0A. REGRA CENTRAL — UM VÍDEO POR VEZ, PESQUISA DO ZERO A CADA VÍDEO (ordem do dono, 16/11/2026)
+NUNCA pesquise vários temas de uma vez para depois produzir. O ciclo é, para CADA vídeo:
+1) (re)rodar TODA a pesquisa na hora (last30days + Agent Reach + RSS/WebSearch) — as notícias mudam ao longo do dia (6h, 7h, 17h…): o tema de um vídeo só vale se estiver em alta AGORA; 2) escolher UM tema novo (checar registro/temas.json) e verificar em 2+ fontes; 3) roteiro → voz → plano de cena → mundo novo → render → CTA animado → capa → encode; 4) entregar no Drive e verificar; 5) atualizar registro/temas.json e dar push; 6) só então voltar ao passo 1 para o PRÓXIMO vídeo, pesquisando de novo do zero. Não reaproveite pesquisa, temas, roteiros ou notícias anotadas de antes. Se não houver notícia boa naquele momento, espere pouco e pesquise de novo (sem inventar).
 
 ## 0. Preparar o ambiente (sessão nova = tudo vazio)
 1. `git clone --depth 1 -b qv-skill-v2 https://github.com/contatowmds-code/agenda-qr /home/user/agenda-qr-skill` (se `add_repo` for necessário: add_repo contatowmds-code/agenda-qr com acesso push). Pasta de trabalho: `/home/user/sv/<slug>` por vídeo.
