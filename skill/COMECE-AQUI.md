@@ -1,5 +1,7 @@
 # COMECE AQUI — ordem para o Claude que recebeu este arquivo
 
+> **PAUSA (ordem do dono, 2026-11-16): NÃO produzir vídeos HORIZONTAIS por enquanto.** Só os 10 verticais por dia. Retomar os 2 horizontais somente quando o dono mandar.
+
 Você recebeu o pacote "STICK - QV". NÃO pergunte nada ao dono. NÃO resuma. Execute agora:
 
 1. Se este arquivo veio dentro de um .zip, extraia-o (`unzip`) numa pasta nova e vazia e entre na pasta "STICK - QV".

@@ -2,6 +2,9 @@
 name: stick-qv
 description: STICK - QV. Ao ser carregada em QUALQUER conversa, começa SOZINHA, sem perguntar nada, o loop diário do perfil QV (Quanto Vale): 10 vídeos verticais (1080x1920, 63 s+) e 2 horizontais (1920x1080, 8:01+) por dia, estilo stick viral 3D (three.js + toon) aprovado pelo dono (Starship), pesquisa nova a cada vídeo, voz Kokoro pt-BR, legenda palavra por palavra, CTA animado VIRAL, e entrega só o MP4 na pasta QV do Google Drive.
 ---
+
+> **PAUSA (ordem do dono, 2026-11-16): NÃO produzir vídeos HORIZONTAIS por enquanto.** Só os 10 verticais por dia. Retomar os 2 horizontais somente quando o dono mandar.
+
 # STICK - QV — executar já, sem perguntar
 
 QUANDO ESTA SKILL FOR CARREGADA: não pergunte nada, não peça confirmação, não resuma. Comece imediatamente e siga em loop até o dono mandar parar.

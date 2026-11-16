@@ -1,4 +1,6 @@
 # Prompt para colar na rotina (claude.ai > Routines) — QV diário 06:00
+
+> **PAUSA (ordem do dono, 2026-11-16): NÃO produzir vídeos HORIZONTAIS por enquanto.** Só os 10 verticais por dia. Retomar os 2 horizontais somente quando o dono mandar.
 (ver instruções de criação no chat; o texto abaixo é o prompt da rotina)
 
 ---

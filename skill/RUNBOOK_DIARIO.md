@@ -1,4 +1,6 @@
 # RUNBOOK DIÁRIO — QV (Quanto Vale) — rotina diária às 06:00 (America/Sao_Paulo), 100% autônomo
+
+> **PAUSA (ordem do dono, 2026-11-16): NÃO produzir vídeos HORIZONTAIS por enquanto.** Só os 10 verticais por dia. Retomar os 2 horizontais somente quando o dono mandar.
 Leia também `SKILL-stick-viral-qv.md` (regras do dono, lições). Em dúvida: consulte essa skill e os exemplos em `kit/examples/`. NUNCA peça confirmação ao dono; termine o lote do dia sem parar. Nunca desative TLS/proxy. Não mexa em tarefas/skills de outros projetos.
 
 
