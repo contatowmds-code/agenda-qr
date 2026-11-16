@@ -42,3 +42,6 @@ Só dizer que usou uma técnica/skill se leu e aplicou. Reportar pontos fracos. 
 
 ## 8. Se a sessão agendada NÃO tiver as ferramentas do Google Drive (connector)
 A rotina das 5h foi criada via API sem connectors, então `mcp__Google_Drive__*` pode não existir. Nesse caso: faça tudo até o workflow 417569639 (o MP4 chega na raiz do script, id 1tPiMtGGzyESOgy_wN1_T_EnDeNt-yx_I), tente `ToolSearch` por "Google Drive"; se não houver, NÃO diga "entregue": reporte "enviado ao Drive (raiz do script), falta mover para a pasta QV" com o nome do arquivo, e envie o MP4 no chat. O dono pode ligar o conector Google Drive na rotina em claude.ai > Routines para o move automático. (curl em www.googleapis.com/drive devolve 401 aqui: não funciona.)
+
+## 9. Temas: o que NÃO importa (ordem do dono, 16/11/2026)
+Não importa se OUTROS canais/vídeos já fizeram o mesmo tema: pode usar. A regra de "nunca repetir tema" vale só para os vídeos DESTE perfil (registro/temas.json). Continua valendo: fatos conferidos em 2+ fontes.
