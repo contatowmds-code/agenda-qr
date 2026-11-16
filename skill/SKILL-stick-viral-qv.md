@@ -161,3 +161,7 @@ Em vez de cartão estático: `python3 cta_overlay.py frames work/words.json QV-l
 - "você precisa estar me seguindo": cartão de perfil com logo QV + botão **Seguir**; um cursor se move e CLICA; o botão vira "Seguindo ✓".
 - "para a mensagem chegar": envelope "Mensagem recebida / com o link da skill".
 Tudo sincronizado pelos tempos de palavra do words.json. Chars de fundo ficam no terço inferior (CTA ocupa o terço superior/central).
+
+### BLENDER SKILLS (GitHub) — avaliado em 16/11/2026
+Repos clonados e lidos: kevinbadi/blender-skills (dolly-rotate, threejs-export, polyhaven-*), mromidev/claude-blender-skills, EL4CTEO/blender-skills, arjun988/blender-skills. São baseados em Blender com addon MCP (porta 9876) — não rodam headless nesta nuvem sem instalar `bpy` (wheel de ~430 MB) e render Cycles em CPU é lento demais para um vídeo inteiro.
+APLICADO de fato: o preset **dolly + rotação** (câmera se aproxima enquanto orbita: d↓ e az variando, el levemente ↓) como movimento padrão nos beats de revelação. NÃO aplicado: modelagem/render em Blender, export GLB. Possível uso futuro: gerar assets (GLB via threejs-export, Poly Haven) para o motor three.js — só se valer o custo.
