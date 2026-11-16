@@ -1,3 +1,4 @@
+# STICK - QV
 # Aprendizados (atualizado em 2026-11-16)
 
 ## Regras do dono (não negociáveis)
