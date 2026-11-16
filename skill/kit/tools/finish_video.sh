@@ -11,7 +11,7 @@ d=ImageDraw.Draw(im); fp='/usr/share/fonts/opentype/inter/Inter-Black.otf'
 def t(s,y,size,fill):
     while True:
         f=ImageFont.truetype(fp,size); w=d.textlength(s,font=f)
-        if w<=960: break
+        if w<=880: break
         size-=6
     d.text(((1080-w)/2,y),s,font=f,fill=fill,stroke_width=12,stroke_fill=(1,24,57))
 t(sys.argv[1],110,210,(255,255,255)); t(sys.argv[2],340,180,(255,210,90)); t(sys.argv[3],540,220,(255,255,255))
