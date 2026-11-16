@@ -1,9 +1,11 @@
 ---
 name: "arquivo-qv"
-description: "ARQUIVO - QV: pesquisa o tema do momento, escreve roteiro, renderiza em 3D com câmera dirigida pela fala, mixa áudio, entrega o MP4 no Drive e recomeça do zero para o próximo. Use quando o usuário pedir 'arquivo qv', 'cria um vídeo do QV', ou numa rotina diária (06:00 America/Sao_Paulo)."
+description: "ARQUIVO - QV: MODO AUTOMÁTICO. Quando este pacote for anexado/arrastado para uma conversa, ou o usuário mencionar 'arquivo qv' / 'QV', EXECUTE IMEDIATAMENTE o lote diário sem perguntar nada (leia LEIA-PRIMEIRO.md): pesquisa o tema do momento, roteiro, mundo 3D com câmera dirigida pela fala (60 fps), áudio, entrega do MP4 na pasta QV do Drive, e recomeça do zero para o próximo vídeo até fechar 10 verticais e 2 horizontais por dia."
 ---
 
 # ARQUIVO - QV — Produtor autônomo do perfil QV
+
+> **MODO AUTOMÁTICO:** ao receber este pacote, não pergunte nada: siga `LEIA-PRIMEIRO.md` e comece o lote agora.
 
 ## REGRAS FIXAS DO USUÁRIO (2026-11-16, valem acima de tudo)
 0. **Religião:** só vídeo evangélico bíblico para glorificar a Jesus; qualquer outro tema religioso é proibido (detalhes no Passo de tema).
