@@ -1,9 +1,9 @@
 ---
-name: arquivo-qv-v2
-description: "Produz UM vídeo vertical do perfil QV (Quanto Vale) por execução: pesquisa o tema do momento, escreve roteiro, renderiza em 3D com câmera dirigida pela fala, mixa áudio, entrega o MP4 no Drive e recomeça do zero para o próximo. Use quando o usuário pedir 'arquivo qv', 'cria um vídeo do QV', ou numa rotina diária (06:00 America/Sao_Paulo)."
+name: "arquivo-qv"
+description: "ARQUIVO - QV: pesquisa o tema do momento, escreve roteiro, renderiza em 3D com câmera dirigida pela fala, mixa áudio, entrega o MP4 no Drive e recomeça do zero para o próximo. Use quando o usuário pedir 'arquivo qv', 'cria um vídeo do QV', ou numa rotina diária (06:00 America/Sao_Paulo)."
 ---
 
-# arquivo-qv-v2 — Produtor autônomo do perfil QV
+# ARQUIVO - QV — Produtor autônomo do perfil QV
 
 ## REGRAS FIXAS DO USUÁRIO (2026-11-16, valem acima de tudo)
 0. **Religião:** só vídeo evangélico bíblico para glorificar a Jesus; qualquer outro tema religioso é proibido (detalhes no Passo de tema).
