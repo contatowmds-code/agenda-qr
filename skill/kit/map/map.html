@@ -1,0 +1,46 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href=maplibre-gl.css>
+<style>html,body{margin:0;background:#011839}#m{width:540px;height:960px}</style><div id=m></div>
+<script src=maplibre-gl.js></script><script src=turf.min.js></script>
+<script>
+const clip=new URLSearchParams(location.search).get('clip')||'a';
+const mix=(a,b,t)=>a+(b-a)*t, sm=t=>t*t*t*(t*(t*6-15)+10), cl=(x)=>Math.max(0,Math.min(1,x));
+let map;
+async function init(){
+ const st=await (await fetch('https://tiles.openfreemap.org/styles/positron')).json();
+ st.layers=st.layers.filter(l=>l.type!=='symbol');
+ for(const l of st.layers){ if(l.id==='water') l.paint['fill-color']='#6fb3dc'; if(l.id==='background') l.paint['background-color']='#f1efe6'; if(l.id==='park'||l.id==='landcover_wood') l.paint['fill-color']='#cfe3b9'; if(l.id.startsWith('highway_motorway')&&l.paint['line-color']) {} }
+ st.sources.dem={type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],tileSize:256,encoding:'terrarium',maxzoom:13};
+ const i=st.layers.findIndex(l=>l.id==='landuse_residential');
+ st.layers.splice(i+1,0,{id:'hs',type:'hillshade',source:'dem',paint:{'hillshade-exaggeration':0.55,'hillshade-shadow-color':'#31523f','hillshade-highlight-color':'#ffffff'}});
+ map=new maplibregl.Map({container:'m',interactive:false,fadeDuration:0,canvasContextAttributes:{preserveDrawingBuffer:true},style:st,center:[-43.15,-22.87],zoom:9,pitch:0,bearing:0});
+ window.map=map; map.on('load',onload);
+}
+init();
+async function onload(){
+
+  const f=await (await fetch('bridge.geojson')).json(); window.bridge=f; window.len=turf.length(f);
+  map.setTerrain({source:'dem',exaggeration:1.8});
+  map.addSource('b',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'bcase',type:'line',source:'b',paint:{'line-color':'#011839','line-width':12,'line-opacity':.9},layout:{'line-cap':'round'}});
+  map.addLayer({id:'bline',type:'line',source:'b',paint:{'line-color':'#01FBB4','line-width':7},layout:{'line-cap':'round'}});
+  map.addSource('fer',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'fer',type:'line',source:'fer',paint:{'line-color':'#ffd23f','line-width':6,'line-dasharray':[1.2,1.6]},layout:{'line-cap':'round'}});
+  map.addSource('pts',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'pts',type:'circle',source:'pts',paint:{'circle-radius':11,'circle-color':'#fff','circle-stroke-color':'#011839','circle-stroke-width':5}});
+  window.ready=true;
+}
+// keyframes: [t, lon, lat, zoom, pitch, bearing]
+const KEYS={
+ a:[[0,-47,-15,3.6,0,0],[0.35,-43.5,-22.5,7.6,25,-10],[0.62,-43.17,-22.87,10.2,58,-35],[1,-43.17,-22.875,11.2,62,-75]],
+ b:[[0,-43.15,-22.88,10.4,0,0],[0.5,-43.15,-22.885,10.8,35,20],[1,-43.15,-22.89,11.3,50,60]]};
+window.setF=(u)=>{
+  const K=KEYS[clip]; let i=0; while(i<K.length-2&&u>K[i+1][0])i++;
+  const a=K[i],b=K[i+1],t=sm(cl((u-a[0])/(b[0]-a[0])));
+  map.jumpTo({center:[mix(a[1],b[1],t),mix(a[2],b[2],t)],zoom:mix(a[3],b[3],t),pitch:mix(a[4],b[4],t),bearing:mix(a[5],b[5],t)});
+  const dr=clip==='a'?cl((u-0.55)/0.4):1, line=turf.lineSliceAlong(bridge,0,Math.max(0.01,len*sm(dr)));
+  map.getSource('b').setData({type:'FeatureCollection',features:dr>0?[line]:[]});
+  const R=[-43.2167,-22.8846],N=[-43.1285,-22.8735], PX=[-43.1745,-22.8975], NT=[-43.1255,-22.8935];
+  map.getSource('pts').setData({type:'FeatureCollection',features:(clip==='a'?(dr>0.02?[R]:[]):[PX,NT,R,N]).map(c=>({type:'Feature',geometry:{type:'Point',coordinates:c}}))});
+  if(clip==='b'){const t2=sm(cl((u-0.15)/0.6)); map.getSource('fer').setData({type:'FeatureCollection',features:[turf.lineSliceAlong(turf.lineString([PX,NT]),0,Math.max(0.001,turf.distance(PX,NT)*t2))]});}
+};
+</script>

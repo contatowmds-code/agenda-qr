@@ -1,0 +1,50 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href=maplibre-gl.css>
+<style>html,body{margin:0;background:#011839}#m{width:540px;height:960px}</style><div id=m></div>
+<script src=maplibre-gl.js></script><script src=turf.min.js></script>
+<script>
+const clip=new URLSearchParams(location.search).get('clip')||'a';
+const mix=(a,b,t)=>a+(b-a)*t, sm=t=>t*t*t*(t*(t*6-15)+10), cl=(x)=>Math.max(0,Math.min(1,x));
+let map;
+async function init(){
+ const st=await (await fetch('https://tiles.openfreemap.org/styles/positron')).json();
+ st.layers=st.layers.filter(l=>l.type!=='symbol');
+ for(const l of st.layers){ if(l.id==='water') l.paint['fill-color']='#6fb3dc'; if(l.id==='background') l.paint['background-color']='#f1efe6'; if(l.id==='park'||l.id==='landcover_wood') l.paint['fill-color']='#cfe3b9'; if(l.id.startsWith('highway_motorway')&&l.paint['line-color']) {} }
+ st.sources.dem={type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],tileSize:256,encoding:'terrarium',maxzoom:13};
+ const i=st.layers.findIndex(l=>l.id==='landuse_residential');
+ st.layers.splice(i+1,0,{id:'hs',type:'hillshade',source:'dem',paint:{'hillshade-exaggeration':0.55,'hillshade-shadow-color':'#31523f','hillshade-highlight-color':'#ffffff'}});
+ map=new maplibregl.Map({container:'m',interactive:false,fadeDuration:0,canvasContextAttributes:{preserveDrawingBuffer:true},style:st,center:[-97.15,25.99],zoom:9,pitch:0,bearing:0});
+ window.map=map; map.on('load',onload);
+}
+init();
+async function onload(){
+
+  window.len=1;
+  map.setTerrain({source:'dem',exaggeration:1.8});
+  map.addSource('b',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'bcase',type:'line',source:'b',paint:{'line-color':'#011839','line-width':8,'line-opacity':.8},layout:{'line-cap':'round'}});
+  map.addLayer({id:'bline',type:'line',source:'b',paint:{'line-color':'#ffb347','line-width':4},layout:{'line-cap':'round'}});
+  map.addSource('fer',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'fer',type:'line',source:'fer',paint:{'line-color':'#ffd23f','line-width':6,'line-dasharray':[1.2,1.6]},layout:{'line-cap':'round'}});
+  map.addSource('pts',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'pts',type:'circle',source:'pts',paint:{'circle-radius':11,'circle-color':'#fff','circle-stroke-color':'#011839','circle-stroke-width':5}});
+  window.ready=true;
+}
+// keyframes: [t, lon, lat, zoom, pitch, bearing]
+const KEYS={a:[[0,-97.15,25.99,10.5,58,25],[0.3,-97.15,25.99,6.5,30,0],[0.5,-60,12,1.6,0,0],[1,-30,10,1.45,0,0]]};
+const mixx=(a,b,t)=>a+(b-a)*t;
+function track(u){ // 14 órbitas ilustrativas, inclinação ~26°
+  const N=14, n=Math.max(2,Math.floor(u*N*90)); const segs=[]; let cur=[];
+  let prev=null;
+  for(let i=0;i<=n;i++){ const ph=i/90; const lon0=-97.15+ph*360 - ph*22.5; let lon=((lon0+540)%360)-180; const lat=26*Math.sin(ph*2*Math.PI);
+    if(prev!==null && Math.abs(lon-prev)>180){ segs.push(cur); cur=[]; } cur.push([lon,lat]); prev=lon; }
+  segs.push(cur); return segs.filter(s=>s.length>1).map(c=>({type:'Feature',geometry:{type:'LineString',coordinates:c}}));
+}
+window.setF=(u)=>{
+  const K=KEYS.a; let i=0; while(i<K.length-2&&u>K[i+1][0])i++;
+  const a=K[i],b=K[i+1],t=sm(cl((u-a[0])/(b[0]-a[0])));
+  map.jumpTo({center:[mixx(a[1],b[1],t),mixx(a[2],b[2],t)],zoom:mixx(a[3],b[3],t),pitch:mixx(a[4],b[4],t),bearing:mixx(a[5],b[5],t)});
+  const dr=cl((u-0.5)/0.45);
+  map.getSource('b').setData({type:'FeatureCollection',features:dr>0?track(sm(dr)):[]});
+  map.getSource('pts').setData({type:'FeatureCollection',features:[{type:'Feature',geometry:{type:'Point',coordinates:[-97.15,25.99]}}]});
+};
+</script>

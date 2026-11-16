@@ -1,0 +1,47 @@
+<!doctype html><meta charset=utf-8><link rel=stylesheet href=maplibre-gl.css>
+<style>html,body{margin:0;background:#06203a}#m{width:540px;height:960px}</style><div id=m></div>
+<script src=maplibre-gl.js></script><script src=turf.min.js></script>
+<script>
+const clip=new URLSearchParams(location.search).get('clip')||'pac';
+const mix=(a,b,t)=>a+(b-a)*t, sm=t=>t*t*t*(t*(t*6-15)+10), cl=(x)=>Math.max(0,Math.min(1,x));
+let map;
+async function init(){
+ const st=await (await fetch('https://tiles.openfreemap.org/styles/positron')).json();
+ st.layers=st.layers.filter(l=>l.type!=='symbol');
+ for(const l of st.layers){ if(l.id==='water') l.paint['fill-color']='#4aa3d8'; if(l.id==='background') l.paint['background-color']='#ece8d8'; if(l.id==='park'||l.id==='landcover_wood') l.paint['fill-color']='#c9dfb0'; }
+ st.sources.dem={type:'raster-dem',tiles:['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],tileSize:256,encoding:'terrarium',maxzoom:13};
+ const i=st.layers.findIndex(l=>l.id==='landuse_residential');
+ st.layers.splice(i+1,0,{id:'hs',type:'hillshade',source:'dem',paint:{'hillshade-exaggeration':0.5,'hillshade-shadow-color':'#31523f','hillshade-highlight-color':'#ffffff'}});
+ map=new maplibregl.Map({container:'m',interactive:false,fadeDuration:0,canvasContextAttributes:{preserveDrawingBuffer:true},style:st,center:[-80,-8],zoom:4,pitch:0,bearing:0});
+ window.map=map; map.on('load',onload);
+}
+init();
+async function onload(){
+  const reg=await (await fetch('regions.geojson')).json(); window.reg=reg;
+  if(clip==='br') map.setTerrain({source:'dem',exaggeration:1.6});
+  map.addSource('w',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'w',type:'fill',source:'w',paint:{'fill-color':['get','c'],'fill-opacity':['get','o']}});
+  map.addSource('eq',{type:'geojson',data:turf.lineString([[-179,0],[-60,0]])});
+  map.addLayer({id:'eq',type:'line',source:'eq',paint:{'line-color':'#ffffff','line-width':3,'line-dasharray':[2,2],'line-opacity':0.0}});
+  map.addSource('rg',{type:'geojson',data:{type:'FeatureCollection',features:[]}});
+  map.addLayer({id:'rg',type:'fill',source:'rg',paint:{'fill-color':['get','c'],'fill-opacity':['get','o']}});
+  map.addLayer({id:'rgl',type:'line',source:'rg',paint:{'line-color':'#ffffff','line-width':1.4,'line-opacity':0.8}});
+  window.ready=true;
+}
+const KEYS={pac:[[0,-82,-6,3.6,35,10],[0.35,-110,0,2.6,20,0],[1,-150,0,1.55,0,0]],
+ br:[[0,-55,-12,3.3,35,0],[0.3,-48,-8,3.7,45,-15],[0.6,-52,-22,4.1,50,15],[1,-52,-14,3.7,40,0]]};
+function warm(g){ // elipses concêntricas crescendo a partir da costa do Peru
+  const fs=[]; const cx=-80-g*45, rx=8+g*42, ry=4+g*5;
+  const cols=['#ff3b1f','#ff7a1a','#ffb347'];
+  for(let k=0;k<3;k++){ const e=turf.ellipse([cx,0],rx*(1+k*.45),ry*(1+k*.5),{steps:64,units:'degrees'}); e.properties={c:cols[k],o:0.55-k*0.12}; fs.push(e); }
+  return fs; }
+window.setF=(u)=>{
+  const K=KEYS[clip]; let i=0; while(i<K.length-2&&u>K[i+1][0])i++;
+  const a=K[i],b=K[i+1],t=sm(cl((u-a[0])/(b[0]-a[0])));
+  map.jumpTo({center:[mix(a[1],b[1],t),mix(a[2],b[2],t)],zoom:mix(a[3],b[3],t),pitch:mix(a[4],b[4],t),bearing:mix(a[5],b[5],t)});
+  if(clip==='pac'){ const g=sm(cl((u-0.1)/0.75)); map.getSource('w').setData({type:'FeatureCollection',features:warm(g)}); map.setPaintProperty('eq','line-opacity',cl(u*3)*0.8); }
+  else{ // br: regiões entram na palavra (u proporcional)
+    const fe=reg.features.filter(f=>f.properties.grp!=='X').map(f=>{const g=f.properties.grp; const st=g==='N'?0.12:g==='NE'?0.32:0.62; const o=0.78*sm(cl((u-st)/0.1)); return {type:'Feature',properties:{c:g==='S'?'#1c7fe0':'#d9902a',o:o},geometry:f.geometry};});
+    map.getSource('rg').setData({type:'FeatureCollection',features:fe}); }
+};
+</script>

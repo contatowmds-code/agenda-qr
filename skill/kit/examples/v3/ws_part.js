@@ -1,0 +1,9 @@
+const mod = (a, n) => ((a % n) + n) % n;
+function worldState(S, f) {
+  const st = S.stage || 'A'; for (const k in stages) stages[k].visible = (k === st);
+  if (st === 'A') { for (const k in skyP) { const s0 = SKY[k][2] * 1.5; skyP[k].scale.setScalar(s0 * (1 + 0.05 * Math.sin(f * 0.11 + s0))); skyP[k].visible = !(S.hide && S.hide.includes(k)); } }
+  if (st === 'B') { const o = S.orr || { t: 0, disc: 0 }; for (const k in orbP) { const p = orbP[k], a = (p.ph + o.t * p.sp) * (1 - (o.align || 0)); p.m.position.set(Math.cos(a) * p.r, 0, Math.sin(a) * p.r); } disc.material.opacity = (o.disc || 0) * 0.22; sunB.scale.setScalar(1 + 0.03 * Math.sin(f * 0.2)); }
+  if (st === 'C') { const sep = S.sep ?? 120; cMars.position.set(-sep * 0.5 - 4, 0, 0); cMarsH.position.copy(cMars.position); cJup.position.set(sep * 0.5 + 6, 3, 0); cJupH.position.copy(cJup.position); cMars.rotation.y = f * 0.01; cJup.rotation.y = f * 0.006; arc.visible = !!S.arcOn; arc.scale.x = Math.max(1, sep + 20); arc.position.set(1, -26, 0); }
+  if (st === 'E') { meteors.forEach((m) => { const t = mod(f + m.t0, 80) / 80, on = t < 0.22; m.m.visible = !!S.meteor && on; if (m.m.visible) { const e = m.el * Math.PI / 180, P0 = [Math.cos(m.a) * Math.cos(e) * 500, Math.sin(e) * 500, Math.sin(m.a) * Math.cos(e) * 500], k = t / 0.22 * 260, V = [Math.cos(m.a + 1.2) * 0.9, -0.45, Math.sin(m.a + 1.2) * 0.9]; m.m.position.set(P0[0] + V[0] * k, P0[1] + V[1] * k, P0[2] + V[2] * k); m.m.rotation.set(0, -Math.atan2(V[2], V[0]), Math.atan2(V[1], Math.hypot(V[0], V[2]))); m.m.scale.set(m.len / 60, 1, 1); m.m.material.opacity = Math.sin(t / 0.22 * Math.PI) * 0.95; } }); }
+  if (st === 'F') { const a = S.alarm || 0; clockG.rotation.z = Math.sin(f * 2.3) * 0.14 * a; clockG.position.y = 1.4 + Math.abs(Math.sin(f * 1.7)) * 0.03 * a; clockG.userData.h.rotation.z = -f * 0.02; }
+}
