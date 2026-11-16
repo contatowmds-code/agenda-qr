@@ -1,0 +1,12 @@
+{teaser}Um telescópio europeu {imp}encontrou os quasares mais antigos que já vimos!
+Quasar é o centro brilhante de uma galáxia, alimentado por um {bh}buraco negro gigante que engole matéria.
+O telescópio se chama {euc}Euclid e é da Agência Espacial Europeia.
+Ele achou {n31}trinta e um quasares do universo jovem.
+Dois deles quebraram o recorde: vemos a luz de quando o universo tinha só {age}seiscentos e setenta milhões de anos.
+Como o universo se expande, essa luz vai sendo esticada no caminho. Esse esticamento se chama {red}redshift, e quanto maior, mais antigo é o objeto.
+Antes, achar uns dez quasares assim {fast}levou mais de uma década. O Euclid já passou disso em um ano.
+Isso intriga os cientistas: como buracos negros ficaram {puzzle}tão enormes tão cedo?
+O resultado saiu na revista {pub}Astronomy and Astrophysics, anunciado pela ESA em julho.
+Atenção: medidas {cav}nessa distância têm incerteza, e recordes às vezes são revisados.
+Ou seja, o Euclid está {end}mostrando como era o universo quando as primeiras galáxias e buracos negros se formavam.
+{cta}Quer criar vídeos como esse? {cmt}Comente *ARQUIVO* que vou te enviar a mesma skill que eu utilizo para criar vídeos assim, mas você precisa {seg}estar *me seguindo* {msg}para a mensagem chegar.

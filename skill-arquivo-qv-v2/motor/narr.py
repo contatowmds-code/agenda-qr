@@ -1,7 +1,7 @@
 import re,json,numpy as np,soundfile as sf
 from kokoro_onnx import Kokoro
 SR=24000; GAP=0.2; LEAD=0.3
-REPL=[("Starship","Istárchip"),("Starlink","Istárlinc"),("SpaceX","Ispêicis"),("Texas","Têcsas"),("skill","iskil"),("ARQUIVO","arquívo"),("Space ponto com","Ispêice ponto com")]
+REPL=[("Starship","Istárchip"),("Starlink","Istárlinc"),("SpaceX","Ispêicis"),("Texas","Têcsas"),("skill","iskil"),("ARQUIVO","arquívo"),("Space ponto com","Ispêice ponto com"),("Euclid","Iúclid"),("quasar","quêisar"),("quasares","quêisares"),("Astronomy and Astrophysics","Astrônomi end Astrofísics"),("ESA","É Ésse A"),("redshift","rédchift"),("Swift","Suíft"),("LINK","Línque"),("Katalyst","Cátalist"),("Nvidia","Enviídia"),("Voyager","Vóiajer"),("V G R","vê gê érre"),("Morse","Mórsi"),("dia-luz","dia luz"),("NASA","Nása")]
 k=Kokoro('k.onnx','v.bin')
 lines=[l.strip() for l in open('roteiro.txt',encoding='utf8') if l.strip()]
 t=LEAD; words=[]; cues={}; chunks=[]
@@ -25,6 +25,6 @@ for li,ln in enumerate(lines):
 total=t+0.8
 y=np.zeros(int(total*SR),np.float32)
 for st,s in chunks: y[int(st*SR):int(st*SR)+len(s)]+=s
-sf.write('voz.wav',y,SR); cues['end']=total; cues['teaser']=0.0
+sf.write('voz.wav',y,SR); cues.setdefault('fim_total',total); cues['end']=total; cues['teaser']=0.0
 json.dump(dict(total=total,cues=cues,words=words),open('words.json','w'),ensure_ascii=False)
 print('total',round(total,1),cues)

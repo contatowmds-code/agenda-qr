@@ -106,3 +106,7 @@ A rotina criada via ferramenta (trig_01RoDQMsHoEAg1y3oEb4wxki) não carrega cone
 `render.js` agora lê `process.env.FPS`. SEMPRE rodar `FPS=60 node render.js k 4` e conferir: nº de quadros = round(duração*60) e `ls frames | wc -l` ao final (o vídeo 3 saiu a 30 fps por esquecer isso; foi corrigido renderizando só os quadros ímpares e intercalando). `ffmpeg -framerate 60 -i frames/f%05d.jpg -i mix.wav ... -r 60`. Vídeo de ~77 s a 60 fps = ~70 MB (cabe no limite de 100 MB do GitHub); ~40 min de render com 4 processos.
 O placar do dia vem de `docs/temas-feitos.md` (uma linha com a data por vídeo entregue) e, se houver conector, da pasta QV.
 Próximo tema já pesquisado e verificado (não produzido ainda): telescópio Swift da NASA reentrou em 4/11/2026 ~7:39 EST sobre Sumatra do Norte, 22 anos após lançamento (nov/2004); resgate comercial (Katalyst, veículo LINK) falhou; risco estimado 1 em 2.100 (Força Espacial/NASA). Fontes: NASA Science blog, ScienceDaily, US News.
+
+## Armadilha dos marcadores (vídeo 5)
+NUNCA nomear um marcador de foco `{end}` (nem `total`): `narr.py` sobrescreve `cues['end']` com a duração total e a cena final nunca acontece. Use `{fim}`. Conferir sempre que todos os cues usados no JS existem em words.json E ocorrem antes do CTA. Quando só o trecho final muda, re-renderizar só os quadros a partir do primeiro key alterado (`rerender.js k n start`).
+Telas retrato são estreitas: timelines e comparações largas devem ser VERTICAIS (ou usar d ≈ 2x), senão ficam cortadas. Elementos devem ficar acima da legenda (viewOffset ~0.08).
