@@ -1,8 +1,42 @@
-{"entregues":[
- {"slug":"ponte-rio-niteroi","titulo":"150 mil carros por dia sobre o mar a ponte Rio-Niterói","tema":"Ponte Rio-Niterói (fundos: ponte, viga interna, cais da barca, prédio vs pilar, mapa OSM)","data":"2026-11-15","cta":"ARQUIVO"},
- {"slug":"starship-pegaram-o-foguete","titulo":"Pegaram um foguete no ar o feito inédito da Starship","tema":"Starship capturada (fundos: base+torre, órbita, oceano, reentrada, hangar, aeroporto, mapa órbitas)","data":"2026-11-16","cta":"VIRAL"},
- {"slug":"planetas-antes-do-sol","titulo":"Quatro planetas no céu antes do sol nascer","tema":"Desfile de 4 planetas (fundos: colina, orrery, close Marte/Júpiter, cânion de prédios, meteoros, quarto, varanda)","data":"2026-11-16","cta":"VIRAL"}
-],
-"em_producao":["El Niño 2026-27 (NOAA >90% muito forte)"],
-"pesquisados_verificados_nao_usados":["Enem 2026 abstenção 32% (maior desde a pandemia, 1º dia)"],
-"descartados":["Microsoft outage nov/2026 (sem 2 fontes)","FAA ground stop EUA nov/2026 (sem 2 fontes)","Meta multa Itália €805mi (sem 2 fontes)"]}
+{
+ "entregues": [
+  {
+   "slug": "ponte-rio-niteroi",
+   "titulo": "150 mil carros por dia sobre o mar a ponte Rio-Niterói",
+   "tema": "Ponte Rio-Niterói (fundos: ponte, viga interna, cais da barca, prédio vs pilar, mapa OSM)",
+   "data": "2026-11-15",
+   "cta": "ARQUIVO"
+  },
+  {
+   "slug": "starship-pegaram-o-foguete",
+   "titulo": "Pegaram um foguete no ar o feito inédito da Starship",
+   "tema": "Starship capturada (fundos: base+torre, órbita, oceano, reentrada, hangar, aeroporto, mapa órbitas)",
+   "data": "2026-11-16",
+   "cta": "VIRAL"
+  },
+  {
+   "slug": "planetas-antes-do-sol",
+   "titulo": "Quatro planetas no céu antes do sol nascer",
+   "tema": "Desfile de 4 planetas (fundos: colina, orrery, close Marte/Júpiter, cânion de prédios, meteoros, quarto, varanda)",
+   "data": "2026-11-16",
+   "cta": "VIRAL"
+  },
+  {
+   "slug": "el-nino-mancha-quente",
+   "titulo": "El Niño forte a mancha quente do Pacífico que muda o clima",
+   "tema": "El Niño 2026-27 (fundos: oceano+bóia termômetro, órbita/satélite, corte do Pacífico, nuvens/chuva, vila na neve, torres, dados, mercado/silos; mapa Pacífico e regiões do Brasil)",
+   "data": "2026-11-16",
+   "cta": "VIRAL"
+  }
+ ],
+ "em_producao": [
+  "Enem 2026 abstenção 32%"
+ ],
+ "pesquisados_verificados_nao_usados": [],
+ "descartados": [
+  "Microsoft outage nov/2026 (sem 2 fontes)",
+  "FAA ground stop EUA nov/2026 (sem 2 fontes)",
+  "Meta multa Itália €805mi (sem 2 fontes)",
+  "Preço do tomate recorde (só 1 fonte: g1)"
+ ]
+}
