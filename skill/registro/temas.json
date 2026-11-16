@@ -41,10 +41,17 @@
    "tema": "Apple Harbor IA local (fundos: escrivaninha noturna, App Store gigante, data center/nuvem, cofre de privacidade, cluster Thunderbolt, modelo que não cabe, ícones de ferramentas)",
    "data": "2026-11-16",
    "cta": "VIRAL"
+  },
+  {
+   "slug": "microsoft-apagao-nuvem",
+   "titulo": "A nuvem da Microsoft caiu o apagão que parou escolas e hospitais",
+   "tema": "Apagão Microsoft 365 nov/2026 (fundos: escritório, escola/hospital/delegacia, mapa-múndi com pulsos, servidores dominó, prédio+tomada, caixa de e-mails, relatório carimbado)",
+   "data": "2026-11-16",
+   "cta": "VIRAL"
   }
  ],
  "em_producao": [
-  "V7 (pesquisar agora)"
+  "V8 (pesquisar agora)"
  ],
  "pesquisados_verificados_nao_usados": [],
  "descartados": [
