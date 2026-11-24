@@ -1,0 +1,169 @@
+{
+ "_": {
+  "paginas_que_o_token_alcanca": [],
+  "conferido_em": "2026-11-24T01:58:48-03:00",
+  "teste_drive": "OK 289956179 bytes"
+ },
+ "mapa-sc": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-sc' não conectado no Meta: nenhuma Página com o Instagram @catarinensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-sc' não conectado no Meta: nenhuma Página com o Instagram @catarinensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_SC)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_SC)"
+  }
+ },
+ "mapa-rs": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-rs' não conectado no Meta: nenhuma Página com o Instagram @gauchonomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-rs' não conectado no Meta: nenhuma Página com o Instagram @gauchonomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_RS)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_RS)"
+  }
+ },
+ "mapa-pr": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-pr' não conectado no Meta: nenhuma Página com o Instagram @paranaensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-pr' não conectado no Meta: nenhuma Página com o Instagram @paranaensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_PR)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_PR)"
+  }
+ },
+ "mapa-mg": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-mg' não conectado no Meta: nenhuma Página com o Instagram @mineironomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-mg' não conectado no Meta: nenhuma Página com o Instagram @mineironomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_MG)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_MG)"
+  }
+ },
+ "mapa-mt": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-mt' não conectado no Meta: nenhuma Página com o Instagram @matogrossonomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-mt' não conectado no Meta: nenhuma Página com o Instagram @matogrossonomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_MT)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_MT)"
+  }
+ },
+ "mapa-sp": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-sp' não conectado no Meta: nenhuma Página com o Instagram @paulistanomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-sp' não conectado no Meta: nenhuma Página com o Instagram @paulistanomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_SP)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_SP)"
+  }
+ },
+ "mapa-rj": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_RJ)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_RJ)"
+  }
+ },
+ "mapa-norte": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-norte' não conectado no Meta: nenhuma Página com o Instagram @nortenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-norte' não conectado no Meta: nenhuma Página com o Instagram @nortenomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_NORTE)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_NORTE)"
+  }
+ },
+ "mapa-br": {
+  "instagram": {
+   "ok": false,
+   "motivo": "perfil 'mapa-br' não conectado no Meta: nenhuma Página com o Instagram @brasilnomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "facebook": {
+   "ok": false,
+   "motivo": "perfil 'mapa-br' não conectado no Meta: nenhuma Página com o Instagram @brasilnomapa entre as que o token alcança (nenhum token lista Páginas)"
+  },
+  "youtube": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo YT_REFRESH_TOKEN__MAPA_BR)"
+  },
+  "tiktok": {
+   "ok": false,
+   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_BR)"
+  }
+ }
+}
