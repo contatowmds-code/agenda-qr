@@ -16,6 +16,7 @@ jobs:
       VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
       META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
       META_SISTEMA_TOKEN: ${{ secrets.META_SISTEMA_TOKEN }}
+      META_PAGINAS: ${{ secrets.META_PAGINAS }}
       IG_TOKEN: ${{ secrets.IG_TOKEN }}
       FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
       YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}

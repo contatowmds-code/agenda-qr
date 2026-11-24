@@ -58,6 +58,11 @@ def meta(conta):
             r = requests.get(f"{GRAPH}/{d['fb_page_id']}", params={"fields": "name,instagram_business_account{id,username}", "access_token": d["fb_token"]}, timeout=60).json()
             achados.append({"id": d["fb_page_id"], "name": r.get("name"), "access_token": d["fb_token"], "instagram_business_account": r.get("instagram_business_account")})
     except Exception: pass
+    if not achados:   # segredo META_PAGINAS: a resposta de me/accounts colada pelo dono (lista de Páginas com o Instagram vinculado)
+        try:
+            j = json.loads(os.environ.get("META_PAGINAS") or "{}")
+            achados = j.get("data", []) if isinstance(j, dict) else j
+        except Exception: achados = []
     if not achados:
         for tok in _tokens():
             try: achados += _paginas(tok)
