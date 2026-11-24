@@ -418,6 +418,7 @@ def conferir_e_arquivar(it):
     return arquivar(it, links)
 
 def main():
+    if os.environ.get("SO_PREFIXO") and not (AQUI / "mapas_ativo.txt").exists(): print("postagem dos mapas INATIVA (falta agendador/mapas_ativo.txt); nada a fazer"); return
     ag = json.loads(AGENDA.read_text(encoding="utf-8")); mudou = False
     if os.environ.get("GITHUB_EVENT_NAME") == "workflow_dispatch" or "--verificar" in sys.argv: verificar(ag); links_publicados(ag); duplicatas(ag)
     if not DRY and os.environ.get("ESPERAR_HORARIO", "0") == "1":

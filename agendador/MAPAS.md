@@ -22,3 +22,6 @@ Segredos `TT_REFRESH_TOKEN__MAPA_SC` ... `__MAPA_BR`. Enquanto o TikTok não apr
 
 ## Travas do robô
 Conta com nome diferente do perfil = não publica. Mesma cidade no mesmo perfil = não publica de novo. Depois de publicar, busca o link do post em cada rede e só então arquiva em `publicados.json`.
+
+## Ligar / desligar
+A postagem dos mapas só funciona se existir o arquivo `agendador/mapas_ativo.txt`. Desligado em 24/11/2026 a pedido do dono. Para ligar: criar esse arquivo, devolver o `schedule` (cron) aos workflows `mapas.yml` e `mapas_contas.yml` e rodar "Mapas - publicar" uma vez.

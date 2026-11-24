@@ -40,6 +40,7 @@ if cmd == "conferir":
     if a: print("NA FILA. feito:", json.dumps(a.get("feito") or {}, ensure_ascii=False), "| erros:", json.dumps(a.get("erros") or {}, ensure_ascii=False)); sys.exit(1)
     print("não está na fila nem nos publicados"); sys.exit(2)
 drive_id, tam, legenda = sys.argv[4], int(sys.argv[5]), sys.argv[6].strip()
+if not (AQUI / "mapas_ativo.txt").exists(): print("INATIVO: a postagem automática dos mapas está desligada pelo dono; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
 redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
 if not redes:
     print(f"NÃO CONECTADO: o perfil {conta} ainda não tem nenhuma rede conectada; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)

@@ -1,7 +1,5 @@
 name: Mapas - publicar assim que o vídeo fica pronto
 on:
-  schedule:
-    - cron: "*/10 * * * *"   # reserva: se o vigia cair, o cron reinicia
   workflow_dispatch: {}
 permissions:
   contents: write
@@ -59,7 +57,7 @@ jobs:
             sleep 60
           done
       - name: Reiniciar o vigia
-        if: always()
+        if: always() && hashFiles('agendador/mapas_ativo.txt') != ''
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh api -X POST "repos/${{ github.repository }}/actions/workflows/mapas.yml/dispatches" -f ref=main || true

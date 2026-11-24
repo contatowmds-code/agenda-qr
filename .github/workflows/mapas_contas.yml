@@ -3,8 +3,6 @@ on:
   workflow_dispatch:
     inputs:
       teste_drive: { description: "Opcional: ID,TAMANHO de um arquivo do Drive para testar o download", required: false, default: "" }
-  schedule:
-    - cron: "17 */6 * * *"
   push:
     branches: [main]
     paths: ["agendador/contas_mapa.json", "agendador/mapa_teste.txt", ".github/workflows/mapas_contas.yml"]
