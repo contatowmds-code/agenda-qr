@@ -1,0 +1,65 @@
+name: Mapas - publicar assim que o vídeo fica pronto
+on:
+  schedule:
+    - cron: "*/10 * * * *"   # reserva: se o vigia cair, o cron reinicia
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: mapas-publicar
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    env:
+      SO_PREFIXO: "mapa-"
+      VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
+      META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
+      META_SISTEMA_TOKEN: ${{ secrets.META_SISTEMA_TOKEN }}
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_CLIENT_ID__MAPAS: ${{ secrets.YT_CLIENT_ID__MAPAS }}
+      YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
+      TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
+      TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+      TT_PRIVACY: ${{ vars.TT_PRIVACY }}
+      YT_REFRESH_TOKEN__MAPA_SC: ${{ secrets.YT_REFRESH_TOKEN__MAPA_SC }}
+      YT_REFRESH_TOKEN__MAPA_RS: ${{ secrets.YT_REFRESH_TOKEN__MAPA_RS }}
+      YT_REFRESH_TOKEN__MAPA_PR: ${{ secrets.YT_REFRESH_TOKEN__MAPA_PR }}
+      YT_REFRESH_TOKEN__MAPA_MG: ${{ secrets.YT_REFRESH_TOKEN__MAPA_MG }}
+      YT_REFRESH_TOKEN__MAPA_MT: ${{ secrets.YT_REFRESH_TOKEN__MAPA_MT }}
+      YT_REFRESH_TOKEN__MAPA_SP: ${{ secrets.YT_REFRESH_TOKEN__MAPA_SP }}
+      YT_REFRESH_TOKEN__MAPA_RJ: ${{ secrets.YT_REFRESH_TOKEN__MAPA_RJ }}
+      YT_REFRESH_TOKEN__MAPA_NORTE: ${{ secrets.YT_REFRESH_TOKEN__MAPA_NORTE }}
+      YT_REFRESH_TOKEN__MAPA_BR: ${{ secrets.YT_REFRESH_TOKEN__MAPA_BR }}
+      TT_REFRESH_TOKEN__MAPA_SC: ${{ secrets.TT_REFRESH_TOKEN__MAPA_SC }}
+      TT_REFRESH_TOKEN__MAPA_RS: ${{ secrets.TT_REFRESH_TOKEN__MAPA_RS }}
+      TT_REFRESH_TOKEN__MAPA_PR: ${{ secrets.TT_REFRESH_TOKEN__MAPA_PR }}
+      TT_REFRESH_TOKEN__MAPA_MG: ${{ secrets.TT_REFRESH_TOKEN__MAPA_MG }}
+      TT_REFRESH_TOKEN__MAPA_MT: ${{ secrets.TT_REFRESH_TOKEN__MAPA_MT }}
+      TT_REFRESH_TOKEN__MAPA_SP: ${{ secrets.TT_REFRESH_TOKEN__MAPA_SP }}
+      TT_REFRESH_TOKEN__MAPA_RJ: ${{ secrets.TT_REFRESH_TOKEN__MAPA_RJ }}
+      TT_REFRESH_TOKEN__MAPA_NORTE: ${{ secrets.TT_REFRESH_TOKEN__MAPA_NORTE }}
+      TT_REFRESH_TOKEN__MAPA_BR: ${{ secrets.TT_REFRESH_TOKEN__MAPA_BR }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - name: Vigia (confere a fila a cada 60 s por 5h30 e publica na hora em que o vídeo entra)
+        run: |
+          fim=$((SECONDS+19800))
+          while [ $SECONDS -lt $fim ]; do
+            git fetch -q origin main && git reset -q --hard origin/main || true
+            env -u GITHUB_EVENT_NAME python agendador/publicar.py || true
+            sleep 60
+          done
+      - name: Reiniciar o vigia
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X POST "repos/${{ github.repository }}/actions/workflows/mapas.yml/dispatches" -f ref=main || true

@@ -1,0 +1,11 @@
+{
+ "mapa-sc": {"sigla": "SC", "nome": "Catarinense no Mapa", "chave": "catarinensenomapa"},
+ "mapa-rs": {"sigla": "RS", "nome": "Gaúcho no Mapa", "chave": "gauchonomapa"},
+ "mapa-pr": {"sigla": "PR", "nome": "Paranaense no Mapa", "chave": "paranaensenomapa"},
+ "mapa-mg": {"sigla": "MG", "nome": "Mineiro no Mapa", "chave": "mineironomapa"},
+ "mapa-mt": {"sigla": "MT", "nome": "Mato Grosso no Mapa", "chave": "matogrossonomapa"},
+ "mapa-sp": {"sigla": "SP", "nome": "Paulista no Mapa", "chave": "paulistanomapa"},
+ "mapa-rj": {"sigla": "RJ", "nome": "Carioca no Mapa", "chave": "cariocanomapa"},
+ "mapa-norte": {"sigla": "NO", "nome": "Norte no Mapa", "chave": "nortenomapa"},
+ "mapa-br": {"sigla": "BR", "nome": "Brasil no Mapa", "chave": "brasilnomapa"}
+}

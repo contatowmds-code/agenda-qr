@@ -1,0 +1,70 @@
+name: Mapas - conferir contas (só leitura)
+on:
+  workflow_dispatch:
+    inputs:
+      teste_drive: { description: "Opcional: ID,TAMANHO de um arquivo do Drive para testar o download", required: false, default: "" }
+  schedule:
+    - cron: "17 */6 * * *"
+  push:
+    branches: [main]
+    paths: ["agendador/contas_mapa.json", "agendador/mapa_teste.txt", ".github/workflows/mapas_contas.yml"]
+permissions:
+  contents: write
+concurrency:
+  group: mapas-contas
+  cancel-in-progress: false
+jobs:
+  conferir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
+      META_SISTEMA_TOKEN: ${{ secrets.META_SISTEMA_TOKEN }}
+      IG_TOKEN: ${{ secrets.IG_TOKEN }}
+      FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+      YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+      YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+      YT_CLIENT_ID__MAPAS: ${{ secrets.YT_CLIENT_ID__MAPAS }}
+      YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
+      TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
+      TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
+      TT_PRIVACY: ${{ vars.TT_PRIVACY }}
+      YT_REFRESH_TOKEN__MAPA_SC: ${{ secrets.YT_REFRESH_TOKEN__MAPA_SC }}
+      YT_REFRESH_TOKEN__MAPA_RS: ${{ secrets.YT_REFRESH_TOKEN__MAPA_RS }}
+      YT_REFRESH_TOKEN__MAPA_PR: ${{ secrets.YT_REFRESH_TOKEN__MAPA_PR }}
+      YT_REFRESH_TOKEN__MAPA_MG: ${{ secrets.YT_REFRESH_TOKEN__MAPA_MG }}
+      YT_REFRESH_TOKEN__MAPA_MT: ${{ secrets.YT_REFRESH_TOKEN__MAPA_MT }}
+      YT_REFRESH_TOKEN__MAPA_SP: ${{ secrets.YT_REFRESH_TOKEN__MAPA_SP }}
+      YT_REFRESH_TOKEN__MAPA_RJ: ${{ secrets.YT_REFRESH_TOKEN__MAPA_RJ }}
+      YT_REFRESH_TOKEN__MAPA_NORTE: ${{ secrets.YT_REFRESH_TOKEN__MAPA_NORTE }}
+      YT_REFRESH_TOKEN__MAPA_BR: ${{ secrets.YT_REFRESH_TOKEN__MAPA_BR }}
+      TT_REFRESH_TOKEN__MAPA_SC: ${{ secrets.TT_REFRESH_TOKEN__MAPA_SC }}
+      TT_REFRESH_TOKEN__MAPA_RS: ${{ secrets.TT_REFRESH_TOKEN__MAPA_RS }}
+      TT_REFRESH_TOKEN__MAPA_PR: ${{ secrets.TT_REFRESH_TOKEN__MAPA_PR }}
+      TT_REFRESH_TOKEN__MAPA_MG: ${{ secrets.TT_REFRESH_TOKEN__MAPA_MG }}
+      TT_REFRESH_TOKEN__MAPA_MT: ${{ secrets.TT_REFRESH_TOKEN__MAPA_MT }}
+      TT_REFRESH_TOKEN__MAPA_SP: ${{ secrets.TT_REFRESH_TOKEN__MAPA_SP }}
+      TT_REFRESH_TOKEN__MAPA_RJ: ${{ secrets.TT_REFRESH_TOKEN__MAPA_RJ }}
+      TT_REFRESH_TOKEN__MAPA_NORTE: ${{ secrets.TT_REFRESH_TOKEN__MAPA_NORTE }}
+      TT_REFRESH_TOKEN__MAPA_BR: ${{ secrets.TT_REFRESH_TOKEN__MAPA_BR }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests
+      - name: Conferir contas
+        run: |
+          export TESTE_DRIVE="${{ inputs.teste_drive }}"
+          if [ -z "$TESTE_DRIVE" ] && [ -f agendador/mapa_teste.txt ]; then export TESTE_DRIVE="$(head -1 agendador/mapa_teste.txt | tr -d ' \r\n')"; fi
+          python agendador/mapa_contas.py
+      - name: Guardar o resultado
+        run: |
+          git config user.name agendador; git config user.email agendador@users.noreply.github.com
+          cp agendador/mapa_status.json /tmp/s.json
+          for i in 1 2 3 4 5; do
+            git fetch -q origin main && git reset -q --hard origin/main
+            cp /tmp/s.json agendador/mapa_status.json; git add agendador/mapa_status.json
+            git diff --cached --quiet && break
+            git commit -qm "mapas: contas conferidas" && git push -q origin HEAD:main && break
+            sleep 4
+          done

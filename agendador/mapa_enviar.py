@@ -1,0 +1,57 @@
+#!/usr/bin/env python3
+"""Coloca um vídeo de mapa PRONTO para publicar AGORA (sem horário marcado) nas redes do perfil. Roda na conversa que fez o vídeo.
+O vídeo já tem de estar no Drive (pasta do perfil) e compartilhado por link; o robô do GitHub baixa de lá, publica em cada rede
+conectada do perfil, confere e arquiva. Nunca agenda duas vezes a mesma cidade do mesmo perfil.
+Uso (na raiz do repositório agenda-qr):
+  python3 agendador/mapa_enviar.py postar <conta> <cod_ibge> <drive_id> <tamanho_bytes> "<título #h1 #h2 #h3>"
+  python3 agendador/mapa_enviar.py conferir <conta> <cod_ibge>      (mostra se já publicou e os links)
+  python3 agendador/mapa_enviar.py status                           (quais perfis estão conectados em quais redes)
+Saída: 0 = na fila / publicado; 3 = perfil sem nenhuma rede conectada (nada foi agendado); 4 = já estava."""
+import datetime as dt, json, subprocess, sys, time
+from pathlib import Path
+from zoneinfo import ZoneInfo
+
+AQUI = Path(__file__).resolve().parent; RAIZ = AQUI.parent
+REDES = ["instagram", "facebook", "youtube", "tiktok"]
+def git(*a): return subprocess.run(["git", "-C", str(RAIZ), *a], capture_output=True, text=True)
+def ler(n):
+    try: return json.loads((AQUI / n).read_text(encoding="utf-8"))
+    except Exception: return [] if n != "mapa_status.json" else {}
+def atualizar(): git("fetch", "-q", "--depth", "50", "origin", "main"); git("reset", "-q", "--hard", "origin/main")
+
+cmd = sys.argv[1] if len(sys.argv) > 1 else "status"
+atualizar()
+contas = json.loads((AQUI / "contas_mapa.json").read_text(encoding="utf-8")); st = ler("mapa_status.json")
+if cmd == "status":
+    print("conferido em:", (st.get("_") or {}).get("conferido_em", "nunca"))
+    for c in contas:
+        print(f"{c:11}", " | ".join(f"{r}: " + ((st.get(c, {}).get(r) or {}).get("conta") or "NÃO") if (st.get(c, {}).get(r) or {}).get("ok") else f"{r}: NÃO" for r in REDES))
+    sys.exit(0)
+conta, cod = sys.argv[2], sys.argv[3]
+if conta not in contas: sys.exit(f"conta desconhecida: {conta} (use {', '.join(contas)})")
+arq = f"videos/{conta}-{cod}.mp4"
+def achar():
+    a = [x for x in ler("agenda.json") if x.get("arquivo") == arq and x.get("conta") == conta]
+    p = [x for x in ler("publicados.json") if x.get("arquivo") == arq and x.get("conta") == conta]
+    return (a[0] if a else None), (p[0] if p else None)
+if cmd == "conferir":
+    a, p = achar()
+    if p: print("PUBLICADO E CONFERIDO:", json.dumps(p.get("links"), ensure_ascii=False)); sys.exit(0)
+    if a: print("NA FILA. feito:", json.dumps(a.get("feito") or {}, ensure_ascii=False), "| erros:", json.dumps(a.get("erros") or {}, ensure_ascii=False)); sys.exit(1)
+    print("não está na fila nem nos publicados"); sys.exit(2)
+drive_id, tam, legenda = sys.argv[4], int(sys.argv[5]), sys.argv[6].strip()
+redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
+if not redes:
+    print(f"NÃO CONECTADO: o perfil {conta} ainda não tem nenhuma rede conectada; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
+for tent in range(6):
+    a, p = achar()
+    if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
+    ag = ler("agenda.json")
+    ag.append({"id": f"{conta} {cod} {legenda.split('#')[0].strip()}"[:60], "arquivo": arq, "legenda": legenda, "conta": conta, "plataformas": redes,
+               "quando": dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True})
+    (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+    git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: publicar agora {conta} {cod}")
+    if git("push", "-q", "origin", "HEAD:main").returncode == 0:
+        print("NA FILA para publicar agora em:", ", ".join(redes), "| faltam conectar:", ", ".join(r for r in REDES if r not in redes) or "nenhuma"); sys.exit(0)
+    time.sleep(3); atualizar()
+sys.exit("não consegui gravar na agenda (push recusado)")

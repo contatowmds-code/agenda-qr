@@ -1,0 +1,163 @@
+#!/usr/bin/env python3
+"""Perfis "[Lugar] no Mapa": acha as credenciais de cada perfil, TRAVA contra conta errada, baixa o vídeo do Drive
+e envia o arquivo direto (sem link público do GitHub) para Instagram e Facebook, com o aviso de conteúdo feito com IA.
+Regras: cada perfil só publica na conta cujo nome bate com a "chave" de contas_mapa.json (ex.: catarinensenomapa).
+Se o nome não bater, NÃO publica. Nenhum token é impresso."""
+import json, os, tempfile, time, unicodedata
+from pathlib import Path
+import requests
+
+AQUI = Path(__file__).resolve().parent
+GRAPH = "https://graph.facebook.com/v21.0"
+CONTAS = json.loads((AQUI / "contas_mapa.json").read_text(encoding="utf-8"))
+_cache = {}
+VISTAS = []   # Páginas que os tokens alcançam (para o relatório de contas)
+
+
+def eh(conta): return conta in CONTAS
+def norm(s): return "".join(c for c in unicodedata.normalize("NFD", str(s or "").lower()) if c.isalnum() and not unicodedata.combining(c))
+def chave(conta): return CONTAS[conta]["chave"]
+def bate(conta, *nomes):
+    """True se algum dos nomes da conta encontrada contém a chave do perfil (ou um nome extra aceito em contas_mapa.json)."""
+    aceitos = [chave(conta)] + [norm(x) for x in CONTAS[conta].get("aceitos", [])]
+    return any(a and a in norm(n) for n in nomes if n for a in aceitos)
+def env(var, conta):
+    """Só a credencial PRÓPRIA do perfil (VAR__MAPA_SC). Nunca cai na credencial genérica de outro canal."""
+    return os.environ.get(f"{var}__{conta.upper().replace('-', '_')}")
+
+
+def _tokens():
+    t = [os.environ.get("META_SISTEMA_TOKEN"), os.environ.get("IG_TOKEN"), os.environ.get("FB_PAGE_TOKEN")]
+    try:
+        for d in json.loads(os.environ.get("META_ACCOUNTS") or "{}").values(): t += [d.get("fb_token"), d.get("ig_token")]
+    except Exception: pass
+    v = []
+    for x in t:
+        if x and x not in v: v.append(x)
+    return v
+
+
+def _paginas(tok):
+    url, p, out = f"{GRAPH}/me/accounts", {"fields": "name,access_token,instagram_business_account{id,username}", "limit": 100, "access_token": tok}, []
+    for _ in range(10):
+        r = requests.get(url, params=p, timeout=60).json()
+        out += r.get("data", [])
+        url = (r.get("paging") or {}).get("next")
+        if not url: break
+        p = {}
+    return out
+
+
+def meta(conta):
+    """Página do Facebook + Instagram do perfil. Vale a Página cujo Instagram vinculado tem o @ do perfil."""
+    if conta in _cache: return _cache[conta]
+    achados = []
+    try:
+        d = json.loads(os.environ.get("META_ACCOUNTS") or "{}").get(conta)
+        if d and d.get("fb_page_id") and d.get("fb_token"):
+            r = requests.get(f"{GRAPH}/{d['fb_page_id']}", params={"fields": "name,instagram_business_account{id,username}", "access_token": d["fb_token"]}, timeout=60).json()
+            achados.append({"id": d["fb_page_id"], "name": r.get("name"), "access_token": d["fb_token"], "instagram_business_account": r.get("instagram_business_account")})
+    except Exception: pass
+    if not achados:
+        for tok in _tokens():
+            try: achados += _paginas(tok)
+            except Exception: pass
+    vistos = []
+    for p in achados:
+        v = f"{p.get('name')} (@{(p.get('instagram_business_account') or {}).get('username') or 'sem instagram'})"
+        if v not in VISTAS: VISTAS.append(v)
+    for p in achados:
+        ig = p.get("instagram_business_account") or {}
+        vistos.append(f"{p.get('name')} (@{ig.get('username') or 'sem instagram'})")
+        if norm(ig.get("username")) == chave(conta) or (ig.get("id") and bate(conta, ig.get("username"))):
+            _cache[conta] = {"fb_page_id": p["id"], "fb_token": p["access_token"], "ig_user_id": ig["id"], "ig_username": ig.get("username"), "fb_nome": p.get("name")}
+            return _cache[conta]
+    raise RuntimeError(f"perfil '{conta}' não conectado no Meta: nenhuma Página com o Instagram @{chave(conta)} entre as que o token alcança" + (f" (vi {len(vistos)} Páginas)" if vistos else " (nenhum token lista Páginas)"))
+
+
+def guarda_youtube(conta, access_token):
+    """Confere que o token é do canal do perfil. Devolve o nome do canal ou levanta erro (não publica)."""
+    c = requests.get("https://www.googleapis.com/youtube/v3/channels", params={"part": "snippet,contentDetails", "mine": "true"},
+                     headers={"Authorization": "Bearer " + access_token}, timeout=60).json()
+    if not c.get("items"): raise RuntimeError(f"youtube: não consegui ler o canal do token ({str(c)[:120]})")
+    s = c["items"][0]["snippet"]
+    if not (bate(conta, s.get("title"), s.get("customUrl")) or c["items"][0]["id"] == CONTAS[conta].get("yt_id")):
+        raise RuntimeError(f"CONTA ERRADA no youtube: o token é do canal '{s.get('title')}' ({s.get('customUrl')}), esperado {CONTAS[conta]['nome']}. Não publiquei.")
+    return s.get("title"), c["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+
+
+def guarda_tiktok(conta, access_token):
+    u = requests.get("https://open.tiktokapis.com/v2/user/info/", params={"fields": "open_id,display_name"},
+                     headers={"Authorization": "Bearer " + access_token}, timeout=60).json()
+    us = (u.get("data") or {}).get("user") or {}
+    if not us: raise RuntimeError(f"tiktok: não consegui ler a conta do token ({str(u.get('error'))[:120]})")
+    if not (bate(conta, us.get("display_name")) or us.get("open_id") == CONTAS[conta].get("tt_id")):
+        raise RuntimeError(f"CONTA ERRADA no tiktok: o token é da conta '{us.get('display_name')}', esperado {CONTAS[conta]['nome']}. Não publiquei.")
+    return us.get("display_name")
+
+
+def baixar(it):
+    """Baixa do Google Drive o MP4 do item (arquivo compartilhado por link) e confere o tamanho."""
+    dest = Path(tempfile.gettempdir()) / Path(it["arquivo"]).name
+    tam = int(it.get("tamanho") or 0)
+    if dest.exists() and (not tam or dest.stat().st_size == tam): return dest
+    for tent in range(3):
+        try:
+            with requests.get("https://drive.usercontent.google.com/download", params={"id": it["drive_id"], "export": "download", "confirm": "t"}, stream=True, timeout=600) as r:
+                r.raise_for_status()
+                with open(dest, "wb") as f:
+                    for b in r.iter_content(1 << 20): f.write(b)
+            n = dest.stat().st_size
+            with open(dest, "rb") as f: cab = f.read(16)
+            if b"ftyp" in cab and (not tam or n == tam): return dest
+            erro = f"veio {n} bytes (esperado {tam}); o arquivo do Drive não está acessível por link ou foi apagado"
+        except Exception as e: erro = str(e)[:160]
+        time.sleep(5)
+    dest.unlink(missing_ok=True)
+    raise RuntimeError("baixar do Drive: " + erro)
+
+
+def instagram(it, d, arq):
+    """Reel do Instagram enviando o ARQUIVO (envio retomável), com o aviso de IA ligado. Capa = primeiro quadro (padrão)."""
+    uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
+    j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "upload_type": "resumable", "caption": it["legenda"], "share_to_feed": "true",
+                      "thumb_offset": "0", "is_ai_generated": "true", "access_token": tok}, timeout=120).json()
+    if "id" not in j: raise RuntimeError(f"criar: {j}")
+    cid = j["id"]; n = arq.stat().st_size
+    with open(arq, "rb") as f:
+        u = requests.post(j.get("uri") or f"https://rupload.facebook.com/ig-api-upload/v21.0/{cid}",
+                          headers={"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(n)}, data=f, timeout=1800).json()
+    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    for _ in range(90):
+        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
+        if s.get("status_code") == "FINISHED": break
+        if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar: {s}")
+        time.sleep(10)
+    else: raise RuntimeError("demorou demais para processar")
+    p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
+    if "id" not in p: raise RuntimeError(f"publicar: {p}")
+    return p["id"]
+
+
+def facebook(it, d, arq):
+    """Reel da Página do Facebook enviando o ARQUIVO."""
+    pid, tok = d["fb_page_id"], d["fb_token"]
+    a = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
+    if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
+    n = arq.stat().st_size
+    with open(arq, "rb") as f:
+        u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(n)}, data=f, timeout=1800).json()
+    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    f2 = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "finish", "video_id": a["video_id"], "video_state": "PUBLISHED",
+                       "description": it["legenda"], "access_token": tok}, timeout=120).json()
+    if not f2.get("success"): raise RuntimeError(f"publicar: {f2}")
+    return a["video_id"]
+
+
+def youtube_ja_postado(conta, access_token, playlist, titulo):
+    """ID do vídeo do canal com o mesmo título (evita duplicar), ou None."""
+    r = requests.get("https://www.googleapis.com/youtube/v3/playlistItems", params={"part": "snippet", "playlistId": playlist, "maxResults": 50},
+                     headers={"Authorization": "Bearer " + access_token}, timeout=60).json()
+    for x in r.get("items", []):
+        if (x["snippet"].get("title") or "").strip() == titulo.strip(): return x["snippet"]["resourceId"]["videoId"]
+    return None

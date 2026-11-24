@@ -9,6 +9,7 @@ import json, math, os, sys, time, datetime as dt
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import requests
+import mapa   # perfis "[Lugar] no Mapa": credenciais por perfil, trava de conta errada, vídeo vindo do Drive
 
 AQUI = Path(__file__).resolve().parent
 AGENDA = AQUI / "agenda.json"
@@ -23,6 +24,8 @@ def conta_id(it): return (it.get("conta") or "").strip()
 
 def env(var, it):
     """Credencial da conta do vídeo: primeiro VAR__CONTA (ex.: YT_REFRESH_TOKEN__QUANTO_RENDE), senão VAR."""
+    if mapa.eh(conta_id(it)):   # perfil de mapa: só a credencial própria do perfil para o token da conta; chaves do app podem ser as gerais
+        return mapa.env(var, conta_id(it)) or (None if "REFRESH" in var else os.environ.get(var + "__MAPAS") or os.environ.get(var))
     c = conta_id(it).upper().replace("-", "_")
     return (os.environ.get(f"{var}__{c}") if c else None) or os.environ.get(var)
 
@@ -31,6 +34,7 @@ def meta(it):
     Vídeo com "conta" só posta na conta dele; sem "conta", usa os segredos antigos (IG_*/FB_*)."""
     contas = json.loads(os.environ.get("META_ACCOUNTS") or "{}")
     c = conta_id(it)
+    if mapa.eh(c): return mapa.meta(c)   # acha a Página pelo @ do Instagram do perfil (trava contra conta errada)
     if c:
         d = contas.get(c)
         if not d: raise RuntimeError(f"conta '{c}' não existe em META_ACCOUNTS")
@@ -49,7 +53,7 @@ def tem_credencial(plat, it):
     return all(env(v, it) for v in NECESSARIOS[base])
 
 def agora(): return dt.datetime.now(dt.timezone.utc)
-def arquivo(item): return VIDEOS / Path(item["arquivo"]).name
+def arquivo(item): return mapa.baixar(item) if item.get("drive_id") else VIDEOS / Path(item["arquivo"]).name
 def url_publica(item):
     return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['arquivo']).name}"
 
@@ -59,11 +63,14 @@ def capa_local(item):
     f = VIDEOS / Path(item["capa"]).name if item.get("capa") else None
     return f if f and f.exists() else None
 
-def instagram(it, com_capa=True):
+def instagram(it, com_capa=True, ia=True):
     d = meta(it); uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
+    if it.get("drive_id"): return mapa.instagram(it, d, arquivo(it))   # arquivo enviado direto, com aviso de IA
     cap = url_capa(it) if com_capa else None
     j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "video_url": url_publica(it), "caption": it["legenda"],
-                      "share_to_feed": "true", "access_token": tok} | ({"cover_url": cap} if cap else {}), timeout=120).json()
+                      "share_to_feed": "true", "access_token": tok} | ({"cover_url": cap} if cap else {}) | ({"is_ai_generated": "true"} if ia else {}), timeout=120).json()
+    if "id" not in j and ia and "is_ai_generated" in str(j):
+        print("  AVISO instagram: a API recusou o aviso de IA; publicando sem ele:", str(j)[:160]); return instagram(it, com_capa, False)
     if "id" not in j:
         if cap: print("  AVISO instagram: criar com capa falhou, tentando sem capa:", str(j)[:200]); return instagram(it, False)
         raise RuntimeError(f"criar: {j}")
@@ -82,6 +89,7 @@ def instagram(it, com_capa=True):
 
 def facebook(it):
     d = meta(it); pid, tok = d["fb_page_id"], d["fb_token"]
+    if it.get("drive_id"): return mapa.facebook(it, d, arquivo(it))
     a = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
     if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
     u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "file_url": url_publica(it)}, timeout=300).json()
@@ -109,13 +117,14 @@ def tiktok(it):
     r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it),
         "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
     if "access_token" not in r: raise RuntimeError(f"token: {r}")
+    if mapa.eh(conta_id(it)): mapa.guarda_tiktok(conta_id(it), r["access_token"])   # conta errada = não publica
     dados = arquivo(it).read_bytes(); n = len(dados)
     chunk = n if n <= 64 * 1024 * 1024 else 32 * 1024 * 1024
     total = max(1, n // chunk)
     h = {"Authorization": f"Bearer {r['access_token']}", "Content-Type": "application/json; charset=UTF-8"}
     ini = requests.post("https://open.tiktokapis.com/v2/post/publish/video/init/", headers=h, data=json.dumps({
         "post_info": {"title": it["legenda"][:150], "privacy_level": os.environ.get("TT_PRIVACY", "SELF_ONLY"),
-                      "disable_duet": False, "disable_comment": False, "disable_stitch": False},
+                      "disable_duet": False, "disable_comment": False, "disable_stitch": False, "is_aigc": True},
         "source_info": {"source": "FILE_UPLOAD", "video_size": n, "chunk_size": chunk, "total_chunk_count": total}}), timeout=60).json()
     if ini.get("error", {}).get("code", "ok") != "ok": raise RuntimeError(f"iniciar: {ini}")
     d = ini["data"]
@@ -130,8 +139,13 @@ def youtube(it):
     tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", it),
           "client_secret": env("YT_CLIENT_SECRET", it), "refresh_token": env("YT_REFRESH_TOKEN", it), "grant_type": "refresh_token"}, timeout=60).json()
     if "access_token" not in tok: raise RuntimeError(f"token: {tok}")
-    meta = {"snippet": {"title": it["legenda"].split("#")[0].strip()[:90] + " #Shorts", "description": it["legenda"], "categoryId": "22"},
-            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False}}
+    titulo = it["legenda"].split("#")[0].strip()[:90] + " #Shorts"
+    if mapa.eh(conta_id(it)):
+        _, lista = mapa.guarda_youtube(conta_id(it), tok["access_token"])   # conta errada = não publica
+        ja = mapa.youtube_ja_postado(conta_id(it), tok["access_token"], lista, titulo)
+        if ja: print("  youtube: já existe vídeo com este título no canal; não envio de novo"); return ja
+    meta = {"snippet": {"title": titulo, "description": it["legenda"], "categoryId": "22"},
+            "status": {"privacyStatus": "public", "selfDeclaredMadeForKids": False, "containsSyntheticMedia": True}}
     h = {"Authorization": f"Bearer {tok['access_token']}", "Content-Type": "application/json; charset=UTF-8", "X-Upload-Content-Type": "video/mp4"}
     r = requests.post("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status", headers=h, data=json.dumps(meta), timeout=60)
     loc = r.headers.get("Location")
@@ -325,6 +339,13 @@ def confirmado(plat, it, pid):
             u = f"https://youtu.be/{pid}"
             ok = requests.get("https://www.youtube.com/oembed", params={"url": u, "format": "json"}, timeout=30).status_code == 200
             return u if ok else (u + " (enviado; visibilidade não confirmada)")
+        if plat == "tiktok":
+            t = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it), "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
+            s = requests.post("https://open.tiktokapis.com/v2/post/publish/status/fetch/", headers={"Authorization": "Bearer " + t["access_token"], "Content-Type": "application/json; charset=UTF-8"}, data=json.dumps({"publish_id": pid}), timeout=60).json()
+            dd = s.get("data") or {}
+            if dd.get("status") == "PUBLISH_COMPLETE": return "tiktok:" + str((dd.get("publicaly_available_post_id") or [pid])[0])
+            if dd.get("status") == "FAILED": print(f"  tiktok recusou o vídeo: {dd.get('fail_reason')}")
+            return None
     except Exception as e: print(f"  (não consegui confirmar {plat}: {str(e)[:80]})")
     return None
 
@@ -412,7 +433,8 @@ def main():
             esp = (min(prox) - agora()).total_seconds() + 2
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
     for it in list(ag):
-        if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
+        if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
+        if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue
         q = dt.datetime.fromisoformat(it["quando"])
