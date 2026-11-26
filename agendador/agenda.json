@@ -1000,7 +1000,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "1kL2jI9AL0aeAUO0Fnd6JvQMbp8pjLVqz",
   "tamanho": 129562974,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-sp 3515806 Flora Rica: a cidade nascida da floresta e d",
