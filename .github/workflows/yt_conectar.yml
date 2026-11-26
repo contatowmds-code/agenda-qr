@@ -1,0 +1,24 @@
+name: YouTube - conectar canal de um perfil de mapa
+on:
+  workflow_dispatch:
+    inputs:
+      perfil:
+        description: "Perfil (mapa-sc, mapa-rs, mapa-pr, mapa-mg, mapa-mt, mapa-sp, mapa-rj, mapa-norte, mapa-br)"
+        required: true
+permissions:
+  contents: read
+jobs:
+  conectar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pynacl
+      - run: python agendador/yt_conectar.py
+        env:
+          PERFIL: ${{ inputs.perfil }}
+          YT_CLIENT_ID__MAPAS: ${{ secrets.YT_CLIENT_ID__MAPAS }}
+          YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
+          GH_PAT_SEGREDOS: ${{ secrets.GH_PAT_SEGREDOS }}
