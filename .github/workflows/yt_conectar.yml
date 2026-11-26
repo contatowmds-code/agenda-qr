@@ -5,7 +5,7 @@ on:
       quantos:
         description: "Quantos canais conectar nesta rodada (um código por canal)"
         required: false
-        default: "8"
+        default: "7"
 permissions:
   contents: read
 jobs:
