@@ -1126,7 +1126,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "1EYbIPg5u9YcRgfEaV0tFPmDH8mby4gRI",
   "tamanho": 273499282,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-br 4106902 Curitiba: a capital onde o parque foi feito ",
