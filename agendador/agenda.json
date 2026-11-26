@@ -949,7 +949,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "18W-u-pE01MeVn1ivJ1_C-M2S3xiGAoXi",
   "tamanho": 163207327,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-rs 4303004 Cachoeira do Sul tem 3.736 km², o 9º maior m",
