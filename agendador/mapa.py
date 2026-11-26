@@ -152,7 +152,13 @@ def instagram(it, d, arq):
     with open(arq, "rb") as f:
         u = requests.post(j.get("uri") or f"https://rupload.facebook.com/ig-api-upload/v21.0/{cid}",
                           headers={"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(n)}, data=f, timeout=1800).json()
-    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    if not u.get("success"):
+        # plano B: o Instagram busca o vídeo direto do link do Drive (arquivo compartilhado por link)
+        print(f"  instagram: envio direto recusado ({str(u)[:160]}); tentando pelo link do Drive"); 
+        j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "caption": it["legenda"], "share_to_feed": "true", "thumb_offset": "0", "is_ai_generated": "true",
+                          "video_url": f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t", "access_token": tok}, timeout=120).json()
+        if "id" not in j: raise RuntimeError(f"enviar: {u} | link: {j}")
+        cid = j["id"]
     for _ in range(90):
         s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
         if s.get("status_code") == "FINISHED": break
