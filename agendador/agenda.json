@@ -929,11 +929,10 @@
   "drive_id": "18W-u-pE01MeVn1ivJ1_C-M2S3xiGAoXi",
   "tamanho": 163207327,
   "ia": true,
-  "erros": {
-   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
-  },
+  "erros": {},
   "feito": {
-   "facebook": "3287513831639637"
+   "facebook": "3287513831639637",
+   "instagram": "17971185078227094"
   }
  },
  {
