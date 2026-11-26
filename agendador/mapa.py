@@ -128,7 +128,14 @@ def _audio_ig(arq):
     import subprocess
     sai = arq.with_name(arq.stem + "_ig.mp4")
     if sai.exists() and sai.stat().st_size > 1000: return sai
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(arq), "-c:v", "copy", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "128k",
+    import shutil, sys as _sys
+    ff = shutil.which("ffmpeg")
+    if not ff:
+        try:
+            subprocess.run([_sys.executable, "-m", "pip", "install", "-q", "imageio-ffmpeg"], capture_output=True, timeout=300)
+            import imageio_ffmpeg; ff = imageio_ffmpeg.get_ffmpeg_exe()
+        except Exception as e: print("aviso: sem ffmpeg para ajustar o áudio do Instagram:", e); return arq
+    r = subprocess.run([ff, "-y", "-v", "error", "-i", str(arq), "-c:v", "copy", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "128k",
                         "-movflags", "+faststart", str(sai)], capture_output=True, text=True)
     if r.returncode or not sai.exists(): print("aviso: não consegui ajustar o áudio para o Instagram:", r.stderr[-300:]); return arq
     return sai
