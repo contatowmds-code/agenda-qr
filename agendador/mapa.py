@@ -122,9 +122,22 @@ def baixar(it):
     raise RuntimeError("baixar do Drive: " + erro)
 
 
+def _audio_ig(arq):
+    """O Instagram recusa o envio ("ProcessingFailedError") quando o áudio foge do padrão dele (AAC até 48 kHz, 128 kbps).
+    O motor entrega áudio em 96 kHz: aqui só o ÁUDIO é refeito (48 kHz, estéreo, 128 kbps); a imagem é copiada sem perder nada."""
+    import subprocess
+    sai = arq.with_name(arq.stem + "_ig.mp4")
+    if sai.exists() and sai.stat().st_size > 1000: return sai
+    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(arq), "-c:v", "copy", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "128k",
+                        "-movflags", "+faststart", str(sai)], capture_output=True, text=True)
+    if r.returncode or not sai.exists(): print("aviso: não consegui ajustar o áudio para o Instagram:", r.stderr[-300:]); return arq
+    return sai
+
+
 def instagram(it, d, arq):
     """Reel do Instagram enviando o ARQUIVO (envio retomável), com o aviso de IA ligado. Capa = primeiro quadro (padrão)."""
     uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
+    arq = _audio_ig(arq)
     j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "upload_type": "resumable", "caption": it["legenda"], "share_to_feed": "true",
                       "thumb_offset": "0", "is_ai_generated": "true", "access_token": tok}, timeout=120).json()
     if "id" not in j: raise RuntimeError(f"criar: {j}")
