@@ -1207,7 +1207,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "11dRd9O6gv83_UwoMEZ7EzK51ys8APVzc",
   "tamanho": 246717819,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-sc 4205357 Flor do Sertão: a cidade que ganhou nome de ",
