@@ -898,7 +898,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "1UX5sK7QV1Vg1-SIUWa6zvip0ZTkm-HCw",
   "tamanho": 199294172,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-norte 1721000 Palmas: a capital desenhada do zero que n",
