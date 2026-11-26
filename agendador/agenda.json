@@ -1288,7 +1288,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "1G1BOMxO-e-HUvVJ0YBz3FyQPaiECxCVy",
   "tamanho": 246796677,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-mg 3152501 Pouso Alegre: a capital mineira do morango",
