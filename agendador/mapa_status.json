@@ -1,17 +1,26 @@
 {
  "_": {
-  "paginas_que_o_token_alcanca": [],
-  "conferido_em": "2026-11-24T17:23:35-03:00",
-  "teste_drive": "OK 289956179 bytes"
+  "paginas_que_o_token_alcanca": [
+   "Brasil No Mapa (@brasilnomapaofc)",
+   "Gaúcho No Mapa (@gauchonomapa)",
+   "Mato Grosso No Mapa (@matogrossonomapa)",
+   "Mineiro no Mapa (@mineironomapa)",
+   "Norte No Mapa (@nortenomapa)",
+   "Paranaense No Mapa (@paranaensenomapa)",
+   "Paulista No Mapa (@paulistanomapaofc)",
+   "Vale Ofertas (@catarinensenomapa)"
+  ],
+  "conferido_em": "2026-11-26T19:26:59-03:00",
+  "teste_drive": "FALHOU baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=1bznnChO6IrI4DrAdb15rawkQjcUjo_jo&export=download&confirm=t"
  },
  "mapa-sc": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-sc' não conectado no Meta: nenhuma Página com o Instagram @catarinensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@catarinensenomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-sc' não conectado no Meta: nenhuma Página com o Instagram @catarinensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Vale Ofertas"
   },
   "youtube": {
    "ok": false,
@@ -24,12 +33,12 @@
  },
  "mapa-rs": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-rs' não conectado no Meta: nenhuma Página com o Instagram @gauchonomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@gauchonomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-rs' não conectado no Meta: nenhuma Página com o Instagram @gauchonomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Gaúcho No Mapa"
   },
   "youtube": {
    "ok": false,
@@ -42,12 +51,12 @@
  },
  "mapa-pr": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-pr' não conectado no Meta: nenhuma Página com o Instagram @paranaensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@paranaensenomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-pr' não conectado no Meta: nenhuma Página com o Instagram @paranaensenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Paranaense No Mapa"
   },
   "youtube": {
    "ok": false,
@@ -60,12 +69,12 @@
  },
  "mapa-mg": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-mg' não conectado no Meta: nenhuma Página com o Instagram @mineironomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@mineironomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-mg' não conectado no Meta: nenhuma Página com o Instagram @mineironomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Mineiro no Mapa"
   },
   "youtube": {
    "ok": false,
@@ -78,12 +87,12 @@
  },
  "mapa-mt": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-mt' não conectado no Meta: nenhuma Página com o Instagram @matogrossonomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@matogrossonomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-mt' não conectado no Meta: nenhuma Página com o Instagram @matogrossonomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Mato Grosso No Mapa"
   },
   "youtube": {
    "ok": false,
@@ -96,12 +105,12 @@
  },
  "mapa-sp": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-sp' não conectado no Meta: nenhuma Página com o Instagram @paulistanomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@paulistanomapaofc"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-sp' não conectado no Meta: nenhuma Página com o Instagram @paulistanomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Paulista No Mapa"
   },
   "youtube": {
    "ok": false,
@@ -115,11 +124,11 @@
  "mapa-rj": {
   "instagram": {
    "ok": false,
-   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (vi 8 Páginas)"
   },
   "facebook": {
    "ok": false,
-   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "motivo": "perfil 'mapa-rj' não conectado no Meta: nenhuma Página com o Instagram @cariocanomapa entre as que o token alcança (vi 8 Páginas)"
   },
   "youtube": {
    "ok": false,
@@ -132,12 +141,12 @@
  },
  "mapa-norte": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-norte' não conectado no Meta: nenhuma Página com o Instagram @nortenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@nortenomapa"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-norte' não conectado no Meta: nenhuma Página com o Instagram @nortenomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Norte No Mapa"
   },
   "youtube": {
    "ok": false,
@@ -150,12 +159,12 @@
  },
  "mapa-br": {
   "instagram": {
-   "ok": false,
-   "motivo": "perfil 'mapa-br' não conectado no Meta: nenhuma Página com o Instagram @brasilnomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "@brasilnomapaofc"
   },
   "facebook": {
-   "ok": false,
-   "motivo": "perfil 'mapa-br' não conectado no Meta: nenhuma Página com o Instagram @brasilnomapa entre as que o token alcança (nenhum token lista Páginas)"
+   "ok": true,
+   "conta": "Brasil No Mapa"
   },
   "youtube": {
    "ok": false,
