@@ -19,6 +19,6 @@ jobs:
       - run: python agendador/yt_conectar.py
         env:
           PERFIL: ${{ inputs.perfil }}
-          YT_CLIENT_ID__MAPAS: ${{ secrets.YT_CLIENT_ID__MAPAS }}
+          YT_CLIENT_ID__MAPAS: "23695398237-70lkqt2rfp411o1j05rmtrucbjdofdo8.apps.googleusercontent.com"   # identificador público do app (projeto Mapas YouTube); a senha fica no segredo YT_CLIENT_SECRET__MAPAS
           YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
           GH_PAT_SEGREDOS: ${{ secrets.GH_PAT_SEGREDOS }}

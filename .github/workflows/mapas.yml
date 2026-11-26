@@ -21,7 +21,7 @@ jobs:
       FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
       YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
       YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-      YT_CLIENT_ID__MAPAS: ${{ secrets.YT_CLIENT_ID__MAPAS }}
+      YT_CLIENT_ID__MAPAS: "23695398237-70lkqt2rfp411o1j05rmtrucbjdofdo8.apps.googleusercontent.com"   # identificador público do app (projeto Mapas YouTube); a senha fica no segredo YT_CLIENT_SECRET__MAPAS
       YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
       TT_CLIENT_KEY: ${{ secrets.TT_CLIENT_KEY }}
       TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
