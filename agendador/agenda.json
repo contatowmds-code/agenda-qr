@@ -1480,7 +1480,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "1Yh_kR-tbzUVESprjhw6lXV_EO4ihLxw1",
   "tamanho": 199240667,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-mt 5101704 Barra do Bugres nasceu da caça a uma raiz va",
