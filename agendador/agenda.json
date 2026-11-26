@@ -1414,7 +1414,10 @@
   "quando": "2026-11-26T20:36:18-03:00",
   "drive_id": "19emzZ5jN2CXqWRnKwg3q6hO-OaeMkGUw",
   "tamanho": 268483147,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  }
  },
  {
   "id": "mapa-pr 4125555 São Manoel: 265 mil galinhas criadas em cida",
