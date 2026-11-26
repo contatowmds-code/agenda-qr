@@ -1291,6 +1291,9 @@
   "ia": true,
   "erros": {
    "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
+  },
+  "feito": {
+   "facebook": "1544941197396155"
   }
  },
  {
