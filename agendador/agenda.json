@@ -1401,7 +1401,10 @@
   "sha256": "46ea3919ea884aa9711dc4c33a506fb304f5089f20f29bc7f331d04e6b63b090",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4216206.mp4",
   "gh_asset": 801418068,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "RwH3VXA1rWk"
+  }
  },
  {
   "id": "mapa-pr 4118501 Pato Branco tem nome de rio, não de bicho!",
