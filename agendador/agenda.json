@@ -1253,6 +1253,9 @@
   "feito": {
    "instagram": "18166062118545067",
    "facebook": "1146945504417034"
+  },
+  "erros": {
+   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Quota exceeded for quota metric 'Video Uploads' and limit 'Video Uploads per day' of service 'youtube.googleapis.com' for consumer 'project_number:23695398237'.\",\n    \"errors\": [\n      {\n        \"message\": \"Quota exceeded for quota metric 'Vid"
   }
  },
  {
