@@ -1097,13 +1097,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:20:00-03:00",
-  "drive_id": "1BM5W-KnLE2K7X4bHkC_F9Es9VOPccbvQ",
+  "drive_id": "1Xvql36rcdGwwrMqOxb0NBXj2-rGl2VY-",
   "tamanho": 214413428,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "01b0c1f78a0daf49c14b9e3667fa3b06bac5707b366e50274708d9151a230675",
+  "drive_antigo": "1BM5W-KnLE2K7X4bHkC_F9Es9VOPccbvQ"
  },
  {
   "id": "mapa-sp 3530607 Mogi das Cruzes é conhecida como a Terra do ",
