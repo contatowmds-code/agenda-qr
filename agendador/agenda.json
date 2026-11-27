@@ -1478,7 +1478,10 @@
   "drive_id": "1uWEt9qV0AtdmMiDpqflp7Suxc65sgYn_",
   "tamanho": 267955727,
   "ia": true,
-  "sha256": "b0cfb1dc36a8ee5df7a7b84a36c91e443f97ba86a589e8cf55c724ee5f8070c2"
+  "sha256": "b0cfb1dc36a8ee5df7a7b84a36c91e443f97ba86a589e8cf55c724ee5f8070c2",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-br-4314902.mp4",
+  "gh_asset": 800824816,
+  "drive_apagado": true
  },
  {
   "id": "mapa-norte 1718659 Rio da Conceição: pequena cidade, porta d",
