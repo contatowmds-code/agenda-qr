@@ -1175,13 +1175,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T07:00:00-03:00",
-  "drive_id": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR",
+  "drive_id": "1jP9wmhkdlS16plC06HcXMhaXdAGcRiSN",
   "tamanho": 249242621,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "58cdff7565dd57602f55f4902400ff9c3da9eb6dfb4f970d587926cc25fe658f",
+  "drive_antigo": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR"
  },
  {
   "id": "mapa-mt-5104104-tt",
