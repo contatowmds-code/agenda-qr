@@ -928,11 +928,11 @@
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "instagram": "processar: {'id': '18019931321766256', 'status': 'Error: Media upload has failed with error code 2207085', 'status_code': 'ERROR'}",
-   "facebook": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
   },
   "feito": {
-   "youtube": "i9521NicHgU"
+   "youtube": "i9521NicHgU",
+   "facebook": "1895807514743187"
   }
  },
  {
