@@ -1108,13 +1108,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:20:00-03:00",
-  "drive_id": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV",
+  "drive_id": "1cQSa5kHsje0GDKCZd2pTyCyrWX6yy258",
   "tamanho": 270884023,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "cafef5ea3f46e022086950aec1df6a18e5cc6b85a7bd234ddda74a949afe3702",
+  "drive_antigo": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV"
  },
  {
   "id": "mapa-sc TT Indaial: criada, extinta e criada de novo",
