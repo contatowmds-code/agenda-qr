@@ -210,7 +210,7 @@ def story_instagram(d, arq):
     if "id" not in p: raise RuntimeError(f"publicar: {p}")
     return p["id"]
 def story_facebook(d, arq):
-    pid, tok = d["fb_page_id"], d["fb_token"]; st = trecho_story(arq)
+    pid, tok = d["fb_page_id"], d["fb_token"]; st = trecho_story(_audio_ig(arq))
     a = requests.post(f"{GRAPH}/{pid}/video_stories", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
     if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
     with open(st, "rb") as f:
