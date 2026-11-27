@@ -1194,13 +1194,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T06:10:00-03:00",
-  "drive_id": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY",
+  "drive_id": "112CF96OlLCqxFQYp4zZjbnaL6XHKgASr",
   "tamanho": 199240667,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "757318b075d73e29367666fe89d4c4fbadf303b6b59d75fb50b6801ae274236a",
+  "drive_antigo": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY"
  },
  {
   "id": "mapa-rs 4317251 Santa Tereza: casarões do Iphan e vales de p",
