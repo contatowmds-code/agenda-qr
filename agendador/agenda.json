@@ -1421,6 +1421,9 @@
   "drive_id": "1ga_VH2jwF6s3hRO5IwzTeTWDuaeEpyAJ",
   "tamanho": 230129205,
   "ia": true,
-  "sha256": "dccaf8a63b16f8a23da6ac8f411d372d89e661fe47f469c4efa6f86d747a422c"
+  "sha256": "dccaf8a63b16f8a23da6ac8f411d372d89e661fe47f469c4efa6f86d747a422c",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4203808.mp4",
+  "gh_asset": 800455389,
+  "drive_apagado": true
  }
 ]
