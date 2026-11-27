@@ -926,7 +926,7 @@
    "youtube",
    "tiktok"
   ],
-  "quando": "2026-11-27T12:00:00-03:00",
+  "quando": "2026-11-27T16:53:50-03:00",
   "drive_id": "1hbq9ihHGI_Q6xl9zSdGxnznOjfJH-N2K",
   "tamanho": 278922245,
   "ia": true,
@@ -934,7 +934,10 @@
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "e14cc5a26836c926940ad19b0cc4bdbede82d9412fa30799a9708a2eb6483be5",
-  "drive_antigo": "1Y_uMWSGbCbOjcVRSn7JwRrfXNyfkXwaP"
+  "drive_antigo": "1Y_uMWSGbCbOjcVRSn7JwRrfXNyfkXwaP",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3164803.mp4",
+  "gh_asset": 801846439,
+  "drive_apagado": true
  },
  {
   "id": "mapa-mg TT Teófilo Otoni virou capital de Minas e das pedras",
