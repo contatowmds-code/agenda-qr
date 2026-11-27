@@ -1070,13 +1070,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T06:10:00-03:00",
-  "drive_id": "1FxLGfquz-UeDvv5f5bPYOAUrEMXOpY4u",
+  "drive_id": "1Lg4HSNAgkVNeuw2bWOCVgQeOCoeEgbag",
   "tamanho": 283808463,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "becd20c59653fc79b8576fd3cb4225943bf32de1cd3723458c4c7d7839a68703",
+  "drive_antigo": "1FxLGfquz-UeDvv5f5bPYOAUrEMXOpY4u"
  },
  {
   "id": "mapa-pr TT São Manoel: 265 mil galinhas criadas em cidade pe",
