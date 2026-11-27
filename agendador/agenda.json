@@ -1422,5 +1422,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4207858.mp4",
   "gh_asset": 800910853,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-rs 4317509 Santo Ângelo: da missão de 1706 ao arco e à ",
+  "arquivo": "videos/mapa-rs-4317509.mp4",
+  "legenda": "Santo Ângelo: da missão de 1706 ao arco e à catedral #GaúchoNoMapa #SantoÂngelo #RioGrandeDoSul",
+  "conta": "mapa-rs",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T19:27:00-03:00",
+  "drive_id": "1k1STe4FHtSaiH3yHc17L9Wma0ZkV0qoX",
+  "tamanho": 150794257,
+  "ia": true,
+  "sha256": "8c4a83148b238d3d5f388efd258ee05ea4488f67b10a0e0ffca1c2af9f1d3fea"
  }
 ]
