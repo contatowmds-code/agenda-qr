@@ -39,7 +39,25 @@ if cmd == "conferir":
     if p: print("PUBLICADO E CONFERIDO:", json.dumps(p.get("links"), ensure_ascii=False)); sys.exit(0)
     if a: print("NA FILA. feito:", json.dumps(a.get("feito") or {}, ensure_ascii=False), "| erros:", json.dumps(a.get("erros") or {}, ensure_ascii=False)); sys.exit(1)
     print("não está na fila nem nos publicados"); sys.exit(2)
+if cmd == "pedir":
+    # DRIVE COM LOGIN (27/11/2026): pede ao robô uma sessão de envio. Uso: pedir <conta> <cod_ibge> "<nome.mp4>" <tamanho> <sha256>
+    nome, tam_, sha = sys.argv[4], int(sys.argv[5]), sys.argv[6]; pid = f"{conta}-{cod}.json"
+    for tent in range(6):
+        (AQUI / "pedidos").mkdir(exist_ok=True); (AQUI / "pedidos" / pid).write_text(json.dumps({"nome": nome, "tamanho": tam_, "sha256": sha, "ts": time.time()}, ensure_ascii=False), encoding="utf-8")
+        git("add", "agendador/pedidos/" + pid); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"pedido de envio {conta} {cod}")
+        if git("push", "-q", "origin", "HEAD:main").returncode == 0: break
+        time.sleep(3); atualizar()
+    else: print("SEM RESPOSTA: não consegui gravar o pedido no agenda-qr (confira o add_repo com access push)"); sys.exit(5)
+    fim = time.time() + 420
+    while time.time() < fim:
+        time.sleep(15); atualizar()
+        try:
+            r = json.loads((AQUI / "respostas" / pid).read_text(encoding="utf-8"))
+            if r.get("sha256") == sha and r.get("sessao"): print("SESSAO " + r["sessao"]); sys.exit(0)
+        except Exception: pass
+    print("SEM RESPOSTA: o robô não abriu a sessão de envio em 7 min (Drive com login desligado ou robô parado)"); sys.exit(5)
 drive_id, tam, legenda = sys.argv[4], int(sys.argv[5]), sys.argv[6].strip()
+sha256 = sys.argv[7] if len(sys.argv) > 7 and len(sys.argv[7]) == 64 else None
 if not (AQUI / "mapas_ativo.txt").exists(): print("INATIVO: a postagem automática dos mapas está desligada pelo dono; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
 redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
 if not redes:
@@ -62,7 +80,7 @@ for tent in range(6):
     if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
     ag = ler("agenda.json")
     ag.append({"id": f"{conta} {cod} {legenda.split('#')[0].strip()}"[:60], "arquivo": arq, "legenda": legenda, "conta": conta, "plataformas": redes,
-               "quando": horario(conta).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True})
+               "quando": horario(conta).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True, **({"sha256": sha256} if sha256 else {})})
     (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
     git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: publicar agora {conta} {cod}")
     if git("push", "-q", "origin", "HEAD:main").returncode == 0:
