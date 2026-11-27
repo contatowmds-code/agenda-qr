@@ -948,7 +948,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T05:20:00-03:00",
+  "quando": "2026-11-27T17:23:50-03:00",
   "drive_id": "1Gi5eENKslJXX-E06CuxuAx7c0NOwc5Ja",
   "tamanho": 246796677,
   "ia": true,
@@ -957,7 +957,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "fa888c374307660d4a4b95089a8fc26929aa6caddf316a56279cd2fa5c71ce0d",
-  "drive_antigo": "19FDxwTkJ55jaNtYZ523MrsrqOiasIlVs"
+  "drive_antigo": "19FDxwTkJ55jaNtYZ523MrsrqOiasIlVs",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3168606-tt.mp4",
+  "gh_asset": 801860619,
+  "drive_apagado": true
  },
  {
   "id": "mapa-pr TT Francisco Beltrão: posseiros tomaram a cidade em ",
