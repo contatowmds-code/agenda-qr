@@ -1402,5 +1402,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4203808.mp4",
   "gh_asset": 800455389,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-pr 4110656 Iracema do Oeste quer dizer lábios de mel!",
+  "arquivo": "videos/mapa-pr-4110656.mp4",
+  "legenda": "Iracema do Oeste quer dizer lábios de mel! #ParanaenseNoMapa #IracemaDoOeste #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T12:54:00-03:00",
+  "drive_id": "1ewlZBTtJXdrImUT9QoV78Imrzc0qe7dz",
+  "tamanho": 124719456,
+  "ia": true,
+  "sha256": "31c3bb72c153594c05ba80b952b556c3a0b5f0d1323fffa061d9b8307a1d2d82"
  }
 ]
