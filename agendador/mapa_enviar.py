@@ -42,6 +42,9 @@ if cmd == "conferir":
 if cmd == "pedir":
     # DRIVE COM LOGIN (27/11/2026): pede ao robô uma sessão de envio. Uso: pedir <conta> <cod_ibge> "<nome.mp4>" <tamanho> <sha256>
     nome, tam_, sha = sys.argv[4], int(sys.argv[5]), sys.argv[6]; pid = f"{conta}-{cod}.json"
+    try: ligado = (AQUI / "drive_codigo.txt").read_text(encoding="utf-8").startswith("CONECTADO")
+    except Exception: ligado = False
+    if not ligado: print("SEM RESPOSTA: o Drive com login ainda não foi conectado pelo dono (use o caminho antigo, FILA-MAPA)"); sys.exit(5)
     for tent in range(6):
         (AQUI / "pedidos").mkdir(exist_ok=True); (AQUI / "pedidos" / pid).write_text(json.dumps({"nome": nome, "tamanho": tam_, "sha256": sha, "ts": time.time()}, ensure_ascii=False), encoding="utf-8")
         git("add", "agendador/pedidos/" + pid); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"pedido de envio {conta} {cod}")
