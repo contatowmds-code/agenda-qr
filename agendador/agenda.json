@@ -1360,5 +1360,22 @@
   "ia": true,
   "sha256": "f1ae594e1e3f9f2c668672994513262c1fed6ed1a0ee596fc16fa11fee60ad95",
   "drive_antigo": "1Pl8mRlkmYwo_Fk6I6bkE6ucG2FSSX2x1"
+ },
+ {
+  "id": "mapa-sc 4215604 Santa Rosa de Lima: capital nacional das abe",
+  "arquivo": "videos/mapa-sc-4215604.mp4",
+  "legenda": "Santa Rosa de Lima: capital nacional das abelhas sem ferrão #CatarinenseNoMapa #SantaRosaDeLima #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T17:13:48-03:00",
+  "drive_id": "1d-9TqlIJMefVpan_neRDGEM8NTJ5gl60",
+  "tamanho": 202150712,
+  "ia": true,
+  "sha256": "5141c94dc2a7a730f56a9e699ef228d653769b6740ea874b7f57310b903ebe47"
  }
 ]
