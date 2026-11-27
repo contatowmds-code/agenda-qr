@@ -1240,12 +1240,12 @@
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "instagram": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "facebook": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "feito": {
-   "youtube": "GrlBLnmi4lU"
+   "youtube": "GrlBLnmi4lU",
+   "instagram": "18156094315532431"
   },
   "sha256": "e598f28b48441914a3f3a7b004cec422a456b3662ba3bf89fb32b9133a8d2895",
   "drive_antigo": "1Z7BBqHncCxz1QvAlJ2Mp3jB5jV12NeCF",
