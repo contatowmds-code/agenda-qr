@@ -3423,5 +3423,42 @@
    "tiktok": "tiktok:buffer:6b09df49b5cd052fe287a947"
   },
   "arquivado_em": "2026-11-27T16:57:20-03:00"
+ },
+ {
+  "id": "mapa-mg 3123403 Doresópolis tem 50 galinhas para cada morado",
+  "arquivo": "videos/mapa-mg-3123403.mp4",
+  "legenda": "Doresópolis tem 50 galinhas para cada morador #MineiroNoMapa #Doresópolis #MinasGerais",
+  "conta": "mapa-mg",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T10:15:00-03:00",
+  "drive_id": "1pLBF-Uy4acA6IOZ2DhSs8uMgCQ9U8EwJ",
+  "tamanho": 252285399,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "youtube": "FbY3vNdpRGM",
+   "instagram": "17969875233237262",
+   "facebook": "2627438384349904",
+   "tiktok": "b:2:6b09e096c02ca0988aaeed89:6b08de8210b4939633108e3c:6b08df358541f09ecbba1846:1795809431"
+  },
+  "sha256": "ffc133dc339161f13a26d2717e1fc7e3b0fb624fae67c89f01f2684e26190598",
+  "drive_antigo": "1ntQFhofo5sFNFTNceBSGX9JjPL0j-EBG",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3123403.mp4",
+  "gh_asset": 801844834,
+  "drive_apagado": true,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgQeq5RBPSP/",
+   "facebook": "https://www.facebook.com/reel/2627438384349904/",
+   "youtube": "https://youtu.be/FbY3vNdpRGM",
+   "tiktok": "tiktok:buffer:6b09e096c02ca0988aaeed89"
+  },
+  "arquivado_em": "2026-11-27T17:14:41-03:00"
  }
 ]
