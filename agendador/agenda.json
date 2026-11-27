@@ -901,13 +901,13 @@
   "tamanho": 244642004,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "feito": {
    "youtube": "MGfiQ8TbCT4",
    "instagram": "18222190612358652",
-   "facebook": "2326011544909988"
+   "facebook": "2326011544909988",
+   "tiktok": "b:1:6b09d9f1b5cd052fe285670b:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795807729"
   },
   "sha256": "c8aec557a19c539ce62da0238affec2c76b4d7aa3ddadf807ba0eda1085d2531",
   "drive_antigo": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy",
