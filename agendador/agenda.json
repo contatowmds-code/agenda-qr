@@ -1442,5 +1442,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-rs-4317509.mp4",
   "gh_asset": 801349186,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-sc 4216206 São Francisco do Sul: a primeira povoação de",
+  "arquivo": "videos/mapa-sc-4216206.mp4",
+  "legenda": "São Francisco do Sul: a primeira povoação de Santa Catarina #CatarinenseNoMapa #SãoFranciscoDoSul #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-28T19:20:00-03:00",
+  "drive_id": "1sEuizILqMdEmc4AjL5xKOSrowjp84tdN",
+  "tamanho": 167810271,
+  "ia": true,
+  "sha256": "46ea3919ea884aa9711dc4c33a506fb304f5089f20f29bc7f331d04e6b63b090"
  }
 ]
