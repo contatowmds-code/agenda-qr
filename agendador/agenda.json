@@ -1041,14 +1041,16 @@
   "tamanho": 249242621,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "58cdff7565dd57602f55f4902400ff9c3da9eb6dfb4f970d587926cc25fe658f",
   "drive_antigo": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3170701-tt.mp4",
   "gh_asset": 801867152,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "tiktok": "b:2:6b09e79f2ea34800c2911c3e:6b08de8210b4939633108e3c:6b08df358541f09ecbba1846:1795811231"
+  }
  },
  {
   "id": "mapa-mt-5104104-tt",
