@@ -1425,5 +1425,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4203808.mp4",
   "gh_asset": 800455389,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-mt 5107198 Ribeirãozinho nasceu do garimpo de ouro e de",
+  "arquivo": "videos/mapa-mt-5107198.mp4",
+  "legenda": "Ribeirãozinho nasceu do garimpo de ouro e de diamante! #MatoGrossoNoMapa #Ribeirãozinho #MatoGrosso",
+  "conta": "mapa-mt",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T09:43:00-03:00",
+  "drive_id": "10an3ewXQmuKb4vDaCi6mv8ri20OLvnUm",
+  "tamanho": 276700833,
+  "ia": true,
+  "sha256": "371097ac278a74ba07ca0e4c274be2fc70e8ab35d5041ddefaf6da9853a0fc25"
  }
 ]
