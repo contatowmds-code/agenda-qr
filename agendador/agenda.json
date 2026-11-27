@@ -1725,7 +1725,10 @@
   "quando": "2026-11-27T15:30:00-03:00",
   "drive_id": "1E5QuyDwJNyjK9zis2a2RNxYYJgq6csSY",
   "tamanho": 72712984,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-mg-3170701-tt",
