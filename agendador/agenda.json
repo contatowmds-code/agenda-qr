@@ -1518,6 +1518,9 @@
   "drive_id": "1PqNeGvoML-kkJNbz6bTBSEWWCmbJe_9M",
   "tamanho": 288787095,
   "ia": true,
-  "sha256": "6c78b2a3023b9dadd0f7de96683065423be8aec56a5981e1aeff99bc3a618c59"
+  "sha256": "6c78b2a3023b9dadd0f7de96683065423be8aec56a5981e1aeff99bc3a618c59",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5106307.mp4",
+  "gh_asset": 801607102,
+  "drive_apagado": true
  }
 ]
