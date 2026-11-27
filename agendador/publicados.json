@@ -3182,5 +3182,42 @@
    "tiktok": "tiktok:buffer:6b09d9f1b5cd052fe285670b"
   },
   "arquivado_em": "2026-11-27T16:38:28-03:00"
+ },
+ {
+  "id": "mapa-sp 3516200 Franca: a capital nacional do basquete, no i",
+  "arquivo": "videos/mapa-sp-3516200.mp4",
+  "legenda": "Franca: a capital nacional do basquete, no interior de SP #PaulistaNoMapa #Franca #SãoPaulo",
+  "conta": "mapa-sp",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T08:30:00-03:00",
+  "drive_id": "1ioy2qJb9Q3_FuU32EzemzQWCJ4biT6ZW",
+  "tamanho": 259866003,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "youtube": "wC7ElK9n1ic",
+   "instagram": "18103373420650016",
+   "facebook": "1148170551402434",
+   "tiktok": "b:1:6b09db17c02ca0988aacba11:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795808024"
+  },
+  "sha256": "9cd82e3dbd593d7b8b656c738d9674a8729f6bd628e3992eb0e8a9a0126f198c",
+  "drive_antigo": "1VY5JIdmgDhViRTTIWkjs93tAqOCrYxcR",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3516200.mp4",
+  "gh_asset": 801778685,
+  "drive_apagado": true,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgQb-3oTDaz/",
+   "facebook": "https://www.facebook.com/reel/1148170551402434/",
+   "youtube": "https://youtu.be/wC7ElK9n1ic",
+   "tiktok": "tiktok:buffer:6b09db17c02ca0988aacba11"
+  },
+  "arquivado_em": "2026-11-27T16:38:31-03:00"
  }
 ]
