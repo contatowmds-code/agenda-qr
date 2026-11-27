@@ -1319,9 +1319,11 @@
    "tiktok"
   ],
   "quando": "2026-11-27T15:50:44-03:00",
-  "drive_id": "1mkXKsqn0UiTqIWXwNED37NNkYrSZ1_P6",
+  "drive_id": "10U-uyBw5TA0AyFgXTeDFti_lj7PgnKaN",
   "tamanho": 273363020,
-  "ia": true
+  "ia": true,
+  "sha256": "9e3ca55802762258c8e745672a15a10513d9d09f30d9d23805a6c8869cc7cfe0",
+  "drive_antigo": "1mkXKsqn0UiTqIWXwNED37NNkYrSZ1_P6"
  },
  {
   "id": "mapa-sc 4219309 Videira: Museu do Vinho e o berço da Perdigã",
