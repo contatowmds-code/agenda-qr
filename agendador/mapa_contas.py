@@ -40,6 +40,8 @@ for conta in mapa.CONTAS:
     except Exception as e: s["tiktok"] = {"ok": False, "motivo": str(e)[:200]}
     st[conta] = s
     print(conta, {k: (v.get("conta") if v["ok"] else "NÃO: " + v["motivo"][:90]) for k, v in s.items()})
+try: print("TikToks no Buffer:", [(c["n"], c.get("nome"), c.get("name")) for c in mapa.buffer_canais()])
+except Exception as e: print("Buffer:", str(e)[:300])
 extra = {"paginas_que_o_token_alcanca": sorted(mapa.VISTAS), "conferido_em": dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds")}
 if os.environ.get("TESTE_DRIVE"):   # teste de download de um arquivo do Drive: "ID,TAMANHO"
     i, tam = (os.environ["TESTE_DRIVE"].split(",") + ["0"])[:2]
