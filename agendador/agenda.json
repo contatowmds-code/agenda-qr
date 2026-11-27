@@ -1078,13 +1078,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T07:00:00-03:00",
-  "drive_id": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r",
+  "drive_id": "15pnXRDVIFgz4zbdip-1ilksWEWgVbMfz",
   "tamanho": 290599756,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "045d2926252de3fea684734b5fc025281db7689efbce84983e8361a0870faeee",
+  "drive_antigo": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r"
  },
  {
   "id": "mapa-mt TT Reserva do Cabaçal tem 30 bois por morador!",
