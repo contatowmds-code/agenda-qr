@@ -1531,5 +1531,69 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5106307.mp4",
   "gh_asset": 801607102,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-pr 4118501 Pato Branco tem nome de rio, não de bicho!",
+  "arquivo": "videos/mapa-pr-4118501.mp4",
+  "legenda": "Pato Branco tem nome de rio, não de bicho! #ParanaenseNoMapa #PatoBranco #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T15:50:44-03:00",
+  "drive_id": "1FK1BUo86f9tOxNto6KDm0SuuqazGf6bN",
+  "tamanho": 282291971,
+  "ia": true
+ },
+ {
+  "id": "mapa-pr 4115903 Mirador: a ponte que falta e o rio que ganho",
+  "arquivo": "videos/mapa-pr-4115903.mp4",
+  "legenda": "Mirador: a ponte que falta e o rio que ganhou 220 mil peixes #ParanaenseNoMapa #Mirador #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T15:50:44-03:00",
+  "drive_id": "1mkXKsqn0UiTqIWXwNED37NNkYrSZ1_P6",
+  "tamanho": 273363020,
+  "ia": true
+ },
+ {
+  "id": "mapa-sc 4219309 Videira: Museu do Vinho e o berço da Perdigã",
+  "arquivo": "videos/mapa-sc-4219309.mp4",
+  "legenda": "Videira: Museu do Vinho e o berço da Perdigão #CatarinenseNoMapa #Videira #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T15:50:44-03:00",
+  "drive_id": "13f8G0ITuzfgXD8SNh26Dubksl4AXKyUj",
+  "tamanho": 242508420,
+  "ia": true
+ },
+ {
+  "id": "mapa-norte 1505536 Parauapebas: a cidade que nasceu da maior",
+  "arquivo": "videos/mapa-norte-1505536.mp4",
+  "legenda": "Parauapebas: a cidade que nasceu da maior reserva de minério do mundo #NorteNoMapa #Parauapebas #Pará",
+  "conta": "mapa-norte",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T15:50:44-03:00",
+  "drive_id": "1Pl8mRlkmYwo_Fk6I6bkE6ucG2FSSX2x1",
+  "tamanho": 225798247,
+  "ia": true
  }
 ]

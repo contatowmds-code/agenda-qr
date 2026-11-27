@@ -109,7 +109,13 @@ for tent in range(6):
     if preso and not p:
         # RESGATE (27/11/2026): a cidade já estava na fila pelo caminho antigo (arquivo preso no link público do Drive, nada publicado ainda).
         # O vídeo que chegou agora pelo caminho novo assume o lugar: mesmo item, arquivo novo, horário espalhado. Sem duplicar.
-        x = preso[0]; x.update(drive_id=drive_id, tamanho=tam, sha256=sha256, legenda=legenda, quando=horario(conta).isoformat(timespec="seconds")); x.pop("erros", None)
+        x = preso[0]
+        try:   # o arquivo antigo vira sobra no Drive: registra para o script de limpeza do Drive apagar (ele lê o publicados.json)
+            pub_ = ler("publicados.json"); pub_.append({"id": "limpeza do Drive: arquivo antigo de " + arq, "arquivo": "limpeza/" + str(x.get("drive_id")), "legenda": "", "conta": conta, "plataformas": ["limpeza"], "links": {"limpeza": "ok"},
+                         "arquivado_em": dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds"), "drive_id": x.get("drive_id"), "limpeza": True})
+            (AQUI / "publicados.json").write_text(json.dumps(pub_, ensure_ascii=False, indent=1), encoding="utf-8"); git("add", "agendador/publicados.json")
+        except Exception: pass
+        x.update(drive_id=drive_id, tamanho=tam, sha256=sha256, legenda=legenda, quando=horario(conta).isoformat(timespec="seconds")); x.pop("erros", None)
         (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
         git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: arquivo novo para {conta} {cod} (o antigo estava preso no Drive)")
         if git("push", "-q", "origin", "HEAD:main").returncode == 0: print("NA FILA para publicar às", x["quando"][11:16], "de", x["quando"][:10], "(assumiu o lugar do arquivo antigo que estava preso) em:", ", ".join(x.get("plataformas", redes))); sys.exit(0)

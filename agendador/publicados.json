@@ -2839,5 +2839,80 @@
    "tiktok": "tiktok:buffer:6b09b0ad34d224b14a9c7048"
   },
   "arquivado_em": "2026-11-27T13:42:19-03:00"
+ },
+ {
+  "id": "limpeza do Drive: cópia repetida de Ibiam",
+  "arquivo": "limpeza/17Ijbif_9vaFWHyhkeHyher30vkEO1NA_",
+  "legenda": "",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "limpeza"
+  ],
+  "links": {
+   "limpeza": "ok"
+  },
+  "arquivado_em": "2026-11-27T15:10:44-03:00",
+  "drive_id": "17Ijbif_9vaFWHyhkeHyher30vkEO1NA_",
+  "limpeza": true
+ },
+ {
+  "id": "limpeza do Drive: cópia repetida de Santana da Ponte Pensa",
+  "arquivo": "limpeza/1VBcCQDtWvEe5CDuZ4i9ZREyQdEgxTth3",
+  "legenda": "",
+  "conta": "mapa-sp",
+  "plataformas": [
+   "limpeza"
+  ],
+  "links": {
+   "limpeza": "ok"
+  },
+  "arquivado_em": "2026-11-27T15:10:44-03:00",
+  "drive_id": "1VBcCQDtWvEe5CDuZ4i9ZREyQdEgxTth3",
+  "limpeza": true
+ },
+ {
+  "id": "limpeza do Drive: cópia repetida de Porto Vera Cruz",
+  "arquivo": "limpeza/1w0Dpw6YBCbE6mRrpKhy-Emxwg4JsO_w8",
+  "legenda": "",
+  "conta": "mapa-rs",
+  "plataformas": [
+   "limpeza"
+  ],
+  "links": {
+   "limpeza": "ok"
+  },
+  "arquivado_em": "2026-11-27T15:10:44-03:00",
+  "drive_id": "1w0Dpw6YBCbE6mRrpKhy-Emxwg4JsO_w8",
+  "limpeza": true
+ },
+ {
+  "id": "limpeza do Drive: cópia repetida de Turmalina",
+  "arquivo": "limpeza/13eMI6veliCUMgPfx1VyQEcitU26ye5yu",
+  "legenda": "",
+  "conta": "mapa-sp",
+  "plataformas": [
+   "limpeza"
+  ],
+  "links": {
+   "limpeza": "ok"
+  },
+  "arquivado_em": "2026-11-27T15:10:44-03:00",
+  "drive_id": "13eMI6veliCUMgPfx1VyQEcitU26ye5yu",
+  "limpeza": true
+ },
+ {
+  "id": "limpeza do Drive: cópia repetida de Trabiju",
+  "arquivo": "limpeza/1HpQfOnvIqzbORR_MNT-xF-Hr6BUrF41u",
+  "legenda": "",
+  "conta": "mapa-sp",
+  "plataformas": [
+   "limpeza"
+  ],
+  "links": {
+   "limpeza": "ok"
+  },
+  "arquivado_em": "2026-11-27T15:10:44-03:00",
+  "drive_id": "1HpQfOnvIqzbORR_MNT-xF-Hr6BUrF41u",
+  "limpeza": true
  }
 ]

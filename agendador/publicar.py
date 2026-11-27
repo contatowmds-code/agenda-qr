@@ -494,6 +494,10 @@ def main():
                     if _git("push", "-q", "origin", "HEAD:main").returncode == 0: break
                     time.sleep(2)
                 print("cidades feitas:", {c: len(L) for c, L in novo.items()})
+                esp = mapa.drive_faxina(json.loads(AGENDA.read_text(encoding="utf-8")))   # junto, a cada 3 h: limpa a pasta do robô no Drive e anota o espaço
+                if esp:
+                    print(esp); _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main"); (AQUI / "drive_espaco.txt").write_text(esp + "\n", encoding="utf-8")
+                    _git("add", "agendador/drive_espaco.txt"); _git("commit", "-q", "-m", "drive: espaço"); _git("push", "-q", "origin", "HEAD:main")
                 ag = json.loads(AGENDA.read_text(encoding="utf-8"))
         except Exception as e: print("cidades feitas:", str(e)[:160])
     # PEDIDOS DE ENVIO das sessões (Drive com login): responde com a URL da sessão de envio

@@ -494,3 +494,19 @@ def feitas_reais(conta, yt_token=None):
         k = norm(c.split(":")[0].split("#")[0])[:40]
         if k and k not in vistos: vistos.add(k); out.append(c[:160])
     return out
+
+def drive_faxina(ag):
+    """Mantém o Drive com espaço: apaga da pasta do robô o que não pertence a nenhum item da agenda (sobras de envio interrompido ou de item removido,
+    com mais de 6 h) e o que já está no cofre. Devolve o texto do espaço usado. Só enxerga arquivos criados pelo próprio robô."""
+    tk = drive_token()
+    if not tk: return None
+    H = {"Authorization": "Bearer " + tk}; vivos = {x.get("drive_id") for x in ag if x.get("drive_id") and not x.get("gh_url")}; n = 0
+    try:
+        r = requests.get("https://www.googleapis.com/drive/v3/files", params={"q": "mimeType='video/mp4'", "fields": "files(id,name,createdTime,trashed)", "pageSize": 200}, headers=H, timeout=60).json()
+        for f in r.get("files", []):
+            idade = time.time() - dt_.datetime.fromisoformat(f["createdTime"].replace("Z", "+00:00")).timestamp()
+            if f["id"] not in vivos and (idade > 6 * 3600 or f.get("trashed")):
+                if drive_apagar(f["id"]): n += 1; print("Drive: sobra apagada:", f.get("name", "")[:60])
+        q = requests.get("https://www.googleapis.com/drive/v3/about", params={"fields": "storageQuota(limit,usage,usageInDriveTrash)"}, headers=H, timeout=60).json().get("storageQuota", {})
+        return f"Drive: {int(q.get('usage', 0)) / 1e9:.1f} GB usados de {int(q.get('limit', 0)) / 1e9:.0f} GB (lixeira: {int(q.get('usageInDriveTrash', 0)) / 1e9:.1f} GB) | sobras apagadas agora: {n} | conferido em {dt_.datetime.now(dt_.timezone(dt_.timedelta(hours=-3))).strftime('%d/%m %H:%M')}"
+    except Exception as e: print("Drive: faxina:", str(e)[:120]); return None
