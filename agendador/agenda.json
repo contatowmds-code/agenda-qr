@@ -1811,7 +1811,10 @@
   "quando": "2026-11-27T07:05:00-03:00",
   "drive_id": "17Ijbif_9vaFWHyhkeHyher30vkEO1NA_",
   "tamanho": 113905094,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
