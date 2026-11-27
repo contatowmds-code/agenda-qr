@@ -115,6 +115,18 @@ def baixar(it):
                 with open(dest, "wb") as f:
                     for b in r.iter_content(1 << 20): f.write(b)
             n = dest.stat().st_size
+            if n < 20000 and not it.get("gh_url"):
+                # o Drive às vezes devolve uma PÁGINA (aviso de antivírus com um formulário, ou aviso de limite) em vez do arquivo: reenvia o formulário com os campos dela
+                import re as _re
+                pg = dest.read_text(errors="ignore"); campos = dict(_re.findall(r'name="([^"]+)"\s+value="([^"]*)"', pg)); ac = _re.search(r'action="([^"]+)"', pg)
+                tit = (_re.search(r"<title>(.*?)</title>", pg, _re.S) or [None, ""])[1].strip()[:80]; msg = _re.sub(r"<[^>]+>", " ", pg); msg = " ".join(msg.split())[:220]
+                if ac and campos.get("id"):
+                    with requests.get(ac.group(1).replace("&amp;", "&"), params=campos, stream=True, timeout=600) as r2:
+                        r2.raise_for_status()
+                        with open(dest, "wb") as f:
+                            for b in r2.iter_content(1 << 20): f.write(b)
+                    n = dest.stat().st_size
+                if n < 20000: raise RuntimeError(f"o Drive devolveu uma página no lugar do vídeo: [{tit}] {msg}")
             with open(dest, "rb") as f: cab = f.read(16)
             if b"ftyp" in cab and (not tam or n == tam): return dest
             erro = f"veio {n} bytes (esperado {tam}); o arquivo do Drive não está acessível por link ou foi apagado"
