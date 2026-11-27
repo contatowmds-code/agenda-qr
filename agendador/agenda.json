@@ -1457,7 +1457,10 @@
   "quando": "2026-11-27T10:15:00-03:00",
   "drive_id": "1ntQFhofo5sFNFTNceBSGX9JjPL0j-EBG",
   "tamanho": 252285399,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-mg 3164803 São Sebastião do Rio Preto: mais boi que gen",
