@@ -512,6 +512,21 @@ def main():
                 time.sleep(2)
             ag = json.loads(AGENDA.read_text(encoding="utf-8"))
         except Exception as e: print("pedidos de envio:", str(e)[:160])
+    # MUDANÇA dos vídeos antigos presos no link público do Drive (quem copia é o script do Drive do dono, com o login dele)
+    if not DRY and os.environ.get("GITHUB_ACTIONS") and os.environ.get("SO_PREFIXO"):
+        try:
+            lista, trocas = mapa.mudanca(ag)
+            for it, campos in trocas:
+                it.update(campos); (it.get("erros") or {}).pop("cofre", None); persistir(it, "cofre", valor=campos); print(f"[{it['id']}] vídeo antigo MUDOU para a pasta do robô: segue pelo caminho novo")
+            if lista is not None:
+                for tent in range(5):
+                    _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main")
+                    mapa.MUDANCA.write_text(json.dumps(lista, ensure_ascii=False, indent=1), encoding="utf-8")
+                    _git("add", "agendador/mudanca.json"); _git("commit", "-q", "-m", "mudança: vídeos antigos a copiar")
+                    if _git("push", "-q", "origin", "HEAD:main").returncode == 0: break
+                    time.sleep(2)
+            if trocas or lista is not None: ag = json.loads(AGENDA.read_text(encoding="utf-8"))
+        except Exception as e: print("mudança:", str(e)[:160])
     def q_venc(it):
         try: return dt.datetime.fromisoformat(it["quando"]) < agora() - dt.timedelta(minutes=20)
         except Exception: return False

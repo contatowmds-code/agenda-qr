@@ -450,6 +450,40 @@ def atender_pedidos():
         except Exception as e: print(f"[pedido {p.name}] não consegui atender: {str(e)[:160]}")
     return mudou
 
+# ---------------- MUDANÇA DOS VÍDEOS ANTIGOS (27/11/2026) ----------------
+# Os vídeos do caminho antigo só saem do Drive pelo link público, que o Google bloqueou ("Quota exceeded"). O robô abre uma sessão de envio para
+# cada um e publica a lista em agendador/mudanca.json; o script do Drive do dono (função mudar, com o login DELE) copia o arquivo para a sessão,
+# confere que a cópia é idêntica (md5), renomeia para "ok-<id antigo>.mp4" e apaga o original. Só arquivo com o nome "ok-" (que só o dono consegue
+# dar) é aceito aqui: o item passa a apontar para a cópia e segue pelo caminho novo (baixa com login, cofre, posta, apaga).
+MUDANCA = AQUI / "mudanca.json"
+def mudanca(ag):
+    """Devolve (lista para gravar em mudanca.json ou None se não mudou, trocas=[(item, campos novos)])."""
+    tk = drive_token()
+    if not tk: return None, []
+    try: atual = json.loads(MUDANCA.read_text(encoding="utf-8"))
+    except Exception: atual = []
+    presos = {}
+    for it in ag:
+        if str(it.get("conta", "")).startswith("mapa-") and it.get("drive_id") and not it.get("gh_url") and not it.get("sha256") and int(it.get("tamanho") or 0) > 1_000_000:
+            presos.setdefault(it["drive_id"], []).append(it)
+    if not presos and not atual: return None, []
+    H = {"Authorization": "Bearer " + tk}; prontos = {}
+    r = requests.get("https://www.googleapis.com/drive/v3/files", params={"q": "name contains 'ok-' and trashed=false", "fields": "files(id,name,size,sha256Checksum)", "pageSize": 200}, headers=H, timeout=60).json()
+    for f in r.get("files", []):
+        if f.get("name", "").startswith("ok-") and f["name"].endswith(".mp4"): prontos[f["name"][3:-4]] = f
+    trocas, lista = [], []; velhos = {e["antigo"]: e for e in atual if e.get("antigo")}
+    for d, itens in presos.items():
+        tam = int(itens[0]["tamanho"]); f = prontos.get(d)
+        if f and int(f.get("size") or 0) == tam and len(f.get("sha256Checksum") or "") == 64:
+            for it in itens: trocas.append((it, {"drive_id": f["id"], "sha256": f["sha256Checksum"], "drive_antigo": d}))
+            continue
+        e = velhos.get(d)
+        if not e or time.time() - float(e.get("ts", 0)) > 5 * 86400 or int(e.get("tamanho", 0)) != tam:
+            try: e = {"antigo": d, "tamanho": tam, "sessao": drive_sessao(f"mud-{d}.mp4", tam), "ts": int(time.time())}; print(f"mudança: sessão aberta para o vídeo antigo {d}")
+            except Exception as x: print("mudança:", str(x)[:120]); continue
+        lista.append(e)
+    return (lista if lista != atual else None), trocas
+
 def faxina(ag):
     """Apaga do cofre o que não pertence a nenhum item da agenda (sobras de teste ou de item removido), com mais de 1 h."""
     try:
