@@ -1427,7 +1427,10 @@
   "sha256": "a09175db2416bba566148a9cf892ff204de1a52115b20523ec890198a08e2064",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3147501.mp4",
   "gh_asset": 800823564,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "V0Wk5jApVY4"
+  }
  },
  {
   "id": "mapa-sp 3554755 Trabiju nasceu de um trilho de trem e só vir",
