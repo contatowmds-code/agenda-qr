@@ -2616,5 +2616,30 @@
    "tiktok": "tiktok:buffer:6b097ef5658222306c144641"
   },
   "arquivado_em": "2026-11-27T10:16:24-03:00"
+ },
+ {
+  "id": "mapa-norte-1506807-tt",
+  "arquivo": "videos/mapa-norte-1506807-tt.mp4",
+  "legenda": "Santarém: os rios Tapajós e Amazonas correm lado a lado #NorteNoMapa #Santarém #Pará",
+  "conta": "mapa-norte",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T06:10:00-03:00",
+  "drive_id": "1ddR8JwPhAOq0O9F6KaNFYDNevs-QGeAP",
+  "tamanho": 199294172,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-norte-1506807-tt.mp4",
+  "gh_asset": 800543700,
+  "feito": {
+   "tiktok": "b:1:6b09823d1fd46e62e747e482:6b08dfecd593469888bf3bb7:6b08e04c8541f09ecbba1f0c:1795785277"
+  },
+  "links": {
+   "tiktok": "tiktok:buffer:6b09823d1fd46e62e747e482"
+  },
+  "arquivado_em": "2026-11-27T10:22:48-03:00"
  }
 ]
