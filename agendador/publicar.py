@@ -523,7 +523,8 @@ def main():
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
         n = 0; falhas = 0
         if random.random() < .04: mapa.faxina(ag)
-        for it in sorted(ag, key=lambda x: 0 if x.get("sha256") else 1):   # primeiro os vídeos enviados pelo caminho novo (Drive com login): esses nunca esbarram no limite do link público
+        _ord = list(ag); random.shuffle(_ord)   # a sondagem do Drive usa um arquivo antigo DIFERENTE a cada vez (insistir sempre no mesmo mantém ele bloqueado)
+        for it in sorted(_ord, key=lambda x: 0 if x.get("sha256") else 1):   # primeiro os vídeos enviados pelo caminho novo (Drive com login): esses nunca esbarram no limite do link público
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
             antigo = not it.get("sha256")   # vídeo do caminho antigo: só dá para baixar pelo link público do Drive, que tem limite diário
@@ -540,7 +541,7 @@ def main():
                     it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub" + (" e APAGADO do Drive" if g.get("drive_apagado") else "; o Drive apaga depois de publicar")); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
             except Exception as e:
                 print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); falhas += 1
-                if antigo and ("Quota exceeded" in str(e) or "página no lugar" in str(e)): _bloq_drive(time.time() + 2 * 3600); print("  Drive ainda recusando o link público: nova sondagem em 2 h")
+                if antigo and ("Quota exceeded" in str(e) or "página no lugar" in str(e)): _bloq_drive(time.time() + 3600); print("  Drive ainda recusando o link público: nova sondagem em 1 h"); break
             if falhas >= 3: break   # até 3 erros por rodada (um arquivo com a cota do Drive estourada não pode travar os outros)
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
