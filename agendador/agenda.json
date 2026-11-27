@@ -999,7 +999,10 @@
   "quando": "2026-11-27T05:00:00-03:00",
   "drive_id": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy",
   "tamanho": 244642004,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-sp 3547205 Santana da Ponte Pensa nasceu na rota da boi",
