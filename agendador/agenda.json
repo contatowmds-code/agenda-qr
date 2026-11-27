@@ -1051,13 +1051,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:20:00-03:00",
-  "drive_id": "1EOVHNkSjLgWyjcgbXJ8p0PBXjkVZzZSl",
+  "drive_id": "1VyO0hSwhv5eYnUfcNHNQNwU_uLxSR2R-",
   "tamanho": 267720052,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "a7ea5671450c3d0dbe37a47a5503f3dc595cad905bcb4725cde756be01b0b142",
+  "drive_antigo": "1EOVHNkSjLgWyjcgbXJ8p0PBXjkVZzZSl"
  },
  {
   "id": "mapa-mg TT Pouso Alegre: a capital mineira do morango",
