@@ -27,6 +27,32 @@ if cmd == "status":
     for c in contas:
         print(f"{c:11}", " | ".join(f"{r}: " + ((st.get(c, {}).get(r) or {}).get("conta") or "NÃO") if (st.get(c, {}).get(r) or {}).get("ok") else f"{r}: NÃO" for r in REDES))
     sys.exit(0)
+if cmd == "feitas":
+    # CIDADES JÁ FEITAS (27/11/2026: a pasta FEITAS-MAPA do Drive não existe mais). Uso: feitas <conta>  -> uma linha por cidade já feita ou reservada (serve de feitas.txt para o fila.py)
+    c_ = sys.argv[2]; L = []
+    for n in (c_ + ".txt", c_ + ".reservas.txt"):
+        try: L += (AQUI / "feitas" / n).read_text(encoding="utf-8").splitlines()
+        except Exception: pass
+    for arqj in ("publicados.json", "agenda.json"):
+        try: L += [x.get("legenda", "").split("\n")[0] for x in ler(arqj) if x.get("conta") == c_ and not str(x.get("arquivo", "")).endswith("-tt.mp4")]
+        except Exception: pass
+    vis = set()
+    for l in L:
+        l = l.strip()
+        if l and l not in vis: vis.add(l); print(l)
+    sys.exit(0)
+if cmd == "reservar":
+    # Uso: reservar <conta> "<UF | ep | cod | Cidade>"  -> grava a reserva (EM PRODUÇÃO) para outra sessão não pegar a mesma cidade
+    c_, linha = sys.argv[2], sys.argv[3].replace(".txt", "").strip()
+    for tent in range(6):
+        (AQUI / "feitas").mkdir(exist_ok=True); fr = AQUI / "feitas" / (c_ + ".reservas.txt"); ant = fr.read_text(encoding="utf-8") if fr.exists() else ""
+        chave_ = "|".join(p.strip() for p in linha.split("|")[2:3])
+        if chave_ and any(chave_ == "|".join(p.strip() for p in l.split("|")[2:3]) for l in ant.splitlines()): print("JÁ RESERVADA por outra sessão: escolha a próxima cidade da fila"); sys.exit(4)
+        fr.write_text(ant + linha + " | EM PRODUÇÃO | " + time.strftime("%d/%m %H:%M") + "\n", encoding="utf-8")
+        git("add", "agendador/feitas"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"reserva {linha[:60]}")
+        if git("push", "-q", "origin", "HEAD:main").returncode == 0: print("RESERVADA:", linha); sys.exit(0)
+        time.sleep(3); atualizar()
+    print("não consegui gravar a reserva (confira o add_repo do agenda-qr com access push)"); sys.exit(5)
 conta, cod = sys.argv[2], sys.argv[3]
 if conta not in contas: sys.exit(f"conta desconhecida: {conta} (use {', '.join(contas)})")
 arq = f"videos/{conta}-{cod}.mp4"

@@ -459,3 +459,38 @@ def faxina(ag):
             idade = time.time() - dt_.datetime.fromisoformat(a["created_at"].replace("Z", "+00:00")).timestamp()
             if a["name"] not in nomes and idade > 3600: requests.delete(f"https://api.github.com/repos/{repo}/releases/assets/{a['id']}", headers=_ghh(), timeout=60); print("cofre: sobra apagada:", a["name"])
     except Exception as e: print("cofre: faxina:", str(e)[:120])
+
+
+# ---------------- CIDADES JÁ FEITAS (27/11/2026) ----------------
+# A pasta FEITAS-MAPA do Drive sumiu. O registro passa a morar aqui, em agendador/feitas/<conta>.txt, e é RECONSTRUÍDO a partir do que
+# está de fato publicado: títulos do YouTube e legendas do Instagram de cada perfil (inclui o que o dono postou à mão), mais a agenda e os publicados.
+FEITAS = AQUI / "feitas"
+def feitas_reais(conta, yt_token=None):
+    """Primeira linha de cada legenda/título já publicado no perfil, do mais antigo para o mais novo."""
+    L = []
+    try:
+        m = meta(conta); url, p = f"{GRAPH}/{m['ig_user_id']}/media", {"fields": "caption,timestamp", "limit": 100, "access_token": m["fb_token"]}
+        for _ in range(30):
+            r = requests.get(url, params=p, timeout=60).json()
+            for x in r.get("data", []):
+                c = (x.get("caption") or "").strip().split("\n")[0].strip()
+                if c: L.append((x.get("timestamp", ""), c))
+            url = (r.get("paging") or {}).get("next"); p = {}
+            if not url: break
+    except Exception as e: print(f"  feitas {conta}: instagram: {str(e)[:100]}")
+    try:
+        if yt_token:
+            _, pl = guarda_youtube(conta, yt_token); tok = None
+            for _ in range(30):
+                r = requests.get("https://www.googleapis.com/youtube/v3/playlistItems", params={"part": "snippet", "playlistId": pl, "maxResults": 50, **({"pageToken": tok} if tok else {})}, headers={"Authorization": "Bearer " + yt_token}, timeout=60).json()
+                for x in r.get("items", []):
+                    sn = x.get("snippet") or {}; t = (sn.get("title") or "").strip()
+                    if t and t not in ("Private video", "Deleted video"): L.append((sn.get("publishedAt", ""), t))
+                tok = r.get("nextPageToken")
+                if not tok: break
+    except Exception as e: print(f"  feitas {conta}: youtube: {str(e)[:100]}")
+    vistos, out = set(), []
+    for _, c in sorted(L):
+        k = norm(c.split(":")[0].split("#")[0])[:40]
+        if k and k not in vistos: vistos.add(k); out.append(c[:160])
+    return out

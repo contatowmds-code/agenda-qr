@@ -471,6 +471,31 @@ def main():
         if prox:
             esp = (min(prox) - agora()).total_seconds() + 2
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
+    # CIDADES JÁ FEITAS: a cada 3 h reconstrói agendador/feitas/<conta>.txt a partir do que está publicado no YouTube e no Instagram de cada perfil
+    if not DRY and os.environ.get("GITHUB_ACTIONS") and os.environ.get("SO_PREFIXO"):
+        try:
+            _ff = Path(tempfile.gettempdir()) / "feitas_ok.txt"
+            if not _ff.exists() or time.time() - _ff.stat().st_mtime > 3 * 3600:
+                _ff.write_text("x"); novo = {}
+                for c in mapa.CONTAS:
+                    yt = None
+                    try:
+                        fake = {"conta": c, "id": c}
+                        if env("YT_REFRESH_TOKEN", fake): yt = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", fake), "client_secret": env("YT_CLIENT_SECRET", fake), "refresh_token": env("YT_REFRESH_TOKEN", fake), "grant_type": "refresh_token"}, timeout=60).json().get("access_token")
+                    except Exception: pass
+                    L = mapa.feitas_reais(c, yt)
+                    if L: novo[c] = L
+                _git("config", "user.name", "agendador"); _git("config", "user.email", "agendador@users.noreply.github.com")
+                for tent in range(5):
+                    _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main"); mapa.FEITAS.mkdir(exist_ok=True)
+                    for c, L in novo.items(): (mapa.FEITAS / f"{c}.txt").write_text("\n".join(L) + "\n", encoding="utf-8")
+                    _git("add", "-A", "agendador/feitas")
+                    if _git("commit", "-q", "-m", "cidades feitas: lista reconstruída das redes").returncode != 0: break
+                    if _git("push", "-q", "origin", "HEAD:main").returncode == 0: break
+                    time.sleep(2)
+                print("cidades feitas:", {c: len(L) for c, L in novo.items()})
+                ag = json.loads(AGENDA.read_text(encoding="utf-8"))
+        except Exception as e: print("cidades feitas:", str(e)[:160])
     # PEDIDOS DE ENVIO das sessões (Drive com login): responde com a URL da sessão de envio
     if not DRY and os.environ.get("GITHUB_ACTIONS") and os.environ.get("SO_PREFIXO"):
         try:
