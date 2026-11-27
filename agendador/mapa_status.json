@@ -10,7 +10,7 @@
    "Paulista No Mapa (@paulistanomapaofc)",
    "Vale Ofertas (@catarinensenomapa)"
   ],
-  "conferido_em": "2026-11-26T23:05:42-03:00",
+  "conferido_em": "2026-11-26T23:11:07-03:00",
   "teste_drive": "FALHOU baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=1bznnChO6IrI4DrAdb15rawkQjcUjo_jo&export=download&confirm=t"
  },
  "mapa-sc": {
@@ -83,8 +83,9 @@
    "conta": "MINEIRO NO MAPA"
   },
   "tiktok": {
-   "ok": false,
-   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_MG)"
+   "ok": true,
+   "conta": "mineironomapa (Buffer 2)",
+   "privacidade": "PUBLIC_TO_EVERYONE"
   }
  },
  "mapa-mt": {
@@ -101,8 +102,9 @@
    "conta": "MATO GROSSO NO MAPA"
   },
   "tiktok": {
-   "ok": false,
-   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_MT)"
+   "ok": true,
+   "conta": "matogrossonomapa (Buffer 2)",
+   "privacidade": "PUBLIC_TO_EVERYONE"
   }
  },
  "mapa-sp": {
@@ -119,8 +121,9 @@
    "conta": "PAULISTA NO MAPA"
   },
   "tiktok": {
-   "ok": false,
-   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_SP)"
+   "ok": true,
+   "conta": "paulistanomapa (Buffer 1)",
+   "privacidade": "PUBLIC_TO_EVERYONE"
   }
  },
  "mapa-rj": {
@@ -173,8 +176,9 @@
    "conta": "BRASIL NO MAPA"
   },
   "tiktok": {
-   "ok": false,
-   "motivo": "sem credencial (falta o segredo TT_REFRESH_TOKEN__MAPA_BR)"
+   "ok": true,
+   "conta": "brasilnomapaofc (Buffer 1)",
+   "privacidade": "PUBLIC_TO_EVERYONE"
   }
  }
 }
