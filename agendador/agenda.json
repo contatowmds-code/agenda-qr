@@ -1356,7 +1356,9 @@
   "drive_id": "1Yh_kR-tbzUVESprjhw6lXV_EO4ihLxw1",
   "tamanho": 199240667,
   "ia": true,
-  "erros": {},
+  "erros": {
+   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The user has exceeded the number of videos they may upload.\",\n    \"errors\": [\n      {\n        \"message\": \"The user has exceeded the number of videos they may upload.\",\n        \"domain\": \"youtube.video\",\n        \"reason\": \"uploadLimitExceeded\"\n"
+  },
   "feito": {
    "facebook": "30477465145186736",
    "instagram": "18101759591417983"
