@@ -1004,5 +1004,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3555901.mp4",
   "gh_asset": 801861158,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-pr 4127106 Telêmaco Borba: a Capital do Papel tem bonde",
+  "arquivo": "videos/mapa-pr-4127106.mp4",
+  "legenda": "Telêmaco Borba: a Capital do Papel tem bonde aéreo! #ParanaenseNoMapa #TelêmacoBorba #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T18:01:33-03:00",
+  "drive_id": "1EaD9nR8O6qJloy2ALcgGckv9JzB5Q7Q2",
+  "tamanho": 164045149,
+  "ia": true,
+  "sha256": "2141200adf55f0b5916ed2d823173531e021edfb1cbd0b65d2d5b891bb4d1b7a"
  }
 ]
