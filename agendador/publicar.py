@@ -52,12 +52,13 @@ def tem_credencial(plat, it):
         chaves = ["ig_user_id", "ig_token" if "ig_token" in d else "fb_token"] if base == "instagram" else ["fb_page_id", "fb_token"]
         return all(d.get(k) for k in chaves)
     if base == "tiktok" and mapa.eh(conta_id(it)) and not env("TT_REFRESH_TOKEN", it) and os.environ.get("ZERNIO_API_KEY"):
-        try: return bool(mapa.zernio_conta(conta_id(it)))   # TikTok pela Zernio (conta do perfil conectada lá)
-        except Exception: return False
+        try:
+            if mapa.zernio_conta(conta_id(it)): return True   # TikTok pela Zernio (conta do perfil conectada lá)
+        except Exception: pass
     if base == "tiktok" and mapa.eh(conta_id(it)) and not env("TT_REFRESH_TOKEN", it) and it.get("drive_id"):
         try:
             if mapa.buffer_canal(conta_id(it)): return True   # TikTok pelo Buffer
-        except Exception: return False
+        except Exception as e: print("  (Buffer indisponível agora:", str(e)[:120], ")"); return False
     return all(env(v, it) for v in NECESSARIOS[base])
 
 def agora(): return dt.datetime.now(dt.timezone.utc)
