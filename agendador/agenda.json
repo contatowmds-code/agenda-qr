@@ -1256,7 +1256,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T08:45:00-03:00",
-  "drive_id": "1vIPy85TKTRq-j89zEHNlOGGreJPINeEp",
+  "drive_id": "1vjdYp7Isaqqkeb8aUI0YeG2yfA0mM3NS",
   "tamanho": 132047543,
   "ia": true,
   "erros": {
@@ -1267,7 +1267,9 @@
   },
   "feito": {
    "youtube": "3GfIRSc19Wc"
-  }
+  },
+  "sha256": "b4053bce31b95c81c56ac3a63e715f8a6f0c117bcba225c13eb4a9df08dee4f9",
+  "drive_antigo": "1vIPy85TKTRq-j89zEHNlOGGreJPINeEp"
  },
  {
   "id": "mapa-pr 4118501 Pato Branco tem nome de rio, não de bicho!",
