@@ -927,7 +927,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T08:30:00-03:00",
-  "drive_id": "1VY5JIdmgDhViRTTIWkjs93tAqOCrYxcR",
+  "drive_id": "1ioy2qJb9Q3_FuU32EzemzQWCJ4biT6ZW",
   "tamanho": 259866003,
   "ia": true,
   "erros": {
@@ -938,7 +938,9 @@
   },
   "feito": {
    "youtube": "wC7ElK9n1ic"
-  }
+  },
+  "sha256": "9cd82e3dbd593d7b8b656c738d9674a8729f6bd628e3992eb0e8a9a0126f198c",
+  "drive_antigo": "1VY5JIdmgDhViRTTIWkjs93tAqOCrYxcR"
  },
  {
   "id": "mapa-mg 3103108 Pedras e cachoeiras de Antônio Prado de Mina",
