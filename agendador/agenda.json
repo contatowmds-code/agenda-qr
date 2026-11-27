@@ -1498,6 +1498,9 @@
   "drive_id": "14a_PIr1ISS2bwFCGzK70jSGf9wLXlwcY",
   "tamanho": 222897587,
   "ia": true,
-  "sha256": "f708b83d493fa84f3a237213529714bcd6494240a56544252deb6223b344a6f8"
+  "sha256": "f708b83d493fa84f3a237213529714bcd6494240a56544252deb6223b344a6f8",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-norte-1718659.mp4",
+  "gh_asset": 800830122,
+  "drive_apagado": true
  }
 ]
