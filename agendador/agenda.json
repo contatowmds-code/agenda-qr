@@ -1146,11 +1146,10 @@
   "drive_id": "11dRd9O6gv83_UwoMEZ7EzK51ys8APVzc",
   "tamanho": 246717819,
   "ia": true,
-  "erros": {
-   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
-  },
+  "erros": {},
   "feito": {
-   "facebook": "1455515012749004"
+   "facebook": "1455515012749004",
+   "instagram": "18137520925739699"
   }
  },
  {
