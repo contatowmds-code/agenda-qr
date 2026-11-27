@@ -3609,5 +3609,42 @@
    "tiktok": "tiktok:buffer:6b09e249277f27038a353678"
   },
   "arquivado_em": "2026-11-27T17:14:58-03:00"
+ },
+ {
+  "id": "mapa-rs 4317251 Santa Tereza: casarões do Iphan e vales de p",
+  "arquivo": "videos/mapa-rs-4317251.mp4",
+  "legenda": "Santa Tereza: casarões do Iphan e vales de parreiras #GaúchoNoMapa #SantaTereza #RioGrandeDoSul",
+  "conta": "mapa-rs",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T07:05:00-03:00",
+  "drive_id": "1qrIR5SmM-AFoZoXlm6Dk5w9GtV0qq5Yj",
+  "tamanho": 226908105,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "youtube": "GrlBLnmi4lU",
+   "instagram": "18156094315532431",
+   "facebook": "1694084252268442",
+   "tiktok": "z:6b09e30feeb3d5a07b41394c"
+  },
+  "sha256": "e598f28b48441914a3f3a7b004cec422a456b3662ba3bf89fb32b9133a8d2895",
+  "drive_antigo": "1Z7BBqHncCxz1QvAlJ2Mp3jB5jV12NeCF",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-rs-4317251.mp4",
+  "gh_asset": 801867777,
+  "drive_apagado": true,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgQf4KRt8QL/",
+   "facebook": "https://www.facebook.com/reel/1694084252268442/",
+   "youtube": "https://youtu.be/GrlBLnmi4lU",
+   "tiktok": "https://www.tiktok.com/@quantovaleofc/video/7712945551154760981"
+  },
+  "arquivado_em": "2026-11-27T17:15:04-03:00"
  }
 ]
