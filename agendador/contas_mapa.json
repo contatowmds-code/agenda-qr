@@ -37,7 +37,10 @@
  "mapa-norte": {
   "sigla": "NO",
   "nome": "Norte no Mapa",
-  "chave": "nortenomapa"
+  "chave": "nortenomapa",
+  "aceitos": [
+   "acreanonomapa"
+  ]
  },
  "mapa-br": {
   "sigla": "BR",
