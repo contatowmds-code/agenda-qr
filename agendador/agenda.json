@@ -1086,11 +1086,10 @@
   "drive_id": "1EYbIPg5u9YcRgfEaV0tFPmDH8mby4gRI",
   "tamanho": 273499282,
   "ia": true,
-  "erros": {
-   "instagram": "enviar: {'debug_info': {'retriable': False, 'type': 'ProcessingFailedError', 'message': 'Request processing failed'}}"
-  },
+  "erros": {},
   "feito": {
-   "facebook": "1367775878668980"
+   "facebook": "1367775878668980",
+   "instagram": "18132011620842207"
   }
  },
  {
