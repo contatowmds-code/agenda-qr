@@ -1159,7 +1159,7 @@
    "youtube",
    "tiktok"
   ],
-  "quando": "2026-11-27T15:30:00-03:00",
+  "quando": "2026-11-27T16:59:01-03:00",
   "drive_id": "1P441oHl5bmBVAyLw6gwpOcgwXweKE2YP",
   "tamanho": 72712984,
   "ia": true,
@@ -1167,7 +1167,10 @@
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "40cf7cd56f9e39f9ca0233f082e3c16361007f1aeeb0e87edd1747d8fa29fc6a",
-  "drive_antigo": "1E5QuyDwJNyjK9zis2a2RNxYYJgq6csSY"
+  "drive_antigo": "1E5QuyDwJNyjK9zis2a2RNxYYJgq6csSY",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3555901.mp4",
+  "gh_asset": 801861158,
+  "drive_apagado": true
  },
  {
   "id": "mapa-mg-3170701-tt",
