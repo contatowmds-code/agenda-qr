@@ -486,7 +486,13 @@ def main():
         q = dt.datetime.fromisoformat(it["quando"])
         if q.tzinfo is None: q = q.replace(tzinfo=ZoneInfo("America/Sao_Paulo"))
         if q > agora(): continue
-        for plat in it.get("plataformas", ["instagram"]):
+        # AS 4 REDES JUNTAS (pedido do dono, 27/11/2026): nos perfis de mapa o YouTube é tentado PRIMEIRO; se ele estiver em espera (cota do app ou
+        # limite do canal), as outras redes também esperam, para o vídeo sair em todas na mesma hora. Trava de segurança: passou de 3 h do horário
+        # marcado, publica nas outras assim mesmo (o perfil não pode ficar o dia sem postar por causa do YouTube).
+        plats = list(it.get("plataformas", ["instagram"]))
+        junto = mapa.eh(conta_id(it)) and "youtube" in plats and not any((it.get("feito") or {}).values()) and (agora() - q) < dt.timedelta(hours=3)
+        if junto: plats = ["youtube"] + [p for p in plats if p != "youtube"]
+        for plat in plats:
             if it.setdefault("feito", {}).get(plat): continue
             if not DRY and remoto_feito(it, plat): print(f"[{it['id']}] {plat}: já publicado por outra rodada (pulado)"); continue
             if not tem_credencial(plat, it) and not DRY: print(f"[{it['id']}] {plat} ({conta_id(it) or 'padrão'}): pulado (sem credencial)"); continue
@@ -500,6 +506,7 @@ def main():
                 it["feito"][plat] = FUNCS[plat](it); it.get("erros", {}).pop(plat, None); print(f"  OK {plat}"); persistir(it, plat, valor=it["feito"][plat])
             except Exception as e:
                 print(f"  ERRO {plat}: {e}"); it.setdefault("erros", {})[plat] = str(e)[:300]; persistir(it, plat, erro=str(e)[:300])
+                if junto and plat == "youtube": print("  seguro as outras redes: este vídeo sai nas 4 juntas quando o YouTube liberar"); mudou = True; break
             mudou = True
         if not DRY and completo(it): conferir_e_arquivar(it)
     if mudou and not DRY and not os.environ.get("GITHUB_ACTIONS"): AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
