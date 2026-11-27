@@ -1056,7 +1056,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T06:10:00-03:00",
+  "quando": "2026-11-27T17:26:49-03:00",
   "drive_id": "112CF96OlLCqxFQYp4zZjbnaL6XHKgASr",
   "tamanho": 199240667,
   "ia": true,
@@ -1065,7 +1065,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "757318b075d73e29367666fe89d4c4fbadf303b6b59d75fb50b6801ae274236a",
-  "drive_antigo": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY"
+  "drive_antigo": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5104104-tt.mp4",
+  "gh_asset": 801945504,
+  "drive_apagado": true
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
