@@ -1057,7 +1057,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:20:00-03:00",
-  "drive_id": "1DXOJDagpp3YcTt_9JEZCnkgMLiR_xAsG",
+  "drive_id": "1W3m1hLPBl5QJ06t1fZhKqWyOuNrIPTWf",
   "tamanho": 251585122,
   "ia": true,
   "erros": {
@@ -1065,7 +1065,9 @@
   },
   "feito": {
    "tiktok": "z:6b09916e84a9f93a96ccffc5"
-  }
+  },
+  "sha256": "b6e034826d704ca8fcc557c57eed179bc34213ea3013ebadbceb9112cf832795",
+  "drive_antigo": "1DXOJDagpp3YcTt_9JEZCnkgMLiR_xAsG"
  },
  {
   "id": "mapa-pr TT Guaporema: o nome vem de um índio que remava? Dua",
