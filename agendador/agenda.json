@@ -886,31 +886,6 @@
   "capa": "videos/Porto-de-Santos-foi-atacado.jpg"
  },
  {
-  "id": "mapa-sp 3548500 Santos: o maior porto da América Latina e o ",
-  "arquivo": "videos/mapa-sp-3548500.mp4",
-  "legenda": "Santos: o maior porto da América Latina e o jardim de praia #PaulistaNoMapa #Santos #SãoPaulo",
-  "conta": "mapa-sp",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube",
-   "tiktok"
-  ],
-  "quando": "2026-11-26T21:56:18-03:00",
-  "drive_id": "1htxX45lvnQWsXdsaJv-DDfJGSHq5M0aJ",
-  "tamanho": 122133540,
-  "ia": true,
-  "feito": {
-   "instagram": "18139897198634360",
-   "facebook": "1130018153275388",
-   "tiktok": "b:1:6b08eabf70e2a88e2ced9656:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795746495",
-   "youtube": "CQ5oEP70Nxo"
-  },
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  }
- },
- {
   "id": "mapa-sp 3555307 Turmalina: uma pedra deu nome à 7ª menor cid",
   "arquivo": "videos/mapa-sp-3555307.mp4",
   "legenda": "Turmalina: uma pedra deu nome à 7ª menor cidade de SP #PaulistaNoMapa #Turmalina #SãoPaulo",
