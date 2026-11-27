@@ -487,7 +487,7 @@ def main():
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
         n = 0; falhas = 0
         if random.random() < .04: mapa.faxina(ag)
-        for it in ag:
+        for it in sorted(ag, key=lambda x: 0 if x.get("sha256") else 1):   # primeiro os vídeos enviados pelo caminho novo (Drive com login): esses nunca esbarram no limite do link público
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
             if "Quota exceeded" in str((it.get("erros") or {}).get("cofre", "")) and random.random() < .9: continue   # arquivo bloqueado pelo Drive por excesso de downloads: tenta de novo só de vez em quando
