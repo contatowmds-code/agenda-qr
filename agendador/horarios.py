@@ -14,27 +14,16 @@ ORDEM = ["mapa-sc", "mapa-rs", "mapa-pr", "mapa-mg", "mapa-mt", "mapa-sp", "mapa
 def _slot(dia, hhmm, conta):
     h, m = map(int, hhmm.split(":")); desl = (ORDEM.index(conta) if conta in ORDEM else 0) * 7
     return dt.datetime(dia.year, dia.month, dia.day, h, m, tzinfo=TZ) + dt.timedelta(minutes=desl)
-def horario(conta, itens, agora=None, folga=10):
-    """Próximo horário para um vídeo do perfil. itens = agenda + publicados (para saber os horários já ocupados)."""
-    agora = (agora or dt.datetime.now(TZ)).astimezone(TZ).replace(microsecond=0); ocup = []
+INTERVALO = 30   # minutos entre dois vídeos do MESMO perfil
+def horario(conta, itens, agora=None, folga=0):
+    """REGRA ATUAL DO DONO (27/11/2026, 15:43): esquecer a janela das 05h às 23h e os horários fixos. O vídeo é publicado ASSIM QUE FICA PRONTO,
+    a qualquer hora do dia ou da noite. Única folga: 30 minutos entre dois vídeos do mesmo perfil, para dois que ficaram prontos juntos não saírem colados.
+    (Os horários fixos acima ficaram só como histórico; não são mais usados.)"""
+    agora = (agora or dt.datetime.now(TZ)).astimezone(TZ).replace(microsecond=0); fut = []
     for x in itens:
         if x.get("conta") == conta and x.get("quando") and not str(x.get("arquivo", "")).endswith("-tt.mp4"):
-            try: ocup.append(dt.datetime.fromisoformat(x["quando"]).astimezone(TZ))
+            try:
+                q = dt.datetime.fromisoformat(x["quando"]).astimezone(TZ)
+                if q > agora - dt.timedelta(minutes=INTERVALO): fut.append(q)
             except Exception: pass
-    def livre(dia, limite):
-        if sum(1 for q in ocup if q.date() == dia) >= limite: return None
-        for hhmm in PRIORIDADE:
-            s = _slot(dia, hhmm, conta)
-            if s < agora + dt.timedelta(minutes=folga): continue
-            if any(abs((q - s).total_seconds()) < 50 * 60 for q in ocup): continue   # já tem vídeo perto desse horário
-            return s
-    hoje = agora.date()
-    # 1º) GARANTIR O MÍNIMO (pedido do dono: 5 por dia em cada perfil, manhã, tarde e noite): completa 5 em hoje, depois 5 em amanhã, depois 5 em depois de amanhã (reserva de 2 dias)
-    for d in range(0, 3):
-        s = livre(hoje + dt.timedelta(days=d), 5)
-        if s: return s
-    # 2º) o que passar disso vai preenchendo até 10 por dia, do dia mais próximo para o mais distante
-    for d in range(0, 30):
-        s = livre(hoje + dt.timedelta(days=d), 10)
-        if s: return s
-    return agora
+    return max([agora] + [q + dt.timedelta(minutes=INTERVALO) for q in fut])
