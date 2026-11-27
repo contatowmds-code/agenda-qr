@@ -7,7 +7,7 @@ Uso (na raiz do repositório agenda-qr):
   python3 agendador/mapa_enviar.py conferir <conta> <cod_ibge>      (mostra se já publicou e os links)
   python3 agendador/mapa_enviar.py status                           (quais perfis estão conectados em quais redes)
 Saída: 0 = na fila / publicado; 3 = perfil sem nenhuma rede conectada (nada foi agendado); 4 = já estava."""
-import datetime as dt, json, subprocess, sys, time
+import datetime as dt, json, re, subprocess, sys, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -34,7 +34,12 @@ if cmd == "feitas":
         try: L += (AQUI / "feitas" / n).read_text(encoding="utf-8").splitlines()
         except Exception: pass
     for arqj in ("publicados.json", "agenda.json"):
-        try: L += [x.get("legenda", "").split("\n")[0] for x in ler(arqj) if x.get("conta") == c_ and not str(x.get("arquivo", "")).endswith("-tt.mp4")]
+        try:
+            for x in ler(arqj):
+                if x.get("conta") != c_: continue
+                mm = re.search(r"-(\d{7})(?:-tt)?\.mp4$", str(x.get("arquivo", "")))   # o código IBGE está no nome do arquivo: vale mesmo quando o título não começa pelo nome da cidade
+                if mm: L.append(f"{contas[c_]['sigla']} | 000 | {mm.group(1)} | " + x.get("legenda", "").split("\n")[0][:80])
+                else: L.append(x.get("legenda", "").split("\n")[0])
         except Exception: pass
     vis = set()
     for l in L:
@@ -100,8 +105,16 @@ def horario(conta):
     return horarios.horario(conta, ler("agenda.json") + ler("publicados.json"))
 for tent in range(6):
     a, p = achar()
+    ag = ler("agenda.json"); preso = [x for x in ag if x.get("arquivo") == arq and sha256 and not x.get("sha256") and not x.get("gh_url") and not any((x.get("feito") or {}).values())]
+    if preso and not p:
+        # RESGATE (27/11/2026): a cidade já estava na fila pelo caminho antigo (arquivo preso no link público do Drive, nada publicado ainda).
+        # O vídeo que chegou agora pelo caminho novo assume o lugar: mesmo item, arquivo novo, horário espalhado. Sem duplicar.
+        x = preso[0]; x.update(drive_id=drive_id, tamanho=tam, sha256=sha256, legenda=legenda, quando=horario(conta).isoformat(timespec="seconds")); x.pop("erros", None)
+        (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+        git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: arquivo novo para {conta} {cod} (o antigo estava preso no Drive)")
+        if git("push", "-q", "origin", "HEAD:main").returncode == 0: print("NA FILA para publicar às", x["quando"][11:16], "de", x["quando"][:10], "(assumiu o lugar do arquivo antigo que estava preso) em:", ", ".join(x.get("plataformas", redes))); sys.exit(0)
+        time.sleep(3); atualizar(); continue
     if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
-    ag = ler("agenda.json")
     ag.append({"id": f"{conta} {cod} {legenda.split('#')[0].strip()}"[:60], "arquivo": arq, "legenda": legenda, "conta": conta, "plataformas": redes,
                "quando": horario(conta).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True, **({"sha256": sha256} if sha256 else {})})
     (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
