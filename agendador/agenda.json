@@ -1033,6 +1033,9 @@
   "drive_id": "1whWqecIatZghc2hS8z43XOhAtd44GdeB",
   "tamanho": 320414037,
   "ia": true,
-  "sha256": "e01c8a62a9f670ee421702b599491e6446f0abcc88cfcc6a9162e30968c72fbb"
+  "sha256": "e01c8a62a9f670ee421702b599491e6446f0abcc88cfcc6a9162e30968c72fbb",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-br-2927408.mp4",
+  "gh_asset": 802392837,
+  "drive_apagado": true
  }
 ]
