@@ -13,6 +13,7 @@ jobs:
     timeout-minutes: 350
     env:
       SO_PREFIXO: "mapa-"
+      GH_TOKEN: ${{ github.token }}
       VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
       META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
       META_SISTEMA_TOKEN: ${{ secrets.META_SISTEMA_TOKEN }}

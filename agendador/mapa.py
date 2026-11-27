@@ -109,7 +109,8 @@ def baixar(it):
     if dest.exists() and (not tam or dest.stat().st_size == tam): return dest
     for tent in range(3):
         try:
-            with requests.get("https://drive.usercontent.google.com/download", params={"id": it["drive_id"], "export": "download", "confirm": "t"}, stream=True, timeout=600) as r:
+            # COFRE (27/11/2026): se o vídeo já foi guardado no GitHub (gh_url), baixa de lá; o Drive é só a porta de entrada
+            with (requests.get(it["gh_url"], stream=True, timeout=600) if it.get("gh_url") else requests.get("https://drive.usercontent.google.com/download", params={"id": it["drive_id"], "export": "download", "confirm": "t"}, stream=True, timeout=600)) as r:
                 r.raise_for_status()
                 with open(dest, "wb") as f:
                     for b in r.iter_content(1 << 20): f.write(b)
@@ -176,7 +177,7 @@ def instagram(it, d, arq):
         # plano B: o Instagram busca o vídeo direto do link do Drive (arquivo compartilhado por link)
         print(f"  instagram: envio direto recusado ({str(u)[:160]}); tentando pelo link do Drive"); 
         j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "REELS", "caption": it["legenda"], "share_to_feed": "true", "thumb_offset": "0", "is_ai_generated": "true",
-                          "video_url": f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t", "access_token": tok}, timeout=120).json()
+                          "video_url": url_video(it), "access_token": tok}, timeout=120).json()
         if "id" not in j: raise RuntimeError(f"enviar: {u} | link: {j}")
         cid = j["id"]
     for _ in range(90):
@@ -306,7 +307,7 @@ def buffer_tiktok(it):
     if not ch: raise RuntimeError(f"tiktok (Buffer): não achei canal do TikTok do perfil {CONTAS[it['conta']]['nome']} conectado. Não publiquei.")
     k = dict(_bchaves())[ch["n"]]
     quando = (dt_.datetime.now(dt_.timezone.utc) + dt_.timedelta(minutes=3)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
-    url = f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t"
+    url = url_video(it)
     q = """mutation($i: CreatePostInput!) { createPost(input: $i) { ... on PostActionSuccess { post { id status } } ... on MutationError { message } } }"""
     d = _bq(k, q, {"i": {"text": it["legenda"][:2200], "channelId": ch["id"], "schedulingType": "automatic", "mode": "customScheduled", "dueAt": quando,
                          "assets": [{"video": {"url": url, "metadata": {"thumbnailOffset": 0}}}]}}).get("createPost") or {}
@@ -329,3 +330,39 @@ def buffer_confirma(pid):
                 if st == "sent": return "tiktok:buffer:" + post
                 print("  tiktok (Buffer) deu ERRO neste post; veja no painel do Buffer"); return None
     return None
+
+
+# ---------------- COFRE NO GITHUB (27/11/2026, pedido do dono: o Drive de 15 GB enchia) ----------------
+# Assim que o vídeo entra na agenda, o robô copia o MP4 do Drive para um "release" deste repositório (cofre-videos), confere o tamanho
+# e marca gh_url no item. A partir daí o Drive pode apagar o arquivo na hora (o script FILA-MAPA faz isso) e tudo é publicado a partir do cofre.
+# Depois de publicado e conferido em todas as redes, o arquivo sai do cofre também.
+COFRE = "cofre-videos"
+def url_video(it): return it.get("gh_url") or f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t"
+def _ghh(): return {"Authorization": "Bearer " + (os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""), "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+def cofre_ok(): return bool((os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")) and os.environ.get("GITHUB_REPOSITORY"))
+def _cofre():
+    repo = os.environ["GITHUB_REPOSITORY"]; r = requests.get(f"https://api.github.com/repos/{repo}/releases/tags/{COFRE}", headers=_ghh(), timeout=60)
+    if r.status_code == 404:
+        r = requests.post(f"https://api.github.com/repos/{repo}/releases", headers=_ghh(), timeout=60, json={"tag_name": COFRE, "name": "Cofre dos vídeos (uso do robô)", "prerelease": True,
+            "body": "Arquivos de passagem do robô de postagem: cada vídeo fica aqui só até ser publicado em todas as redes e é apagado em seguida. Não apague este release."})
+    r.raise_for_status(); return r.json()
+def guardar(it):
+    """Copia o MP4 do Drive para o cofre e devolve {'gh_url', 'gh_asset'}; None se não deu (o item segue pelo Drive, como antes)."""
+    if it.get("gh_url") or not it.get("drive_id") or not cofre_ok(): return None
+    arq = baixar(it); nome = Path(it["arquivo"]).name; tam = arq.stat().st_size; rel = _cofre(); repo = os.environ["GITHUB_REPOSITORY"]
+    for a in rel.get("assets", []):
+        if a["name"] == nome:
+            if a.get("state") == "uploaded" and a["size"] == tam: return {"gh_url": a["browser_download_url"], "gh_asset": a["id"]}
+            requests.delete(f"https://api.github.com/repos/{repo}/releases/assets/{a['id']}", headers=_ghh(), timeout=60)
+    with open(arq, "rb") as f:
+        r = requests.post(f"https://uploads.github.com/repos/{repo}/releases/{rel['id']}/assets", params={"name": nome}, headers={**_ghh(), "Content-Type": "video/mp4", "Content-Length": str(tam)}, data=f, timeout=1800)
+    r.raise_for_status(); a = r.json()
+    if a.get("size") != tam: raise RuntimeError(f"cofre: subiu {a.get('size')} bytes, esperado {tam}")
+    h = requests.get(a["browser_download_url"], headers={"Range": "bytes=0-15"}, timeout=120)
+    if h.status_code not in (200, 206) or b"ftyp" not in h.content: raise RuntimeError("cofre: o arquivo guardado não abre pelo link público")
+    return {"gh_url": a["browser_download_url"], "gh_asset": a["id"]}
+def soltar(it):
+    """Apaga do cofre o vídeo já publicado e conferido (melhor esforço)."""
+    try:
+        if it.get("gh_asset") and cofre_ok(): requests.delete(f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/releases/assets/{it['gh_asset']}", headers=_ghh(), timeout=60)
+    except Exception: pass

@@ -339,6 +339,7 @@ def persistir(it, plat, valor=None, erro=None):
         ag = json.loads(AGENDA.read_text(encoding="utf-8"))
         for x in ag:
             if x.get("id") == it["id"] and x.get("arquivo") == it["arquivo"]:
+                if plat == "cofre" and isinstance(valor, dict): x.update(valor); continue
                 if valor: x.setdefault("feito", {})[plat] = valor; (x.get("erros") or {}).pop(plat, None)
                 if erro: x.setdefault("erros", {})[plat] = erro
         AGENDA.write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -419,7 +420,7 @@ def arquivar(it, links):
         else:
             _git("commit", "-q", "-m", f"publicado e arquivado: {it['id'][:40]}")
             ok = _git("push", "-q", "origin", "HEAD:main").returncode == 0
-        if ok: limpar_videos(it); return True
+        if ok: limpar_videos(it); mapa.soltar(it); return True
         time.sleep(1.5 + random.random() * 2)
     print("  AVISO: não consegui arquivar:", it["id"]); return False
 
@@ -467,6 +468,16 @@ def main():
         if prox:
             esp = (min(prox) - agora()).total_seconds() + 2
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
+    # COFRE: tira do Drive o quanto antes (até 4 vídeos por rodada, para não atrasar quem está na hora de publicar)
+    if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
+        n = 0
+        for it in ag:
+            if n >= 4: break
+            if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
+            try:
+                g = mapa.guardar(it)
+                if g: it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub; o Drive já pode apagar"); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
+            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive")
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
