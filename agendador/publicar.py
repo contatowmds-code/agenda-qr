@@ -477,7 +477,7 @@ def main():
             try:
                 g = mapa.guardar(it)
                 if g: it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub; o Drive já pode apagar"); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
-            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive")
+            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); break   # um erro por rodada: não insiste nos outros
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
