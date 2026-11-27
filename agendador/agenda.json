@@ -1088,7 +1088,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T06:10:00-03:00",
+  "quando": "2026-11-27T16:50:25-03:00",
   "drive_id": "1l37bfnlXzCm8UQF3yVNftfBZwCL1FGpZ",
   "tamanho": 274006993,
   "ia": true,
@@ -1097,7 +1097,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "86f56d89b44d960a3605cc96c7b35aec48bdaee2b48d98ad0b49d8fa05ebc404",
-  "drive_antigo": "1i7zR86yU9vxrHzv_R158P8zJcyrlLmA3"
+  "drive_antigo": "1i7zR86yU9vxrHzv_R158P8zJcyrlLmA3",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4125555-tt.mp4",
+  "gh_asset": 801837550,
+  "drive_apagado": true
  },
  {
   "id": "mapa-br TT Oliveira de Fátima é a menor cidade do Tocantins",
