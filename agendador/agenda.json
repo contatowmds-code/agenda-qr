@@ -1822,5 +1822,19 @@
   "drive_id": "Mafra: onde Santa Catarina encosta no Paraná #CatarinenseNoMapa #Mafra #SantaCatarina.mp4",
   "tamanho": 107764846,
   "ia": true
+ },
+ {
+  "id": "TESTE do cofre (não publica)",
+  "arquivo": "videos/mapa-sc-teste1.mp4",
+  "legenda": "teste",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2027-06-01T12:00:00-03:00",
+  "drive_id": "1YRGoM0Q66Tm6yi1pWA-xfZ9vZA9fFkvi",
+  "tamanho": 10853211,
+  "ia": true,
+  "sha256": "1e6210df3014e633c9ec8445acd6da0d7fbeefc9ef3000ba9a8e3177c93babbd"
  }
 ]

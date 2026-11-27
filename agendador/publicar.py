@@ -486,6 +486,7 @@ def main():
     # COFRE: tira do Drive o quanto antes (até 4 vídeos por rodada, para não atrasar quem está na hora de publicar)
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
         n = 0; falhas = 0
+        if random.random() < .04: mapa.faxina(ag)
         for it in ag:
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue

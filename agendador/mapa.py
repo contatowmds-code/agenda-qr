@@ -449,3 +449,13 @@ def atender_pedidos():
             rp.write_text(json.dumps({"sessao": url, "sha256": d["sha256"], "ts": time.time()}), encoding="utf-8"); mudou = True; print(f"[pedido {p.stem}] sessão de envio aberta no Drive (com login)")
         except Exception as e: print(f"[pedido {p.name}] não consegui atender: {str(e)[:160]}")
     return mudou
+
+def faxina(ag):
+    """Apaga do cofre o que não pertence a nenhum item da agenda (sobras de teste ou de item removido), com mais de 1 h."""
+    try:
+        if not cofre_ok(): return
+        nomes = {Path(x.get("arquivo", "")).name for x in ag}; repo = os.environ["GITHUB_REPOSITORY"]
+        for a in _cofre().get("assets", []):
+            idade = time.time() - dt_.datetime.fromisoformat(a["created_at"].replace("Z", "+00:00")).timestamp()
+            if a["name"] not in nomes and idade > 3600: requests.delete(f"https://api.github.com/repos/{repo}/releases/assets/{a['id']}", headers=_ghh(), timeout=60); print("cofre: sobra apagada:", a["name"])
+    except Exception as e: print("cofre: faxina:", str(e)[:120])
