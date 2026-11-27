@@ -1088,7 +1088,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T10:15:00-03:00",
-  "drive_id": "1Q3mdSOYudD1FgDSxT0YDrjCDP-txgVk0",
+  "drive_id": "1rhNSWgLy5Sg0Rz4c6eGWcFx9X206JSm1",
   "tamanho": 78462734,
   "ia": true,
   "erros": {
@@ -1099,7 +1099,9 @@
   },
   "feito": {
    "youtube": "MFaQ1OaM2fc"
-  }
+  },
+  "sha256": "9d99afa6ce84f1438ec94eb854641b5fc2818550cc34bc8cf994742e20c6916d",
+  "drive_antigo": "1Q3mdSOYudD1FgDSxT0YDrjCDP-txgVk0"
  },
  {
   "id": "mapa-sp 3532868 Nova Castilho só virou município em dezembro",
