@@ -1050,7 +1050,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T05:20:00-03:00",
+  "quando": "2026-11-27T16:51:15-03:00",
   "drive_id": "1VyO0hSwhv5eYnUfcNHNQNwU_uLxSR2R-",
   "tamanho": 267720052,
   "ia": true,
@@ -1059,7 +1059,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "a7ea5671450c3d0dbe37a47a5503f3dc595cad905bcb4725cde756be01b0b142",
-  "drive_antigo": "1EOVHNkSjLgWyjcgbXJ8p0PBXjkVZzZSl"
+  "drive_antigo": "1EOVHNkSjLgWyjcgbXJ8p0PBXjkVZzZSl",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4108403-tt.mp4",
+  "gh_asset": 801839691,
+  "drive_apagado": true
  },
  {
   "id": "mapa-mg TT Pouso Alegre: a capital mineira do morango",
