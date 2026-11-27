@@ -1041,7 +1041,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:00:00-03:00",
-  "drive_id": "15eDDyiiowUibQ7bg8obOuns4zcANv6RW",
+  "drive_id": "1lWhkJEkgd9_OXSTX2qWiRKhXgpmLE9q2",
   "tamanho": 265486016,
   "ia": true,
   "erros": {
@@ -1052,7 +1052,9 @@
    "youtube": "bXe6h1RQ7yg",
    "facebook": "1166450969128047",
    "tiktok": "z:6b096f4169b1dbc912b308f2"
-  }
+  },
+  "sha256": "64a13bd160839c33c5db96812b5a3eed709e8bd91432d94c0ccc0acd37b8a39f",
+  "drive_antigo": "15eDDyiiowUibQ7bg8obOuns4zcANv6RW"
  },
  {
   "id": "mapa-mg 3123403 Doresópolis tem 50 galinhas para cada morado",
