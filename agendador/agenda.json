@@ -926,13 +926,13 @@
   "tamanho": 240300759,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "feito": {
    "youtube": "i9521NicHgU",
    "facebook": "1895807514743187",
-   "instagram": "17964943994998676"
+   "instagram": "17964943994998676",
+   "tiktok": "b:1:6b0971f6062ed764a81158b0:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795781111"
   },
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3547205.mp4",
   "gh_asset": 800317301
