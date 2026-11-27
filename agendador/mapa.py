@@ -575,6 +575,27 @@ def feitas_reais(conta, yt_token=None):
         if k and k not in vistos: vistos.add(k); out.append(c[:160])
     return out
 
+# ---------------- MÉTRICAS (27/11/2026): o que está dando certo de verdade ----------------
+# A cada 3 h o robô anota, por perfil, os números dos últimos Reels do Instagram (alcance, visualizações, tempo médio assistido, envios,
+# salvamentos, curtidas, comentários) em agendador/metricas/<conta>.json. Serve para comparar curto x longo, gancho, tema e horário
+# com dado real, em vez de palpite. Só leitura; se a permissão de insights não existir, grava só curtidas e comentários.
+METRICAS = AQUI / "metricas"
+def metricas(conta, n=40):
+    m = meta(conta); tok = m.get("ig_token") or m["fb_token"]; out = []
+    r = requests.get(f"{GRAPH}/{m['ig_user_id']}/media", params={"fields": "id,caption,timestamp,like_count,comments_count,permalink,media_product_type", "limit": n, "access_token": tok}, timeout=60).json()
+    sem = False
+    for x in r.get("data", []):
+        d = {"id": x["id"], "quando": x.get("timestamp"), "legenda": (x.get("caption") or "").split("\n")[0][:120], "link": x.get("permalink"), "tipo": x.get("media_product_type"), "curtidas": x.get("like_count"), "comentarios": x.get("comments_count")}
+        if not sem and x.get("media_product_type") == "REELS":
+            try:
+                i = requests.get(f"{GRAPH}/{x['id']}/insights", params={"metric": "reach,views,saved,shares,total_interactions,ig_reels_avg_watch_time,ig_reels_video_view_total_time", "access_token": tok}, timeout=60).json()
+                if "data" in i:
+                    for q in i["data"]: d[q["name"]] = (q.get("values") or [{}])[0].get("value")
+                else: sem = True; d["insights_erro"] = str(i.get("error", {}).get("message", ""))[:140]
+            except Exception as e: d["insights_erro"] = str(e)[:100]
+        out.append(d)
+    return out
+
 def drive_faxina(ag):
     """Mantém o Drive com espaço: apaga da pasta do robô o que não pertence a nenhum item da agenda (sobras de envio interrompido ou de item removido,
     com mais de 6 h) e o que já está no cofre. Devolve o texto do espaço usado. Só enxerga arquivos criados pelo próprio robô."""

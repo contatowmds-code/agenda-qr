@@ -494,6 +494,17 @@ def main():
                     if _git("push", "-q", "origin", "HEAD:main").returncode == 0: break
                     time.sleep(2)
                 print("cidades feitas:", {c: len(L) for c, L in novo.items()})
+                try:   # MÉTRICAS dos Reels de cada perfil (para medir o que funciona)
+                    mt = {}
+                    for c in mapa.CONTAS:
+                        try: mt[c] = mapa.metricas(c)
+                        except Exception as e: print(f"  métricas {c}: {str(e)[:100]}")
+                    if mt:
+                        _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main"); mapa.METRICAS.mkdir(exist_ok=True)
+                        for c, L in mt.items(): (mapa.METRICAS / f"{c}.json").write_text(json.dumps({"conferido": agora().isoformat(timespec="seconds"), "reels": L}, ensure_ascii=False, indent=1), encoding="utf-8")
+                        _git("add", "-A", "agendador/metricas"); _git("commit", "-q", "-m", "métricas dos Reels"); _git("push", "-q", "origin", "HEAD:main")
+                        print("métricas:", {c: len(L) for c, L in mt.items()})
+                except Exception as e: print("métricas:", str(e)[:120])
                 esp = mapa.drive_faxina(json.loads(AGENDA.read_text(encoding="utf-8")))   # junto, a cada 3 h: limpa a pasta do robô no Drive e anota o espaço
                 if esp:
                     print(esp); _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main"); (AQUI / "drive_espaco.txt").write_text(esp + "\n", encoding="utf-8")
