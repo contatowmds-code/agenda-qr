@@ -1432,5 +1432,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5107065.mp4",
   "gh_asset": 799697915,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-sc 4204459 Coronel Martins: a cidade que nasceu de uma ",
+  "arquivo": "videos/mapa-sc-4204459.mp4",
+  "legenda": "Coronel Martins: a cidade que nasceu de uma fazenda de pedra branca #CatarinenseNoMapa #CoronelMartins #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T10:35:00-03:00",
+  "drive_id": "1Ajzjr-jLd2FNPbnWuWrPBAifDRlBblYM",
+  "tamanho": 181224069,
+  "ia": true,
+  "sha256": "6b65b782f980ce08a4b5a3c8539fb98ddc5bb02abab4cd7fb65ede786864892a"
  }
 ]
