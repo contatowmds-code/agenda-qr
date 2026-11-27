@@ -911,33 +911,6 @@
   }
  },
  {
-  "id": "mapa-sp 3547205 Santana da Ponte Pensa nasceu na rota da boi",
-  "arquivo": "videos/mapa-sp-3547205.mp4",
-  "legenda": "Santana da Ponte Pensa nasceu na rota da boiada #PaulistaNoMapa #SantanaDaPontePensa #SãoPaulo",
-  "conta": "mapa-sp",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube",
-   "tiktok"
-  ],
-  "quando": "2026-11-27T06:45:00-03:00",
-  "drive_id": "1GUOL3FCNsTj4WdvZ46PeD6YsCZvg6KjF",
-  "tamanho": 240300759,
-  "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  },
-  "feito": {
-   "youtube": "i9521NicHgU",
-   "facebook": "1895807514743187",
-   "instagram": "17964943994998676",
-   "tiktok": "b:1:6b0971f6062ed764a81158b0:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795781111"
-  },
-  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3547205.mp4",
-  "gh_asset": 800317301
- },
- {
   "id": "mapa-sp 3516200 Franca: a capital nacional do basquete, no i",
   "arquivo": "videos/mapa-sp-3516200.mp4",
   "legenda": "Franca: a capital nacional do basquete, no interior de SP #PaulistaNoMapa #Franca #SãoPaulo",
