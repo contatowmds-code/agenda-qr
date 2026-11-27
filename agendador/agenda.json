@@ -1683,7 +1683,10 @@
   "quando": "2026-11-27T12:00:00-03:00",
   "drive_id": "15V0GrZaVApA6RJPeP_9dNXOrjZDU2Ai0",
   "tamanho": 68235305,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-sp 3525904 Jundiaí: a cidade da uva, do vinho e da Serr",
