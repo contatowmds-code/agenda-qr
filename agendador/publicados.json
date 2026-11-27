@@ -3969,5 +3969,30 @@
    "tiktok": "tiktok:buffer:6b09f096c02ca0988ab622e8"
   },
   "arquivado_em": "2026-11-27T18:15:31-03:00"
+ },
+ {
+  "id": "mapa-sc TT Indaial: criada, extinta e criada de novo",
+  "arquivo": "videos/mapa-sc-4207502-tt.mp4",
+  "legenda": "Indaial: criada, extinta e criada de novo #CatarinenseNoMapa #Indaial #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T05:20:00-03:00",
+  "drive_id": "1W3m1hLPBl5QJ06t1fZhKqWyOuNrIPTWf",
+  "tamanho": 251585122,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "tiktok": "z:6b09916e84a9f93a96ccffc5"
+  },
+  "sha256": "b6e034826d704ca8fcc557c57eed179bc34213ea3013ebadbceb9112cf832795",
+  "drive_antigo": "1DXOJDagpp3YcTt_9JEZCnkgMLiR_xAsG",
+  "links": {
+   "tiktok": "https://www.tiktok.com/@arquivoviralofc/video/7712855209717845249"
+  },
+  "arquivado_em": "2026-11-27T19:03:18-03:00"
  }
 ]
