@@ -3330,5 +3330,42 @@
    "tiktok": "tiktok:buffer:6b09dd03b5cd052fe286b8f2"
   },
   "arquivado_em": "2026-11-27T16:51:23-03:00"
+ },
+ {
+  "id": "mapa-mg 3156700 Sabará: a cidade que nasceu atrás de uma ser",
+  "arquivo": "videos/mapa-mg-3156700.mp4",
+  "legenda": "Sabará: a cidade que nasceu atrás de uma serra de esmeraldas #MineiroNoMapa #Sabará #MinasGerais",
+  "conta": "mapa-mg",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T08:30:00-03:00",
+  "drive_id": "1lZSEcOyN6XBG40A_jLnJtkMDLA7rTZ_R",
+  "tamanho": 240405710,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "youtube": "V4VTT2ax5jg",
+   "facebook": "5837471266478884",
+   "instagram": "18001848689843263",
+   "tiktok": "b:2:6b09ddcdb5cd052fe286fd34:6b08de8210b4939633108e3c:6b08df358541f09ecbba1846:1795808717"
+  },
+  "sha256": "0b75eae8c386438a16b67423148132079fb71ff98d412321199965f3093085d8",
+  "drive_antigo": "1hYP6ArAj0H5SDoY16w_BR2WD2yNdElTm",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3156700.mp4",
+  "gh_asset": 801803204,
+  "drive_apagado": true,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgQdXK7P18j/",
+   "facebook": "https://www.facebook.com/reel/5837471266478884/",
+   "youtube": "https://youtu.be/V4VTT2ax5jg",
+   "tiktok": "tiktok:buffer:6b09ddcdb5cd052fe286fd34"
+  },
+  "arquivado_em": "2026-11-27T16:51:26-03:00"
  }
 ]
