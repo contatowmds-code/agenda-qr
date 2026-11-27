@@ -483,6 +483,10 @@ def main():
                 time.sleep(2)
             ag = json.loads(AGENDA.read_text(encoding="utf-8"))
         except Exception as e: print("pedidos de envio:", str(e)[:160])
+    def _bloq_drive(novo=None, _f=Path(tempfile.gettempdir()) / "drive_bloqueio.txt"):
+        if novo: _f.write_text(str(novo)); return novo
+        try: return float(_f.read_text())
+        except Exception: return 0
     # COFRE: tira do Drive o quanto antes (até 4 vídeos por rodada, para não atrasar quem está na hora de publicar)
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
         n = 0; falhas = 0
@@ -490,16 +494,21 @@ def main():
         for it in sorted(ag, key=lambda x: 0 if x.get("sha256") else 1):   # primeiro os vídeos enviados pelo caminho novo (Drive com login): esses nunca esbarram no limite do link público
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
-            if "Quota exceeded" in str((it.get("erros") or {}).get("cofre", "")) and random.random() < .9: continue   # arquivo bloqueado pelo Drive por excesso de downloads: tenta de novo só de vez em quando
+            antigo = not it.get("sha256")   # vídeo do caminho antigo: só dá para baixar pelo link público do Drive, que tem limite diário
+            if antigo and time.time() < _bloq_drive(): continue   # SEM INSISTIR: enquanto o Drive recusa, o robô fica quieto (insistir a cada minuto só prolonga o bloqueio) e sonda de novo mais tarde com UM arquivo
             try:
                 g = mapa.guardar(it)
+                if g and antigo: _bloq_drive(time.time() + 150)   # liberou: tira os antigos devagar (1 a cada 2,5 min) para não estourar o limite de novo
                 if g:
                     if mapa.drive_do_app(it["drive_id"]) and mapa.drive_apagar(it["drive_id"]): g["drive_apagado"] = True
                     it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub" + (" e APAGADO do Drive" if g.get("drive_apagado") else "; o Drive apaga depois de publicar")); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
-            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); falhas += 1
+            except Exception as e:
+                print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); falhas += 1
+                if antigo and ("Quota exceeded" in str(e) or "página no lugar" in str(e)): _bloq_drive(time.time() + 2 * 3600); print("  Drive ainda recusando o link público: nova sondagem em 2 h")
             if falhas >= 3: break   # até 3 erros por rodada (um arquivo com a cota do Drive estourada não pode travar os outros)
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
+        if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok() and mapa.eh(conta_id(it)) and it.get("drive_id") and not it.get("gh_url") and not any((it.get("feito") or {}).values()): continue   # ainda não chegou ao cofre: espera (quem busca no Drive é só o passo do cofre, com calma)
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue
