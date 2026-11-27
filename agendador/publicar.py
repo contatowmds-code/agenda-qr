@@ -420,7 +420,10 @@ def arquivar(it, links):
         else:
             _git("commit", "-q", "-m", f"publicado e arquivado: {it['id'][:40]}")
             ok = _git("push", "-q", "origin", "HEAD:main").returncode == 0
-        if ok: limpar_videos(it); mapa.soltar(it); return True
+        if ok:
+            limpar_videos(it); mapa.soltar(it)
+            if it.get("drive_id") and not it.get("drive_apagado") and mapa.drive_do_app(it["drive_id"]): mapa.drive_apagar(it["drive_id"])
+            return True
         time.sleep(1.5 + random.random() * 2)
     print("  AVISO: não consegui arquivar:", it["id"]); return False
 
@@ -468,6 +471,18 @@ def main():
         if prox:
             esp = (min(prox) - agora()).total_seconds() + 2
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
+    # PEDIDOS DE ENVIO das sessões (Drive com login): responde com a URL da sessão de envio
+    if not DRY and os.environ.get("GITHUB_ACTIONS") and os.environ.get("SO_PREFIXO"):
+        try:
+            _git("config", "user.name", "agendador"); _git("config", "user.email", "agendador@users.noreply.github.com")
+            for tent in range(5):
+                _git("fetch", "-q", "origin", "main"); _git("reset", "-q", "--hard", "origin/main")
+                if not mapa.atender_pedidos(): break
+                _git("add", "-A", "agendador/pedidos", "agendador/respostas"); _git("commit", "-q", "-m", "pedidos de envio: respostas")
+                if _git("push", "-q", "origin", "HEAD:main").returncode == 0: break
+                time.sleep(2)
+            ag = json.loads(AGENDA.read_text(encoding="utf-8"))
+        except Exception as e: print("pedidos de envio:", str(e)[:160])
     # COFRE: tira do Drive o quanto antes (até 4 vídeos por rodada, para não atrasar quem está na hora de publicar)
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
         n = 0; falhas = 0
@@ -477,7 +492,9 @@ def main():
             if "Quota exceeded" in str((it.get("erros") or {}).get("cofre", "")) and random.random() < .9: continue   # arquivo bloqueado pelo Drive por excesso de downloads: tenta de novo só de vez em quando
             try:
                 g = mapa.guardar(it)
-                if g: it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub; o Drive já pode apagar"); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
+                if g:
+                    if mapa.drive_do_app(it["drive_id"]) and mapa.drive_apagar(it["drive_id"]): g["drive_apagado"] = True
+                    it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub" + (" e APAGADO do Drive" if g.get("drive_apagado") else "; o Drive apaga depois de publicar")); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
             except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); falhas += 1
             if falhas >= 3: break   # até 3 erros por rodada (um arquivo com a cota do Drive estourada não pode travar os outros)
     for it in list(ag):

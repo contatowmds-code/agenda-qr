@@ -14,6 +14,7 @@ jobs:
     env:
       SO_PREFIXO: "mapa-"
       GH_TOKEN: ${{ github.token }}
+      DRIVE_REFRESH_TOKEN: ${{ secrets.DRIVE_REFRESH_TOKEN }}
       VIDEOS_DIR: ${{ github.workspace }}/videos_branch/videos
       META_ACCOUNTS: ${{ secrets.META_ACCOUNTS }}
       META_SISTEMA_TOKEN: ${{ secrets.META_SISTEMA_TOKEN }}

@@ -1,0 +1,19 @@
+name: Drive - conectar o Drive do dono ao robô dos mapas
+on:
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  conectar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install requests pynacl
+      - run: python agendador/drive_conectar.py
+        env:
+          YT_CLIENT_ID__MAPAS: "23695398237-70lkqt2rfp411o1j05rmtrucbjdofdo8.apps.googleusercontent.com"   # identificador público do app (projeto Mapas YouTube)
+          YT_CLIENT_SECRET__MAPAS: ${{ secrets.YT_CLIENT_SECRET__MAPAS }}
+          GH_PAT_SEGREDOS: ${{ secrets.GH_PAT_SEGREDOS }}

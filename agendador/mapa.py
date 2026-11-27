@@ -110,7 +110,8 @@ def baixar(it):
     for tent in range(3):
         try:
             # COFRE (27/11/2026): se o vídeo já foi guardado no GitHub (gh_url), baixa de lá; o Drive é só a porta de entrada
-            with (requests.get(it["gh_url"], stream=True, timeout=600) if it.get("gh_url") else requests.get("https://drive.usercontent.google.com/download", params={"id": it["drive_id"], "export": "download", "confirm": "t"}, stream=True, timeout=600)) as r:
+            _tk = None if it.get("gh_url") else drive_token()
+            with (requests.get(it["gh_url"], stream=True, timeout=600) if it.get("gh_url") else _drive_get(it["drive_id"], _tk)) as r:
                 r.raise_for_status()
                 with open(dest, "wb") as f:
                     for b in r.iter_content(1 << 20): f.write(b)
@@ -128,7 +129,13 @@ def baixar(it):
                     n = dest.stat().st_size
                 if n < 20000: raise RuntimeError(f"o Drive devolveu uma página no lugar do vídeo: [{tit}] {msg}")
             with open(dest, "rb") as f: cab = f.read(16)
-            if b"ftyp" in cab and (not tam or n == tam): return dest
+            if b"ftyp" in cab and (not tam or n == tam):
+                if it.get("sha256"):   # vídeo enviado pela sessão: o conteúdo tem de ser exatamente o que ela declarou
+                    import hashlib; h = hashlib.sha256()
+                    with open(dest, "rb") as f:
+                        for b in iter(lambda: f.read(1 << 20), b""): h.update(b)
+                    if h.hexdigest() != it["sha256"]: dest.unlink(missing_ok=True); raise RuntimeError("o arquivo baixado NÃO é o vídeo que a sessão enviou (sha256 diferente). Não publiquei.")
+                return dest
             erro = f"veio {n} bytes (esperado {tam}); o arquivo do Drive não está acessível por link ou foi apagado"
         except Exception as e: erro = str(e)[:160]
         time.sleep(5)
@@ -378,3 +385,67 @@ def soltar(it):
     try:
         if it.get("gh_asset") and cofre_ok(): requests.delete(f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/releases/assets/{it['gh_asset']}", headers=_ghh(), timeout=60)
     except Exception: pass
+
+
+# ---------------- DRIVE COM LOGIN (27/11/2026) ----------------
+# O link público do Drive tem um limite diário de downloads ("Quota exceeded") que parou o robô. Com o login do dono (permissão drive.file:
+# só enxerga arquivos criados por este app) o robô cria a sessão de envio, baixa e apaga os vídeos sem depender do link público.
+_DT = {}
+def drive_token():
+    rt = os.environ.get("DRIVE_REFRESH_TOKEN")
+    if not rt: return None
+    if _DT.get("ate", 0) > time.time() + 120: return _DT["t"]
+    try:
+        r = requests.post("https://oauth2.googleapis.com/token", data={"client_id": os.environ.get("YT_CLIENT_ID__MAPAS"), "client_secret": os.environ.get("YT_CLIENT_SECRET__MAPAS"), "refresh_token": rt, "grant_type": "refresh_token"}, timeout=60).json()
+        if "access_token" not in r: print("  (Drive com login: token recusado:", str(r)[:120] + ")"); return None
+        _DT.update(t=r["access_token"], ate=time.time() + int(r.get("expires_in", 3000))); return _DT["t"]
+    except Exception as e: print("  (Drive com login:", str(e)[:100] + ")"); return None
+def _drive_get(fid, tk):
+    """Baixa do Drive: com login quando o arquivo é do app; senão (arquivo antigo, criado pelo script FILA-MAPA) pelo link público."""
+    if tk:
+        r = requests.get(f"https://www.googleapis.com/drive/v3/files/{fid}", params={"alt": "media", "supportsAllDrives": "true"}, headers={"Authorization": "Bearer " + tk}, stream=True, timeout=600)
+        if r.status_code == 200: return r
+        r.close()
+    return requests.get("https://drive.usercontent.google.com/download", params={"id": fid, "export": "download", "confirm": "t"}, stream=True, timeout=600)
+def drive_do_app(fid):
+    tk = drive_token()
+    if not tk: return False
+    try: return requests.get(f"https://www.googleapis.com/drive/v3/files/{fid}", params={"fields": "id"}, headers={"Authorization": "Bearer " + tk}, timeout=60).status_code == 200
+    except Exception: return False
+def drive_apagar(fid):
+    tk = drive_token()
+    if not tk: return False
+    try: return requests.delete(f"https://www.googleapis.com/drive/v3/files/{fid}", headers={"Authorization": "Bearer " + tk}, timeout=60).status_code in (204, 404)
+    except Exception: return False
+PASTA_ROBO = "ROBO-MAPAS (vídeos de passagem; o robô apaga sozinho)"
+def drive_pasta():
+    if _DT.get("pasta"): return _DT["pasta"]
+    H = {"Authorization": "Bearer " + drive_token()}
+    r = requests.get("https://www.googleapis.com/drive/v3/files", params={"q": "mimeType='application/vnd.google-apps.folder' and trashed=false and name='" + PASTA_ROBO + "'", "fields": "files(id)"}, headers=H, timeout=60).json()
+    if r.get("files"): _DT["pasta"] = r["files"][0]["id"]
+    else:
+        c = requests.post("https://www.googleapis.com/drive/v3/files", params={"fields": "id"}, headers=H, json={"name": PASTA_ROBO, "mimeType": "application/vnd.google-apps.folder"}, timeout=60); c.raise_for_status(); _DT["pasta"] = c.json()["id"]
+    return _DT["pasta"]
+def drive_sessao(nome, tam):
+    """Abre uma sessão de envio (o arquivo nasce como do app, na pasta do robô). Devolve a URL para a sessão que fez o vídeo mandar os bytes."""
+    r = requests.post("https://www.googleapis.com/upload/drive/v3/files", params={"uploadType": "resumable", "fields": "id,name,size,sha256Checksum"}, timeout=60,
+                      headers={"Authorization": "Bearer " + drive_token(), "X-Upload-Content-Type": "video/mp4", "X-Upload-Content-Length": str(int(tam)), "Content-Type": "application/json; charset=UTF-8"},
+                      data=json.dumps({"name": nome, "parents": [drive_pasta()]}).encode("utf-8"))
+    r.raise_for_status(); return r.headers["Location"]
+PEDIDOS, RESPOSTAS = AQUI / "pedidos", AQUI / "respostas"
+def atender_pedidos():
+    """Sessões pedem o envio gravando agendador/pedidos/<id>.json ({"nome","tamanho","sha256"}); o robô responde em agendador/respostas/<id>.json
+    com a URL da sessão de envio. Devolve True se escreveu ou apagou algo (quem chama faz o commit)."""
+    if not PEDIDOS.is_dir(): return False
+    mudou = False; RESPOSTAS.mkdir(exist_ok=True)
+    for p in sorted(PEDIDOS.glob("*.json")):
+        try:
+            d = json.loads(p.read_text(encoding="utf-8")); rp = RESPOSTAS / p.name; velho = time.time() - float(d.get("ts", 0)) > 36 * 3600
+            if velho: p.unlink(); rp.unlink(missing_ok=True); mudou = True; continue
+            if rp.exists() and json.loads(rp.read_text(encoding="utf-8")).get("sha256") == d.get("sha256"): continue
+            if not drive_token(): continue
+            if not (str(d.get("nome", "")).lower().endswith(".mp4") and 1_000_000 < int(d["tamanho"]) < 2_000_000_000 and len(str(d.get("sha256", ""))) == 64): continue
+            url = drive_sessao(str(d["nome"])[:180], d["tamanho"])
+            rp.write_text(json.dumps({"sessao": url, "sha256": d["sha256"], "ts": time.time()}), encoding="utf-8"); mudou = True; print(f"[pedido {p.stem}] sessão de envio aberta no Drive (com login)")
+        except Exception as e: print(f"[pedido {p.name}] não consegui atender: {str(e)[:160]}")
+    return mudou
