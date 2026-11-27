@@ -3516,5 +3516,33 @@
    "tiktok": "tiktok:buffer:6b09df4c585cafb820d8889b"
   },
   "arquivado_em": "2026-11-27T17:14:48-03:00"
+ },
+ {
+  "id": "mapa-pr TT Guaporema: o nome vem de um índio que remava? Dua",
+  "arquivo": "videos/mapa-pr-4109104-tt.mp4",
+  "legenda": "Guaporema: o nome vem de um índio que remava? Duas versões! #ParanaenseNoMapa #Guaporema #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T16:53:32-03:00",
+  "drive_id": "15pnXRDVIFgz4zbdip-1ilksWEWgVbMfz",
+  "tamanho": 290599756,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "sha256": "045d2926252de3fea684734b5fc025281db7689efbce84983e8361a0870faeee",
+  "drive_antigo": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4109104-tt.mp4",
+  "gh_asset": 801845615,
+  "drive_apagado": true,
+  "feito": {
+   "tiktok": "b:2:6b09e0a4277f27038a343222:6b08de8210b4939633108e3c:6b08dea88541f09ecbba14c2:1795809444"
+  },
+  "links": {
+   "tiktok": "tiktok:buffer:6b09e0a4277f27038a343222"
+  },
+  "arquivado_em": "2026-11-27T17:14:50-03:00"
  }
 ]
