@@ -897,7 +897,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:00:00-03:00",
-  "drive_id": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy",
+  "drive_id": "1ZrDA60wzYxV05jjRXtqQCup692cOaDGM",
   "tamanho": 244642004,
   "ia": true,
   "erros": {
@@ -908,7 +908,9 @@
   },
   "feito": {
    "youtube": "MGfiQ8TbCT4"
-  }
+  },
+  "sha256": "c8aec557a19c539ce62da0238affec2c76b4d7aa3ddadf807ba0eda1085d2531",
+  "drive_antigo": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy"
  },
  {
   "id": "mapa-sp 3516200 Franca: a capital nacional do basquete, no i",
