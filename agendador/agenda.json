@@ -1664,7 +1664,10 @@
   "quando": "2026-11-27T10:15:00-03:00",
   "drive_id": "1Q3mdSOYudD1FgDSxT0YDrjCDP-txgVk0",
   "tamanho": 78462734,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-sp 3532868 Nova Castilho só virou município em dezembro",
