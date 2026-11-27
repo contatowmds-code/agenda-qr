@@ -1387,7 +1387,10 @@
   "sha256": "c87647ffb6c8d105b1bf13de7043ff51a07a9a66df053c3c524119eff841e723",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4206751.mp4",
   "gh_asset": 799697068,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "OA6EQ4OS1l0"
+  }
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
