@@ -886,36 +886,6 @@
   "capa": "videos/Porto-de-Santos-foi-atacado.jpg"
  },
  {
-  "id": "mapa-sp 3506003 Bauru: do sanduíche famoso ao primeiro astro",
-  "arquivo": "videos/mapa-sp-3506003.mp4",
-  "legenda": "Bauru: do sanduíche famoso ao primeiro astronauta brasileiro #PaulistaNoMapa #Bauru #SãoPaulo",
-  "conta": "mapa-sp",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube",
-   "tiktok"
-  ],
-  "quando": "2026-11-27T05:00:00-03:00",
-  "drive_id": "1ZrDA60wzYxV05jjRXtqQCup692cOaDGM",
-  "tamanho": 244642004,
-  "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  },
-  "feito": {
-   "youtube": "MGfiQ8TbCT4",
-   "instagram": "18222190612358652",
-   "facebook": "2326011544909988",
-   "tiktok": "b:1:6b09d9f1b5cd052fe285670b:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795807729"
-  },
-  "sha256": "c8aec557a19c539ce62da0238affec2c76b4d7aa3ddadf807ba0eda1085d2531",
-  "drive_antigo": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy",
-  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3506003.mp4",
-  "gh_asset": 801762204,
-  "drive_apagado": true
- },
- {
   "id": "mapa-sp 3516200 Franca: a capital nacional do basquete, no i",
   "arquivo": "videos/mapa-sp-3516200.mp4",
   "legenda": "Franca: a capital nacional do basquete, no interior de SP #PaulistaNoMapa #Franca #SãoPaulo",
