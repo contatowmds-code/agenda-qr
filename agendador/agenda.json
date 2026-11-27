@@ -1641,5 +1641,44 @@
   "drive_id": "1E5QuyDwJNyjK9zis2a2RNxYYJgq6csSY",
   "tamanho": 72712984,
   "ia": true
+ },
+ {
+  "id": "mapa-mg-3170701-tt",
+  "arquivo": "videos/mapa-mg-3170701-tt.mp4",
+  "legenda": "Varginha: o café do Brasil e o ET de Minas #MineiroNoMapa #Varginha #MinasGerais",
+  "conta": "mapa-mg",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T07:00:00-03:00",
+  "drive_id": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR",
+  "tamanho": 249242621,
+  "ia": true
+ },
+ {
+  "id": "mapa-norte-1506807-tt",
+  "arquivo": "videos/mapa-norte-1506807-tt.mp4",
+  "legenda": "Santarém: os rios Tapajós e Amazonas correm lado a lado #NorteNoMapa #Santarém #Pará",
+  "conta": "mapa-norte",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T06:10:00-03:00",
+  "drive_id": "1ddR8JwPhAOq0O9F6KaNFYDNevs-QGeAP",
+  "tamanho": 199294172,
+  "ia": true
+ },
+ {
+  "id": "mapa-mt-5104104-tt",
+  "arquivo": "videos/mapa-mt-5104104-tt.mp4",
+  "legenda": "Guarantã do Norte nasceu de um plano do governo! #MatoGrossoNoMapa #GuarantãDoNorte #MatoGrosso",
+  "conta": "mapa-mt",
+  "plataformas": [
+   "tiktok"
+  ],
+  "quando": "2026-11-27T06:10:00-03:00",
+  "drive_id": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY",
+  "tamanho": 199240667,
+  "ia": true
  }
 ]
