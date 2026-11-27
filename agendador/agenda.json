@@ -902,12 +902,12 @@
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "instagram": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "facebook": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "feito": {
-   "youtube": "FbY3vNdpRGM"
+   "youtube": "FbY3vNdpRGM",
+   "instagram": "17969875233237262"
   },
   "sha256": "ffc133dc339161f13a26d2717e1fc7e3b0fb624fae67c89f01f2684e26190598",
   "drive_antigo": "1ntQFhofo5sFNFTNceBSGX9JjPL0j-EBG",
