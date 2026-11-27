@@ -1519,7 +1519,10 @@
   "sha256": "9a7cda1590faa582ed494a93ff3c94054f311c59ff8a600ae18c0af7913191b9",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-norte-1504208.mp4",
   "gh_asset": 801491624,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "1qvhtlEuH2w"
+  }
  },
  {
   "id": "mapa-mt 5106307 Paranatinga nasceu do diamante e tem balneár",
