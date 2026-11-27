@@ -1438,7 +1438,10 @@
   "drive_id": "1GapnaLCD4iOENpUwFvoM8SPsOgWd5sQe",
   "tamanho": 269245530,
   "ia": true,
-  "sha256": "a09175db2416bba566148a9cf892ff204de1a52115b20523ec890198a08e2064"
+  "sha256": "a09175db2416bba566148a9cf892ff204de1a52115b20523ec890198a08e2064",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3147501.mp4",
+  "gh_asset": 800823564,
+  "drive_apagado": true
  },
  {
   "id": "mapa-sp 3554755 Trabiju nasceu de um trilho de trem e só vir",
