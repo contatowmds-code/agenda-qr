@@ -929,7 +929,7 @@
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "instagram": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "facebook": "baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "tiktok": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"
   },
   "feito": {
    "youtube": "i9521NicHgU"
