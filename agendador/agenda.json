@@ -1821,6 +1821,9 @@
   "quando": "2026-11-27T07:55:00-03:00",
   "drive_id": "Querência tem mais de 30 aldeias do Xingu e festa gigante! #MatoGrossoNoMapa #Querência #MatoGrosso.mp4",
   "tamanho": 203321837,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=Quer%C3%AAncia+tem+mais+de+30+aldeias+do+Xingu+e+festa+gigante%21+%23MatoG"
+  }
  }
 ]
