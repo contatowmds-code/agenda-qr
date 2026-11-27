@@ -2130,5 +2130,37 @@
    "tiktok": "tiktok:buffer:6b08ead29131f7416c6890b9"
   },
   "arquivado_em": "2026-11-27T06:03:17-03:00"
+ },
+ {
+  "id": "mapa-sc 4207007 Içara: 85 toneladas de mel por ano",
+  "arquivo": "videos/mapa-sc-4207007.mp4",
+  "legenda": "Içara: 85 toneladas de mel por ano #CatarinenseNoMapa #Içara #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-26T22:36:18-03:00",
+  "drive_id": "1C4IksCmhbb3kvFqAk-E5C65tWXy7Izbz",
+  "tamanho": 230695452,
+  "ia": true,
+  "feito": {
+   "instagram": "17883428478553955",
+   "facebook": "2989385514779809",
+   "tiktok": "z:6b08e2866e1c76fa15bd1b15",
+   "youtube": "FAgM13eroeI"
+  },
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgOh93PBSkl/",
+   "facebook": "https://www.facebook.com/reel/2989385514779809/",
+   "youtube": "https://youtu.be/FAgM13eroeI",
+   "tiktok": "https://www.tiktok.com/@arquivoviralofc/video/7712662538000829748"
+  },
+  "arquivado_em": "2026-11-27T06:03:24-03:00"
  }
 ]
