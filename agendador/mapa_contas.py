@@ -29,6 +29,8 @@ for conta in mapa.CONTAS:
         rt = mapa.env("TT_REFRESH_TOKEN", conta)
         za = mapa.zernio_conta(conta) if (not rt and os.environ.get("ZERNIO_API_KEY")) else None
         if za: s["tiktok"] = {"ok": True, "conta": "@" + str(za.get("username")) + " (Zernio)", "privacidade": "PUBLIC_TO_EVERYONE"}; raise StopIteration
+        bc = mapa.buffer_canal(conta) if not rt else None
+        if bc: s["tiktok"] = {"ok": True, "conta": str(bc.get("nome")) + f" (Buffer {bc['n']})", "privacidade": "PUBLIC_TO_EVERYONE"}; raise StopIteration
         if not rt: raise RuntimeError("sem credencial (falta o segredo TT_REFRESH_TOKEN__" + conta.upper().replace("-", "_") + ")")
         t = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": os.environ.get("TT_CLIENT_KEY"), "client_secret": os.environ.get("TT_CLIENT_SECRET"),
             "grant_type": "refresh_token", "refresh_token": rt}, timeout=60).json()

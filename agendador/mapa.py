@@ -4,6 +4,7 @@ e envia o arquivo direto (sem link público do GitHub) para Instagram e Facebook
 Regras: cada perfil só publica na conta cujo nome bate com a "chave" de contas_mapa.json (ex.: catarinensenomapa).
 Se o nome não bater, NÃO publica. Nenhum token é impresso."""
 import json, os, tempfile, time, unicodedata
+import datetime as dt_
 from pathlib import Path
 import requests
 
@@ -266,4 +267,65 @@ def zernio_confirma(pid):
     st = str(x.get("status") or po.get("status") or "").lower()
     if st == "published": return x.get("platformPostUrl") or x.get("url") or ("tiktok:zernio:" + str(pid)[2:])
     if st == "failed": print(f"  tiktok (Zernio) FALHOU: {str(x.get('errorMessage') or x.get('error') or po.get('error'))[:200]}")
+    return None
+
+# ---------------------------------------------------------------------------------------------------------------------
+# TIKTOK PELO BUFFER (serviço aprovado pelo TikTok; plano grátis = 3 canais por conta do Buffer). Segredos: BUFFER_API_KEY_1, _2...
+# O Buffer não recebe arquivo: ele busca o vídeo num link público (o do Drive). Poucas chamadas por post: o plano grátis tem cota mensal.
+BUFFER = "https://api.buffer.com"
+_BCACHE = Path(tempfile.gettempdir()) / "buffer_cache.json"
+def _bchaves(): return [(n, os.environ.get(f"BUFFER_API_KEY_{n}")) for n in range(1, 6) if os.environ.get(f"BUFFER_API_KEY_{n}")]
+def _bq(chave, query, variaveis=None):
+    r = requests.post(BUFFER, headers={"Authorization": "Bearer " + chave, "Content-Type": "application/json"}, json={"query": query, "variables": variaveis or {}}, timeout=120)
+    try: j = r.json()
+    except Exception: raise RuntimeError(f"buffer: resposta {r.status_code} {r.text[:200]}")
+    if j.get("errors"): raise RuntimeError("buffer: " + str(j["errors"])[:300])
+    return j.get("data") or {}
+def _bcache(gravar=None):
+    if gravar is not None: _BCACHE.write_text(json.dumps(gravar)); return gravar
+    try: return json.loads(_BCACHE.read_text())
+    except Exception: return {}
+def buffer_canais():
+    """Canais de TikTok de todas as contas do Buffer: [{n, org, id, nome}]. Guarda por 6 h para gastar pouca cota."""
+    c = _bcache()
+    if c.get("canais") is not None and c.get("ate", 0) > time.time(): return c["canais"]
+    canais = []
+    for n, k in _bchaves():
+        for o in ((_bq(k, "query { account { organizations { id name } } }").get("account") or {}).get("organizations") or []):
+            for ch in (_bq(k, "query($o: OrganizationId!) { channels(input: {organizationId: $o}) { id name displayName service } }", {"o": o["id"]}).get("channels") or []):
+                if "tiktok" in str(ch.get("service", "")).lower(): canais.append({"n": n, "org": o["id"], "id": ch["id"], "nome": ch.get("displayName") or ch.get("name"), "name": ch.get("name")})
+    c["canais"] = canais; c["ate"] = time.time() + 6 * 3600; _bcache(c); return canais
+def buffer_canal(conta):
+    """Canal de TikTok deste perfil no Buffer (ou None). Nunca devolve canal de outro perfil."""
+    if not _bchaves(): return None
+    for ch in buffer_canais():
+        if bate(conta, ch.get("nome"), ch.get("name")): return ch
+    return None
+def buffer_tiktok(it):
+    ch = buffer_canal(it["conta"])
+    if not ch: raise RuntimeError(f"tiktok (Buffer): não achei canal do TikTok do perfil {CONTAS[it['conta']]['nome']} conectado. Não publiquei.")
+    k = dict(_bchaves())[ch["n"]]
+    quando = (dt_.datetime.now(dt_.timezone.utc) + dt_.timedelta(minutes=3)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    url = f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t"
+    q = """mutation($i: CreatePostInput!) { createPost(input: $i) { ... on PostActionSuccess { post { id status } } ... on MutationError { message } } }"""
+    d = _bq(k, q, {"i": {"text": it["legenda"][:2200], "channelId": ch["id"], "schedulingType": "automatic", "mode": "customScheduled", "dueAt": quando,
+                         "assets": [{"video": {"url": url, "metadata": {"thumbnailOffset": 0}}}]}}).get("createPost") or {}
+    po = d.get("post") or {}
+    if not po.get("id"): raise RuntimeError(f"buffer post: {str(d)[:300]}")
+    print(f"  tiktok (Buffer {ch['n']}): agendado para já em {ch.get('nome')}, post {po['id']}")
+    return f"b:{ch['n']}:{po['id']}:{ch['org']}:{ch['id']}:{int(time.time())}"
+def buffer_confirma(pid):
+    """'tiktok:buffer:<id>' quando o Buffer marca o post como enviado; None enquanto espera ou se deu erro. Consulta no máximo a cada 5 min."""
+    _, n, post, org, canal, t0 = (str(pid).split(":") + ["", "", "", "0"])[:6]
+    c = _bcache(); visto = c.setdefault("visto", {})
+    if time.time() - int(t0 or 0) < 240 or time.time() - visto.get(post, 0) < 300: return None
+    visto[post] = time.time(); _bcache(c)
+    k = dict(_bchaves()).get(int(n))
+    if not k: return None
+    q = "query($o: OrganizationId!, $c: [ChannelId!], $s: [PostStatus!]) { posts(first: 30, input: {organizationId: $o, filter: {status: $s, channelIds: $c}}) { edges { node { id status } } } }"
+    for st in ("sent", "error"):
+        for e in (((_bq(k, q, {"o": org, "c": [canal], "s": [st]}).get("posts") or {}).get("edges")) or []):
+            if (e.get("node") or {}).get("id") == post:
+                if st == "sent": return "tiktok:buffer:" + post
+                print("  tiktok (Buffer) deu ERRO neste post; veja no painel do Buffer"); return None
     return None

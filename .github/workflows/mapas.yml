@@ -27,6 +27,8 @@ jobs:
       TT_CLIENT_SECRET: ${{ secrets.TT_CLIENT_SECRET }}
       TT_PRIVACY: ${{ vars.TT_PRIVACY }}
       ZERNIO_API_KEY: ${{ secrets.ZERNIO_API_KEY }}
+      BUFFER_API_KEY_1: ${{ secrets.BUFFER_API_KEY_1 }}
+      BUFFER_API_KEY_2: ${{ secrets.BUFFER_API_KEY_2 }}
       YT_REFRESH_TOKEN__MAPA_SC: ${{ secrets.YT_REFRESH_TOKEN__MAPA_SC }}
       YT_REFRESH_TOKEN__MAPA_RS: ${{ secrets.YT_REFRESH_TOKEN__MAPA_RS }}
       YT_REFRESH_TOKEN__MAPA_PR: ${{ secrets.YT_REFRESH_TOKEN__MAPA_PR }}
