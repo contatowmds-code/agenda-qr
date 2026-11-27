@@ -163,7 +163,7 @@ def _yt_espera(chave, ate=None):
 def youtube(it):
     for ch in ("_projeto", conta_id(it) or "_"):
         e = _yt_espera(ch)
-        if e: raise RuntimeError("youtube em espera até " + dt.datetime.fromtimestamp(e, ZoneInfo("America/Sao_Paulo")).strftime("%d/%m %H:%M") + (" (cota diária do projeto)" if ch == "_projeto" else " (limite de envios do canal)"))
+        if e: raise RuntimeError("youtube em espera até " + dt.datetime.fromtimestamp(e, ZoneInfo("America/Sao_Paulo")).strftime("%d/%m %H:%M") + (" (cota de envios do app; tenta de novo nessa hora)" if ch == "_projeto" else " (limite de envios do canal)"))
     tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", it),
           "client_secret": env("YT_CLIENT_SECRET", it), "refresh_token": env("YT_REFRESH_TOKEN", it), "grant_type": "refresh_token"}, timeout=60).json()
     if "access_token" not in tok: raise RuntimeError(f"token: {tok}")
@@ -180,7 +180,7 @@ def youtube(it):
     if not loc:
         if "uploadLimitExceeded" in r.text: _yt_espera(conta_id(it) or "_", time.time() + 3 * 3600)   # limite do CANAL: tenta de novo em 3 h
         elif r.status_code == 429 or "quotaExceeded" in r.text or "Quota exceeded" in r.text:           # cota do PROJETO: só volta à meia-noite do Pacífico (05:00 de Brasília)
-            ag_ = dt.datetime.now(ZoneInfo("America/Los_Angeles")); _yt_espera("_projeto", (ag_.replace(hour=0, minute=10, second=0, microsecond=0) + dt.timedelta(days=1)).timestamp())
+            _yt_espera("_projeto", time.time() + 3600)   # a cota volta aos poucos (27/11: 3 vídeos passaram 2 h depois do bloqueio), então tenta de novo a cada 1 h, uma tentativa só
         raise RuntimeError(f"iniciar: {r.text[:300]}")
     up = requests.put(loc, data=arquivo(it).read_bytes(), headers={"Content-Type": "video/mp4"}, timeout=1200).json()
     if "id" not in up: raise RuntimeError(f"enviar: {up}")
