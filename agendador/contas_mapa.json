@@ -12,7 +12,10 @@
  "mapa-pr": {
   "sigla": "PR",
   "nome": "Paranaense no Mapa",
-  "chave": "paranaensenomapa"
+  "chave": "paranaensenomapa",
+  "aceitos": [
+   "quantorendeofc"
+  ]
  },
  "mapa-mg": {
   "sigla": "MG",
