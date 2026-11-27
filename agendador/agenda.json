@@ -1339,12 +1339,15 @@
    "youtube",
    "tiktok"
   ],
-  "quando": "2026-11-27T15:50:44-03:00",
+  "quando": "2026-11-27T17:14:26-03:00",
   "drive_id": "13_ZZ4zM95tIYObJ9PESomFZUf_cMaKuv",
   "tamanho": 242508420,
   "ia": true,
   "sha256": "32c755e411d18ad4356961d653e7ae8378f3e4348d4d20a759fabc2b883dcd88",
-  "drive_antigo": "13f8G0ITuzfgXD8SNh26Dubksl4AXKyUj"
+  "drive_antigo": "13f8G0ITuzfgXD8SNh26Dubksl4AXKyUj",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4219309.mp4",
+  "gh_asset": 801906204,
+  "drive_apagado": true
  },
  {
   "id": "mapa-norte 1505536 Parauapebas: a cidade que nasceu da maior",
