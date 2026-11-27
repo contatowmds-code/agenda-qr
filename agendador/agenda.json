@@ -1802,7 +1802,10 @@
   "quando": "2026-11-27T08:50:00-03:00",
   "drive_id": "Mafra: onde Santa Catarina encosta no Paraná #CatarinenseNoMapa #Mafra #SantaCatarina.mp4",
   "tamanho": 107764846,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=Mafra%3A+onde+Santa+Catarina+encosta+no+Paran%C3%A1+%23CatarinenseNoMapa+%"
+  }
  },
  {
   "id": "mapa-mt 5107065 f653335d87333f4a651de7c8ab653ab77073aa854891",
