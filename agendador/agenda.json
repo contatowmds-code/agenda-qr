@@ -906,7 +906,7 @@
    "tiktok": "b:1:6b08eabb7c3f43554e4e81ff:6b08dfecd593469888bf3bb7:6b08e0918541f09ecbba2093:1795746491"
   },
   "erros": {
-   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Quota exceeded for quota metric 'Video Uploads' and limit 'Video Uploads per day' of service 'youtube.googleapis.com' for consumer 'project_number:23695398237'.\",\n    \"errors\": [\n      {\n        \"message\": \"Quota exceeded for quota metric 'Vid"
+   "youtube": "youtube em espera até 27/11 01:47 (cota de envios do app; tenta de novo nessa hora)"
   }
  },
  {
