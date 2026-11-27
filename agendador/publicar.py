@@ -5,6 +5,7 @@ Contas: cada vídeo da agenda pode ter "conta" (ex.: quanto-rende, quanto-vale, 
 Segredos do GitHub: META_ACCOUNTS (JSON, Instagram+Facebook de todas as contas) | (antigo, 1 conta) IG_USER_ID, IG_TOKEN | FB_PAGE_ID, FB_PAGE_TOKEN | TT_CLIENT_KEY, TT_CLIENT_SECRET, TT_REFRESH_TOKEN (TT_PRIVACY opcional)
                     | YT_CLIENT_ID, YT_CLIENT_SECRET, YT_REFRESH_TOKEN.
 Uso: python publicar.py [--dry-run]"""
+import tempfile
 import json, math, os, sys, time, datetime as dt
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -140,7 +141,19 @@ def tiktok(it):
         if up.status_code not in (200, 201, 206): raise RuntimeError(f"enviar: {up.status_code} {up.text[:200]}")
     return d["publish_id"]
 
+_YT_ESPERA = Path(tempfile.gettempdir()) / "yt_espera.json"
+def _yt_espera(chave, ate=None):
+    """Pausa entre tentativas no YouTube: cada tentativa recusada também gasta a cota diária de envios do projeto (100/dia),
+    então depois de uma recusa por LIMITE o robô espera em vez de insistir a cada minuto. Devolve até quando esperar (ou None)."""
+    try: d = json.loads(_YT_ESPERA.read_text())
+    except Exception: d = {}
+    if ate is not None: d[chave] = ate; _YT_ESPERA.write_text(json.dumps(d)); return ate
+    return d[chave] if d.get(chave, 0) > time.time() else None
+
 def youtube(it):
+    for ch in ("_projeto", conta_id(it) or "_"):
+        e = _yt_espera(ch)
+        if e: raise RuntimeError("youtube em espera até " + dt.datetime.fromtimestamp(e, ZoneInfo("America/Sao_Paulo")).strftime("%d/%m %H:%M") + (" (cota diária do projeto)" if ch == "_projeto" else " (limite de envios do canal)"))
     tok = requests.post("https://oauth2.googleapis.com/token", data={"client_id": env("YT_CLIENT_ID", it),
           "client_secret": env("YT_CLIENT_SECRET", it), "refresh_token": env("YT_REFRESH_TOKEN", it), "grant_type": "refresh_token"}, timeout=60).json()
     if "access_token" not in tok: raise RuntimeError(f"token: {tok}")
@@ -154,7 +167,11 @@ def youtube(it):
     h = {"Authorization": f"Bearer {tok['access_token']}", "Content-Type": "application/json; charset=UTF-8", "X-Upload-Content-Type": "video/mp4"}
     r = requests.post("https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status", headers=h, data=json.dumps(meta), timeout=60)
     loc = r.headers.get("Location")
-    if not loc: raise RuntimeError(f"iniciar: {r.text[:300]}")
+    if not loc:
+        if "uploadLimitExceeded" in r.text: _yt_espera(conta_id(it) or "_", time.time() + 3 * 3600)   # limite do CANAL: tenta de novo em 3 h
+        elif r.status_code == 429 or "quotaExceeded" in r.text or "Quota exceeded" in r.text:           # cota do PROJETO: só volta à meia-noite do Pacífico (05:00 de Brasília)
+            ag_ = dt.datetime.now(ZoneInfo("America/Los_Angeles")); _yt_espera("_projeto", (ag_.replace(hour=0, minute=10, second=0, microsecond=0) + dt.timedelta(days=1)).timestamp())
+        raise RuntimeError(f"iniciar: {r.text[:300]}")
     up = requests.put(loc, data=arquivo(it).read_bytes(), headers={"Content-Type": "video/mp4"}, timeout=1200).json()
     if "id" not in up: raise RuntimeError(f"enviar: {up}")
     c = capa_local(it)   # capa do YouTube (melhor esforço)
