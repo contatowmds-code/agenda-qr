@@ -1026,7 +1026,10 @@
   "sha256": "1ec3e0198c71f1d03dfcbb8f64fe9e82e3f3a8b034cf9e8cf7bf01b03af6bab5",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-norte-1720150.mp4",
   "gh_asset": 802285639,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "Kq6hfS-qwzM"
+  }
  },
  {
   "id": "mapa-rs 4315313 Quatro Irmãos: a colônia judaica que nasceu ",
