@@ -1089,13 +1089,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T06:10:00-03:00",
-  "drive_id": "1i7zR86yU9vxrHzv_R158P8zJcyrlLmA3",
+  "drive_id": "1l37bfnlXzCm8UQF3yVNftfBZwCL1FGpZ",
   "tamanho": 274006993,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "86f56d89b44d960a3605cc96c7b35aec48bdaee2b48d98ad0b49d8fa05ebc404",
+  "drive_antigo": "1i7zR86yU9vxrHzv_R158P8zJcyrlLmA3"
  },
  {
   "id": "mapa-br TT Oliveira de Fátima é a menor cidade do Tocantins",
