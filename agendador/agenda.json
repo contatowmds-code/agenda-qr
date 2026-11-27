@@ -927,7 +927,7 @@
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "instagram": "processar: {'id': '18019935734766256', 'status': 'Error: Media upload has failed with error code 2207085', 'status_code': 'ERROR'}",
+   "instagram": "processar: {'id': '18019940018766256', 'status': 'Error: Media upload has failed with error code 2207085', 'status_code': 'ERROR'}",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "feito": {
