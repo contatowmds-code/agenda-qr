@@ -1032,13 +1032,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:20:00-03:00",
-  "drive_id": "19FDxwTkJ55jaNtYZ523MrsrqOiasIlVs",
+  "drive_id": "1Gi5eENKslJXX-E06CuxuAx7c0NOwc5Ja",
   "tamanho": 246796677,
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
-  }
+  },
+  "sha256": "fa888c374307660d4a4b95089a8fc26929aa6caddf316a56279cd2fa5c71ce0d",
+  "drive_antigo": "19FDxwTkJ55jaNtYZ523MrsrqOiasIlVs"
  },
  {
   "id": "mapa-pr TT Francisco Beltrão: posseiros tomaram a cidade em ",
