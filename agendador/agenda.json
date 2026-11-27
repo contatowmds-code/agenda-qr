@@ -933,30 +933,6 @@
   "drive_apagado": true
  },
  {
-  "id": "mapa-pr TT Francisco Beltrão: posseiros tomaram a cidade em ",
-  "arquivo": "videos/mapa-pr-4108403-tt.mp4",
-  "legenda": "Francisco Beltrão: posseiros tomaram a cidade em 1957! #ParanaenseNoMapa #FranciscoBeltrão #Paraná",
-  "conta": "mapa-pr",
-  "plataformas": [
-   "tiktok"
-  ],
-  "quando": "2026-11-27T16:51:15-03:00",
-  "drive_id": "1VyO0hSwhv5eYnUfcNHNQNwU_uLxSR2R-",
-  "tamanho": 267720052,
-  "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  },
-  "sha256": "a7ea5671450c3d0dbe37a47a5503f3dc595cad905bcb4725cde756be01b0b142",
-  "drive_antigo": "1EOVHNkSjLgWyjcgbXJ8p0PBXjkVZzZSl",
-  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4108403-tt.mp4",
-  "gh_asset": 801839691,
-  "drive_apagado": true,
-  "feito": {
-   "tiktok": "b:2:6b09df42585cafb820d8827b:6b08de8210b4939633108e3c:6b08dea88541f09ecbba14c2:1795809090"
-  }
- },
- {
   "id": "mapa-br TT Oliveira de Fátima é a menor cidade do Tocantins",
   "arquivo": "videos/mapa-br-1715507-tt.mp4",
   "legenda": "Oliveira de Fátima é a menor cidade do Tocantins #BrasilNoMapa #OliveiraDeFátima #Tocantins",
