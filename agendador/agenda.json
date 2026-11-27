@@ -886,36 +886,6 @@
   "capa": "videos/Porto-de-Santos-foi-atacado.jpg"
  },
  {
-  "id": "mapa-mg 3118502 Consolação: a 8ª menor cidade de Minas vive ",
-  "arquivo": "videos/mapa-mg-3118502.mp4",
-  "legenda": "Consolação: a 8ª menor cidade de Minas vive do morango #MineiroNoMapa #Consolação #MinasGerais",
-  "conta": "mapa-mg",
-  "plataformas": [
-   "instagram",
-   "facebook",
-   "youtube",
-   "tiktok"
-  ],
-  "quando": "2026-11-27T06:45:00-03:00",
-  "drive_id": "1qkvDKr_5u5wfUVBDU9qNyZuW8DtTbKFx",
-  "tamanho": 261896638,
-  "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  },
-  "feito": {
-   "youtube": "sw40vnWhWUM",
-   "instagram": "18039708599887794",
-   "facebook": "2405693626921450",
-   "tiktok": "b:2:6b09dd03b5cd052fe286b8f2:6b08de8210b4939633108e3c:6b08df358541f09ecbba1846:1795808515"
-  },
-  "sha256": "d55064de7237b0a9282a1e61029ebbbc1bc651e5629586027198057fec7849b4",
-  "drive_antigo": "1pJ_QjtMmc3NQPpXl9imDO3PozCBH_Lp-",
-  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3118502.mp4",
-  "gh_asset": 801802364,
-  "drive_apagado": true
- },
- {
   "id": "mapa-mg 3156700 Sabará: a cidade que nasceu atrás de uma ser",
   "arquivo": "videos/mapa-mg-3156700.mp4",
   "legenda": "Sabará: a cidade que nasceu atrás de uma serra de esmeraldas #MineiroNoMapa #Sabará #MinasGerais",
