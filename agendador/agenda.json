@@ -1037,14 +1037,16 @@
   "tamanho": 270884023,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "cafef5ea3f46e022086950aec1df6a18e5cc6b85a7bd234ddda74a949afe3702",
   "drive_antigo": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-br-1715507-tt.mp4",
   "gh_asset": 801838199,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "tiktok": "b:1:6b09df4c585cafb820d8889b:6b08dfecd593469888bf3bb7:6b08e0ff8541f09ecbba2385:1795809100"
+  }
  },
  {
   "id": "mapa-sc TT Indaial: criada, extinta e criada de novo",
