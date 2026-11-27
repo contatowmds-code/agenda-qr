@@ -1751,12 +1751,10 @@
    "tiktok"
   ],
   "quando": "2026-11-27T07:05:00-03:00",
-  "drive_id": "17Ijbif_9vaFWHyhkeHyher30vkEO1NA_",
+  "drive_id": "1LWuYXJAsMwgAXhr2NqF_fBfYIjaRDG5p",
   "tamanho": 113905094,
   "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  }
+  "sha256": "c87647ffb6c8d105b1bf13de7043ff51a07a9a66df053c3c524119eff841e723"
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
@@ -1780,7 +1778,7 @@
  {
   "id": "mapa-sc 4210100 737710a287876651ca2aedac98ccfcb934e0de16c503",
   "arquivo": "videos/mapa-sc-4210100.mp4",
-  "legenda": "737710a287876651ca2aedac98ccfcb934e0de16c503ba9413c4a6e4fb0cdddb",
+  "legenda": "Mafra: onde Santa Catarina encosta no Paraná #CatarinenseNoMapa #Mafra #SantaCatarina",
   "conta": "mapa-sc",
   "plataformas": [
    "instagram",
@@ -1789,17 +1787,15 @@
    "tiktok"
   ],
   "quando": "2026-11-27T08:50:00-03:00",
-  "drive_id": "Mafra: onde Santa Catarina encosta no Paraná #CatarinenseNoMapa #Mafra #SantaCatarina.mp4",
+  "drive_id": "1fRkxSv7zByOG8Xc15Eeo8JLs9TKAunKO",
   "tamanho": 107764846,
   "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=Mafra%3A+onde+Santa+Catarina+encosta+no+Paran%C3%A1+%23CatarinenseNoMapa+%"
-  }
+  "sha256": "737710a287876651ca2aedac98ccfcb934e0de16c503ba9413c4a6e4fb0cdddb"
  },
  {
   "id": "mapa-mt 5107065 f653335d87333f4a651de7c8ab653ab77073aa854891",
   "arquivo": "videos/mapa-mt-5107065.mp4",
-  "legenda": "f653335d87333f4a651de7c8ab653ab77073aa8548915cb8a081bb2ecb263494",
+  "legenda": "Querência tem mais de 30 aldeias do Xingu e festa gigante! #MatoGrossoNoMapa #Querência #MatoGrosso",
   "conta": "mapa-mt",
   "plataformas": [
    "instagram",
@@ -1808,11 +1804,9 @@
    "tiktok"
   ],
   "quando": "2026-11-27T07:55:00-03:00",
-  "drive_id": "Querência tem mais de 30 aldeias do Xingu e festa gigante! #MatoGrossoNoMapa #Querência #MatoGrosso.mp4",
+  "drive_id": "1csaRD2Pmp9Ole_4PL7-tGoPgnS79yeK-",
   "tamanho": 203321837,
   "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: 404 Client Error: Not Found for url: https://drive.usercontent.google.com/download?id=Quer%C3%AAncia+tem+mais+de+30+aldeias+do+Xingu+e+festa+gigante%21+%23MatoG"
-  }
+  "sha256": "f653335d87333f4a651de7c8ab653ab77073aa8548915cb8a081bb2ecb263494"
  }
 ]

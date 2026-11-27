@@ -61,6 +61,9 @@ if cmd == "pedir":
     print("SEM RESPOSTA: o robô não abriu a sessão de envio em 7 min (Drive com login desligado ou robô parado)"); sys.exit(5)
 drive_id, tam, legenda = sys.argv[4], int(sys.argv[5]), sys.argv[6].strip()
 sha256 = sys.argv[7] if len(sys.argv) > 7 and len(sys.argv[7]) == 64 else None
+import re as _re
+if not _re.fullmatch(r"[A-Za-z0-9_-]{20,80}", drive_id) or _re.fullmatch(r"[0-9a-f]{64}", legenda):
+    print("RECUSADO: o id do Drive ou o título vieram trocados (id:", drive_id[:40], "| título:", legenda[:40], "). Rode de novo: python3 postar.py direto <SIGLA> <cod> <arquivo.mp4> \"<título>\""); sys.exit(2)
 if not (AQUI / "mapas_ativo.txt").exists(): print("INATIVO: a postagem automática dos mapas está desligada pelo dono; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
 redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
 if not redes:
