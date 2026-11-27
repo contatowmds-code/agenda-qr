@@ -1096,7 +1096,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T05:20:00-03:00",
+  "quando": "2026-11-27T16:53:02-03:00",
   "drive_id": "1Xvql36rcdGwwrMqOxb0NBXj2-rGl2VY-",
   "tamanho": 214413428,
   "ia": true,
@@ -1105,7 +1105,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "01b0c1f78a0daf49c14b9e3667fa3b06bac5707b366e50274708d9151a230675",
-  "drive_antigo": "1BM5W-KnLE2K7X4bHkC_F9Es9VOPccbvQ"
+  "drive_antigo": "1BM5W-KnLE2K7X4bHkC_F9Es9VOPccbvQ",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5107156-tt.mp4",
+  "gh_asset": 801844158,
+  "drive_apagado": true
  },
  {
   "id": "mapa-sp 3530607 Mogi das Cruzes é conhecida como a Terra do ",
