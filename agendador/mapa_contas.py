@@ -27,11 +27,14 @@ for conta in mapa.CONTAS:
     except Exception as e: s["youtube"] = {"ok": False, "motivo": str(e)[:200]}
     try:
         rt = mapa.env("TT_REFRESH_TOKEN", conta)
+        za = mapa.zernio_conta(conta) if (not rt and os.environ.get("ZERNIO_API_KEY")) else None
+        if za: s["tiktok"] = {"ok": True, "conta": "@" + str(za.get("username")) + " (Zernio)", "privacidade": "PUBLIC_TO_EVERYONE"}; raise StopIteration
         if not rt: raise RuntimeError("sem credencial (falta o segredo TT_REFRESH_TOKEN__" + conta.upper().replace("-", "_") + ")")
         t = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": os.environ.get("TT_CLIENT_KEY"), "client_secret": os.environ.get("TT_CLIENT_SECRET"),
             "grant_type": "refresh_token", "refresh_token": rt}, timeout=60).json()
         if "access_token" not in t: raise RuntimeError("token recusado: " + str(t.get("error_description") or t.get("error"))[:120])
         s["tiktok"] = {"ok": True, "conta": mapa.guarda_tiktok(conta, t["access_token"]), "privacidade": os.environ.get("TT_PRIVACY") or "SELF_ONLY"}
+    except StopIteration: pass
     except Exception as e: s["tiktok"] = {"ok": False, "motivo": str(e)[:200]}
     st[conta] = s
     print(conta, {k: (v.get("conta") if v["ok"] else "NÃO: " + v["motivo"][:90]) for k, v in s.items()})

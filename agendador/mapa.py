@@ -192,3 +192,49 @@ def youtube_ja_postado(conta, access_token, playlist, titulo):
     for x in r.get("items", []):
         if (x["snippet"].get("title") or "").strip() == titulo.strip(): return x["snippet"]["resourceId"]["videoId"]
     return None
+
+# ---------------------------------------------------------------------------------------------------------------------
+# TIKTOK PELA ZERNIO (serviço já aprovado pelo TikTok; plano grátis = 2 contas). Segredo: ZERNIO_API_KEY (só no GitHub).
+# O robô acha a conta do perfil pelo nome (@ ou nome de exibição): conta de outro perfil = não publica.
+ZERNIO = "https://zernio.com/api/v1"
+def _zh(): return {"Authorization": "Bearer " + os.environ["ZERNIO_API_KEY"]}
+def _zlista(r, *chaves):
+    if isinstance(r, list): return r
+    for k in chaves:
+        if isinstance(r.get(k), list): return r[k]
+    return []
+def zernio_conta(conta):
+    """Conta do TikTok deste perfil dentro da Zernio (ou None). Nunca devolve conta de outro perfil."""
+    if not os.environ.get("ZERNIO_API_KEY"): return None
+    r = requests.get(f"{ZERNIO}/accounts", headers=_zh(), timeout=60).json()
+    for a in _zlista(r, "accounts", "data"):
+        if str(a.get("platform", "")).lower() == "tiktok" and a.get("isActive", True) and bate(conta, a.get("username"), a.get("displayName")):
+            return a
+    return None
+def zernio_tiktok(it, arq):
+    conta = it["conta"]; a = zernio_conta(conta)
+    if not a: raise RuntimeError(f"tiktok (Zernio): não achei conta do TikTok do perfil {CONTAS[conta]['nome']} conectada. Não publiquei.")
+    pre = requests.post(f"{ZERNIO}/media/presign", headers=_zh(), json={"filename": Path(it["arquivo"]).name, "contentType": "video/mp4"}, timeout=60).json()
+    if not pre.get("uploadUrl") or not pre.get("publicUrl"): raise RuntimeError(f"zernio presign: {str(pre)[:200]}")
+    with open(arq, "rb") as f:
+        up = requests.put(pre["uploadUrl"], data=f, headers={"Content-Type": "video/mp4"}, timeout=1800)
+    if up.status_code not in (200, 201, 204): raise RuntimeError(f"zernio envio: {up.status_code} {up.text[:200]}")
+    corpo = {"content": it["legenda"][:2200], "mediaItems": [{"type": "video", "url": pre["publicUrl"]}],
+             "platforms": [{"platform": "tiktok", "accountId": a.get("_id") or a.get("id")}], "publishNow": True,
+             "tiktokSettings": {"privacy_level": "PUBLIC_TO_EVERYONE", "allow_comment": True, "allow_duet": True, "allow_stitch": True,
+                                "commercial_content_type": "none", "content_preview_confirmed": True, "express_consent_given": True,
+                                "media_type": "video", "auto_add_music": False, "video_made_with_ai": True}}
+    if a.get("profileId"): corpo["profileId"] = a["profileId"] if isinstance(a["profileId"], str) else (a["profileId"].get("_id") or a["profileId"].get("id"))
+    j = requests.post(f"{ZERNIO}/posts", headers=_zh(), json=corpo, timeout=180).json()
+    po = j.get("post") or j; pid = po.get("_id") or po.get("id")
+    if not pid: raise RuntimeError(f"zernio post: {str(j)[:300]}")
+    print(f"  tiktok (Zernio): enviado para @{a.get('username')}, post {pid}")
+    return "z:" + str(pid)
+def zernio_confirma(pid):
+    """Link do TikTok quando a Zernio confirma a publicação; None enquanto processa ou se falhou."""
+    j = requests.get(f"{ZERNIO}/posts/{str(pid)[2:]}", headers=_zh(), timeout=60).json(); po = j.get("post") or j
+    pl = [x for x in (po.get("platforms") or []) if str(x.get("platform", "")).lower() == "tiktok"]; x = pl[0] if pl else {}
+    st = str(x.get("status") or po.get("status") or "").lower()
+    if st == "published": return x.get("platformPostUrl") or x.get("url") or ("tiktok:zernio:" + str(pid)[2:])
+    if st == "failed": print(f"  tiktok (Zernio) FALHOU: {str(x.get('errorMessage') or x.get('error') or po.get('error'))[:200]}")
+    return None

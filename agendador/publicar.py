@@ -50,6 +50,9 @@ def tem_credencial(plat, it):
         except Exception: return False
         chaves = ["ig_user_id", "ig_token" if "ig_token" in d else "fb_token"] if base == "instagram" else ["fb_page_id", "fb_token"]
         return all(d.get(k) for k in chaves)
+    if base == "tiktok" and mapa.eh(conta_id(it)) and not env("TT_REFRESH_TOKEN", it) and os.environ.get("ZERNIO_API_KEY"):
+        try: return bool(mapa.zernio_conta(conta_id(it)))   # TikTok pela Zernio (conta do perfil conectada lá)
+        except Exception: return False
     return all(env(v, it) for v in NECESSARIOS[base])
 
 def agora(): return dt.datetime.now(dt.timezone.utc)
@@ -114,6 +117,8 @@ def facebook(it):
     return a["video_id"]
 
 def tiktok(it):
+    if mapa.eh(conta_id(it)) and not env("TT_REFRESH_TOKEN", it) and os.environ.get("ZERNIO_API_KEY"):
+        return mapa.zernio_tiktok(it, arquivo(it))   # perfil de mapa sem token próprio: publica pela Zernio (app aprovado pelo TikTok)
     r = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it),
         "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
     if "access_token" not in r: raise RuntimeError(f"token: {r}")
@@ -339,6 +344,7 @@ def confirmado(plat, it, pid):
             u = f"https://youtu.be/{pid}"
             ok = requests.get("https://www.youtube.com/oembed", params={"url": u, "format": "json"}, timeout=30).status_code == 200
             return u if ok else (u + " (enviado; visibilidade não confirmada)")
+        if plat == "tiktok" and str(pid).startswith("z:"): return mapa.zernio_confirma(pid)
         if plat == "tiktok":
             t = requests.post("https://open.tiktokapis.com/v2/oauth/token/", data={"client_key": env("TT_CLIENT_KEY", it), "client_secret": env("TT_CLIENT_SECRET", it), "grant_type": "refresh_token", "refresh_token": env("TT_REFRESH_TOKEN", it)}, timeout=60).json()
             s = requests.post("https://open.tiktokapis.com/v2/post/publish/status/fetch/", headers={"Authorization": "Bearer " + t["access_token"], "Content-Type": "application/json; charset=UTF-8"}, data=json.dumps({"publish_id": pid}), timeout=60).json()
