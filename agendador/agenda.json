@@ -1229,7 +1229,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T07:05:00-03:00",
-  "drive_id": "1Z7BBqHncCxz1QvAlJ2Mp3jB5jV12NeCF",
+  "drive_id": "1qrIR5SmM-AFoZoXlm6Dk5w9GtV0qq5Yj",
   "tamanho": 226908105,
   "ia": true,
   "erros": {
@@ -1240,7 +1240,9 @@
   },
   "feito": {
    "youtube": "GrlBLnmi4lU"
-  }
+  },
+  "sha256": "e598f28b48441914a3f3a7b004cec422a456b3662ba3bf89fb32b9133a8d2895",
+  "drive_antigo": "1Z7BBqHncCxz1QvAlJ2Mp3jB5jV12NeCF"
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
