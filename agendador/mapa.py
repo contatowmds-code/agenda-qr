@@ -181,6 +181,50 @@ def capa(arq):
     return None
 
 
+# ---------------- STORIES (27/11/2026, regra do dono: ao postar no Instagram e no Facebook, postar também nos stories) ----------------
+# O Instagram e o Facebook só aceitam story em vídeo de até 60 s: vai o COMEÇO do vídeo (gancho), cortado sem recodificar (a imagem não perde
+# nada). É melhor esforço: se o story falhar, o Reel já está publicado e nada é refeito. O TikTok não tem story por API (Buffer/Zernio/oficial).
+def trecho_story(arq, seg=55):
+    import subprocess
+    sai = arq.with_name(arq.stem + "_story.mp4")
+    if sai.exists() and 100_000 < sai.stat().st_size < 95_000_000: return sai
+    for t in (seg, 40, 28):   # o Instagram limita o story a 100 MB: se passar, encurta
+        r = subprocess.run([_ffmpeg(), "-y", "-v", "error", "-i", str(arq), "-t", str(t), "-c", "copy", "-movflags", "+faststart", str(sai)], capture_output=True, text=True)
+        if r.returncode == 0 and sai.exists() and 100_000 < sai.stat().st_size < 95_000_000: return sai
+    raise RuntimeError("não consegui cortar o trecho do story: " + r.stderr[-160:])
+def story_instagram(d, arq):
+    uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]; st = trecho_story(arq)
+    j = requests.post(f"{GRAPH}/{uid}/media", data={"media_type": "STORIES", "upload_type": "resumable", "access_token": tok}, timeout=120).json()
+    if "id" not in j: raise RuntimeError(f"criar: {j}")
+    cid = j["id"]
+    with open(st, "rb") as f:
+        u = requests.post(j.get("uri") or f"https://rupload.facebook.com/ig-api-upload/v21.0/{cid}", headers={"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(st.stat().st_size)}, data=f, timeout=900).json()
+    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    for _ in range(60):
+        s = requests.get(f"{GRAPH}/{cid}", params={"fields": "status_code,status", "access_token": tok}, timeout=60).json()
+        if s.get("status_code") == "FINISHED": break
+        if s.get("status_code") in ("ERROR", "EXPIRED"): raise RuntimeError(f"processar: {s}")
+        time.sleep(8)
+    else: raise RuntimeError("demorou demais para processar")
+    p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
+    if "id" not in p: raise RuntimeError(f"publicar: {p}")
+    return p["id"]
+def story_facebook(d, arq):
+    pid, tok = d["fb_page_id"], d["fb_token"]; st = trecho_story(arq)
+    a = requests.post(f"{GRAPH}/{pid}/video_stories", data={"upload_phase": "start", "access_token": tok}, timeout=60).json()
+    if "video_id" not in a: raise RuntimeError(f"iniciar: {a}")
+    with open(st, "rb") as f:
+        u = requests.post(a["upload_url"], headers={"Authorization": f"OAuth {tok}", "offset": "0", "file_size": str(st.stat().st_size)}, data=f, timeout=900).json()
+    if not u.get("success"): raise RuntimeError(f"enviar: {u}")
+    f2 = requests.post(f"{GRAPH}/{pid}/video_stories", data={"upload_phase": "finish", "video_id": a["video_id"], "access_token": tok}, timeout=120).json()
+    if not f2.get("success"): raise RuntimeError(f"publicar: {f2}")
+    return f2.get("post_id") or a["video_id"]
+def story(rede, d, arq):
+    """Melhor esforço: nunca derruba a postagem principal."""
+    try: sid = (story_instagram if rede == "instagram" else story_facebook)(d, arq); print(f"  story {rede} OK ({sid})"); return sid
+    except Exception as e: print(f"  AVISO story {rede}: {str(e)[:220]}"); return None
+
+
 def instagram(it, d, arq):
     """Reel do Instagram enviando o ARQUIVO (envio retomável), com o aviso de IA ligado. Capa = primeiro quadro (padrão)."""
     uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
@@ -207,6 +251,7 @@ def instagram(it, d, arq):
     else: raise RuntimeError("demorou demais para processar")
     p = requests.post(f"{GRAPH}/{uid}/media_publish", data={"creation_id": cid, "access_token": tok}, timeout=120).json()
     if "id" not in p: raise RuntimeError(f"publicar: {p}")
+    story("instagram", d, arq)   # regra do dono: postou o Reel, posta também no story
     return p["id"]
 
 
@@ -232,6 +277,7 @@ def facebook(it, d, arq):
                 time.sleep(15)
             else: print("  AVISO capa facebook:", str(t)[:200])
         except Exception as e: print("  AVISO capa facebook:", str(e)[:200])
+    story("facebook", d, arq)   # regra do dono: postou o Reel, posta também no story
     return a["video_id"]
 
 
