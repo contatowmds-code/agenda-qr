@@ -508,6 +508,9 @@ def main():
                 time.sleep(2)
             ag = json.loads(AGENDA.read_text(encoding="utf-8"))
         except Exception as e: print("pedidos de envio:", str(e)[:160])
+    def q_venc(it):
+        try: return dt.datetime.fromisoformat(it["quando"]) < agora() - dt.timedelta(minutes=20)
+        except Exception: return False
     def _bloq_drive(novo=None, _f=Path(tempfile.gettempdir()) / "drive_bloqueio.txt"):
         if novo: _f.write_text(str(novo)); return novo
         try: return float(_f.read_text())
@@ -523,6 +526,10 @@ def main():
             if antigo and time.time() < _bloq_drive(): continue   # SEM INSISTIR: enquanto o Drive recusa, o robô fica quieto (insistir a cada minuto só prolonga o bloqueio) e sonda de novo mais tarde com UM arquivo
             try:
                 g = mapa.guardar(it)
+                if g and not it.get("feito") and q_venc(it):   # vídeo atrasado que só agora chegou ao cofre: não sai tudo de uma vez, ganha um horário espalhado
+                    import horarios
+                    try: g["quando"] = horarios.horario(conta_id(it), ag + json.loads(PUBLICADOS.read_text(encoding="utf-8"))).isoformat(timespec="seconds")
+                    except Exception as e: print("  horário espalhado:", str(e)[:100])
                 if g and antigo: _bloq_drive(time.time() + 150)   # liberou: tira os antigos devagar (1 a cada 2,5 min) para não estourar o limite de novo
                 if g:
                     if mapa.drive_do_app(it["drive_id"]) and mapa.drive_apagar(it["drive_id"]): g["drive_apagado"] = True

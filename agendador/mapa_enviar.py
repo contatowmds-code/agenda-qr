@@ -95,18 +95,9 @@ redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
 if not redes:
     print(f"NÃO CONECTADO: o perfil {conta} ainda não tem nenhuma rede conectada; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
 def horario(conta):
-    """REGRA DO DONO (26/11/2026): os perfis de mapa só postam das 05:00 às 23:00 (Brasília), no máximo 10 vídeos por dia por perfil,
-    com 1h45 entre um e outro. Vídeo que fica pronto fora da janela (ou depois do 10º do dia) entra no primeiro horário livre seguinte."""
-    tz = ZoneInfo("America/Sao_Paulo"); agora = dt.datetime.now(tz).replace(microsecond=0)
-    qs = sorted(dt.datetime.fromisoformat(x["quando"]).astimezone(tz) for x in ler("agenda.json") + ler("publicados.json") if x.get("conta") == conta and x.get("quando"))
-    c = max(agora, (qs[-1] + dt.timedelta(minutes=105)) if qs else agora)
-    for _ in range(40):
-        if c.hour < 5: c = c.replace(hour=5, minute=0, second=0)
-        ultimo = c.replace(hour=22, minute=45, second=0)
-        if c > ultimo or sum(1 for q in qs if q.date() == c.date()) >= 10:
-            c = (c + dt.timedelta(days=1)).replace(hour=5, minute=0, second=0); continue
-        return c
-    return c
+    """HORÁRIOS ESPALHADOS (27/11/2026): ver agendador/horarios.py. Janela 05h-23h, máximo 10 por dia por perfil, espalhados pelo dia inteiro."""
+    sys.path.insert(0, str(AQUI)); import horarios
+    return horarios.horario(conta, ler("agenda.json") + ler("publicados.json"))
 for tent in range(6):
     a, p = achar()
     if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
