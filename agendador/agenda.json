@@ -1283,9 +1283,11 @@
    "tiktok"
   ],
   "quando": "2026-11-27T15:50:44-03:00",
-  "drive_id": "1FK1BUo86f9tOxNto6KDm0SuuqazGf6bN",
+  "drive_id": "1KKqTka8Cd_zka5iQQXVYxPLlG8_MIR9q",
   "tamanho": 282291971,
-  "ia": true
+  "ia": true,
+  "sha256": "168608d8a41e11997eca9e3a6970ee272d577f007fb028183638e6f928825a9a",
+  "drive_antigo": "1FK1BUo86f9tOxNto6KDm0SuuqazGf6bN"
  },
  {
   "id": "mapa-pr 4115903 Mirador: a ponte que falta e o rio que ganho",
