@@ -1052,7 +1052,10 @@
   "sha256": "20ec73a15adab1286ddecf028604350dcae2b7cd4055d09e2ead82597ccf8e07",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-rs-4315313.mp4",
   "gh_asset": 802298545,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "youtube": "kP9XnfmY4dE"
+  }
  },
  {
   "id": "mapa-sc 4207304 Imbituba: da pesca da baleia à fama da Praia",
