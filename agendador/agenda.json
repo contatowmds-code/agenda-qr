@@ -1065,14 +1065,16 @@
   "tamanho": 199240667,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "757318b075d73e29367666fe89d4c4fbadf303b6b59d75fb50b6801ae274236a",
   "drive_antigo": "1CcHwGPWy9D8IxHvvRGeXf55JOQxlpurY",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mt-5104104-tt.mp4",
   "gh_asset": 801945504,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "tiktok": "b:2:6b09e7a3b5cd052fe28bddee:6b08de8210b4939633108e3c:6b08df868541f09ecbba1a37:1795811235"
+  }
  },
  {
   "id": "mapa-pr 4105508 Cianorte: o café quebrou, e ela virou a Capi",
