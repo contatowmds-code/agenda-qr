@@ -3219,5 +3219,42 @@
    "tiktok": "tiktok:buffer:6b09db17c02ca0988aacba11"
   },
   "arquivado_em": "2026-11-27T16:38:31-03:00"
+ },
+ {
+  "id": "mapa-sc 4201406 Araranguá: 17 galinhas para cada morador",
+  "arquivo": "videos/mapa-sc-4201406.mp4",
+  "legenda": "Araranguá: 17 galinhas para cada morador #CatarinenseNoMapa #Araranguá #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T05:00:00-03:00",
+  "drive_id": "1lWhkJEkgd9_OXSTX2qWiRKhXgpmLE9q2",
+  "tamanho": 265486016,
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "feito": {
+   "youtube": "bXe6h1RQ7yg",
+   "facebook": "1166450969128047",
+   "tiktok": "z:6b096f4169b1dbc912b308f2",
+   "instagram": "18120776132012903"
+  },
+  "sha256": "64a13bd160839c33c5db96812b5a3eed709e8bd91432d94c0ccc0acd37b8a39f",
+  "drive_antigo": "15eDDyiiowUibQ7bg8obOuns4zcANv6RW",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4201406.mp4",
+  "gh_asset": 801801457,
+  "drive_apagado": true,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgQdsrezDwO/",
+   "facebook": "https://www.facebook.com/reel/1166450969128047/",
+   "youtube": "https://youtu.be/bXe6h1RQ7yg",
+   "tiktok": "https://www.tiktok.com/@arquivoviralofc/video/7712818247996820757"
+  },
+  "arquivado_em": "2026-11-27T16:48:55-03:00"
  }
 ]
