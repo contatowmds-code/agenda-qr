@@ -1080,7 +1080,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T07:00:00-03:00",
+  "quando": "2026-11-27T16:53:32-03:00",
   "drive_id": "15pnXRDVIFgz4zbdip-1ilksWEWgVbMfz",
   "tamanho": 290599756,
   "ia": true,
@@ -1089,7 +1089,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "045d2926252de3fea684734b5fc025281db7689efbce84983e8361a0870faeee",
-  "drive_antigo": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r"
+  "drive_antigo": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4109104-tt.mp4",
+  "gh_asset": 801845615,
+  "drive_apagado": true
  },
  {
   "id": "mapa-mt TT Reserva do Cabaçal tem 30 bois por morador!",
