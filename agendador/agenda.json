@@ -1007,5 +1007,22 @@
   "erros": {
    "youtube": "youtube em espera até 27/11 19:59 (limite de envios do canal)"
   }
+ },
+ {
+  "id": "mapa-norte 1720150 São Félix do Tocantins: a cidade do ouro ",
+  "arquivo": "videos/mapa-norte-1720150.mp4",
+  "legenda": "São Félix do Tocantins: a cidade do ouro dourado no Jalapão! #NorteNoMapa #SãoFélixDoTocantins #Tocantins",
+  "conta": "mapa-norte",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T19:26:29-03:00",
+  "drive_id": "1C0oPZBDgfUA2VZrXGjxi2Fj5dd_cpIED",
+  "tamanho": 243853840,
+  "ia": true,
+  "sha256": "1ec3e0198c71f1d03dfcbb8f64fe9e82e3f3a8b034cf9e8cf7bf01b03af6bab5"
  }
 ]
