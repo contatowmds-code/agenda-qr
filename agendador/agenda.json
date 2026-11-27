@@ -1597,7 +1597,10 @@
   "quando": "2026-11-27T05:20:00-03:00",
   "drive_id": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV",
   "tamanho": 270884023,
-  "ia": true
+  "ia": true,
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  }
  },
  {
   "id": "mapa-sc TT Indaial: criada, extinta e criada de novo",
