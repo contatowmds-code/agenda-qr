@@ -984,30 +984,6 @@
   }
  },
  {
-  "id": "mapa-mg TT Pouso Alegre: a capital mineira do morango",
-  "arquivo": "videos/mapa-mg-3152501-tt.mp4",
-  "legenda": "Pouso Alegre: a capital mineira do morango #MineiroNoMapa #PousoAlegre #MinasGerais",
-  "conta": "mapa-mg",
-  "plataformas": [
-   "tiktok"
-  ],
-  "quando": "2026-11-27T16:50:59-03:00",
-  "drive_id": "1Lg4HSNAgkVNeuw2bWOCVgQeOCoeEgbag",
-  "tamanho": 283808463,
-  "ia": true,
-  "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  },
-  "sha256": "becd20c59653fc79b8576fd3cb4225943bf32de1cd3723458c4c7d7839a68703",
-  "drive_antigo": "1FxLGfquz-UeDvv5f5bPYOAUrEMXOpY4u",
-  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3152501-tt.mp4",
-  "gh_asset": 801838879,
-  "drive_apagado": true,
-  "feito": {
-   "tiktok": "b:2:6b09df452ea34800c28cefca:6b08de8210b4939633108e3c:6b08df358541f09ecbba1846:1795809094"
-  }
- },
- {
   "id": "mapa-pr TT São Manoel: 265 mil galinhas criadas em cidade pe",
   "arquivo": "videos/mapa-pr-4125555-tt.mp4",
   "legenda": "São Manoel: 265 mil galinhas criadas em cidade pequena! #ParanaenseNoMapa #SãoManoelDoParaná #Paraná",
