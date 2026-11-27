@@ -44,15 +44,28 @@ if not (AQUI / "mapas_ativo.txt").exists(): print("INATIVO: a postagem automáti
 redes = [r for r in REDES if (st.get(conta, {}).get(r) or {}).get("ok")]
 if not redes:
     print(f"NÃO CONECTADO: o perfil {conta} ainda não tem nenhuma rede conectada; nada foi agendado (o vídeo fica só no Drive)."); sys.exit(3)
+def horario(conta):
+    """REGRA DO DONO (26/11/2026): os perfis de mapa só postam das 05:00 às 23:00 (Brasília), no máximo 10 vídeos por dia por perfil,
+    com 1h45 entre um e outro. Vídeo que fica pronto fora da janela (ou depois do 10º do dia) entra no primeiro horário livre seguinte."""
+    tz = ZoneInfo("America/Sao_Paulo"); agora = dt.datetime.now(tz).replace(microsecond=0)
+    qs = sorted(dt.datetime.fromisoformat(x["quando"]).astimezone(tz) for x in ler("agenda.json") + ler("publicados.json") if x.get("conta") == conta and x.get("quando"))
+    c = max(agora, (qs[-1] + dt.timedelta(minutes=105)) if qs else agora)
+    for _ in range(40):
+        if c.hour < 5: c = c.replace(hour=5, minute=0, second=0)
+        ultimo = c.replace(hour=22, minute=45, second=0)
+        if c > ultimo or sum(1 for q in qs if q.date() == c.date()) >= 10:
+            c = (c + dt.timedelta(days=1)).replace(hour=5, minute=0, second=0); continue
+        return c
+    return c
 for tent in range(6):
     a, p = achar()
     if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
     ag = ler("agenda.json")
     ag.append({"id": f"{conta} {cod} {legenda.split('#')[0].strip()}"[:60], "arquivo": arq, "legenda": legenda, "conta": conta, "plataformas": redes,
-               "quando": dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True})
+               "quando": horario(conta).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True})
     (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
     git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: publicar agora {conta} {cod}")
     if git("push", "-q", "origin", "HEAD:main").returncode == 0:
-        print("NA FILA para publicar agora em:", ", ".join(redes), "| faltam conectar:", ", ".join(r for r in REDES if r not in redes) or "nenhuma"); sys.exit(0)
+        print("NA FILA para publicar às", ag[-1]["quando"][11:16], "de", ag[-1]["quando"][:10], "(janela 05h-23h, até 10 por dia) em:", ", ".join(redes), "| faltam conectar:", ", ".join(r for r in REDES if r not in redes) or "nenhuma"); sys.exit(0)
     time.sleep(3); atualizar()
 sys.exit("não consegui gravar na agenda (push recusado)")
