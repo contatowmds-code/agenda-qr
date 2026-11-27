@@ -910,7 +910,10 @@
    "youtube": "MGfiQ8TbCT4"
   },
   "sha256": "c8aec557a19c539ce62da0238affec2c76b4d7aa3ddadf807ba0eda1085d2531",
-  "drive_antigo": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy"
+  "drive_antigo": "1bEGPX3Y9DCQKXm8dkvhq3lyaHmIFmlSy",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3506003.mp4",
+  "gh_asset": 801762204,
+  "drive_apagado": true
  },
  {
   "id": "mapa-sp 3516200 Franca: a capital nacional do basquete, no i",
