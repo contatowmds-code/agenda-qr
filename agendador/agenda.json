@@ -1234,12 +1234,11 @@
   "drive_id": "1Yh_kR-tbzUVESprjhw6lXV_EO4ihLxw1",
   "tamanho": 199240667,
   "ia": true,
-  "erros": {
-   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Quota exceeded for quota metric 'Video Uploads' and limit 'Video Uploads per day' of service 'youtube.googleapis.com' for consumer 'project_number:23695398237'.\",\n    \"errors\": [\n      {\n        \"message\": \"Quota exceeded for quota metric 'Vid"
-  },
+  "erros": {},
   "feito": {
    "facebook": "30477465145186736",
-   "instagram": "18101759591417983"
+   "instagram": "18101759591417983",
+   "youtube": "sdqboqUKWpY"
   }
  },
  {
