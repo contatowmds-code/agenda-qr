@@ -1170,7 +1170,8 @@
   "tamanho": 72712984,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
+   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The user has exceeded the number of videos they may upload.\",\n    \"errors\": [\n      {\n        \"message\": \"The user has exceeded the number of videos they may upload.\",\n        \"domain\": \"youtube.video\",\n        \"reason\": \"uploadLimitExceeded\"\n"
   },
   "sha256": "40cf7cd56f9e39f9ca0233f082e3c16361007f1aeeb0e87edd1747d8fa29fc6a",
   "drive_antigo": "1E5QuyDwJNyjK9zis2a2RNxYYJgq6csSY",
