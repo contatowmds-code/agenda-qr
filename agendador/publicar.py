@@ -560,7 +560,7 @@ def main():
             if falhas >= 3: break   # até 3 erros por rodada (um arquivo com a cota do Drive estourada não pode travar os outros)
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
-        if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok() and mapa.eh(conta_id(it)) and it.get("drive_id") and not it.get("gh_url"): continue   # ainda não chegou ao cofre: espera (quem busca no Drive é só o passo do cofre, com calma)
+        if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok() and mapa.eh(conta_id(it)) and it.get("drive_id") and not it.get("gh_url") and not completo(it): continue   # ainda não chegou ao cofre (item já completo segue para ser arquivado): espera (quem busca no Drive é só o passo do cofre, com calma)
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue
