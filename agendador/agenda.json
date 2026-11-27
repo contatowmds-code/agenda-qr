@@ -947,7 +947,7 @@
   "tamanho": 129562974,
   "ia": true,
   "erros": {
-   "youtube": "youtube em espera até 27/11 05:10 (cota diária do projeto)"
+   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"Quota exceeded for quota metric 'Video Uploads' and limit 'Video Uploads per day' of service 'youtube.googleapis.com' for consumer 'project_number:23695398237'.\",\n    \"errors\": [\n      {\n        \"message\": \"Quota exceeded for quota metric 'Vid"
   },
   "feito": {
    "facebook": "1622491795771660",
