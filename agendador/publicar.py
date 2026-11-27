@@ -64,6 +64,9 @@ def url_publica(item):
 def url_capa(item):
     return f"https://raw.githubusercontent.com/{os.environ.get('GITHUB_REPOSITORY', 'USUARIO/REPO')}/videos/videos/{Path(item['capa']).name}" if item.get("capa") else None
 def capa_local(item):
+    if item.get("drive_id"):   # perfis de mapa: a capa é SEMPRE o primeiro quadro do vídeo (regra do dono)
+        try: return mapa.capa(arquivo(item))
+        except Exception: return None
     f = VIDEOS / Path(item["capa"]).name if item.get("capa") else None
     return f if f and f.exists() else None
 

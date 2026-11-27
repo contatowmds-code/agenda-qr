@@ -141,6 +141,25 @@ def _audio_ig(arq):
     return sai
 
 
+def _ffmpeg():
+    import shutil, subprocess, sys as _sys
+    ff = shutil.which("ffmpeg")
+    if ff: return ff
+    subprocess.run([_sys.executable, "-m", "pip", "install", "-q", "imageio-ffmpeg"], capture_output=True, timeout=300)
+    import imageio_ffmpeg; return imageio_ffmpeg.get_ffmpeg_exe()
+def capa(arq):
+    """REGRA DO DONO: a capa de toda postagem é SEMPRE o primeiro quadro do vídeo. Devolve o JPG do quadro 0 (ou None se falhar)."""
+    import subprocess
+    sai = arq.with_name(arq.stem.replace("_ig", "") + "_capa.jpg")
+    if sai.exists() and sai.stat().st_size > 1000: return sai
+    try:
+        r = subprocess.run([_ffmpeg(), "-y", "-v", "error", "-i", str(arq), "-frames:v", "1", "-q:v", "2", str(sai)], capture_output=True, text=True)
+        if r.returncode == 0 and sai.exists() and sai.stat().st_size > 1000: return sai
+        print("aviso: não consegui tirar a capa (primeiro quadro):", r.stderr[-200:])
+    except Exception as e: print("aviso: não consegui tirar a capa (primeiro quadro):", str(e)[:200])
+    return None
+
+
 def instagram(it, d, arq):
     """Reel do Instagram enviando o ARQUIVO (envio retomável), com o aviso de IA ligado. Capa = primeiro quadro (padrão)."""
     uid, tok = d["ig_user_id"], d.get("ig_token") or d["fb_token"]
@@ -182,6 +201,16 @@ def facebook(it, d, arq):
     f2 = requests.post(f"{GRAPH}/{pid}/video_reels", data={"upload_phase": "finish", "video_id": a["video_id"], "video_state": "PUBLISHED",
                        "description": it["legenda"], "access_token": tok}, timeout=120).json()
     if not f2.get("success"): raise RuntimeError(f"publicar: {f2}")
+    c = capa(arq)   # capa do Reel = PRIMEIRO QUADRO (se falhar, o vídeo já está publicado; só avisa)
+    if c:
+        try:
+            for _ in range(8):
+                t = requests.post(f"{GRAPH}/{a['video_id']}/thumbnails", data={"is_preferred": "true", "access_token": tok},
+                                  files={"source": (c.name, c.read_bytes(), "image/jpeg")}, timeout=120).json()
+                if t.get("success"): print("  capa facebook (primeiro quadro) OK"); break
+                time.sleep(15)
+            else: print("  AVISO capa facebook:", str(t)[:200])
+        except Exception as e: print("  AVISO capa facebook:", str(e)[:200])
     return a["video_id"]
 
 
