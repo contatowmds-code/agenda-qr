@@ -1140,7 +1140,9 @@
   "erros": {
    "youtube": "youtube em espera até 27/11 04:49 (cota de envios do app; tenta de novo nessa hora)",
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
-  }
+  },
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sc-4200754.mp4",
+  "gh_asset": 799395877
  },
  {
   "id": "mapa-mg 3118304 Conselheiro Lafaiete: a cidade que já foi Qu",
