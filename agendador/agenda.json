@@ -1110,7 +1110,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T05:20:00-03:00",
+  "quando": "2026-11-27T16:50:42-03:00",
   "drive_id": "1cQSa5kHsje0GDKCZd2pTyCyrWX6yy258",
   "tamanho": 270884023,
   "ia": true,
@@ -1119,7 +1119,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "cafef5ea3f46e022086950aec1df6a18e5cc6b85a7bd234ddda74a949afe3702",
-  "drive_antigo": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV"
+  "drive_antigo": "1hIbaTG4xoesWZCzFe7ug-YJL0uNOMgyV",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-br-1715507-tt.mp4",
+  "gh_asset": 801838199,
+  "drive_apagado": true
  },
  {
   "id": "mapa-sc TT Indaial: criada, extinta e criada de novo",
