@@ -1069,7 +1069,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T06:10:00-03:00",
+  "quando": "2026-11-27T16:50:59-03:00",
   "drive_id": "1Lg4HSNAgkVNeuw2bWOCVgQeOCoeEgbag",
   "tamanho": 283808463,
   "ia": true,
@@ -1078,7 +1078,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "becd20c59653fc79b8576fd3cb4225943bf32de1cd3723458c4c7d7839a68703",
-  "drive_antigo": "1FxLGfquz-UeDvv5f5bPYOAUrEMXOpY4u"
+  "drive_antigo": "1FxLGfquz-UeDvv5f5bPYOAUrEMXOpY4u",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3152501-tt.mp4",
+  "gh_asset": 801838879,
+  "drive_apagado": true
  },
  {
   "id": "mapa-pr TT São Manoel: 265 mil galinhas criadas em cidade pe",
