@@ -1502,5 +1502,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-norte-1718659.mp4",
   "gh_asset": 800830122,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-sc 4207858 Irati: o nome da cidade significa mel em qua",
+  "arquivo": "videos/mapa-sc-4207858.mp4",
+  "legenda": "Irati: o nome da cidade significa mel em quantidade #CatarinenseNoMapa #Irati #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-28T12:40:00-03:00",
+  "drive_id": "1hT_7BE5beDamDvZaxmhQMZzJQcJo0aJe",
+  "tamanho": 170081960,
+  "ia": true,
+  "sha256": "a6bb4d7328aa335bf3c6eb6804cbef21baffbc128ab52b00ec0430a58a0db573"
  }
 ]
