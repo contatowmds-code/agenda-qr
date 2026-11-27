@@ -1187,7 +1187,7 @@
   "plataformas": [
    "tiktok"
   ],
-  "quando": "2026-11-27T07:00:00-03:00",
+  "quando": "2026-11-27T17:23:50-03:00",
   "drive_id": "1jP9wmhkdlS16plC06HcXMhaXdAGcRiSN",
   "tamanho": 249242621,
   "ia": true,
@@ -1196,7 +1196,10 @@
    "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
   },
   "sha256": "58cdff7565dd57602f55f4902400ff9c3da9eb6dfb4f970d587926cc25fe658f",
-  "drive_antigo": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR"
+  "drive_antigo": "1b6CSVsgcaCc6PnN5U7rogCFxTrmTp6kR",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-mg-3170701-tt.mp4",
+  "gh_asset": 801867152,
+  "drive_apagado": true
  },
  {
   "id": "mapa-mt-5104104-tt",
