@@ -1968,5 +1968,39 @@
    "tiktok": "https://www.tiktok.com/@arquivoviralofc/video/7712672846316637461"
   },
   "arquivado_em": "2026-11-27T05:55:55-03:00"
+ },
+ {
+  "id": "mapa-rs 4312351 Montauri, 9ª menor do RS, tem 163 galinhas p",
+  "arquivo": "videos/mapa-rs-4312351.mp4",
+  "legenda": "Montauri, 9ª menor do RS, tem 163 galinhas por morador! #GaúchoNoMapa #Montauri #RioGrandeDoSul",
+  "conta": "mapa-rs",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-26T22:36:18-03:00",
+  "drive_id": "1XaZbEudyvyH0a9ZxbG30oAnk0Z9w_v5s",
+  "tamanho": 153533927,
+  "ia": true,
+  "feito": {
+   "instagram": "18187369879430489",
+   "facebook": "1786274849099921",
+   "tiktok": "z:6b08e4f7d7980aa6f7d21562",
+   "youtube": "0eggEkJrAWo"
+  },
+  "erros": {
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
+  },
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-rs-4312351.mp4",
+  "gh_asset": 799376128,
+  "links": {
+   "instagram": "https://www.instagram.com/reel/DgOjy4QBErE/",
+   "facebook": "https://www.facebook.com/reel/1786274849099921/",
+   "youtube": "https://youtu.be/0eggEkJrAWo",
+   "tiktok": "https://www.tiktok.com/@quantovaleofc/video/7712665252181232897"
+  },
+  "arquivado_em": "2026-11-27T05:59:07-03:00"
  }
 ]
