@@ -902,7 +902,7 @@
   "ia": true,
   "erros": {
    "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The user has exceeded the number of videos they may upload.\",\n    \"errors\": [\n      {\n        \"message\": \"The user has exceeded the number of videos they may upload.\",\n        \"domain\": \"youtube.video\",\n        \"reason\": \"uploadLimitExceeded\"\n"
+   "youtube": "youtube em espera até 27/11 22:58 (limite de envios do canal)"
   },
   "sha256": "e14cc5a26836c926940ad19b0cc4bdbede82d9412fa30799a9708a2eb6483be5",
   "drive_antigo": "1Y_uMWSGbCbOjcVRSn7JwRrfXNyfkXwaP",
