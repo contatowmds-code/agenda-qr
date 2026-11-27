@@ -470,14 +470,16 @@ def main():
             print(f"aguardando {int(esp)} s até o horário agendado ({min(prox).astimezone(ZoneInfo('America/Sao_Paulo')).strftime('%H:%M')}) para publicar na hora certa"); sys.stdout.flush(); time.sleep(max(0, esp))
     # COFRE: tira do Drive o quanto antes (até 4 vídeos por rodada, para não atrasar quem está na hora de publicar)
     if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok():
-        n = 0
+        n = 0; falhas = 0
         for it in ag:
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
+            if "Quota exceeded" in str((it.get("erros") or {}).get("cofre", "")) and random.random() < .9: continue   # arquivo bloqueado pelo Drive por excesso de downloads: tenta de novo só de vez em quando
             try:
                 g = mapa.guardar(it)
                 if g: it.update(g); persistir(it, "cofre", valor=g); print(f"[{it['id']}] guardado no cofre do GitHub; o Drive já pode apagar"); n += 1; (Path(tempfile.gettempdir()) / Path(it["arquivo"]).name).unlink(missing_ok=True)   # não acumula no disco do robô; na hora de publicar baixa do cofre
-            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); break   # um erro por rodada: não insiste nos outros
+            except Exception as e: print(f"[{it['id']}] cofre: não consegui guardar agora ({str(e)[:140]}); sigo pelo Drive"); persistir(it, "cofre", erro="cofre: " + str(e)[:200]); falhas += 1
+            if falhas >= 3: break   # até 3 erros por rodada (um arquivo com a cota do Drive estourada não pode travar os outros)
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
