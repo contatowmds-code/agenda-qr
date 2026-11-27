@@ -1041,14 +1041,16 @@
   "tamanho": 290599756,
   "ia": true,
   "erros": {
-   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text",
-   "tiktok": "buffer post: {'message': 'Invalid post: Video could not be read from its URL.'}"
+   "cofre": "cofre: baixar do Drive: o Drive devolveu uma página no lugar do vídeo: [Google Drive - Quota exceeded] Google Drive - Quota exceeded .goog-link-button{position:relative;color:#15c;text"
   },
   "sha256": "045d2926252de3fea684734b5fc025281db7689efbce84983e8361a0870faeee",
   "drive_antigo": "1f6VvYJK-hbDJJfpl8_zHJ5mdLRhGAC4r",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4109104-tt.mp4",
   "gh_asset": 801845615,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "feito": {
+   "tiktok": "b:2:6b09e0a4277f27038a343222:6b08de8210b4939633108e3c:6b08dea88541f09ecbba14c2:1795809444"
+  }
  },
  {
   "id": "mapa-mt TT Reserva do Cabaçal tem 30 bois por morador!",
