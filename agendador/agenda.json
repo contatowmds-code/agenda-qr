@@ -954,7 +954,7 @@
    "tiktok"
   ],
   "quando": "2026-11-27T05:00:00-03:00",
-  "drive_id": "1Z8A7jZxd47yDuQ2yIiakC5TxmJQtSzZr",
+  "drive_id": "1ZKkfzFMdoEqZHASuRumyLFzIQe7gm0nJ",
   "tamanho": 93344129,
   "ia": true,
   "erros": {
@@ -965,7 +965,9 @@
   },
   "feito": {
    "youtube": "HFuueOVLVRA"
-  }
+  },
+  "sha256": "210d43b4a5388bf73552e5aec4f687e75faabfe44cd8d24199780f3c7aeb16db",
+  "drive_antigo": "1Z8A7jZxd47yDuQ2yIiakC5TxmJQtSzZr"
  },
  {
   "id": "mapa-mg 3118502 Consolação: a 8ª menor cidade de Minas vive ",
