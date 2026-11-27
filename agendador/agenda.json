@@ -1492,6 +1492,9 @@
   "feito": {
    "instagram": "18129654829895991",
    "facebook": "2669376186832573"
+  },
+  "erros": {
+   "youtube": "iniciar: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"The user has exceeded the number of videos they may upload.\",\n    \"errors\": [\n      {\n        \"message\": \"The user has exceeded the number of videos they may upload.\",\n        \"domain\": \"youtube.video\",\n        \"reason\": \"uploadLimitExceeded\"\n"
   }
  }
 ]
