@@ -1,6 +1,30 @@
 {
- "conferido": "2026-11-28T10:31:12+00:00",
+ "conferido": "2026-11-28T13:37:02+00:00",
  "reels": [
+  {
+   "id": "18120007754113355",
+   "quando": "2026-11-28T13:32:06+0000",
+   "legenda": "Araguainha: a cidade que vive dentro de uma cratera de meteoro #BrasilNoMapa #Araguainha #MatoGrosso",
+   "link": "https://www.instagram.com/reel/DgSXgZWTnx2/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
+  {
+   "id": "18062668049589118",
+   "quando": "2026-11-28T11:50:08+0000",
+   "legenda": "Itapipoca: a praia de dunas gigantes e o museu de fósseis do Ceará #BrasilNoMapa #Itapipoca #Ceará",
+   "link": "https://www.instagram.com/reel/DgSLwIRiq0A/",
+   "tipo": "REELS",
+   "curtidas": 1,
+   "comentarios": 1,
+   "comentarios_top": [
+    "@lanciane_oliver 👏"
+   ],
+   "comentarios_lidos": 1,
+   "mapa_nos_comentarios": 0
+  },
   {
    "id": "18120908840603299",
    "quando": "2026-11-28T08:04:04+0000",
@@ -9,7 +33,6 @@
    "tipo": "REELS",
    "curtidas": 1,
    "comentarios": 1,
-   "insights_erro": "(#10) Application does not have permission for this action",
    "comentarios_top": [
     "Itapipoca Ceará"
    ],
@@ -95,7 +118,7 @@
    "legenda": "Fortaleza_ a 4ª maior cidade do Brasil #BrasilNoMapa #Fortaleza #Ceará",
    "link": "https://www.instagram.com/reel/DgOQYvsEnSn/",
    "tipo": "REELS",
-   "curtidas": 407,
+   "curtidas": 409,
    "comentarios": 18,
    "comentarios_top": [
     "A mais rica do Nordeste",
@@ -180,7 +203,7 @@
    "legenda": "Anhanguera: a 2ª menor cidade do Brasil #BrasilNoMapa #Anhanguera #goiás",
    "link": "https://www.instagram.com/reel/DgI50a8iT3E/",
    "tipo": "REELS",
-   "curtidas": 2,
+   "curtidas": 3,
    "comentarios": 1,
    "comentarios_top": [
     "Pirenópolis go"

@@ -1,20 +1,32 @@
 {
- "conferido": "2026-11-28T10:31:12+00:00",
+ "conferido": "2026-11-28T13:37:02+00:00",
  "reels": [
+  {
+   "id": "18135950269834107",
+   "quando": "2026-11-28T11:33:51+0000",
+   "legenda": "Tijucas: a cidade do arroz que nasceu na beira do rio Ty-Yuca #CatarinenseNoMapa #Tijucas #SantaCatarina",
+   "link": "https://www.instagram.com/reel/DgSJ9cwz9DP/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 1,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "17980052637149046",
    "quando": "2026-11-28T09:45:15+0000",
    "legenda": "Lajeado Grande, uma das menores de SC #CatarinenseNoMapa #LajeadoGrande #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgR9jkLjbIt/",
    "tipo": "REELS",
-   "curtidas": 1,
-   "comentarios": 2,
-   "insights_erro": "(#10) Application does not have permission for this action",
+   "curtidas": 2,
+   "comentarios": 5,
    "comentarios_top": [
+    "Santo amaro da Imperatriz",
+    "Jaraguá do Sul",
+    "Joinville",
     "Faz ipumirim",
     "Florianópolis"
    ],
-   "comentarios_lidos": 2,
+   "comentarios_lidos": 5,
    "mapa_nos_comentarios": 0
   },
   {
@@ -102,8 +114,8 @@
    "legenda": "Santa Rosa de Lima: capital nacional das abelhas sem ferrão #CatarinenseNoMapa #SantaRosaDeLima #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgQihfNBxxj/",
    "tipo": "REELS",
-   "curtidas": 2,
-   "comentarios": 15,
+   "curtidas": 4,
+   "comentarios": 16,
    "comentarios_top": [
     "Faz Fraiburgo, sou um dos únicos que comenta",
     "Fraiburgo",
@@ -114,7 +126,7 @@
     "Fraiburgo",
     "Fraiburgo"
    ],
-   "comentarios_lidos": 11,
+   "comentarios_lidos": 12,
    "mapa_nos_comentarios": 0
   },
   {
@@ -192,8 +204,8 @@
    "legenda": "Coronel Martins: a cidade que nasceu de uma fazenda de pedra branca #CatarinenseNoMapa #CoronelMartins #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgP0TvBhW0B/",
    "tipo": "REELS",
-   "curtidas": 6,
-   "comentarios": 30,
+   "curtidas": 7,
+   "comentarios": 35,
    "comentarios_top": [
     "Formosa do sul",
     "Ascurrraaaaa",
@@ -201,10 +213,10 @@
     "Timbó",
     "Timbó",
     "Nós escolhemos",
-    "Formosa do Sul",
-    "Formosa do sul"
+    "ANGELINA",
+    "Guatambu"
    ],
-   "comentarios_lidos": 30,
+   "comentarios_lidos": 35,
    "mapa_nos_comentarios": 0
   },
   {
@@ -481,7 +493,13 @@
    "link": "https://www.instagram.com/reel/DgG8HOgFEwY/",
    "tipo": "REELS",
    "curtidas": 2,
-   "comentarios": 2
+   "comentarios": 2,
+   "comentarios_top": [
+    "FAZ DE FRAIBURGO!!!!!!",
+    "Timbó"
+   ],
+   "comentarios_lidos": 2,
+   "mapa_nos_comentarios": 0
   },
   {
    "id": "18361828534170607",
@@ -518,22 +536,6 @@
    "tipo": "REELS",
    "curtidas": 4,
    "comentarios": 2
-  },
-  {
-   "id": "18049784630821851",
-   "quando": "2026-11-21T13:42:38+0000",
-   "legenda": "São José: 270 mil moradores em 150 km², mais que o dobro de Floripa #CatarinenseNoMapa #SãoJosé #SC",
-   "link": "https://www.instagram.com/reel/DgAXJAAOPn5/",
-   "tipo": "REELS",
-   "curtidas": 37,
-   "comentarios": 3,
-   "comentarios_top": [
-    "Timbó",
-    "Ascurra prfv",
-    "Faz de Ascurra"
-   ],
-   "comentarios_lidos": 3,
-   "mapa_nos_comentarios": 0
   }
  ]
 }
