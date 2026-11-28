@@ -1,3 +1,4 @@
 RS | 039 | 4315313 | Quatro Irmãos | EM PRODUÇÃO | 27/11 17:10
 RS | 040 | 4317103 | Sant'Ana do Livramento | EM PRODUÇÃO | 27/11 22:27
 RS | 041 | 4314787 | Ponte Preta | EM PRODUÇÃO | 28/11 02:45
+RS | 042 | 4305173 | Cerro Grande do Sul | EM PRODUÇÃO | 28/11 08:28
