@@ -1027,5 +1027,22 @@
   "erros": {
    "youtube": "youtube em espera até 27/11 23:28 (limite de envios do canal)"
   }
+ },
+ {
+  "id": "mapa-pr 4103024 Boa Esperança do Iguaçu já foi Lajeado dos M",
+  "arquivo": "videos/mapa-pr-4103024.mp4",
+  "legenda": "Boa Esperança do Iguaçu já foi Lajeado dos Micos! #ParanaenseNoMapa #BoaEsperançaDoIguaçu #Paraná",
+  "conta": "mapa-pr",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T21:16:46-03:00",
+  "drive_id": "16nLybz1AK3dmf4625NRwz7ofYjlJFihw",
+  "tamanho": 207614396,
+  "ia": true,
+  "sha256": "e97972d8d5f97f151792ee579a6f084288f06f19f0b0283019e5636bc2879659"
  }
 ]
