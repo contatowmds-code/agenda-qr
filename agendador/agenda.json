@@ -994,5 +994,22 @@
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4114906.mp4",
   "gh_asset": 804748786,
   "drive_apagado": true
+ },
+ {
+  "id": "mapa-norte 1702109 Araguaína: a cidade que já se chamou Livr",
+  "arquivo": "videos/mapa-norte-1702109.mp4",
+  "legenda": "Araguaína: a cidade que já se chamou Livra-nos Deus! #NorteNoMapa #Araguaína #Tocantins",
+  "conta": "mapa-norte",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-28T10:56:01-03:00",
+  "drive_id": "18kAzdecXwuRgaihZr0kCs6S45VCx9Ykj",
+  "tamanho": 285579343,
+  "ia": true,
+  "sha256": "430c326194c8571a60b591be7d41995ba89ea46d6e8f5de7b65d36a20cbb97ee"
  }
 ]
