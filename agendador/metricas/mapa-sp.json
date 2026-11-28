@@ -1,15 +1,24 @@
 {
- "conferido": "2026-11-28T02:30:50+00:00",
+ "conferido": "2026-11-28T05:01:13+00:00",
  "reels": [
+  {
+   "id": "18102712967087716",
+   "quando": "2026-11-28T02:34:45+0000",
+   "legenda": "Mauá nasceu de uma ferrovia, tem nome de barão e mais de 429 mil moradores #PaulistaNoMapa #Mauá #SãoPaulo",
+   "link": "https://www.instagram.com/reel/DgRMOMSgnHy/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18105172937379918",
    "quando": "2026-11-28T00:32:10+0000",
    "legenda": "Borá é a menor cidade de São Paulo e tem só 935 moradores #PaulistaNoMapa #Borá #SãoPaulo",
    "link": "https://www.instagram.com/reel/DgQ-NraxDpE/",
    "tipo": "REELS",
-   "curtidas": 1,
+   "curtidas": 2,
    "comentarios": 1,
-   "insights_erro": "(#10) Application does not have permission for this action",
    "comentarios_top": [
     "Franco da Rocha"
    ],
@@ -22,14 +31,15 @@
    "legenda": "Jundiaí: a cidade da uva, do vinho e da Serra do Japi! #PaulistaNoMapa #Jundiaí #SãoPaulo",
    "link": "https://www.instagram.com/reel/DgQ6v4pBYBI/",
    "tipo": "REELS",
-   "curtidas": 5,
-   "comentarios": 3,
+   "curtidas": 6,
+   "comentarios": 4,
    "comentarios_top": [
+    "Minha cidade Jundiai ❤️❤️",
+    "Várzea Paulista",
     "Boituvaaaaa",
-    "Faz cotia",
-    "Várzea Paulista"
+    "Faz cotia"
    ],
-   "comentarios_lidos": 3,
+   "comentarios_lidos": 4,
    "mapa_nos_comentarios": 0
   },
   {

@@ -1,23 +1,33 @@
 {
- "conferido": "2026-11-28T02:30:50+00:00",
+ "conferido": "2026-11-28T05:01:13+00:00",
  "reels": [
+  {
+   "id": "18365750350247883",
+   "quando": "2026-11-28T03:01:14+0000",
+   "legenda": "Xanxerê: a capital do milho que já foi colônia militar #CatarinenseNoMapa #Xanxerê #SantaCatarina",
+   "link": "https://www.instagram.com/reel/DgRPRUzhq2k/",
+   "tipo": "REELS",
+   "curtidas": 2,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18380489332215136",
    "quando": "2026-11-28T00:38:21+0000",
    "legenda": "Ouro Verde: a cidade que já se chamou Anta Gorda #CatarinenseNoMapa #OuroVerde #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgQ--F6uisf/",
    "tipo": "REELS",
-   "curtidas": 1,
-   "comentarios": 5,
-   "insights_erro": "(#10) Application does not have permission for this action",
+   "curtidas": 3,
+   "comentarios": 6,
    "comentarios_top": [
+    "Xanxere?",
     "Por favoooooooor",
     "Faz Fraiburgo",
     "Namoral",
     "Por favor",
     "FRAIBURGO"
    ],
-   "comentarios_lidos": 5,
+   "comentarios_lidos": 6,
    "mapa_nos_comentarios": 0
   },
   {
@@ -149,7 +159,7 @@
    "legenda": "Coronel Martins: a cidade que nasceu de uma fazenda de pedra branca #CatarinenseNoMapa #CoronelMartins #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgP0TvBhW0B/",
    "tipo": "REELS",
-   "curtidas": 4,
+   "curtidas": 5,
    "comentarios": 30,
    "comentarios_top": [
     "Formosa do sul",
@@ -523,15 +533,6 @@
    "link": "https://www.instagram.com/reel/Df9Y2n5uwEb/",
    "tipo": "REELS",
    "curtidas": 7,
-   "comentarios": 1
-  },
-  {
-   "id": "18180713047442991",
-   "quando": "2026-11-20T03:48:15+0000",
-   "legenda": "São José: mais gente que Chapecó em só 150 km² #CatarinenseNoMapa #SãoJosé #SC",
-   "link": "https://www.instagram.com/reel/Df8uRg_OYK5/",
-   "tipo": "REELS",
-   "curtidas": 4,
    "comentarios": 1
   }
  ]

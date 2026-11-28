@@ -1,6 +1,16 @@
 {
- "conferido": "2026-11-28T02:30:50+00:00",
+ "conferido": "2026-11-28T05:01:13+00:00",
  "reels": [
+  {
+   "id": "18104094161541751",
+   "quando": "2026-11-28T03:38:23+0000",
+   "legenda": "Castro: Capital Nacional do Leite e já foi capital do Paraná! #ParanaenseNoMapa #Castro #Paraná",
+   "link": "https://www.instagram.com/reel/DgRTifFhoED/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18135694363764855",
    "quando": "2026-11-28T00:21:10+0000",
@@ -8,8 +18,7 @@
    "link": "https://www.instagram.com/reel/DgQ8-GSJsKJ/",
    "tipo": "REELS",
    "curtidas": 0,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "17948929968366004",
@@ -81,7 +90,7 @@
    "legenda": "Paranapoema: o nome junta três rios! #ParanaenseNoMapa #Paranapoema #Paraná",
    "link": "https://www.instagram.com/reel/DgQXo2jutfZ/",
    "tipo": "REELS",
-   "curtidas": 0,
+   "curtidas": 1,
    "comentarios": 0
   },
   {
@@ -146,11 +155,12 @@
    "link": "https://www.instagram.com/reel/DgOfYB1z2Hr/",
    "tipo": "REELS",
    "curtidas": 1,
-   "comentarios": 1,
+   "comentarios": 2,
    "comentarios_top": [
+    "Cruzmaltina",
     "Andirá"
    ],
-   "comentarios_lidos": 1,
+   "comentarios_lidos": 2,
    "mapa_nos_comentarios": 0
   },
   {
@@ -463,15 +473,6 @@
    "link": "https://www.instagram.com/reel/Df4x3fDlOL0/",
    "tipo": "REELS",
    "curtidas": 11,
-   "comentarios": 0
-  },
-  {
-   "id": "18133220374753413",
-   "quando": "2026-11-18T09:01:36+0000",
-   "legenda": "Curitiba: 1,7 milhão de habitantes! Qual cidade vem agora? 👇 #Curitiba #Paraná #ParanaenseNoMapa",
-   "link": "https://www.instagram.com/reel/Df4Iqeqk6lp/",
-   "tipo": "REELS",
-   "curtidas": 7,
    "comentarios": 0
   }
  ]

@@ -1,6 +1,16 @@
 {
- "conferido": "2026-11-28T02:30:50+00:00",
+ "conferido": "2026-11-28T05:01:13+00:00",
  "reels": [
+  {
+   "id": "18096704975185404",
+   "quando": "2026-11-28T02:48:24+0000",
+   "legenda": "Sant'Ana do Livramento: uma rua separa Brasil e Uruguai #GaúchoNoMapa #Livramento #RioGrandeDoSul",
+   "link": "https://www.instagram.com/reel/DgRN0RZhxUJ/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18420959800083835",
    "quando": "2026-11-27T23:14:53+0000",
@@ -8,8 +18,7 @@
    "link": "https://www.instagram.com/reel/DgQ1ck-R9iv/",
    "tipo": "REELS",
    "curtidas": 3,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18647874805022214",
@@ -458,22 +467,6 @@
     "Júlio De Castilhos rs"
    ],
    "comentarios_lidos": 1,
-   "mapa_nos_comentarios": 0
-  },
-  {
-   "id": "18181996921444319",
-   "quando": "2026-11-18T00:33:19+0000",
-   "legenda": "Porto Alegre: de 500 açorianos à maior cidade do RS. Qual vem agora? 👇 #PortoAlegre #RS",
-   "link": "https://www.instagram.com/reel/Df3Oc7bOkj1/",
-   "tipo": "REELS",
-   "curtidas": 4,
-   "comentarios": 5,
-   "comentarios_top": [
-    "santa Maria",
-    "São Sepé",
-    "👏"
-   ],
-   "comentarios_lidos": 3,
    "mapa_nos_comentarios": 0
   }
  ]

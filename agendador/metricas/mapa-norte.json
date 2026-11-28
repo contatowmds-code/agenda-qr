@@ -1,6 +1,16 @@
 {
- "conferido": "2026-11-28T02:30:50+00:00",
+ "conferido": "2026-11-28T05:01:13+00:00",
  "reels": [
+  {
+   "id": "18121501634068465",
+   "quando": "2026-11-28T03:13:20+0000",
+   "legenda": "Castanhal: a cidade que cresceu por causa de um trem! #NorteNoMapa #Castanhal #Pará",
+   "link": "https://www.instagram.com/reel/DgRQp-auVvY/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18090218126704179",
    "quando": "2026-11-27T23:04:23+0000",
@@ -8,8 +18,7 @@
    "link": "https://www.instagram.com/reel/DgQ0R2UhezN/",
    "tipo": "REELS",
    "curtidas": 0,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18213516418317081",
@@ -35,8 +44,13 @@
    "legenda": "Parauapebas: a cidade que nasceu da maior reserva de minério do mundo #NorteNoMapa #Parauapebas #Pará",
    "link": "https://www.instagram.com/reel/DgQh6LigYwk/",
    "tipo": "REELS",
-   "curtidas": 0,
-   "comentarios": 0
+   "curtidas": 1,
+   "comentarios": 1,
+   "comentarios_top": [
+    "😍😍😍"
+   ],
+   "comentarios_lidos": 1,
+   "mapa_nos_comentarios": 0
   },
   {
    "id": "18382209745213639",
@@ -44,7 +58,7 @@
    "legenda": "Marabá: a praia que some no meio do rio Tocantins! #NorteNoMapa #Marabá #Pará",
    "link": "https://www.instagram.com/reel/DgQYBZGhCll/",
    "tipo": "REELS",
-   "curtidas": 0,
+   "curtidas": 1,
    "comentarios": 0
   },
   {
@@ -62,8 +76,13 @@
    "legenda": "Oliveira de Fátima é a menor cidade do Tocantins #NorteNoMapa #OliveiraDeFátima #Tocantins",
    "link": "https://www.instagram.com/reel/DgQDrw3xcCA/",
    "tipo": "REELS",
-   "curtidas": 0,
-   "comentarios": 0
+   "curtidas": 2,
+   "comentarios": 1,
+   "comentarios_top": [
+    "Peixe Tocantins"
+   ],
+   "comentarios_lidos": 1,
+   "mapa_nos_comentarios": 0
   },
   {
    "id": "17997791322027928",
