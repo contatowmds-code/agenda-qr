@@ -1,6 +1,16 @@
 {
- "conferido": "2026-11-28T05:01:13+00:00",
+ "conferido": "2026-11-28T08:01:02+00:00",
  "reels": [
+  {
+   "id": "17960443938272461",
+   "quando": "2026-11-28T06:08:41+0000",
+   "legenda": "Fraiburgo: a terra onde quase metade da lavoura é maçã #CatarinenseNoMapa #Fraiburgo #SantaCatarina",
+   "link": "https://www.instagram.com/reel/DgRkuZ7Behu/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
   {
    "id": "18365750350247883",
    "quando": "2026-11-28T03:01:14+0000",
@@ -8,8 +18,7 @@
    "link": "https://www.instagram.com/reel/DgRPRUzhq2k/",
    "tipo": "REELS",
    "curtidas": 2,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18380489332215136",
@@ -17,7 +26,7 @@
    "legenda": "Ouro Verde: a cidade que já se chamou Anta Gorda #CatarinenseNoMapa #OuroVerde #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgQ--F6uisf/",
    "tipo": "REELS",
-   "curtidas": 3,
+   "curtidas": 4,
    "comentarios": 6,
    "comentarios_top": [
     "Xanxere?",
@@ -524,15 +533,6 @@
    "link": "https://www.instagram.com/reel/Df-YZGKOrjr/",
    "tipo": "REELS",
    "curtidas": 9,
-   "comentarios": 1
-  },
-  {
-   "id": "18122588527962324",
-   "quando": "2026-11-20T09:59:38+0000",
-   "legenda": "Blumenau: a cidade da Oktoberfest que já ficou 32 dias em cheia #CatarinenseNoMapa #Blumenau #SC",
-   "link": "https://www.instagram.com/reel/Df9Y2n5uwEb/",
-   "tipo": "REELS",
-   "curtidas": 7,
    "comentarios": 1
   }
  ]
