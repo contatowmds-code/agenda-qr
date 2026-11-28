@@ -1072,6 +1072,9 @@
   "sha256": "6184d464437b73bfc7627abd83be1e5dea4d5ca818090c0dc2444bd33e919e1a",
   "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3529401.mp4",
   "gh_asset": 802581549,
-  "drive_apagado": true
+  "drive_apagado": true,
+  "erros": {
+   "youtube": "youtube em espera até 27/11 23:28 (limite de envios do canal)"
+  }
  }
 ]
