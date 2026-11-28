@@ -220,9 +220,17 @@ def story_facebook(d, arq):
     if not f2.get("success"): raise RuntimeError(f"publicar: {f2}")
     return f2.get("post_id") or a["video_id"]
 def story(rede, d, arq):
-    """Melhor esforço: nunca derruba a postagem principal."""
-    try: sid = (story_instagram if rede == "instagram" else story_facebook)(d, arq); print(f"  story {rede} OK ({sid})"); return sid
-    except Exception as e: print(f"  AVISO story {rede}: {str(e)[:220]}"); return None
+    """Melhor esforço: nunca derruba a postagem principal. Se o envio for recusado, tenta mais uma vez com um trecho menor (30 s)."""
+    fn = story_instagram if rede == "instagram" else story_facebook
+    for tent in range(2):
+        try: sid = fn(d, arq); print(f"  story {rede} OK ({sid})"); return sid
+        except Exception as e:
+            print(f"  AVISO story {rede} (tentativa {tent + 1}): {str(e)[:200]}")
+            try:
+                base = _audio_ig(arq) if rede == "facebook" else arq; st = base.with_name(base.stem + "_story.mp4"); st.unlink(missing_ok=True)
+                import subprocess; subprocess.run([_ffmpeg(), "-y", "-v", "error", "-i", str(base), "-t", "30", "-c", "copy", "-movflags", "+faststart", str(st)], capture_output=True); time.sleep(20)
+            except Exception: pass
+    return None
 
 
 def instagram(it, d, arq):
