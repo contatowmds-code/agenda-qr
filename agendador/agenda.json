@@ -1055,5 +1055,22 @@
   "erros": {
    "youtube": "youtube em espera até 27/11 23:28 (limite de envios do canal)"
   }
+ },
+ {
+  "id": "mapa-sc 4211850 Ouro Verde: a cidade que já se chamou Anta G",
+  "arquivo": "videos/mapa-sc-4211850.mp4",
+  "legenda": "Ouro Verde: a cidade que já se chamou Anta Gorda #CatarinenseNoMapa #OuroVerde #SantaCatarina",
+  "conta": "mapa-sc",
+  "plataformas": [
+   "instagram",
+   "facebook",
+   "youtube",
+   "tiktok"
+  ],
+  "quando": "2026-11-27T21:35:14-03:00",
+  "drive_id": "1nvRsR_xUiihiPJMDGUK82PTHFftppQLM",
+  "tamanho": 140179512,
+  "ia": true,
+  "sha256": "9e0de5b9347bf6590e675f8bbc8956bb260cade4d122c4f60a8546aabb046a46"
  }
 ]
