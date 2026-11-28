@@ -120,6 +120,17 @@ for tent in range(6):
         git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: arquivo novo para {conta} {cod} (o antigo estava preso no Drive)")
         if git("push", "-q", "origin", "HEAD:main").returncode == 0: print("NA FILA para publicar às", x["quando"][11:16], "de", x["quando"][:10], "(assumiu o lugar do arquivo antigo que estava preso) em:", ", ".join(x.get("plataformas", redes))); sys.exit(0)
         time.sleep(3); atualizar(); continue
+    recus = [x for x in ag if x.get("arquivo") == arq and x.get("conta") == conta and sha256 and "RECUSADO 1080" in json.dumps(x.get("erros") or {}, ensure_ascii=False)]
+    if recus and not p:
+        # TROCA POR 1080 (28/11/2026, pedido do dono): o item ficou preso porque o vídeo antigo estava abaixo de 1080x1920 (o robô recusa).
+        # O vídeo refeito em 1080 assume o lugar no MESMO item: o que já saiu (feito) fica como está e só publica nas redes que faltam. Sem duplicar.
+        x = recus[0]; x.update(drive_id=drive_id, tamanho=tam, sha256=sha256, quando=dt.datetime.now(ZoneInfo("America/Sao_Paulo")).isoformat(timespec="seconds"))
+        for k in ("erros", "gh_url", "gh_asset", "drive_apagado", "drive_antigo"): x.pop(k, None)
+        (AQUI / "agenda.json").write_text(json.dumps(ag, ensure_ascii=False, indent=1), encoding="utf-8")
+        git("add", "agendador/agenda.json"); git("-c", "user.name=agendador", "-c", "user.email=agendador@users.noreply.github.com", "commit", "-q", "-m", f"mapa: vídeo refeito em 1080 para {conta} {cod} (troca; só as redes que faltam)")
+        if git("push", "-q", "origin", "HEAD:main").returncode == 0:
+            print("TROCADO: o vídeo em 1080 assumiu o lugar do antigo; publica agora só em:", ", ".join(r for r in x.get("plataformas", []) if r not in (x.get("feito") or {})) or "nenhuma"); sys.exit(0)
+        time.sleep(3); atualizar(); continue
     if a or p: print("JÁ ESTAVA", "publicado" if p else "na fila", "- não agendo de novo:", arq); sys.exit(4)
     ag.append({"id": f"{conta} {cod} {legenda.split('#')[0].strip()}"[:60], "arquivo": arq, "legenda": legenda, "conta": conta, "plataformas": redes,
                "quando": horario(conta).isoformat(timespec="seconds"), "drive_id": drive_id, "tamanho": tam, "ia": True, **({"sha256": sha256} if sha256 else {})})
