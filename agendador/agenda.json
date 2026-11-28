@@ -990,6 +990,9 @@
   "drive_id": "1sn0YmR8VjKgc3Jkl9EINkX3fKXqjU5X_",
   "tamanho": 239194720,
   "ia": true,
-  "sha256": "f7f99c6e0ceef18e7b0d5393f35d0d2dd7663cb15157d61f493e5d4345be8a9d"
+  "sha256": "f7f99c6e0ceef18e7b0d5393f35d0d2dd7663cb15157d61f493e5d4345be8a9d",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-rs-4314787.mp4",
+  "gh_asset": 803831954,
+  "drive_apagado": true
  }
 ]
