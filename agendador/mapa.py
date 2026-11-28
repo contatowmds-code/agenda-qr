@@ -596,10 +596,11 @@ def metricas(conta, n=40):
         out.append(d)
     # comentários mais curtidos dos 8 Reels mais comentados (só o texto, sem nome de ninguém): pedidos e dúvidas viram pauta
     try:
-        for d in sorted(out, key=lambda q: -(q.get("comentarios") or 0))[:8]:
+        for d in sorted(out, key=lambda q: -(q.get("comentarios") or 0))[:20]:
             if not d.get("comentarios"): continue
             c = requests.get(f"{GRAPH}/{d['id']}/comments", params={"fields": "text,like_count", "limit": 50, "access_token": tok}, timeout=60).json()
             d["comentarios_top"] = [str(x.get("text", ""))[:200] for x in sorted(c.get("data", []), key=lambda q: -(q.get("like_count") or 0))[:8] if x.get("text")]
+            d["comentarios_lidos"] = len(c.get("data", [])); d["mapa_nos_comentarios"] = sum(1 for x in c.get("data", []) if "mapa" in str(x.get("text", "")).lower())
     except Exception as e: print(f"  comentários {conta}: {str(e)[:100]}")
     return out
 
