@@ -3,3 +3,4 @@ SC | 051 | 4210555 | Marema | EM PRODUÇÃO | 28/11 06:12
 SC | 052 | 4218004 | Tijucas | EM PRODUÇÃO | 28/11 08:19
 SC | 053 | 4206504 | Guaramirim | EM PRODUÇÃO | 28/11 08:50
 SC | 054 | 4202578 | Bom Jesus do Oeste | EM PRODUÇÃO | 28/11 11:48
+SC | 055 | 4218202 | Timbó | EM PRODUÇÃO | 28/11 13:56
