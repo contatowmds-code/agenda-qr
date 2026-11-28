@@ -990,6 +990,9 @@
   "drive_id": "1drs7FvnbQDKq_dR7bh7-6nDFHRZqxNA1",
   "tamanho": 271432082,
   "ia": true,
-  "sha256": "d0443b9e6c706e7c084ee7a8b2cd9830d0a1ca383457a7cb177c49f3bf18a60e"
+  "sha256": "d0443b9e6c706e7c084ee7a8b2cd9830d0a1ca383457a7cb177c49f3bf18a60e",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-sp-3541000.mp4",
+  "gh_asset": 803957203,
+  "drive_apagado": true
  }
 ]
