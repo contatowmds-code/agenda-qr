@@ -2,3 +2,4 @@ PR | 042 | 4118303 | Paranapoema | EM PRODUÇÃO | 27/11 14:32
 PR | 043 | 4127106 | Telêmaco Borba | EM PRODUÇÃO | 27/11 17:54
 PR | 044 | 4103024 | Boa Esperança do Iguaçu | EM PRODUÇÃO | 27/11 20:46
 PR | 045 | 4104907 | Castro | EM PRODUÇÃO | 28/11 00:16
+PR | 046 | 4124202 | Santo Antônio do Caiuá | EM PRODUÇÃO | 28/11 03:35
