@@ -1,2 +1,3 @@
 SC | 050 | 4205506 | Fraiburgo | EM PRODUÇÃO | 28/11 03:04
 SC | 051 | 4210555 | Marema | EM PRODUÇÃO | 28/11 06:12
+SC | 052 | 4218004 | Tijucas | EM PRODUÇÃO | 28/11 08:19
