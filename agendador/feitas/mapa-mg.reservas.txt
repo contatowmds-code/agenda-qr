@@ -2,3 +2,4 @@ MG | 031 | 3147501 | Passabém | EM PRODUÇÃO | 27/11 14:31
 MG | 032 | 3103108 | Antônio Prado de Minas | EM PRODUÇÃO | 27/11 14:32
 MG | 033 | 3171204 | Vespasiano | EM PRODUÇÃO | 27/11 20:28
 MG | 034 | 3168200 | Tapiraí | EM PRODUÇÃO | 28/11 01:32
+MG | 035 | 3105608 | Barbacena | EM PRODUÇÃO | 28/11 07:50
