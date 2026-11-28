@@ -3,3 +3,4 @@ BR | 022 | 3532868 | Nova Castilho | EM PRODUÇÃO | 27/11 14:32
 BR | 023 | 2927408 | Salvador | EM PRODUÇÃO | 27/11 19:20
 BR | 024 | 3507209 | Borá | EM PRODUÇÃO | 27/11 23:09
 BR | 025 | 2306405 | Itapipoca | EM PRODUÇÃO | 28/11 07:59
+BR | 026 | 5101209 | Araguainha | EM PRODUÇÃO | 28/11 11:45
