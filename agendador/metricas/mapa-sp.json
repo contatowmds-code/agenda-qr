@@ -1,6 +1,25 @@
 {
- "conferido": "2026-11-28T08:01:02+00:00",
+ "conferido": "2026-11-28T10:31:12+00:00",
  "reels": [
+  {
+   "id": "17968807290207729",
+   "quando": "2026-11-28T09:26:25+0000",
+   "legenda": "Fernão tem 3 bois pra cada morador e só 1.695 habitantes #PaulistaNoMapa #Fernão #SãoPaulo",
+   "link": "https://www.instagram.com/reel/DgR7XhOCHa9/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
+  {
+   "id": "17993373327066788",
+   "quando": "2026-11-28T09:16:21+0000",
+   "legenda": "Praia Grande: fortaleza, ciclovia e Netuno no 4º destino mais procurado do verão #PaulistaNoMapa #PraiaGrande #SãoPaulo",
+   "link": "https://www.instagram.com/reel/DgR6MiCt3H5/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0
+  },
   {
    "id": "18102712967087716",
    "quando": "2026-11-28T02:34:45+0000",
@@ -8,8 +27,7 @@
    "link": "https://www.instagram.com/reel/DgRMOMSgnHy/",
    "tipo": "REELS",
    "curtidas": 1,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18105172937379918",
@@ -62,7 +80,7 @@
    "legenda": "Nova Castilho só virou município em dezembro de 1995! #PaulistaNoMapa #NovaCastilho #SãoPaulo",
    "link": "https://www.instagram.com/reel/DgQ3YJDN7sF/",
    "tipo": "REELS",
-   "curtidas": 2,
+   "curtidas": 3,
    "comentarios": 1,
    "comentarios_top": [
     "BERTIOGA"

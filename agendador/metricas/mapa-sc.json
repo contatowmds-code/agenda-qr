@@ -1,6 +1,31 @@
 {
- "conferido": "2026-11-28T08:01:02+00:00",
+ "conferido": "2026-11-28T10:31:12+00:00",
  "reels": [
+  {
+   "id": "17980052637149046",
+   "quando": "2026-11-28T09:45:15+0000",
+   "legenda": "Lajeado Grande, uma das menores de SC #CatarinenseNoMapa #LajeadoGrande #SantaCatarina",
+   "link": "https://www.instagram.com/reel/DgR9jkLjbIt/",
+   "tipo": "REELS",
+   "curtidas": 1,
+   "comentarios": 2,
+   "insights_erro": "(#10) Application does not have permission for this action",
+   "comentarios_top": [
+    "Faz ipumirim",
+    "Florianópolis"
+   ],
+   "comentarios_lidos": 2,
+   "mapa_nos_comentarios": 0
+  },
+  {
+   "id": "18393144829238928",
+   "quando": "2026-11-28T08:22:04+0000",
+   "legenda": "Marema: a cidade que nasceu de um pântano italiano e vive da lavoura e da criação #CatarinenseNoMapa #Marema #SantaCatar",
+   "link": "https://www.instagram.com/reel/DgR0Cs_p_z-/",
+   "tipo": "REELS",
+   "curtidas": 2,
+   "comentarios": 1
+  },
   {
    "id": "17960443938272461",
    "quando": "2026-11-28T06:08:41+0000",
@@ -8,8 +33,7 @@
    "link": "https://www.instagram.com/reel/DgRkuZ7Behu/",
    "tipo": "REELS",
    "curtidas": 0,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18365750350247883",
@@ -79,7 +103,7 @@
    "link": "https://www.instagram.com/reel/DgQihfNBxxj/",
    "tipo": "REELS",
    "curtidas": 2,
-   "comentarios": 14,
+   "comentarios": 15,
    "comentarios_top": [
     "Faz Fraiburgo, sou um dos únicos que comenta",
     "Fraiburgo",
@@ -168,7 +192,7 @@
    "legenda": "Coronel Martins: a cidade que nasceu de uma fazenda de pedra branca #CatarinenseNoMapa #CoronelMartins #SantaCatarina",
    "link": "https://www.instagram.com/reel/DgP0TvBhW0B/",
    "tipo": "REELS",
-   "curtidas": 5,
+   "curtidas": 6,
    "comentarios": 30,
    "comentarios_top": [
     "Formosa do sul",
@@ -510,30 +534,6 @@
    ],
    "comentarios_lidos": 3,
    "mapa_nos_comentarios": 0
-  },
-  {
-   "id": "18030130445920375",
-   "quando": "2026-11-21T00:12:32+0000",
-   "legenda": "Florianópolis: a ponte da capital ficou fechada 28 anos #CatarinenseNoMapa #Florianópolis #SC",
-   "link": "https://www.instagram.com/reel/Df-6aR7uJdh/",
-   "tipo": "REELS",
-   "curtidas": 5,
-   "comentarios": 3,
-   "comentarios_top": [
-    "Timbó",
-    "Mapa"
-   ],
-   "comentarios_lidos": 2,
-   "mapa_nos_comentarios": 1
-  },
-  {
-   "id": "18121243316003062",
-   "quando": "2026-11-20T19:14:48+0000",
-   "legenda": "Criciúma: Capital do Carvão, campeã da Copa do Brasil em 1991 #CatarinenseNoMapa #Criciúma #SC",
-   "link": "https://www.instagram.com/reel/Df-YZGKOrjr/",
-   "tipo": "REELS",
-   "curtidas": 9,
-   "comentarios": 1
   }
  ]
 }

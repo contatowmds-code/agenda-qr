@@ -1,15 +1,38 @@
 {
- "conferido": "2026-11-28T08:01:02+00:00",
+ "conferido": "2026-11-28T10:31:12+00:00",
  "reels": [
+  {
+   "id": "18122855452964854",
+   "quando": "2026-11-28T10:24:05+0000",
+   "legenda": "Terra Boa honra o nome: a terra fértil batizou a cidade! #ParanaenseNoMapa #TerraBoa #Paraná",
+   "link": "https://www.instagram.com/reel/DgSB9ArKs5L/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0,
+   "insights_erro": "(#10) Application does not have permission for this action"
+  },
+  {
+   "id": "17867690427695601",
+   "quando": "2026-11-28T09:04:57+0000",
+   "legenda": "Almirante Tamandaré_ cresceu 8 vezes #ParanaenseNoMapa #AlmiranteTamandaré #Paraná",
+   "link": "https://www.instagram.com/reel/DgR4_NqCRzH/",
+   "tipo": "REELS",
+   "curtidas": 2,
+   "comentarios": 0
+  },
   {
    "id": "18000874341110404",
    "quando": "2026-11-28T07:06:51+0000",
    "legenda": "Santo Antônio do Caiuá nasceu no meio da mata! #ParanaenseNoMapa #SantoAntônioDoCaiuá #Paraná",
    "link": "https://www.instagram.com/reel/DgRrYMUhoXW/",
    "tipo": "REELS",
-   "curtidas": 0,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "curtidas": 1,
+   "comentarios": 1,
+   "comentarios_top": [
+    "Faz Andirá Paraná por favor eu tô pedindo faz tempo por favor"
+   ],
+   "comentarios_lidos": 1,
+   "mapa_nos_comentarios": 0
   },
   {
    "id": "18104094161541751",
@@ -453,24 +476,6 @@
    "quando": "2026-11-19T09:01:12+0000",
    "legenda": "Londrina tem nome de Londres e já foi capital do café. Ep. 3! #Londrina #Paraná #Paranaensenomapa",
    "link": "https://www.instagram.com/reel/Df6tZu8j3f_/",
-   "tipo": "REELS",
-   "curtidas": 6,
-   "comentarios": 0
-  },
-  {
-   "id": "17887007946527683",
-   "quando": "2026-11-18T23:45:43+0000",
-   "legenda": "Foz do Iguaçu: 3 países num só lugar! Qual cidade vem agora? 👇 #Paraná #FozDoIguaçu #cataratas",
-   "link": "https://www.instagram.com/reel/Df5twKbM2_U/",
-   "tipo": "REELS",
-   "curtidas": 4,
-   "comentarios": 0
-  },
-  {
-   "id": "18137457868789776",
-   "quando": "2026-11-18T21:01:38+0000",
-   "legenda": "Maringá: a Cidade Canção e suas árvores! Qual cidade vem agora? 👇 #Maringá #Paraná #ParanaenseNoMapa",
-   "link": "https://www.instagram.com/reel/Df5bDQIGSCo/",
    "tipo": "REELS",
    "curtidas": 6,
    "comentarios": 0

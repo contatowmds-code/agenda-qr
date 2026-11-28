@@ -1,6 +1,30 @@
 {
- "conferido": "2026-11-28T08:01:02+00:00",
+ "conferido": "2026-11-28T10:31:12+00:00",
  "reels": [
+  {
+   "id": "17934756711165117",
+   "quando": "2026-11-28T09:16:05+0000",
+   "legenda": "Uruguaiana_ cheia do rio Uruguai e a ponte de 79 anos! #GaúchoNoMapa #Uruguaiana #RioGrandeDoSul",
+   "link": "https://www.instagram.com/reel/DgR6Pr5B0Eh/",
+   "tipo": "REELS",
+   "curtidas": 5,
+   "comentarios": 1,
+   "insights_erro": "(#10) Application does not have permission for this action",
+   "comentarios_top": [
+    "São Borja 🔥"
+   ],
+   "comentarios_lidos": 1,
+   "mapa_nos_comentarios": 0
+  },
+  {
+   "id": "17889220020502608",
+   "quando": "2026-11-28T08:31:31+0000",
+   "legenda": "Ponte Preta: a cidade que tem nome de ponte pintada de preto #GaúchoNoMapa #PontePreta #RioGrandeDoSul",
+   "link": "https://www.instagram.com/reel/DgR1EDWAZgY/",
+   "tipo": "REELS",
+   "curtidas": 0,
+   "comentarios": 0
+  },
   {
    "id": "18096704975185404",
    "quando": "2026-11-28T02:48:24+0000",
@@ -8,8 +32,7 @@
    "link": "https://www.instagram.com/reel/DgRN0RZhxUJ/",
    "tipo": "REELS",
    "curtidas": 0,
-   "comentarios": 0,
-   "insights_erro": "(#10) Application does not have permission for this action"
+   "comentarios": 0
   },
   {
    "id": "18420959800083835",
@@ -445,29 +468,6 @@
    "tipo": "REELS",
    "curtidas": 1,
    "comentarios": 0
-  },
-  {
-   "id": "17917761069507185",
-   "quando": "2026-11-18T09:01:04+0000",
-   "legenda": "Caxias do Sul: dos imigrantes italianos à 2ª maior cidade do RS. Qual vem agora? 👇 #CaxiasDoSul #RS",
-   "link": "https://www.instagram.com/reel/Df4InycxnDl/",
-   "tipo": "REELS",
-   "curtidas": 16,
-   "comentarios": 0
-  },
-  {
-   "id": "18227899267337639",
-   "quando": "2026-11-18T04:04:19+0000",
-   "legenda": "Santa Maria: do acampamento de 1797 à 5ª maior cidade do RS. Qual vem agora? 👇 #SantaMaria #RS",
-   "link": "https://www.instagram.com/reel/Df3mjjzBjvo/",
-   "tipo": "REELS",
-   "curtidas": 18,
-   "comentarios": 52,
-   "comentarios_top": [
-    "Júlio De Castilhos rs"
-   ],
-   "comentarios_lidos": 1,
-   "mapa_nos_comentarios": 0
   }
  ]
 }
