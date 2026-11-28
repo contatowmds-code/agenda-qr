@@ -553,6 +553,7 @@ def main():
         for it in sorted(_ord, key=lambda x: 0 if x.get("sha256") else 1):   # primeiro os vídeos enviados pelo caminho novo (Drive com login): esses nunca esbarram no limite do link público
             if n >= 4: break
             if not (mapa.eh(conta_id(it)) and it.get("drive_id")) or it.get("gh_url") or completo(it): continue
+            if "RECUSADO 1080" in str((it.get("erros") or {}).get("cofre", "")): continue   # abaixo de 1080p: nunca é postado; fica marcado até a sessão mandar um vídeo novo
             antigo = not it.get("sha256")   # vídeo do caminho antigo: só dá para baixar pelo link público do Drive, que tem limite diário
             if antigo and time.time() < _bloq_drive(): continue   # SEM INSISTIR: enquanto o Drive recusa, o robô fica quieto (insistir a cada minuto só prolonga o bloqueio) e sonda de novo mais tarde com UM arquivo
             try:
@@ -572,6 +573,7 @@ def main():
     for it in list(ag):
         if os.environ.get("SO_CONTA") and conta_id(it) != os.environ["SO_CONTA"]: continue
         if not DRY and os.environ.get("GITHUB_ACTIONS") and mapa.cofre_ok() and mapa.eh(conta_id(it)) and it.get("drive_id") and not it.get("gh_url") and not completo(it): continue   # ainda não chegou ao cofre (item já completo segue para ser arquivado): espera (quem busca no Drive é só o passo do cofre, com calma)
+        if "RECUSADO 1080" in json.dumps(it.get("erros") or {}, ensure_ascii=False): continue   # abaixo de 1080p: não publica em rede nenhuma
         if os.environ.get("SO_PREFIXO") and not conta_id(it).startswith(os.environ["SO_PREFIXO"]): continue   # vigia só dos perfis de mapa   # vigia por conta: cada conta tem o seu, em paralelo (uma não espera a outra)
         if not DRY and ja_arquivado(it): print(f"[{it['id']}] já consta como PUBLICADO no registro; removo da agenda e não publico de novo"); arquivar(it, (it.get("links") or {})); continue
         if not DRY and completo(it): conferir_e_arquivar(it); continue

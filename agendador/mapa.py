@@ -409,6 +409,22 @@ def buffer_confirma(pid):
 # Assim que o vídeo entra na agenda, o robô copia o MP4 do Drive para um "release" deste repositório (cofre-videos), confere o tamanho
 # e marca gh_url no item. A partir daí o Drive pode apagar o arquivo na hora (o script FILA-MAPA faz isso) e tudo é publicado a partir do cofre.
 # Depois de publicado e conferido em todas as redes, o arquivo sai do cofre também.
+# ---------------- 1080x1920 OU NÃO POSTA (regra do dono, 27/11/2026: "extremamente proibido" postar abaixo de 1080p) ----------------
+def resolucao(arq):
+    """(largura, altura) do vídeo, lidas do próprio arquivo com o ffmpeg; None se não deu para ler."""
+    import subprocess, re as _re
+    try:
+        e = subprocess.run([_ffmpeg(), "-hide_banner", "-i", str(arq)], capture_output=True, text=True).stderr
+        m = _re.search(r"Video:.*?[ ,](\d{3,5})x(\d{3,5})[ ,\[]", e); rot = _re.search(r"rotate\s*:\s*(-?\d+)|rotation of (-?\d+)", e)
+        if not m: return None
+        w, h = int(m.group(1)), int(m.group(2))
+        if rot and abs(int(rot.group(1) or rot.group(2))) in (90, 270): w, h = h, w
+        return w, h
+    except Exception: return None
+def exige_1080(arq):
+    r = resolucao(arq)
+    if r is not None and (r[0] < 1080 or r[1] < 1920): raise RuntimeError(f"RECUSADO 1080: o vídeo está em {r[0]}x{r[1]} e a regra do dono é no mínimo 1080x1920. Não foi postado; a sessão tem de renderizar de novo em 1080x1920.")
+    return r
 COFRE = "cofre-videos"
 def url_video(it): return it.get("gh_url") or f"https://drive.usercontent.google.com/download?id={it['drive_id']}&export=download&confirm=t"
 def _ghh(): return {"Authorization": "Bearer " + (os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""), "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
@@ -422,7 +438,7 @@ def _cofre():
 def guardar(it):
     """Copia o MP4 do Drive para o cofre e devolve {'gh_url', 'gh_asset'}; None se não deu (o item segue pelo Drive, como antes)."""
     if it.get("gh_url") or not it.get("drive_id") or not cofre_ok(): return None
-    arq = baixar(it); nome = Path(it["arquivo"]).name; tam = arq.stat().st_size; rel = _cofre(); repo = os.environ["GITHUB_REPOSITORY"]
+    arq = baixar(it); exige_1080(arq); nome = Path(it["arquivo"]).name; tam = arq.stat().st_size; rel = _cofre(); repo = os.environ["GITHUB_REPOSITORY"]
     for a in rel.get("assets", []):
         if a["name"] == nome:
             if a.get("state") == "uploaded" and a["size"] == tam: return {"gh_url": a["browser_download_url"], "gh_asset": a["id"]}
@@ -627,3 +643,9 @@ def drive_faxina(ag):
         q = requests.get("https://www.googleapis.com/drive/v3/about", params={"fields": "storageQuota(limit,usage,usageInDriveTrash)"}, headers=H, timeout=60).json().get("storageQuota", {})
         return f"Drive: {int(q.get('usage', 0)) / 1e9:.1f} GB usados de {int(q.get('limit', 0)) / 1e9:.0f} GB (lixeira: {int(q.get('usageInDriveTrash', 0)) / 1e9:.1f} GB) | sobras apagadas agora: {n} | conferido em {dt_.datetime.now(dt_.timezone(dt_.timedelta(hours=-3))).strftime('%d/%m %H:%M')}"
     except Exception as e: print("Drive: faxina:", str(e)[:120]); return None
+
+
+# Trava final: QUALQUER vídeo de mapa que o robô baixa para guardar ou publicar passa pela conferência de 1080x1920 (regra do dono).
+_baixar0 = baixar
+def baixar(it):
+    arq = _baixar0(it); exige_1080(arq); return arq
