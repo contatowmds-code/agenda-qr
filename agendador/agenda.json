@@ -990,6 +990,9 @@
   "drive_id": "1f-WVgACEZ8XmWwK1846GChwjoEar02Xn",
   "tamanho": 242594804,
   "ia": true,
-  "sha256": "e8ff409d149281e30db75e50cd551220ce2ba43d1f71802258734cae7f575bbc"
+  "sha256": "e8ff409d149281e30db75e50cd551220ce2ba43d1f71802258734cae7f575bbc",
+  "gh_url": "https://github.com/contatowmds-code/agenda-qr/releases/download/cofre-videos/mapa-pr-4114906.mp4",
+  "gh_asset": 804748786,
+  "drive_apagado": true
  }
 ]
