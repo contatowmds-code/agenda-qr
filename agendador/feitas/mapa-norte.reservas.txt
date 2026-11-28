@@ -4,3 +4,4 @@ NO | 033 | 1502400 | Castanhal | EM PRODUÇÃO | 27/11 22:26
 NO | 034 | 1504406 | Marapanim | EM PRODUÇÃO | 28/11 03:10
 NO | 035 | 1715150 | Novo Alegre | EM PRODUÇÃO | 28/11 06:44
 NO | 036 | 1702109 | Araguaína | EM PRODUÇÃO | 28/11 10:15
+NO | 037 | 1721307 | Tupiratins | EM PRODUÇÃO | 28/11 13:56
